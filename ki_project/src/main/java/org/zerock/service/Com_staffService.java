@@ -28,4 +28,3 @@ public interface Com_staffService {
   public int listSearchCount(SearchCriteria cri) throws Exception;
 
 }
-
