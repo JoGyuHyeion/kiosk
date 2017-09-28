@@ -14,7 +14,7 @@ public class Conn_logDAOImpl implements Conn_logDAO{
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.zerock.mapper.Con_logMapper";
+	private static String namespace = "org.zerock.mapper.Conn_logMapper";
 
 	@Override
 	public void create(Conn_logVO vo) throws Exception {

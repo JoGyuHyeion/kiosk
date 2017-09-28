@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.zerock.mapper.Com_boardMapper">
 
-	<select id="select" resultType="Com_boardVO">
+	<select id="read" resultType="Com_boardVO">
 		select * from com_board
 		where
 		bbs_no = #{bbs_no}
 	</select>
 
-	<insert id="insert">
+	<insert id="create">
 		insert into com_board
 		(bbs_no,bbs_title,bbs_content,bbs_file,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt)
 		values

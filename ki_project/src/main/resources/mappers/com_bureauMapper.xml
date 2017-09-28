@@ -5,12 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.zerock.mapper.Com_bureauMapper">
 
-	<select id="select" resultType="Com_bureauVO">
+	<select id="read" resultType="Com_bureauVO">
 		select * from com_bureau
 		where bureau_cd = #{bureau_cd}
 	</select>
 
-	<insert id="insert">
+	<insert id="create">
 		insert into com_bureau
 		(bureau_cd,bureau_name,bureau_use) values
 		(#{bureau_cd},#{bureau_name},#{bureau_use})

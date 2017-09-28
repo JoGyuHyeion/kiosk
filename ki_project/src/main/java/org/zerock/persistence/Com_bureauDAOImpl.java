@@ -17,13 +17,13 @@ public class Com_bureauDAOImpl implements Com_bureauDAO{
 	
 	@Override
 	public void create(Com_bureauVO vo) throws Exception {
-		session.insert(namespace+".insert",vo);
+		session.insert(namespace+".create",vo);
 		
 	}
 
 	@Override
 	public Com_bureauVO read(String bureau_cd) throws Exception {
-		return session.selectOne(namespace+".select",bureau_cd);
+		return session.selectOne(namespace+".read",bureau_cd);
 	
 	}
 

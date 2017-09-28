@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.zerock.mapper.Ci_sessionMapper">
 
-	<select id="select" resultType="ci_sessionsVO">
+	<select id="read" resultType="ci_sessionsVO">
 		select * from ci_sessions
 		where
 		timestamp = #{timestamp}
 	</select>
 
-	<insert id="insert">
+	<insert id="create">
 		insert into ci_sessions
 		(id,ip_address,timestamp,data)
 		values

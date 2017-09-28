@@ -28,9 +28,9 @@ public class Com_staffTest {
 	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
-    java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-    
-	//@Test
+	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+	// @Test
 	public void testCreate() throws Exception {
 
 		Com_staffVO vo = new Com_staffVO();
@@ -53,12 +53,12 @@ public class Com_staffTest {
 		dao.create(vo);
 	}
 
-	@Test
+	// @Test
 	public void testRead() throws Exception {
 		logger.info(dao.read(2).toString());
 	}
 
-	//@Test
+	// @Test
 	public void testUpdate() throws Exception {
 
 		Com_staffVO vo = new Com_staffVO();
@@ -68,32 +68,32 @@ public class Com_staffTest {
 		dao.update(vo);
 	}
 
-	//@Test
+	// @Test
 	public void testDelete() throws Exception {
 
 		dao.delete(1138);
 	}
 
-	//@Test
+	// @Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
 
 	}
 
-	//@Test
+	// @Test
 	public void testListPage() throws Exception {
 
 		int page = 1;
 
 		List<Com_staffVO> list = dao.listPage(page);
 
-//		for (Com_staffVO Com_staffVO : list) {
-//			logger.info(Com_staffVO.getBno() + ":" + Com_staffVO.getTitle());
-//		}
+		// for (Com_staffVO Com_staffVO : list) {
+		// logger.info(Com_staffVO.getBno() + ":" + Com_staffVO.getTitle());
+		// }
 	}
 
-	//@Test
+	// @Test
 	public void testListCriteria() throws Exception {
 
 		Criteria cri = new Criteria();
@@ -102,12 +102,12 @@ public class Com_staffTest {
 
 		List<Com_staffVO> list = dao.listCriteria(cri);
 
-//		for (Com_staffVO Com_staffVO : list) {
-//			logger.info(Com_staffVO.getBno() + ":" + Com_staffVO.getTitle());
-//		}
+		// for (Com_staffVO Com_staffVO : list) {
+		// logger.info(Com_staffVO.getBno() + ":" + Com_staffVO.getTitle());
+		// }
 	}
 
-	//@Test
+	// @Test
 	public void testURI() throws Exception {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().path("/vo/read").queryParam("bno", 12)
@@ -118,7 +118,7 @@ public class Com_staffTest {
 
 	}
 
-	//@Test
+	// @Test
 	public void testURI2() throws Exception {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().path("/{module}/{page}").queryParam("bno", 12)
@@ -128,7 +128,7 @@ public class Com_staffTest {
 		logger.info(uriComponents.toString());
 	}
 
-	//@Test
+	// @Test
 	public void testDynamic1() throws Exception {
 
 		SearchCriteria cri = new SearchCriteria();
@@ -140,9 +140,9 @@ public class Com_staffTest {
 
 		List<Com_staffVO> list = dao.listSearch(cri);
 
-//		for (Com_staffVO Com_staffVO : list) {
-//			logger.info(Com_staffVO.getBno() + ": " + Com_staffVO.getTitle());
-//		}
+		// for (Com_staffVO Com_staffVO : list) {
+		// logger.info(Com_staffVO.getBno() + ": " + Com_staffVO.getTitle());
+		// }
 
 		logger.info("=====================================");
 
@@ -150,4 +150,3 @@ public class Com_staffTest {
 	}
 
 }
-

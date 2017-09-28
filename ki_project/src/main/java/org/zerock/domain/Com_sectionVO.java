@@ -5,12 +5,13 @@ public class Com_sectionVO {
 	private String section_cd;
 	private String section_name;
 	private String section_type;
+	private int section_sort;
 	private String section_ip;
 	private String section_id;
 	private String section_pass;
 	private String section_fullcode;
+	private String section_fullpath;
 	private String section_use;
-	private int section_author;
 
 	public String getBureau_cd() {
 		return bureau_cd;
@@ -42,6 +43,14 @@ public class Com_sectionVO {
 
 	public void setSection_type(String section_type) {
 		this.section_type = section_type;
+	}
+
+	public int getSection_sort() {
+		return section_sort;
+	}
+
+	public void setSection_sort(int section_sort) {
+		this.section_sort = section_sort;
 	}
 
 	public String getSection_ip() {
@@ -76,6 +85,14 @@ public class Com_sectionVO {
 		this.section_fullcode = section_fullcode;
 	}
 
+	public String getSection_fullpath() {
+		return section_fullpath;
+	}
+
+	public void setSection_fullpath(String section_fullpath) {
+		this.section_fullpath = section_fullpath;
+	}
+
 	public String getSection_use() {
 		return section_use;
 	}
@@ -84,20 +101,12 @@ public class Com_sectionVO {
 		this.section_use = section_use;
 	}
 
-	public int getSection_author() {
-		return section_author;
-	}
-
-	public void setSection_author(int section_author) {
-		this.section_author = section_author;
-	}
-
 	@Override
 	public String toString() {
 		return "Com_sectionVO [bureau_cd=" + bureau_cd + ", section_cd=" + section_cd + ", section_name=" + section_name
-				+ ", section_type=" + section_type + ", section_ip=" + section_ip + ", section_id=" + section_id
-				+ ", section_pass=" + section_pass + ", section_fullcode=" + section_fullcode + ", section_use="
-				+ section_use + ", section_author=" + section_author + "]";
+				+ ", section_type=" + section_type + ", section_sort=" + section_sort + ", section_ip=" + section_ip
+				+ ", section_id=" + section_id + ", section_pass=" + section_pass + ", section_fullcode="
+				+ section_fullcode + ", section_fullpath=" + section_fullpath + ", section_use=" + section_use + "]";
 	}
 
 }

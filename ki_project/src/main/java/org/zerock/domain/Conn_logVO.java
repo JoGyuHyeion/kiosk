@@ -1,9 +1,11 @@
 package org.zerock.domain;
 
+import java.sql.Timestamp;
+
 public class Conn_logVO {
 	private int conn_id;
 	private String device_id;
-	private String timestamp;
+	private Timestamp regdate;
 
 	public int getConn_id() {
 		return conn_id;
@@ -21,17 +23,17 @@ public class Conn_logVO {
 		this.device_id = device_id;
 	}
 
-	public String getTimestamp() {
-		return timestamp;
+	public Timestamp getRegdate() {
+		return regdate;
 	}
 
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
 	}
 
 	@Override
 	public String toString() {
-		return "Conn_logVO [conn_id=" + conn_id + ", device_id=" + device_id + ", timestamp=" + timestamp + "]";
+		return "Conn_logVO [conn_id=" + conn_id + ", device_id=" + device_id + ", regdate=" + regdate + "]";
 	}
 
 }
