@@ -21,7 +21,7 @@ public class Ci_sessionsServiceImpl implements Ci_sessionsService{
 	}
 
 	@Override
-	public Ci_sessionsVO read(String timestamp) throws Exception {
+	public Ci_sessionsVO read(int timestamp) throws Exception {
 		return dao.read(timestamp);
 	}
 
@@ -32,7 +32,7 @@ public class Ci_sessionsServiceImpl implements Ci_sessionsService{
 	}
 
 	@Override
-	public void remove(String timestamp) throws Exception {
+	public void remove(int timestamp) throws Exception {
 		dao.delete(timestamp);
 		
 	}

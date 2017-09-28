@@ -21,7 +21,7 @@ public class Ci_sessionsDAOImpl implements Ci_sessionsDAO {
 	}
 
 	@Override
-	public Ci_sessionsVO read(String timestamp) throws Exception {
+	public Ci_sessionsVO read(int timestamp) throws Exception {
 		return session.selectOne(namespace + ".read", timestamp);
 	}
 
@@ -32,7 +32,7 @@ public class Ci_sessionsDAOImpl implements Ci_sessionsDAO {
 	}
 
 	@Override
-	public void delete(String timestamp) throws Exception {
+	public void delete(int timestamp) throws Exception {
 		session.delete(namespace + ".delete", timestamp);
 
 	}
