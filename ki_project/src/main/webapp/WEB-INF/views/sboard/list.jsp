@@ -7,133 +7,168 @@
 <%@include file="../include/header.jsp"%>
 
 <!-- Main content -->
-<section class="content">
-	<div class="row">
-		<!-- left column -->
 
+<section class="content-wrapper">
 
-		<div class="col-md-12">
-			<!-- general form elements -->
-			<div class='box'>
-				<div class="box-header with-border">
-					<h3 class="box-title">Board List</h3>
+	<form role="form" action="modifyPage" method="post">
+
+		<input type='hidden' name='page' value="${cri.page}"> <input
+			type='hidden' name='perPageNum' value="${cri.perPageNum}"> <input
+			type='hidden' name='searchType' value="${cri.searchType}"> <input
+			type='hidden' name='keyword' value="${cri.keyword}">
+
+	</form>
+	<div class="container-fluid">
+
+		<ol class="breadcrumb">
+			<div class="row">
+				<div class="col-sm-12 col-md-3">
+					<select name="" id="" class="form-control form-control-sm">
+						<option value="">전체관리자</option>
+						<option value="">efg</option>
+					</select>
 				</div>
 
+				<div class="col-sm-12 col-md-3">
+					<select name="" id="" class="form-control form-control-sm">
+						<option value="">::근무팀을 선택하여 주세요!</option>
+						<option value="">efg</option>
+					</select>
+				</div>
 
-				<div class='box-body'>
+				<div class="col-sm-12 col-md-3">
+					<input type="text" class="form-control" value="검색어">
+				</div>
 
-					<select name="searchType">
-						<option value="n"
-							<c:out value="${cri.searchType == null?'selected':''}"/>>
-							---</option>
-						<option value="t"
-							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
-							Title</option>
-						<option value="c"
-							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
-							Content</option>
-						<option value="w"
-							<c:out value="${cri.searchType eq 'w'?'selected':''}"/>>
-							Writer</option>
-						<option value="tc"
-							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
-							Title OR Content</option>
-						<option value="cw"
-							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
-							Content OR Writer</option>
-						<option value="tcw"
-							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
-							Title OR Content OR Writer</option>
-					</select> <input type="text" name='keyword' id="keywordInput"
-						value='${cri.keyword }'>
-					<button id='searchBtn'>Search</button>
-					<button id='newBtn'>New Board</button>
-
+				<div class="col-sm-12 col-md-3">
+					<button class="btn btn-primary">검색</button>
 				</div>
 			</div>
 
+		</ol>
 
-			<div class="box">
-				<div class="box-header with-border">
-					<h3 class="box-title">LIST PAGING</h3>
-				</div>
-				<div class="box-body">
-					<table class="table table-bordered">
-						<tr>
-							<th>modify</th>
-							<th>st_nm</th>
-							<th>st_position</th>
-							<th>st_email</th>
-							<th>st_job</th>
-							<th>st_profile</th>
-							<th>img_filenm</th>
-							<th>section_cd</th>
-							<th>team_cd</th>
-							<th>st_team</th>
-							<th>st_sort</th>
-							<th>st_status</th>
-							<th>st_edt</th>
-						</tr>
-
-						<c:forEach items="${list}" var="com_staffVO">
-
+		<div class="card mb-3">
+			<div class="card-header">
+				<i class="fa fa-table"></i>직원목록
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
+						<thead>
 							<tr>
-								<td><button class="btn btn-warning">수정</button></td>
-								<td>${com_staffVO.st_nm}</td>
-								<td>${com_staffVO.st_position}</td>
-								<td>${com_staffVO.st_email}</td>
-								<td>${com_staffVO.st_job}</td>
-								<td>${com_staffVO.st_profile}</td>
-								<td>${com_staffVO.img_filenm}</td>
-								<td>${com_staffVO.section_cd}</td>
-								<td>${com_staffVO.team_cd}</td>
-								<td>${com_staffVO.st_team}</td>
-								<td>${com_staffVO.st_sort}</td>
-								<td>${com_staffVO.st_status}</td>
-								<td><span class="badge bg-red">${com_staffVO.st_edt }</span></td>
+								<th>편집</th>
+								<th>사진</th>
+								<th>부서</th>
+								<th>팀</th>
+								<th>직위</th>
+								<th>성명</th>
+								<th>이메일</th>
+								<th>사무명</th>
+								<th>전화번호</th>
+								<th>Update</th>
 							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${list}" var="com_staffVO">
 
-						</c:forEach>
+								<tr>
+									<td><a
+										href="/sboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}">수정</a></td>
 
-					</table>
-				</div>
-				<!-- /.box-body -->
+									<td>${com_staffVO.img_filenm}</td>
+									<td>${com_staffVO.section_cd}</td>
+									<td>${com_staffVO.st_team}</td>
+									<td>${com_staffVO.st_job}</td>
+									<td>${com_staffVO.st_nm}</td>
+									<td>${com_staffVO.st_email}</td>
+									<td>${com_staffVO.st_profile}</td>
+									<td>${com_staffVO.st_tel}</td>
+									<td>${com_staffVO.st_edt }</td>
+								</tr>
 
-
-				<div class="box-footer">
-
-					<div class="text-center">
-						<ul class="pagination">
-
-							<c:if test="${pageMaker.prev}">
-								<li><a
-									href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
-							</c:if>
-
-							<c:forEach begin="${pageMaker.startPage }"
-								end="${pageMaker.endPage }" var="idx">
-								<li
-									<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-									<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
-								</li>
 							</c:forEach>
+						<tbody>
+					</table>
 
-							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a
-									href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
-							</c:if>
 
-						</ul>
+					<div class="row">
+						<div class="box-footer">
+
+							<div class="text-center">
+								<ul class="pagination">
+
+									<c:if test="${pageMaker.prev}">
+										<li><a
+											href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
+									</c:if>
+
+									<c:forEach begin="${pageMaker.startPage }"
+										end="${pageMaker.endPage }" var="idx">
+										<li
+											<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+											<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
+										</li>
+									</c:forEach>
+
+									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<li><a
+											href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
+									</c:if>
+
+								</ul>
+							</div>
+
+						</div>
 					</div>
-
 				</div>
-				<!-- /.box-footer-->
 			</div>
 		</div>
-		<!--/.col (left) -->
+
+
+
+	</div>
+	</div>
+
+
+
+
+
+	<div class="box-footer">
+
+		<div class="text-center">
+			<ul class="pagination">
+
+				<c:if test="${pageMaker.prev}">
+					<li><a
+						href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
+				</c:if>
+
+				<c:forEach begin="${pageMaker.startPage }"
+					end="${pageMaker.endPage }" var="idx">
+					<li
+						<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
+						<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
+					</li>
+				</c:forEach>
+
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					<li><a
+						href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
+				</c:if>
+
+			</ul>
+		</div>
+
+	</div>
+	<!-- /.box-footer-->
+	</div>
+	</div>
+	<!--/.col (left) -->
 
 	</div>
 	<!-- /.row -->
+
 </section>
 <!-- /.content -->
 
