@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.DbTestMapper">
+
+	<select id="select_DbTest" resultType="DbTestVO">
+		select * from dbTest where 
+		id_no = #{id_no} order by id_no desc
+	</select>
+
+	<insert id="insert_DbTest">
+		insert into dbTest (id,pwd)values (#{id},#{pwd})
+	</insert>
+
+	<update id="update_DbTest">
+		update dbTest set id = #{id}, pwd = #{pwd} where
+		id_no = #{id_no}
+	</update>
+
+	<delete id="delete_DbTest">
+		delete from dbTest where id_no = #{id_no}
+	</delete>
+
+	<select id="listAll" resultType="DbTestVO">
+ 		<![CDATA[ select * from dbTest where id_no > 0  order by id_no desc ]]>
+	</select>
+
+</mapper>
