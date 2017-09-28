@@ -41,16 +41,16 @@ public class SearchBoardController {
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("bno") int bno, @ModelAttribute("cri") SearchCriteria cri, Model model)
+	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
 			throws Exception {
 
-		model.addAttribute(service.read(bno));
+		model.addAttribute(service.read(st_no));
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
-	public String remove(@RequestParam("bno") int bno, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 
-		service.remove(bno);
+		service.remove(st_no);
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
@@ -63,9 +63,9 @@ public class SearchBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-	public void modifyPagingGET(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void modifyPagingGET(int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
-		model.addAttribute(service.read(bno));
+		model.addAttribute(service.read(st_no));
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
@@ -106,5 +106,3 @@ public class SearchBoardController {
 	}
 
 }
-
-

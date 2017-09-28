@@ -21,7 +21,7 @@ public class jjyeDBTest {
 
 	private static Logger logger = LoggerFactory.getLogger(jjyeDBTest.class);
 
-	// @Test
+	 @Test
 	public void testCreate() throws Exception {
 
 		DbTestVO vo = new DbTestVO();
@@ -30,7 +30,7 @@ public class jjyeDBTest {
 		dao.create(vo);
 	}
 
-	 @Test
+	// @Test
 	public void testRead() throws Exception {
 
 		logger.info(dao.read(1).toString());

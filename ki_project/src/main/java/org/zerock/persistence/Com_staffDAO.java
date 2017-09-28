@@ -31,4 +31,3 @@ public interface Com_staffDAO {
   public int listSearchCount(SearchCriteria cri)throws Exception;
 
 }
-

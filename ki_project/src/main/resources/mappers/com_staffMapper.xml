@@ -6,8 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.Com_staffMapper">
 
 	<insert id="create">
-		insert into com_staff
-		(st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt)
+		insert into com_staff (st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt)
 		values(#{st_nm},#{st_position},#{st_tel},#{st_email},#{st_job},#{st_profile},#{img_filenm},#{img_filenm1},#{section_cd},#{team_cd},#{st_team},#{st_sort},#{st_display},#{st_status},#{st_wdt},#{st_edt})
 	</insert>
 
@@ -20,13 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<update id="update">
-		update com_staff set st_nm =#{st_nm}, st_position
-		=#{st_position},st_tel =#{st_tel},st_email =#{st_email},st_job
-		=#{st_job},st_profile =#{st_profile},img_filenm
-		=#{img_filenm},img_filenm1 =#{img_filenm1},section_cd
-		=#{section_cd},team_cd =#{team_cd},st_team =#{st_team},st_sort
-		=#{st_sort},st_display =#{st_display},st_status =#{st_status},st_wdt
-		=#{st_wdt},st_edt =#{st_edt}
+		update com_staff set st_nm =#{st_nm}, st_position =#{st_position},st_tel =#{st_tel},st_email =#{st_email},st_job =#{st_job},st_profile =#{st_profile},img_filenm =#{img_filenm},img_filenm1 =#{img_filenm1},section_cd =#{section_cd},team_cd =#{team_cd},st_team =#{st_team},st_sort =#{st_sort},st_display =#{st_display},st_status =#{st_status},st_wdt =#{st_wdt},st_edt =#{st_edt}
 		where st_no = #{st_no}
 	</update>
 
