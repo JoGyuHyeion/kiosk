@@ -1,6 +1,6 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
-public class MateVO {
+public class MateDTO {
 
 	private int no;
 	private String name;

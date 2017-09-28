@@ -1,6 +1,6 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
-public class JsonNoticeVO {
+public class JsonNoticeDTO {
 
 	private int bbs_no;
 	private String bbs_title;

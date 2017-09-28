@@ -1,11 +1,11 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
 import java.util.Map;
 
-public class TeamsVO {
+public class TeamsDTO {
 
 	private String team_name;
-	private Map<Integer, MateVO> mate;
+	private Map<Integer, MateDTO> mate;
 
 	public String getTeam_name() {
 		return team_name;
@@ -15,11 +15,11 @@ public class TeamsVO {
 		this.team_name = team_name;
 	}
 
-	public Map<Integer, MateVO> getMate() {
+	public Map<Integer, MateDTO> getMate() {
 		return mate;
 	}
 
-	public void setMate(Map<Integer, MateVO> mate) {
+	public void setMate(Map<Integer, MateDTO> mate) {
 		this.mate = mate;
 	}
 

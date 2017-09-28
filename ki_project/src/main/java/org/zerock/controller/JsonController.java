@@ -4,84 +4,83 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerock.domain.JsonGelleryVO;
-import org.zerock.domain.JsonNoticeVO;
-import org.zerock.domain.JsonStaffVO;
-import org.zerock.domain.MateVO;
 import org.zerock.domain.SampleVO;
-import org.zerock.domain.TeamsVO;
+import org.zerock.dto.JsonGelleryDTO;
+import org.zerock.dto.JsonNoticeDTO;
+import org.zerock.dto.JsonStaffDTO;
+import org.zerock.dto.MateDTO;
+import org.zerock.dto.TeamsDTO;
 
 @RestController
 @RequestMapping("/json")
 public class JsonController {
 
 	@RequestMapping("/sendStaff")
-	public JsonStaffVO sendStaff() {
-		JsonStaffVO vo = new JsonStaffVO();
-		vo.setSection_name("K010-S010");
-		vo.setSection_password("12345");
+	public JsonStaffDTO sendStaff() {
+		JsonStaffDTO dto = new JsonStaffDTO();
+		dto.setSection_name("K010-S010");
+		dto.setSection_password("12345");
 
-		List<TeamsVO> teams = new ArrayList<>();
+		List<TeamsDTO> teams = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
-			TeamsVO teamsVO = new TeamsVO();
-			teamsVO.setTeam_name("임원");
+			TeamsDTO teamsdto = new TeamsDTO();
+			teamsdto.setTeam_name("임원");
 
-			Map<Integer, MateVO> mate = new HashMap<>();
+			Map<Integer, MateDTO> mate = new HashMap<>();
 
 			for (int j = 0; j < 4; j++) {
-				MateVO mateVO = new MateVO();
-				mateVO.setNo(j);
-				mateVO.setName("명준");
-				mateVO.setPosition("풀스텍");
-				mateVO.setJob("웹 개발자");
-				mateVO.setTel("010-5555-6666");
-				mateVO.setEmail("kj@naver.com");
-				mateVO.setImg_filenm("staff_00882.jpg");
-				mateVO.setSort(4);
-				mateVO.setStatus(2);
-				mate.put(j, mateVO);
+				MateDTO matedto = new MateDTO();
+				matedto.setNo(j);
+				matedto.setName("명준");
+				matedto.setPosition("풀스텍");
+				matedto.setJob("웹 개발자");
+				matedto.setTel("010-5555-6666");
+				matedto.setEmail("kj@naver.com");
+				matedto.setImg_filenm("staff_00882.jpg");
+				matedto.setSort(4);
+				matedto.setStatus(2);
+				mate.put(j, matedto);
 				
 			}
-			teamsVO.setMate(mate);
-			teams.add(teamsVO);
+			teamsdto.setMate(mate);
+			teams.add(teamsdto);
 			
 		}
-		vo.setTeams(teams);;
+		dto.setTeams(teams);;
 
-		return vo;
+		return dto;
 	}
 
 	@RequestMapping("/sendGallery")
-	public List<JsonGelleryVO> sendGallery() {
+	public List<JsonGelleryDTO> sendGallery() {
 
-		List<JsonGelleryVO> list = new ArrayList<>();
+		List<JsonGelleryDTO> list = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
-			JsonGelleryVO vo = new JsonGelleryVO();
-			vo.setNo(i + 1);
-			vo.setTitle("abc");
-			vo.setCaption("캡션");
-			vo.setFilenm("/_files/gallery/none/2017/09/20170911-59b6c8ae25dad368727049.png");
-			list.add(vo);
+			JsonGelleryDTO dto = new JsonGelleryDTO();
+			dto.setNo(i + 1);
+			dto.setTitle("abc");
+			dto.setCaption("캡션");
+			dto.setFilenm("/_files/gallery/none/2017/09/20170911-59b6c8ae25dad368727049.png");
+			list.add(dto);
 		}
 		return list;
 	}
 
 	@RequestMapping("/sendNotice")
-	public List<JsonNoticeVO> sendNotice() {
+	public List<JsonNoticeDTO> sendNotice() {
 
-		List<JsonNoticeVO> list = new ArrayList<>();
+		List<JsonNoticeDTO> list = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
-			JsonNoticeVO vo = new JsonNoticeVO();
-			vo.setBbs_no(i);
-			vo.setBbs_title("남명준씨");
-			vo.setBbs_content("바쁘시네 그참 데이터도 없구만");
-			vo.setBbs_file("/_files/board/");
-			list.add(vo);
+			JsonNoticeDTO dto = new JsonNoticeDTO();
+			dto.setBbs_no(i);
+			dto.setBbs_title("남명준씨");
+			dto.setBbs_content("바쁘시네 그참 데이터도 없구만");
+			dto.setBbs_file("/_files/board/");
+			list.add(dto);
 		}
 		return list;
 	}

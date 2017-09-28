@@ -1,6 +1,6 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
-public class JsonGelleryVO {
+public class JsonGelleryDTO {
 
 	private int no;
 	private String title;

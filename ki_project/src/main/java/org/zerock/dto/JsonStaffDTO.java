@@ -1,12 +1,12 @@
-package org.zerock.domain;
+package org.zerock.dto;
 
 import java.util.List;
 
-public class JsonStaffVO {
+public class JsonStaffDTO {
 
 	private String section_name;
 	private String section_password;
-	private List<TeamsVO> teams;
+	private List<TeamsDTO> teams;
 
 	public String getSection_name() {
 		return section_name;
@@ -24,11 +24,11 @@ public class JsonStaffVO {
 		this.section_password = section_password;
 	}
 
-	public List<TeamsVO> getTeams() {
+	public List<TeamsDTO> getTeams() {
 		return teams;
 	}
 
-	public void setTeams(List<TeamsVO> teams) {
+	public void setTeams(List<TeamsDTO> teams) {
 		this.teams = teams;
 	}
 
