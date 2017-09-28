@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -136,3 +137,143 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 </mapper>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.Com_staffMapper">
+
+	<insert id="create">
+		insert into com_staff (st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt)
+		values(#{st_nm},#{st_position},#{st_tel},#{st_email},#{st_job},#{st_profile},#{img_filenm},#{img_filenm1},#{section_cd},#{team_cd},#{st_team},#{st_sort},#{st_display},#{st_status},#{st_wdt},#{st_edt})
+	</insert>
+
+	<select id="read" resultType="org.zerock.domain.Com_staffVO">
+		select
+		st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		from
+		com_staff
+		where st_no = #{st_no}
+	</select>
+
+	<update id="update">
+		update com_staff set st_nm =#{st_nm}, st_position =#{st_position},st_tel =#{st_tel},st_email =#{st_email},st_job =#{st_job},st_profile =#{st_profile},img_filenm =#{img_filenm},img_filenm1 =#{img_filenm1},section_cd =#{section_cd},team_cd =#{team_cd},st_team =#{st_team},st_sort =#{st_sort},st_display =#{st_display},st_status =#{st_status},st_wdt =#{st_wdt},st_edt =#{st_edt}
+		where st_no = #{st_no}
+	</update>
+
+	<delete id="delete">
+		delete from com_staff where st_no = #{st_no}
+	</delete>
+
+	<select id="listAll" resultType="org.zerock.domain.Com_staffVO">
+ <![CDATA[
+ select 
+   st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+ from 
+   com_staff 
+ where st_no > 0 
+ order by st_no desc
+ ]]>
+	</select>
+
+	<select id="listPage" resultType="Com_staffVO">
+ <![CDATA[
+ select 
+  st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+ from 
+   com_staff 
+ where st_no > 0 
+ order by st_no desc
+ limit #{page}, 10
+ ]]>
+	</select>
+
+	<select id="listCriteria" resultType="Com_staffVO">
+ <![CDATA[
+ select 
+   st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+ from 
+   com_staff 
+ where st_no > 0 
+ order by st_no desc
+ limit #{pageStart}, #{perPageNum}
+ ]]>
+	</select>
+
+
+
+	<select id="countPaging" resultType="int">
+ <![CDATA[
+ select 
+   count(st_no) 
+ from 
+   com_staff 
+ where 
+   st_no > 0 
+ ]]>
+	</select>
+
+
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR content
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( content like CONCAT('%', #{keyword}, '%') OR writer
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%')
+				OR
+				content
+				like CONCAT('%', #{keyword}, '%')
+				OR
+				writer like CONCAT('%',
+				#{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+
+	<select id="listSearch" resultType="Com_staffVO">
+<![CDATA[  
+  select * 
+  from com_staff 
+  where st_no > 0 
+]]>
+
+		<include refid="search"></include>
+  
+<![CDATA[    
+  order by st_no desc
+  limit #{pageStart}, #{perPageNum}
+]]>
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+<![CDATA[  
+  select count(st_no) 
+  from com_staff 
+  where st_no > 0 
+]]>
+		<include refid="search"></include>
+
+	</select>
+
+</mapper>
+>>>>>>> ab9babf5047782ebfc1d6dbed110703b09390fc2
