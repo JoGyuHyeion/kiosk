@@ -55,10 +55,7 @@ public class Com_staffTest {
 
 	@Test
 	public void testRead() throws Exception {
-		Com_staffVO vo =dao.read(1140);
-		logger.info(dao.read(1140).toString());
-		
-		System.out.println("규현"+vo.toString());
+		logger.info(dao.read(2).toString());
 	}
 
 	//@Test
@@ -153,3 +150,4 @@ public class Com_staffTest {
 	}
 
 }
+

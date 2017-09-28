@@ -1,7 +1,6 @@
 package org.zerock.domain;
 
 import java.sql.Date;
-import java.util.HashMap;
 
 public class Com_staffVO {
 	
@@ -22,7 +21,6 @@ public class Com_staffVO {
 	private int st_status;
 	private Date st_wdt;
 	private Date st_edt;
-	
 	
 	public int getSt_no() {
 		return st_no;
@@ -87,7 +85,7 @@ public class Com_staffVO {
 	public String getTeam_cd() {
 		return team_cd;
 	}
-	public void setTeam_cd(String team_cd) {	
+	public void setTeam_cd(String team_cd) {
 		this.team_cd = team_cd;
 	}
 	public String getSt_team() {
@@ -137,3 +135,4 @@ public class Com_staffVO {
 	}
 	
 }
+
