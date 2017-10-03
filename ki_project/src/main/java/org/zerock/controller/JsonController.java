@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +19,28 @@ import org.zerock.dto.JsonNoticeDTO;
 import org.zerock.dto.JsonStaffDTO;
 import org.zerock.dto.MateDTO;
 import org.zerock.dto.TeamsDTO;
+import org.zerock.service.JsonGelleryService;
+import org.zerock.service.JsonNoticeService;
+import org.zerock.service.JsonStaffService;
+import org.zerock.service.MateService;
+import org.zerock.service.TeamsService;
 
 @RestController
 @RequestMapping("/json")
 public class JsonController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
+
+//	@Inject
+//	private JsonGelleryService gelleryService;
+//	@Inject
+//	private JsonNoticeService noticeService;
+//	@Inject
+//	private JsonStaffService staffService;
+//	@Inject
+//	private MateService mateService;
+//	@Inject
+//	private TeamsService teamsService;
 
 	@RequestMapping("/sendStaff")
 	public JsonStaffDTO sendStaff() {
