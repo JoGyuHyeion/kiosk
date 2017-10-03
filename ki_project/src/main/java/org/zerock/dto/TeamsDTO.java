@@ -6,15 +6,6 @@ public class TeamsDTO {
 
 	private String team_name;
 	private Map<Integer, MateDTO> mate;
-	
-	public TeamsDTO() {
-		super();
-	}
-
-	public TeamsDTO(String team_name) {
-		super();
-		this.team_name = team_name;
-	}
 
 	public String getTeam_name() {
 		return team_name;

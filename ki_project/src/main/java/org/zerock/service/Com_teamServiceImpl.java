@@ -22,7 +22,7 @@ public class Com_teamServiceImpl implements Com_teamService{
 
 	@Override
 	public Com_teamVO read(Integer st_no) throws Exception {
-		return dao.read(st_no);
+		return null;
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class Com_teamServiceImpl implements Com_teamService{
 
 	@Override
 	public void remove(Integer st_no) throws Exception {
-		dao.delete(st_no);
+		//dao.delete(st_no);
 		
 	}
 

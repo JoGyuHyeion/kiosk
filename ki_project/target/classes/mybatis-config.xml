@@ -6,7 +6,6 @@
 
 	<typeAliases>
 		<package name="org.zerock.domain" />
-		<package name="org.zerock.dto" />
 	</typeAliases>
 
 </configuration>
