@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="false"%>
 
 <%@include file="../include/header.jsp"%>
-
 <!-- Main content -->
 <section class="wrapper">
 
@@ -90,7 +92,7 @@
 										<label class="col-md-2 control-label">사무설명</label>
 										<div class="col-md-10">
 											<textarea class="form-control" rows="2" id="st_profile"
-												name="st_profile" value="${com_staffVO.st_profile}"></textarea>
+												name="st_profile"> ${com_staffVO.st_profile}</textarea>
 										</div>
 									</div>
 									<!-- st_filenm -->
@@ -165,27 +167,27 @@
 
 									<!--display, status javascript 코드 view 표시  -->
 									<script>
-										var display = '<c:out value=${com_staffVO.st_display}>';
-										var status = '<c:out value=${com_staffVO.st_status}>';
-
-										if (display = 1) {
+										var display = '<c:out value="${com_staffVO.st_display}"/>';
+										var status = '<c:out value="${com_staffVO.st_status}"/>';
+										alert("Display, Status 확인 \n"
+												+ "표시여부: " + display
+												+ "\n근무 상태: " + status);
+										if (display == 1) {
 											document
 													.getElementById('st_display').checked = true;
+										} else {
 										}
-										alert(status);
-										if (status = 1) {
+
+										if (status == 1) {
 											document
 													.getElementById('st_status1').checked = true;
-										}
-										else if (status = 2) {
+										} else if (status == 2) {
 											document
 													.getElementById('st_status2').checked = true;
-										}
-										else if (status = 3) {
+										} else if (status == 3) {
 											document
 													.getElementById('st_status3').checked = true;
-										} 
-										else if (status = 4) {
+										} else if (status == 4) {
 											document
 													.getElementById('st_status4').checked = true;
 										}
@@ -212,7 +214,6 @@
 				$(document)
 						.ready(
 								function() {
-
 									var formObj = $("form[role='form']");
 									console.log(formObj);
 									$("#change")
