@@ -36,8 +36,8 @@ public class JsonGelleryServiceImpl implements JsonGelleryService {
 	}
 
 	@Override
-	public List<JsonGelleryDTO> listAll() throws Exception {
-		return dao.listAll();
+	public List<JsonGelleryDTO> listAll(String section_cd) throws Exception {
+		return dao.listAll(section_cd);
 	}
 
 

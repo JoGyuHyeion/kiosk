@@ -14,7 +14,7 @@ public interface JsonGelleryService {
 
 	  public void remove(Integer no) throws Exception;
 	  
-	  public List<JsonGelleryDTO> listAll() throws Exception;
+	  public List<JsonGelleryDTO> listAll(String section_cd) throws Exception;
 	  
 	  
 }

@@ -5,27 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.zerock.mapper.JsonGelleryMapper">
 
-	<select id="read" resultType="JsonGelleryDTO">
+	<select id="read" resultType="org.zerock.dto.JsonGelleryDTO">
 		select img_no, img_title, img_caption, img_filenm
 		from com_image
-		WHERE img_gallery = 1 AND`section_cd` IN('none',#{section_cd})
+		WHERE img_no = #{no}
 	</select>
 
 	<insert id="create">
 		insert into com_image
-		(img_no, img_title, img_caption, img_filenm )
+		(img_title, img_caption, img_filenm )
 		values
-		(#{img_no},#{img_title},#{img_caption},#{img_filenm})
+		(#{title},#{caption},#{filenm})
 	</insert>
 
 	<update id="update">
 		update com_image set
-		img_no = #{img_no},
-		img_title = #{img_title},
-		img_caption = #{img_caption},
-		img_filenm = #{img_filenm}
+		img_title = #{title},
+		img_caption = #{caption},
+		img_filenm = #{filenm}
 		where
-		img_no = #{img_no}
+		img_no = #{no}
 
 	</update>
 
@@ -33,8 +32,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_image where img_no = #{img_no}
 	</delete>
 
-	<select id="listAll" resultType="JsonGelleryDTO">
- 		<![CDATA[ select * from com_image]]>
+	<select id="list" resultType="JsonGelleryDTO">
+ 		<![CDATA[
+ 		 select img_no, img_title, img_caption, img_filenm
+		from com_image
+		WHERE img_gallery = 1 AND`section_cd` IN('none',#{section_cd})
+ 		 ]]>
 	</select>
 
 </mapper>
