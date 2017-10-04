@@ -6,14 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.jsonNoticeMapper">
 
 	<select id="read" resultType="JsonNoticeDTO">
-		select bbs_no, bbs_title, bbs_content, bbs_file  
-		from com_board
-		where bbs_no = #{bbs_no}
+	<![CDATA[ 
+		select bbs_no, bbs_title, bbs_content, bbs_file 
+		from com_board 	where bbs_state = 1 
+		and 'brd_cd' = 'notice' 
+		and	'bbs_exp_sdt' <= now() 
+		and 'bbs_exp_edt' > now() 
+		and 'section_cd' in('none',#{section_cd}) 
+		ORDER BY bbs_ndt DESC
+	]]>
 	</select>
 
 	<insert id="create">
 		insert into com_board
-		( bbs_no, bbs_title, bbs_content, bbs_file )
+		( bbs_no, bbs_title,
+		bbs_content, bbs_file )
 		values
 		(#{bbs_no},#{bbs_title},#{bbs_content},#{bbs_file})
 	</insert>
@@ -21,7 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update com_board set
 		bbs_no = #{bbs_no},
-		bbs_title = #{bbs_title},
+		bbs_title =
+		#{bbs_title},
 		bbs_content = #{bbs_content},
 		bbs_file = #{bbs_file}
 		where
