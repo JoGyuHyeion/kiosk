@@ -107,7 +107,7 @@
 
 										<td>${com_staffVO.st_job}</td>
 
-										<td>>${com_staffVO.st_nm}</td>
+										<td>${com_staffVO.st_nm}</td>
 
 										<td>${com_staffVO.st_tel}</td>
 
