@@ -39,11 +39,11 @@
 	</div>
 </div>
 <!-- Bootstrap core JavaScript-->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<script src="/resources/vendor/popper/popper.min.js"></script>
-<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/resources/assets/js/jquery.min.js"></script>
+<script src="/resources/assets/popper/popper.min.js"></script>
+<script src="/resources/assets/js/bootstrap.min.js"></script>
 <!-- Core plugin JavaScript-->
-<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/resources/assets/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/resources/js/sb-admin.min.js"></script>

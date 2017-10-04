@@ -165,8 +165,8 @@
 
 									<!--display, status javascript 코드 view 표시  -->
 									<script>
-										var display = '<c:out value=${com_staffVO.st_display}>';
-										var status = '<c:out value=${com_staffVO.st_status}>';
+										var display = '<c:out value=${com_staffVO.st_display}/>';
+										var status = '<c:out value=${com_staffVO.st_status}/>';
 
 										if (display = 1) {
 											document
@@ -176,16 +176,13 @@
 										if (status = 1) {
 											document
 													.getElementById('st_status1').checked = true;
-										}
-										else if (status = 2) {
+										} else if (status = 2) {
 											document
 													.getElementById('st_status2').checked = true;
-										}
-										else if (status = 3) {
+										} else if (status = 3) {
 											document
 													.getElementById('st_status3').checked = true;
-										} 
-										else if (status = 4) {
+										} else if (status = 4) {
 											document
 													.getElementById('st_status4').checked = true;
 										}
@@ -228,5 +225,10 @@
 									});
 								});
 			</script>
+			
 		</div>
-		<%@include file="../include/footer.jsp"%>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<%@include file="../include/footer.jsp"%>

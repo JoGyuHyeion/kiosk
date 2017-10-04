@@ -11,10 +11,9 @@
   <meta name="author" content="">
   <title>Kiosk-project</title>
   <!-- Bootstrap core CSS-->
-  <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
-  <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+  <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="/resources/css/sb-admin.css" rel="stylesheet">
 </head>
 
