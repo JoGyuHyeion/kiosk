@@ -5,7 +5,8 @@ import javax.inject.Inject;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.dto.TeamsDTO;
 import org.kiosk.persistence.Com_teamDAO;
-
+import org.springframework.stereotype.Service;
+@Service
 public class TeamsServiceImpl implements TeamsService{
 
 	@Inject

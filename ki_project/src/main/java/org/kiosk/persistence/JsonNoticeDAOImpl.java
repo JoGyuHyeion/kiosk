@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public class JsonNoticeDAOImpl implements JsonNoticeDAO{
 	@Inject
 	private SqlSession session;
-	private static String namespace = "org.zerock.mapper.jsonNoticeMapper";
+	private static String namespace = "org.kiosk.mapper.jsonNoticeMapper";
 //	@Override
 //	public void create(JsonNoticeDTO dto) throws Exception {
 //		session.insert(namespace + ".create", dto);

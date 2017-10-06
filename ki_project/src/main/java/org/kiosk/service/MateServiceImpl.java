@@ -7,7 +7,8 @@ import javax.inject.Inject;
 import org.kiosk.domain.Com_staffVO;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.persistence.MateDAO;
-
+import org.springframework.stereotype.Service;
+@Service
 public class MateServiceImpl implements MateService {
 	@Inject
 	private MateDAO dao;

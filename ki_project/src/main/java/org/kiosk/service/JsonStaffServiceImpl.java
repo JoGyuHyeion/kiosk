@@ -6,7 +6,8 @@ import javax.inject.Inject;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.persistence.JsonStaffDAO;
-
+import org.springframework.stereotype.Service;
+@Service
 public class JsonStaffServiceImpl implements JsonStaffService {
 
 	@Inject

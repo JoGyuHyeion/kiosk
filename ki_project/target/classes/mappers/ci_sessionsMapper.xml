@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.zerock.mapper.Ci_sessionMapper">
+<mapper namespace="org.kiosk.mapper.Ci_sessionMapper">
 
 	<select id="read" resultType="ci_sessionsVO">
 		select id,ip_address,timestamp,data 

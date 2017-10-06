@@ -12,7 +12,7 @@ public class Com_imageDAOImpl implements Com_imageDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.zerock.mapper.Com_imageMapper";
+	private static String namespace = "org.kiosk.mapper.Com_imageMapper";
 
 	@Override
 	public void create(Com_imageVO vo) throws Exception {

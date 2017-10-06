@@ -14,7 +14,7 @@ public class JsonGelleryDAOImpl implements JsonGelleryDAO {
 	@Inject
 	private SqlSession session;
 	
-	private static String namespace = "org.zerock.mapper.JsonGelleryMapper";
+	private static String namespace = "org.kiosk.mapper.JsonGelleryMapper";
 //	@Override
 //	public void create(JsonGelleryDTO dto) throws Exception {
 //		session.insert(namespace + ".create", dto);

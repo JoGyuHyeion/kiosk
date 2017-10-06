@@ -12,7 +12,7 @@ public class Ci_sessionsDAOImpl implements Ci_sessionsDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.zerock.mapper.Ci_sessionMapper";
+	private static String namespace = "org.kiosk.mapper.Ci_sessionMapper";
 
 	@Override
 	public void create(Ci_sessionsVO vo) throws Exception {

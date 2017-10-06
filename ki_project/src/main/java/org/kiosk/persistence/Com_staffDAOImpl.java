@@ -16,7 +16,7 @@ public class Com_staffDAOImpl implements Com_staffDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.zerock.mapper.Com_staffMapper";
+	private static String namespace = "org.kiosk.mapper.Com_staffMapper";
 
 	@Override
 	public void create(Com_staffVO vo) throws Exception {

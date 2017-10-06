@@ -6,7 +6,8 @@ import javax.inject.Inject;
 
 import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.persistence.JsonGelleryDAO;
-
+import org.springframework.stereotype.Service;
+@Service
 public class JsonGelleryServiceImpl implements JsonGelleryService {
 	
 	@Inject

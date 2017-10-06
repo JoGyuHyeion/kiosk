@@ -12,7 +12,7 @@ public class Com_bureauDAOImpl implements Com_bureauDAO{
 	@Inject
 	private SqlSession session;
 	
-	private static String namespace = "org.zerock.mapper.Com_bureauMapper";
+	private static String namespace = "org.kiosk.mapper.Com_bureauMapper";
 
 	
 	@Override

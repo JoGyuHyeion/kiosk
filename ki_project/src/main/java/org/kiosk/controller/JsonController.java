@@ -31,16 +31,16 @@ public class JsonController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
 
-//	@Inject
-//	private JsonGelleryService gelleryService;
-//	@Inject
-//	private JsonNoticeService noticeService;
-//	@Inject
-//	private JsonStaffService staffService;
-//	@Inject
-//	private MateService mateService;
-//	@Inject
-//	private TeamsService teamsService;
+	@Inject
+	private JsonGelleryService gelleryService;
+	@Inject
+	private JsonNoticeService noticeService;
+	@Inject
+	private JsonStaffService staffService;
+	@Inject
+	private MateService mateService;
+	@Inject
+	private TeamsService teamsService;
 
 	@RequestMapping("/sendStaff")
 	public JsonStaffDTO sendStaff() {
@@ -78,20 +78,12 @@ public class JsonController {
 		return dto;
 	}
 
-	@RequestMapping("/sendGallery")
-	public List<JsonGelleryDTO> sendGallery() {
-
-		List<JsonGelleryDTO> list = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
-			JsonGelleryDTO dto = new JsonGelleryDTO();
-			dto.setImg_no(i + 1);
-			dto.setImg_title("abc");
-			dto.setImg_caption("캡션");
-			dto.setImg_filenm("/_files/gallery/none/2017/09/20170911-59b6c8ae25dad368727049.png");
-			list.add(dto);
-		}
-		return list;
-	}
+//	@RequestMapping("/sendGallery")
+//	public List<JsonGelleryDTO> sendGallery() throws Exception {
+//
+//		//gelleryService.listAll("");
+//		return gelleryService.listAll("");
+//	}
 
 	@RequestMapping("/sendNotice")
 	public List<JsonNoticeDTO> sendNotice() {

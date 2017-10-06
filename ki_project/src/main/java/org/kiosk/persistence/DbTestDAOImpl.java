@@ -11,7 +11,7 @@ public class DbTestDAOImpl implements DbTestDAO {
 
 	@Inject
 	private SqlSession session;
-	private static String namespace = "org.zerock.mapper.DbTestMapper";
+	private static String namespace = "org.kiosk.mapper.DbTestMapper";
 
 	@Override
 	public void create(DbTestVO vo) throws Exception {

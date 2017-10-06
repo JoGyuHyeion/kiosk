@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public class JsonStaffDAOImpl implements JsonStaffDAO {
 	@Inject
 	private SqlSession session;
-	private static String namespace = "org.zerock.mapper.JsonStaffMapper";
+	private static String namespace = "org.kiosk.mapper.JsonStaffMapper";
 
 //	@Override
 //	public void create(JsonStaffDTO dto) throws Exception {

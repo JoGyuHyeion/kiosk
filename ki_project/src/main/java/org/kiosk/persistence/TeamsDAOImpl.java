@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public class TeamsDAOImpl implements TeamsDAO{
 	@Inject
 	private SqlSession session;
-	private static String namespace = "org.zerock.mapper.teamMapper";
+	private static String namespace = "org.kiosk.mapper.teamMapper";
 	@Override
 	public TeamsDTO read(Com_teamVO vo) throws Exception {
 		return session.selectOne(namespace + ".read", vo);
