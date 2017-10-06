@@ -23,8 +23,8 @@ public class Com_teamDAOImpl implements Com_teamDAO{
 	}
 
 	@Override
-	public Com_teamVO read(Integer st_no) throws Exception {
-		return session.selectOne(namespace + ".read", st_no);
+	public Com_teamVO read(Com_teamVO vo) throws Exception {
+		return session.selectOne(namespace + ".read", vo);
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class Com_teamDAOImpl implements Com_teamDAO{
 	}
 
 	@Override
-	public void delete(Integer st_no) throws Exception {
-		session.delete(namespace + ".delete", st_no);
+	public void delete(Com_teamVO vo) throws Exception {
+		session.delete(namespace + ".delete", vo);
 		
 	}
 

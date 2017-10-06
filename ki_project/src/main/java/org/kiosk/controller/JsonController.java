@@ -31,22 +31,22 @@ public class JsonController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
 
-//	@Inject
-//	private JsonGelleryService gelleryService;
-//	@Inject
-//	private JsonNoticeService noticeService;
-//	@Inject
-//	private JsonStaffService staffService;
-//	@Inject
-//	private MateService mateService;
-//	@Inject
-//	private TeamsService teamsService;
+	@Inject
+	private JsonGelleryService gelleryService;
+	@Inject
+	private JsonNoticeService noticeService;
+	@Inject
+	private JsonStaffService staffService;
+	@Inject
+	private MateService mateService;
+	@Inject
+	private TeamsService teamsService;
 
 	@RequestMapping("/sendStaff")
 	public JsonStaffDTO sendStaff() {
 		JsonStaffDTO dto = new JsonStaffDTO();
 		dto.setSection_name("K010-S010");
-		dto.setSection_password("12345");
+		dto.setSection_pass("12345");
 
 		List<TeamsDTO> teams = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
@@ -57,15 +57,24 @@ public class JsonController {
 
 			for (int j = 0; j < 4; j++) {
 				MateDTO matedto = new MateDTO();
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/controller/JsonController.java
 				matedto.setNo(j);
 				matedto.setName("ëª…ì?");
 				matedto.setPosition("???Š¤?…");
 				matedto.setJob("?›¹ ê°œë°œ?ž");
 				matedto.setTel("010-5555-6666");
 				matedto.setEmail("kj@naver.com");
+=======
+				matedto.setSt_no(j);
+				matedto.setSt_nm("ëª…ì¤€");
+				matedto.setSt_position("í’€ìŠ¤í…");
+				matedto.setSt_job("ì›¹ ê°œë°œìž");;
+				matedto.setSt_tel("010-5555-6666");
+				matedto.setSt_email("kj@naver.com");
+>>>>>>> c718f6c0b276656d7d57c48609db55c599051672:ki_project/src/main/java/org/kiosk/controller/JsonController.java
 				matedto.setImg_filenm("staff_00882.jpg");
-				matedto.setSort(4);
-				matedto.setStatus(2);
+				matedto.setSt_sort(4);
+				matedto.setSt_status(2);
 				mate.put(j, matedto);
 				
 			}
@@ -78,20 +87,12 @@ public class JsonController {
 		return dto;
 	}
 
-	@RequestMapping("/sendGallery")
-	public List<JsonGelleryDTO> sendGallery() {
-
-		List<JsonGelleryDTO> list = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
-			JsonGelleryDTO dto = new JsonGelleryDTO();
-			dto.setNo(i + 1);
-			dto.setTitle("abc");
-			dto.setCaption("ìº¡ì…˜");
-			dto.setFilenm("/_files/gallery/none/2017/09/20170911-59b6c8ae25dad368727049.png");
-			list.add(dto);
-		}
-		return list;
-	}
+//	@RequestMapping("/sendGallery")
+//	public List<JsonGelleryDTO> sendGallery() throws Exception {
+//
+//		//gelleryService.listAll("");
+//		return gelleryService.listAll("");
+//	}
 
 	@RequestMapping("/sendNotice")
 	public List<JsonNoticeDTO> sendNotice() {

@@ -4,24 +4,24 @@ import java.util.Map;
 
 public class TeamsDTO {
 
-	private String team_name;
+	private String team_nm;
 	private Map<Integer, MateDTO> mate;
-	
+
 	public TeamsDTO() {
 		super();
 	}
 
-	public TeamsDTO(String team_name) {
+	public TeamsDTO(String team_nm) {
 		super();
-		this.team_name = team_name;
+		this.team_nm = team_nm;
 	}
 
 	public String getTeam_name() {
-		return team_name;
+		return team_nm;
 	}
 
-	public void setTeam_name(String team_name) {
-		this.team_name = team_name;
+	public void setTeam_name(String team_nm) {
+		this.team_nm = team_nm;
 	}
 
 	public Map<Integer, MateDTO> getMate() {
@@ -34,7 +34,7 @@ public class TeamsDTO {
 
 	@Override
 	public String toString() {
-		return "TeamsVO [team_name=" + team_name + ", mate=" + mate + "]";
+		return "TeamsVO [team_nm=" + team_nm + ", mate=" + mate + "]";
 	}
 
 }

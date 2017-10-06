@@ -6,33 +6,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.JsonStaffMapper">
 
 	<select id="read" resultType="JsonStaffDTO">
-		select * from com_team
-		where
-		section_cd = #{section_cd} and team_cd = #{team_cd}
+		select section_name, section_pass 
+		from com_section
+		where section_cd = #{section_cd} 
 	</select>
 
 	<insert id="create">
-		insert into com_team
-		(section_cd,team_cd,team_nm,team_sort,team_use)
+		insert into com_section
+		(section_name, section_pass)
 		values
-		(#{section_cd},#{team_cd},#{team_nm},#{team_sort},#{team_use})
+		(#{section_name},#{section_pass})
 	</insert>
 
 	<update id="update">
-		update com_team set
-		team_nm = #{team_nm},
-		team_sort = #{team_sort},
-		team_use = #{team_use}
+		update com_section set
+		section_name = #{section_name},
+		section_pass = #{section_pass}
 		where
-		section_cd = #{section_cd} and team_cd = #{team_cd}
+		section_cd = #{section_cd}
 	</update>
 
 	<delete id="delete">
-		delete from com_team where section_cd = #{section_cd} and team_cd = #{team_cd}
+		delete from com_section where section_cd = #{section_cd}
 	</delete>
 
 	<select id="listAll" resultType="JsonStaffDTO">
- 		<![CDATA[ select * from com_team]]>
+ 		<![CDATA[
+ 		SELECT section_name, section_pass  
+ 		FROM com_section 
+ 		WHERE bureau_cd = #{bureau_cd} 
+ 		AND section_cd= #{section_cd} 
+ 		AND section_use =#{section_use}
+ 		]]>
 	</select>
 
 </mapper>

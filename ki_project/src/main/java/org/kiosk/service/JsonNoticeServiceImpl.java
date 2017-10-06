@@ -13,11 +13,11 @@ public class JsonNoticeServiceImpl implements JsonNoticeService{
 	@Inject
 	private JsonNoticeDAO dao;
 
-	@Override
-	public void regist(JsonNoticeDTO dto) throws Exception {
-		dao.create(dto);
-		
-	}
+//	@Override
+//	public void regist(JsonNoticeDTO dto) throws Exception {
+//		dao.create(dto);
+//		
+//	}
 
 	@Override
 	public JsonNoticeDTO read(Integer no) throws Exception {
@@ -37,8 +37,8 @@ public class JsonNoticeServiceImpl implements JsonNoticeService{
 	}
 
 	@Override
-	public List<JsonNoticeDTO> listAll() throws Exception {
-		return dao.listAll();
+	public List<JsonNoticeDTO> listAll(String section_cd) throws Exception {
+		return dao.listAll(section_cd);
 	}
 
 }
