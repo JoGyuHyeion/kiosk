@@ -2,62 +2,80 @@ package org.kiosk.dto;
 
 public class MateDTO {
 
-	private int no;
-	private String name;
-	private String position;
-	private String job;
-	private String tel;
-	private String email;
+	private int st_no;
+	private String st_nm;
+	private String st_position;
+	private String st_job;
+	private String st_tel;
+	private String st_email;
 	private String img_filenm;
-	private int sort;
-	private int status;
+	private int st_sort;
+	private int st_status;
 
-	public int getNo() {
-		return no;
+	public MateDTO() {
+		super();
 	}
 
-	public void setNo(int no) {
-		this.no = no;
+	public MateDTO(int st_no, String st_nm, String st_position, String st_job, String st_tel, String st_email,
+			String img_filenm, int st_sort, int st_status) {
+		super();
+		this.st_no = st_no;
+		this.st_nm = st_nm;
+		this.st_position = st_position;
+		this.st_job = st_job;
+		this.st_tel = st_tel;
+		this.st_email = st_email;
+		this.img_filenm = img_filenm;
+		this.st_sort = st_sort;
+		this.st_status = st_status;
 	}
 
-	public String getName() {
-		return name;
+	public int getSt_no() {
+		return st_no;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSt_no(int st_no) {
+		this.st_no = st_no;
 	}
 
-	public String getPosition() {
-		return position;
+	public String getSt_nm() {
+		return st_nm;
 	}
 
-	public void setPosition(String position) {
-		this.position = position;
+	public void setSt_nm(String st_nm) {
+		this.st_nm = st_nm;
 	}
 
-	public String getJob() {
-		return job;
+	public String getSt_position() {
+		return st_position;
 	}
 
-	public void setJob(String job) {
-		this.job = job;
+	public void setSt_position(String st_position) {
+		this.st_position = st_position;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getSt_job() {
+		return st_job;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setSt_job(String st_job) {
+		this.st_job = st_job;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getSt_tel() {
+		return st_tel;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setSt_tel(String st_tel) {
+		this.st_tel = st_tel;
+	}
+
+	public String getSt_email() {
+		return st_email;
+	}
+
+	public void setSt_email(String st_email) {
+		this.st_email = st_email;
 	}
 
 	public String getImg_filenm() {
@@ -68,26 +86,27 @@ public class MateDTO {
 		this.img_filenm = img_filenm;
 	}
 
-	public int getSort() {
-		return sort;
+	public int getSt_sort() {
+		return st_sort;
 	}
 
-	public void setSort(int sort) {
-		this.sort = sort;
+	public void setSt_sort(int st_sort) {
+		this.st_sort = st_sort;
 	}
 
-	public int getStatus() {
-		return status;
+	public int getSt_status() {
+		return st_status;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setSt_status(int st_status) {
+		this.st_status = st_status;
 	}
 
 	@Override
 	public String toString() {
-		return "MateVO [no=" + no + ", name=" + name + ", position=" + position + ", job=" + job + ", tel=" + tel
-				+ ", email=" + email + ", img_filenm=" + img_filenm + ", sort=" + sort + ", status=" + status + "]";
+		return "MateDTO [st_no=" + st_no + ", st_nm=" + st_nm + ", st_position=" + st_position + ", st_job=" + st_job
+				+ ", st_tel=" + st_tel + ", st_email=" + st_email + ", img_filenm=" + img_filenm + ", st_sort="
+				+ st_sort + ", st_status=" + st_status + "]";
 	}
 
 }

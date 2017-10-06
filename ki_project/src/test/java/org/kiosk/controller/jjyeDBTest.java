@@ -25,7 +25,7 @@ public class jjyeDBTest {
 	public void testCreate() throws Exception {
 
 		DbTestVO vo = new DbTestVO();
-		vo.setId("ê¹?ì¹?");
+		vo.setId("ê¹€ì¹˜");
 		vo.setPwd(12345);
 		dao.create(vo);
 	}
@@ -42,14 +42,14 @@ public class jjyeDBTest {
 
 		DbTestVO vo = new DbTestVO();
 		vo.setId_no(1);
-		vo.setId("ê¹?ì§??˜œ");
+		vo.setId("ê¹€ì§€í˜œ");
 		vo.setPwd(123123);
 		dao.update(vo);
 	}
 
 	// @Test
 	public void testDelete() throws Exception {
-		// ë²ˆí˜¸ë¡? db ?‚­? œ?•¨
+		// ë²ˆí˜¸ë¡œ db ì‚­ì œí•¨
 		dao.delete(1);
 	}
 

@@ -117,8 +117,11 @@ public class JsonStaffTest {
 	}
 
 	 @Test
-	public void testTeamsList() throws Exception {
-		logger.info(teamDao.list("K010-S010").toString());
+	public void testTeamsRead() throws Exception {
+			Com_teamVO vo = new Com_teamVO();
+			vo.setSection_cd("K010-S010");
+			vo.setTeam_cd("T05");
+		logger.info(teamDao.read(vo).toString());
 	}
 
 }

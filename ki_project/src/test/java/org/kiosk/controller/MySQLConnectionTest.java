@@ -14,8 +14,8 @@ public class MySQLConnectionTest {
 
 	@Test
 	public void testConnection() throws Exception {
-//DB ?—°ê²°ì? ?—¬ê¸°ì„œ ?…Œ?Š¤?Š¸ ?•˜?Š” ê²ƒì´ ?•„?‹ˆ?¼ DataSourceTest.java ?—?„œ ?…Œ?Š¤?Š¸ ?•´?•¼ ?œ?‹¤. 
-//root-context.xml?— ?ˆ?Š” ? •ë³´ë“¤ ì¤? url user pw ë¥? ?„¤? •?•´?•¼?•œ?‹¤.
+//DB ì—°ê²°ì€ ì—¬ê¸°ì„œ í…ŒìŠ¤íŠ¸ í•˜ëŠ” ê²ƒì´ ì•„ë‹ˆë¼ DataSourceTest.java ì—ì„œ í…ŒìŠ¤íŠ¸ í•´ì•¼ ëœë‹¤. 
+//root-context.xmlì— ìˆëŠ” ì •ë³´ë“¤ ì¤‘ url user pw ë¥¼ ì„¤ì •í•´ì•¼í•œë‹¤.
 		Class.forName(DRIVER);
 
 		try (Connection con = DriverManager.getConnection(URL, USER, PW)) {
