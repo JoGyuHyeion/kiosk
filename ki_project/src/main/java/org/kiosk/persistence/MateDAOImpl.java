@@ -39,6 +39,6 @@ public class MateDAOImpl implements MateDAO {
 
 	@Override
 	public List<MateDTO> listAll(Com_staffVO vo) throws Exception {
-		return session.selectList(namespace + ".listAll",vo);
+		return session.selectList(namespace + ".list",vo);
 	}
 }

@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		com_staff
 		where st_no = #{st_no}
 	</select>
-
+	
 	<update id="update">
 		update com_staff set st_nm =#{st_nm}, st_position
 		=#{st_position},st_tel =#{st_tel},st_email =#{st_email},st_job

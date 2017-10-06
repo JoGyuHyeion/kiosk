@@ -31,17 +31,13 @@
         <![endif]-->
 
         <script src="/resources/assets/js/modernizr.min.js"></script>
-<<<<<<< HEAD
-        <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-
-    </head>
- 	<!-- jQuery 2.1.4 -->
-    <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-=======
+ 		<!-- jQuery 2.1.4 -->
+  		<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
     </head>
 
->>>>>>> c6b3dc57caa53127f8b1543dcac9fc9702adaa77
+
+
 
     <body>
 

@@ -24,11 +24,11 @@ public class Com_boardTest {
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-	 //@Test
+	 @Test
 	public void testCreate() throws Exception {
 
 		Com_boardVO vo = new Com_boardVO();
-		vo.setBbs_no(2);
+		//vo.setBbs_no(2);
 		vo.setBrd_cd("abaaa");
 		vo.setBbs_pno(3);
 		vo.setBbs_lv(2);
@@ -51,7 +51,7 @@ public class Com_boardTest {
 		dao.create(vo);
 	}
 
-	 @Test
+	// @Test
 	public void testRead() throws Exception {
 		logger.info(dao.read(2).toString());
 	}

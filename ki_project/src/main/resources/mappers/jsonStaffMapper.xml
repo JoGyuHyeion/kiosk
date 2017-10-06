@@ -34,9 +34,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<![CDATA[
  		SELECT section_name, section_pass  
  		FROM com_section 
- 		WHERE bureau_cd = #{bureau_cd} 
- 		AND section_cd= #{section_cd} 
- 		AND section_use =#{section_use}
  		]]>
 	</select>
 

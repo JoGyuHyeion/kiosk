@@ -1,21 +1,21 @@
 package org.kiosk.service;
 
+import java.util.List;
 import javax.inject.Inject;
-
-import org.kiosk.domain.Com_teamVO;
 import org.kiosk.dto.TeamsDTO;
-import org.kiosk.persistence.Com_teamDAO;
+import org.kiosk.persistence.TeamsDAO;
 import org.springframework.stereotype.Service;
 @Service
 public class TeamsServiceImpl implements TeamsService{
 
 	@Inject
-	private Com_teamDAO dao;
+	private TeamsDAO dao;
 	
 	@Override
-	public TeamsDTO read(Com_teamVO vo) throws Exception {
-		Com_teamVO teamVo = dao.read(vo);
-		return new TeamsDTO(teamVo.getTeam_nm());
+	public List<TeamsDTO> list(String section_cd) throws Exception {
+		//Com_teamVO teamVo = dao.read(vo);
+		//return new TeamsDTO(teamVo.getTeam_nm());
+		return dao.list(section_cd);
 	}
 
 }
