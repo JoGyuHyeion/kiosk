@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public class MateDAOImpl implements MateDAO {
 	@Inject
 	private SqlSession session;
-	private static String namespace = "org.zerock.mapper.MateMapper";
+	private static String namespace = "org.kiosk.mapper.MateMapper";
 
 	@Override
 	public void create(MateDTO dto) throws Exception {

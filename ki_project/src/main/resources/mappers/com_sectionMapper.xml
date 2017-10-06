@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.zerock.mapper.Com_sectionMapper">
+<mapper namespace="org.kiosk.mapper.Com_sectionMapper">
 
 	<select id="read" resultType="Com_sectionVO">
 		select * from com_section

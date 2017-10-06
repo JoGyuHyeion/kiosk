@@ -134,7 +134,7 @@
 										<label class="col-md-2 control-label">직원표시</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
-											<input type="checkbox" name="st_display" id="st_display"
+											<input type="checkbox" name="st_display" id="st_display" value="1"
 												switch="none" /> <label for="st_display" data-on-label="On"
 												data-off-label="Off"></label>
 										</div>

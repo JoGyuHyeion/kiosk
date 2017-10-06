@@ -17,7 +17,7 @@ public class UserDAOImpl implements UserDAO {
 	@Inject
 	private SqlSession session;
 	
-	private static String namespace ="org.zerock.mapper.UserMapper";	
+	private static String namespace ="org.kiosk.mapper.UserMapper";	
 
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {

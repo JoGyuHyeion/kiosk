@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.zerock.mapper.jsonNoticeMapper">
+<mapper namespace="org.kiosk.mapper.jsonNoticeMapper">
 
 	<select id="read" resultType="JsonNoticeDTO">
 		select bbs_no, bbs_title, bbs_content, bbs_file  

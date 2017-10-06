@@ -14,7 +14,7 @@ public class Com_teamDAOImpl implements Com_teamDAO{
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.zerock.mapper.Com_teamMapper";
+	private static String namespace = "org.kiosk.mapper.Com_teamMapper";
 
 	@Override
 	public void create(Com_teamVO vo) throws Exception {

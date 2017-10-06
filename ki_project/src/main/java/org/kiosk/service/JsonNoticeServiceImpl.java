@@ -6,7 +6,8 @@ import javax.inject.Inject;
 
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.persistence.JsonNoticeDAO;
-
+import org.springframework.stereotype.Service;
+@Service
 public class JsonNoticeServiceImpl implements JsonNoticeService{
 	
 	@Inject
