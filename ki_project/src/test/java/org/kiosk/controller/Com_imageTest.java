@@ -29,7 +29,7 @@ public class Com_imageTest {
 
 		Com_imageVO vo = new Com_imageVO();
 		vo.setImg_no(2);
-		vo.setImg_title("ì‚¬ì§„1");
+		vo.setImg_title("?‚¬ì§?1");
 		vo.setImg_caption("asd");
 		vo.setImg_filenm("asss");
 		vo.setImg_gallery(1);
@@ -51,7 +51,7 @@ public class Com_imageTest {
 
 		Com_imageVO vo = new Com_imageVO();
 		vo.setImg_no(2);
-		vo.setImg_title("ì‚¬ì§„1");
+		vo.setImg_title("?‚¬ì§?1");
 		vo.setImg_caption("a");
 		vo.setImg_filenm("sdg");
 		vo.setImg_gallery(1);

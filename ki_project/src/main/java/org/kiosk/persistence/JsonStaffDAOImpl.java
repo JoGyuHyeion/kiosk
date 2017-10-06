@@ -3,8 +3,9 @@ package org.kiosk.persistence;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.sql.rowset.JoinRowSet;
+
 import org.apache.ibatis.session.SqlSession;
-import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.springframework.stereotype.Repository;
 @Repository
@@ -13,15 +14,15 @@ public class JsonStaffDAOImpl implements JsonStaffDAO {
 	private SqlSession session;
 	private static String namespace = "org.kiosk.mapper.JsonStaffMapper";
 
-//	@Override
-//	public void create(JsonStaffDTO dto) throws Exception {
-//		session.insert(namespace + ".create", dto);
-//
-//	}
+	@Override
+	public void create(JsonStaffDTO dto) throws Exception {
+		session.insert(namespace + ".create", dto);
+
+	}
 
 	@Override
-	public JsonStaffDTO read(String section_cd) throws Exception {
-		return session.selectOne(namespace + ".read", section_cd);
+	public JsonStaffDTO read(Integer no) throws Exception {
+		return session.selectOne(namespace + ".read", no);
 	}
 
 	@Override
@@ -31,13 +32,13 @@ public class JsonStaffDAOImpl implements JsonStaffDAO {
 	}
 
 	@Override
-	public void delete(String section_cd) throws Exception {
-		session.delete(namespace + ".delete", section_cd);
+	public void delete(Integer no) throws Exception {
+		session.delete(namespace + ".delete", no);
 
 	}
 
 	@Override
-	public List<JsonStaffDTO> listAll(Com_sectionVO vo) throws Exception {
-		return session.selectList(namespace + ".listAll",vo);
+	public List<JsonStaffDTO> listAll() throws Exception {
+		return session.selectList(namespace + ".listAll");
 	}
 }

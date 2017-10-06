@@ -26,8 +26,8 @@ public class Com_sectionTest {
 	public void testCreate() throws Exception {
 
 		Com_sectionVO vo = new Com_sectionVO();
-		vo.setBureau_cd("xxêµ­");
-		vo.setSection_cd("xxê³¼");
+		vo.setBureau_cd("xxêµ?");
+		vo.setSection_cd("xxê³?");
 		vo.setSection_name("ëª…ì¹­");
 		vo.setSection_type("a");
 		vo.setSection_sort(1);
@@ -42,15 +42,15 @@ public class Com_sectionTest {
 
 	// @Test
 	public void testRead() throws Exception {
-		logger.info(dao.read("xxêµ­").toString());
+		logger.info(dao.read("xxêµ?").toString());
 	}
 
 	// @Test
 	public void testUpdate() throws Exception {
 
 		Com_sectionVO vo = new Com_sectionVO();
-		vo.setBureau_cd("xxêµ­");
-		vo.setSection_cd("yyê³¼");
+		vo.setBureau_cd("xxêµ?");
+		vo.setSection_cd("yyê³?");
 		vo.setSection_name("ëª…ì¹­");
 		vo.setSection_type("a");
 		vo.setSection_sort(1);
@@ -66,7 +66,7 @@ public class Com_sectionTest {
 	// @Test
 	public void testDelete() throws Exception {
 
-		dao.delete("xxê³¼");
+		dao.delete("xxê³?");
 	}
 
 	// @Test

@@ -35,16 +35,16 @@ public class Com_staffTest {
 
 		Com_staffVO vo = new Com_staffVO();
 		vo.setSt_nm("ê·œí˜„");
-		vo.setSt_position("ë©ì¥");
+		vo.setSt_position("?©?¥");
 		vo.setSt_tel("010-6666-7777");
 		vo.setSt_email("ku@naver.com");
-		vo.setSt_job("í•™ìƒ");
+		vo.setSt_job("?•™?ƒ");
 		vo.setSt_profile("profile");
 		vo.setImg_filenm("img1");
 		vo.setImg_filenm1("img_filenm1");
-		vo.setSection_cd("ë¶€ì„œ");
-		vo.setTeam_cd("íŒ€");
-		vo.setSt_team("stíŒ€");
+		vo.setSection_cd("ë¶??„œ");
+		vo.setTeam_cd("??");
+		vo.setSt_team("st??");
 		vo.setSt_sort(2);
 		vo.setSt_display(3);
 		vo.setSt_status(5);
@@ -62,7 +62,7 @@ public class Com_staffTest {
 	public void testUpdate() throws Exception {
 
 		Com_staffVO vo = new Com_staffVO();
-		vo.setSt_nm("ì¡°ê·œí˜„");
+		vo.setSt_nm("ì¡°ê·œ?˜„");
 		vo.setSt_no(1139);
 
 		dao.update(vo);
@@ -133,7 +133,7 @@ public class Com_staffTest {
 
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
-		cri.setKeyword("ï¿½?");
+		cri.setKeyword("ï¿??");
 		cri.setSearchType("t");
 
 		logger.info("=====================================");
