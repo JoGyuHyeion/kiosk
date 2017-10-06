@@ -7,7 +7,7 @@ public class JsonUtils {
 	
 	private static JSONArray jArray;
 	
-	// ì´ë¯¸ì§€ íŒŒì¼ jsoní˜•ì‹
+	// ?´ë¯¸ì? ?ŒŒ?¼ json?˜•?‹
 	public static JSONArray uploadJsonPicture(String[] imgArr) {
 		jArray = new JSONArray();
 		for (int i = 0; i < imgArr.length; i++) {

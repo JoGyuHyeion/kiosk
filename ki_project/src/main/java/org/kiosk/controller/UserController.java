@@ -75,7 +75,7 @@ public class UserController {
 			
 
 			if (loginCookie != null) {
-				loginCookie.setPath("/");// ë‚´ê°€ ì›í•˜ëŠ” ê²°ë¡œ ì§€ì •
+				loginCookie.setPath("/");// ?‚´ê°? ?›?•˜?Š” ê²°ë¡œ ì§?? •
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
 				service.keepLogin(vo.getId(), session.getId(), new Date());

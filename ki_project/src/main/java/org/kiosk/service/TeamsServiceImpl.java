@@ -13,9 +13,9 @@ public class TeamsServiceImpl implements TeamsService{
 	private Com_teamDAO dao;
 	
 	@Override
-	public TeamsDTO read(Com_teamVO vo) throws Exception {
-		Com_teamVO teamVo = dao.read(vo);
-		return new TeamsDTO(teamVo.getTeam_nm());
+	public TeamsDTO read(Integer no) throws Exception {
+		Com_teamVO vo = dao.read(no);
+		return new TeamsDTO(vo.getTeam_nm());
 	}
 
 }

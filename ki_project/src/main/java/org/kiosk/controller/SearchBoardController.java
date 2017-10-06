@@ -40,7 +40,8 @@ public class SearchBoardController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("page", page);
 	}
-
+		
+	
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
 			throws Exception {
@@ -105,6 +106,7 @@ public class SearchBoardController {
 
 		return "redirect:/sboard/list";
 	}
+	
 
 }
 

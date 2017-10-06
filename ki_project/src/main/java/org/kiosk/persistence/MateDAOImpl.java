@@ -5,7 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/persistence/MateDAOImpl.java
+=======
 import org.kiosk.domain.Com_staffVO;
+>>>>>>> c718f6c0b276656d7d57c48609db55c599051672:ki_project/src/main/java/org/kiosk/persistence/MateDAOImpl.java
 import org.kiosk.dto.MateDTO;
 import org.springframework.stereotype.Repository;
 @Repository

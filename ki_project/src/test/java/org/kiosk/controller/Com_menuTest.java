@@ -57,15 +57,15 @@ public class Com_menuTest {
 		Com_menuVO vo = new Com_menuVO();
 		vo.setMenu_no(1);
 		vo.setMenu_cd("ë©”ë‰´ì½”ë“œ");
-		vo.setMenu_nm("ë©”ë‰´ì´ë¥´ìœ¼ìŒ");
+		vo.setMenu_nm("ë©”ë‰´?´ë¥´ìœ¼?Œ");
 		vo.setMenu_icon("icon");
 		vo.setMenu_url("dongguk.ac.kr");
 		vo.setMenu_target("target");
 		vo.setMenu_pcd("parentCode");
 		vo.setMenu_lv(1);
 		vo.setMenu_inx(1);
-		vo.setMenu_fullnm("í’€ë„¤ì´ì„");
-		vo.setMenu_summary("ì¨ë¨¸ë¦¬ë¼ëŠ¥");
+		vo.setMenu_fullnm("???„¤?´?„");
+		vo.setMenu_summary("?¨ë¨¸ë¦¬?¼?Š¥");
 		vo.setMenu_user("user");
 		vo.setMenu_use(0);
 		vo.setMenu_dt(sqlDate);

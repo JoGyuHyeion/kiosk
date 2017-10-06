@@ -51,18 +51,27 @@ public class JsonController {
 		List<TeamsDTO> teams = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
 			TeamsDTO teamsdto = new TeamsDTO();
-			teamsdto.setTeam_name("ìž„ì›");
+			teamsdto.setTeam_name("?ž„?›");
 
 			Map<Integer, MateDTO> mate = new HashMap<>();
 
 			for (int j = 0; j < 4; j++) {
 				MateDTO matedto = new MateDTO();
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/controller/JsonController.java
+				matedto.setNo(j);
+				matedto.setName("ëª…ì?");
+				matedto.setPosition("???Š¤?…");
+				matedto.setJob("?›¹ ê°œë°œ?ž");
+				matedto.setTel("010-5555-6666");
+				matedto.setEmail("kj@naver.com");
+=======
 				matedto.setSt_no(j);
 				matedto.setSt_nm("ëª…ì¤€");
 				matedto.setSt_position("í’€ìŠ¤í…");
 				matedto.setSt_job("ì›¹ ê°œë°œìž");;
 				matedto.setSt_tel("010-5555-6666");
 				matedto.setSt_email("kj@naver.com");
+>>>>>>> c718f6c0b276656d7d57c48609db55c599051672:ki_project/src/main/java/org/kiosk/controller/JsonController.java
 				matedto.setImg_filenm("staff_00882.jpg");
 				matedto.setSt_sort(4);
 				matedto.setSt_status(2);
@@ -92,8 +101,8 @@ public class JsonController {
 		for (int i = 0; i < 10; i++) {
 			JsonNoticeDTO dto = new JsonNoticeDTO();
 			dto.setBbs_no(i);
-			dto.setBbs_title("ë‚¨ëª…ì¤€ì”¨");
-			dto.setBbs_content("ë°”ì˜ì‹œë„¤ ê·¸ì°¸ ë°ì´í„°ë„ ì—†êµ¬ë§Œ");
+			dto.setBbs_title("?‚¨ëª…ì??”¨");
+			dto.setBbs_content("ë°”ì˜?‹œ?„¤ ê·¸ì°¸ ?°?´?„°?„ ?—†êµ¬ë§Œ");
 			dto.setBbs_file("/_files/board/");
 			list.add(dto);
 		}
@@ -113,7 +122,7 @@ public class JsonController {
 		for (int i = 0; i < 10; i++) {
 			SampleVO vo = new SampleVO();
 			vo.setFirstName("ê¸¸ë™");
-			vo.setLastName("í™");
+			vo.setLastName("?™");
 			vo.setMno(i);
 			list.add(vo);
 		}

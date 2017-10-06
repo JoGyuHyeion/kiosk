@@ -37,11 +37,11 @@ public class Com_boardTest {
 		vo.setBbs_content("content2");
 		vo.setBbs_file("file2");
 		vo.setBbs_notice(11);
-		vo.setBbs_tag("íƒœê·¸");
+		vo.setBbs_tag("?ƒœê·?");
 		vo.setBbs_cate("ì¹´í…Œê³ ë¦¬-1");
 		vo.setBbs_hits(10);
 		vo.setBbs_state(1);
-		vo.setSection_cd("ê³¼ì½”ë“œ1");
+		vo.setSection_cd("ê³¼ì½”?“œ1");
 		vo.setBbs_exp_inx(2);
 		vo.setBbs_exp_sdt(sqlDate);
 		vo.setBbs_exp_edt(sqlDate);
@@ -69,11 +69,11 @@ public class Com_boardTest {
 		vo.setBbs_content("content");
 		vo.setBbs_file("file");
 		vo.setBbs_notice(12);
-		vo.setBbs_tag("í•´ì‹œíƒœê·¸sdfsdf?ã…Žã…Ž");
+		vo.setBbs_tag("?•´?‹œ?ƒœê·¸sdfsdf??…Ž?…Ž");
 		vo.setBbs_cate("ì¹´í…Œê³ ë¦¬");
 		vo.setBbs_hits(100);
 		vo.setBbs_state(1);
-		vo.setSection_cd("ê³¼ì½”aaaë“œ");
+		vo.setSection_cd("ê³¼ì½”aaa?“œ");
 		vo.setBbs_exp_inx(2);
 		vo.setBbs_exp_sdt(sqlDate);
 		vo.setBbs_exp_edt(sqlDate);
