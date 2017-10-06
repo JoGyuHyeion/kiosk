@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.Com_teamMapper">
 
 	<select id="read" resultType="Com_teamVO">
-		select * from com_team
+		select section_cd,team_cd,team_nm,team_sort,team_use 
+		from com_team
 		where
 		section_cd = #{section_cd} and team_cd = #{team_cd}
 	</select>

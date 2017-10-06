@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.Com_menuMapper">
 
 	<select id="read" resultType="Com_menuVO">
-		select * from com_menu
+		select menu_no,menu_cd,menu_nm,menu_icon,menu_url,menu_target,menu_pcd,menu_lv,menu_inx,menu_fullnm,menu_summary,menu_user,menu_use,menu_dt
+		from com_menu
 		where menu_no = #{menu_no}
 	</select>
 

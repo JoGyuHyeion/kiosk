@@ -6,8 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.Conn_logMapper">
 
 	<select id="read" resultType="Conn_logVO">
-		select * from conn_log
-		where conn_id = #{conn_id}
+		select conn_id,device_id,regdate
+		from conn_log
+		where 
+		conn_id = #{conn_id}
 	</select>
 
 	<insert id="create">

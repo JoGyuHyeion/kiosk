@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.Ci_sessionMapper">
 
 	<select id="read" resultType="ci_sessionsVO">
-		select * from ci_sessions
+		select id,ip_address,timestamp,data 
+		from ci_sessions
 		where
 		timestamp = #{timestamp}
 	</select>

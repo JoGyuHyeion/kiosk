@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.zerock.mapper.Com_imageMapper">
 
 	<select id="read" resultType="Com_imageVO">
-		select * from com_image
+		select img_no,img_title,img_caption,img_filenm,img_gallery,img_sort,section_cd,img_status,wdt,edt 
+		from com_image
 		where
 		img_no = #{img_no}
 	</select>
