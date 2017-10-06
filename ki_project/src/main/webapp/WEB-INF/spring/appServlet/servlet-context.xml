@@ -24,9 +24,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="org.zerock.controller" />
+	<context:component-scan base-package="org.kiosk.controller" />
 
-	<beans:bean id="SampleInterceptor" class="org.zerock.interceptor.SampleInterceptor"></beans:bean>
+	<beans:bean id="SampleInterceptor" class="org.kiosk.interceptor.SampleInterceptor"></beans:bean>
 
 	<interceptors>
 		<interceptor>
@@ -36,9 +36,9 @@
 		</interceptor>
 	</interceptors>
 
-	<beans:bean id="loginInterceptor" class="org.zerock.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="loginInterceptor" class="org.kiosk.interceptor.LoginInterceptor"></beans:bean>
 
-	<beans:bean id="authInterceptor" class="org.zerock.interceptor.AuthInterceptor"></beans:bean>
+	<beans:bean id="authInterceptor" class="org.kiosk.interceptor.AuthInterceptor"></beans:bean>
 <!-- 
 	<interceptors>
 		<interceptor>
