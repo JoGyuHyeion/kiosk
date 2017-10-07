@@ -37,7 +37,7 @@ public class JsonStaffDAOImpl implements JsonStaffDAO {
 	}
 
 	@Override
-	public List<JsonStaffDTO> listAll(Com_sectionVO vo) throws Exception {
-		return session.selectList(namespace + ".listAll",vo);
+	public List<JsonStaffDTO> listAll(String section_fullcode) throws Exception {
+		return session.selectList(namespace + ".listAll",section_fullcode);
 	}
 }

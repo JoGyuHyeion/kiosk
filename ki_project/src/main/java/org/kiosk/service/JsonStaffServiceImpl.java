@@ -37,8 +37,8 @@ public class JsonStaffServiceImpl implements JsonStaffService {
 	}
 
 	@Override
-	public List<JsonStaffDTO> listAll(Com_sectionVO vo) throws Exception {
-		return dao.listAll(vo);
+	public List<JsonStaffDTO> listAll(String section_fullcode) throws Exception {
+		return dao.listAll(section_fullcode);
 	}
 
 }

@@ -15,5 +15,5 @@ public interface JsonStaffDAO {
 
 	  public void delete(String section_cd) throws Exception;
 	  
-	  public List<JsonStaffDTO> listAll(Com_sectionVO vo) throws Exception;
+	  public List<JsonStaffDTO> listAll(String section_fullcode) throws Exception;
 }

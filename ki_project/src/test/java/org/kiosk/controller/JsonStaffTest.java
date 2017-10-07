@@ -59,14 +59,9 @@ public class JsonStaffTest {
 		staffdao.delete("S010");
 	}
 
-//	 @Test
+	 @Test
 	public void testStaffListAll() throws Exception {
-		Com_sectionVO vo = new Com_sectionVO();
-		vo.setBureau_cd("K010");
-		vo.setSection_cd("S010");
-		vo.setSection_use("1");
-
-		logger.info(staffdao.listAll(vo).toString());
+		logger.info(staffdao.listAll("K010_S010").toString());
 
 	}
 
@@ -116,7 +111,7 @@ public class JsonStaffTest {
 		// teamDao.create(dto);
 	}
 
-	 @Test
+	// @Test
 	public void testTeamsRead() throws Exception {
 			Com_teamVO vo = new Com_teamVO();
 			vo.setSection_cd("K010-S010");

@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.kiosk.domain.Com_staffVO;
 import org.kiosk.dto.MateDTO;
+import org.kiosk.dto.TeamsDTO;
 import org.kiosk.persistence.MateDAO;
 import org.springframework.stereotype.Service;
 @Service
@@ -37,8 +38,8 @@ public class MateServiceImpl implements MateService {
 	}
 
 	@Override
-	public List<MateDTO> listAll(Com_staffVO vo) throws Exception {
-		return dao.listAll(vo);
+	public List<MateDTO> list(TeamsDTO dto) throws Exception {
+		return dao.list(dto); 
 	}
 
 }

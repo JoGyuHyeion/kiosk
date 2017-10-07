@@ -1,12 +1,10 @@
 package org.kiosk.persistence;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
-import org.kiosk.domain.Com_staffVO;
 import org.kiosk.dto.MateDTO;
+import org.kiosk.dto.TeamsDTO;
 import org.springframework.stereotype.Repository;
 @Repository
 public class MateDAOImpl implements MateDAO {
@@ -38,7 +36,7 @@ public class MateDAOImpl implements MateDAO {
 	}
 
 	@Override
-	public List<MateDTO> listAll(Com_staffVO vo) throws Exception {
-		return session.selectList(namespace + ".listAll",vo);
+	public List<MateDTO> list(TeamsDTO dto) throws Exception {
+		return session.selectList(namespace + ".list",dto);
 	}
 }

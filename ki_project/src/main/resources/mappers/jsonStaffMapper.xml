@@ -6,9 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.JsonStaffMapper">
 
 	<select id="read" resultType="JsonStaffDTO">
-		select section_name, section_pass 
+		select section_fullcode, section_pass 
 		from com_section
-		where section_cd = #{section_cd} 
+		where section_fullcode = #{section_fullcode} 
 	</select>
 
 	<insert id="create">
@@ -32,8 +32,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="listAll" resultType="JsonStaffDTO">
  		<![CDATA[
- 		SELECT section_name, section_pass  
+ 		SELECT section_fullcode, section_pass  
  		FROM com_section 
+ 		WHERE section_fullcode = #{section_fullcode}
+ 		and section_use = 1
  		]]>
 	</select>
 

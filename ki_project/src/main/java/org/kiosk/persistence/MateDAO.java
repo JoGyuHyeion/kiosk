@@ -1,9 +1,8 @@
 package org.kiosk.persistence;
 
 import java.util.List;
-
-import org.kiosk.domain.Com_staffVO;
 import org.kiosk.dto.MateDTO;
+import org.kiosk.dto.TeamsDTO;
 
 public interface MateDAO {
 
@@ -15,5 +14,5 @@ public interface MateDAO {
 
 	  public void delete(Integer no) throws Exception;
 	  
-	  public List<MateDTO> listAll(Com_staffVO vo) throws Exception;
+	  public List<MateDTO> list(TeamsDTO dto) throws Exception;
 }

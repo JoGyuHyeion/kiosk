@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import org.kiosk.domain.Com_staffVO;
+import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.SampleVO;
 import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.dto.JsonNoticeDTO;
@@ -40,23 +41,31 @@ public class JsonController {
 	@Inject
 	private JsonStaffService jsonStaffService;
 	@Inject
-	private Com_staffService staffService;
-	@Inject
 	private MateService mateService;
 	@Inject
 	private TeamsService teamsService;
-
 
 	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> sendStaff(@PathVariable("section_cd") String section_cd) {
 		ResponseEntity<JsonStaffDTO> entity = null;
 		logger.info("json/sendStaff/{section_cd}");
 		try {
-			JsonStaffDTO dto = jsonStaffService.read(section_cd);
-			//Com_staffVO staffVO=staffService.jsonRead(section_cd);
-			//Map<Integer, MateDTO> mate =(Map<Integer, MateDTO>) mateService.listAll(staffVO);
-			List<TeamsDTO> teams;
-			entity = new ResponseEntity<>(dto, HttpStatus.OK);
+			int mapIndex = 0;
+			JsonStaffDTO jsonStaffDTO = jsonStaffService.read(section_cd);
+			List<TeamsDTO> teamList = teamsService.list(section_cd);
+
+			for (int index = 0; index < teamList.size(); index++) {
+				List<MateDTO> mateList = mateService.list(teamList.get(index));
+				Map<Integer, MateDTO> mateMap = new HashMap<Integer, MateDTO>();
+				mapIndex = 0;
+				for (MateDTO mateDTO : mateList) {
+					mateMap.put(mapIndex, mateDTO);
+					mapIndex++;
+				}
+				teamList.get(index).setMate(mateMap);
+			}
+			jsonStaffDTO.setTeams(teamList);
+			entity = new ResponseEntity<>(jsonStaffDTO, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -76,7 +85,6 @@ public class JsonController {
 		}
 		return entity;
 	}
-
 
 	@RequestMapping(value = "/sendNotice/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<List<JsonNoticeDTO>> sendNotice(@PathVariable("section_cd") String section_cd) {

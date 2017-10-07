@@ -15,5 +15,5 @@ public interface JsonStaffService {
 
 	  public void remove(String section_cd) throws Exception;
 	  
-	  public List<JsonStaffDTO> listAll(Com_sectionVO vo) throws Exception;
+	  public List<JsonStaffDTO> listAll(String section_fullpath) throws Exception;
 }
