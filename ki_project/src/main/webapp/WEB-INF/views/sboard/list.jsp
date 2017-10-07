@@ -107,7 +107,7 @@
 
 										<td>${com_staffVO.st_job}</td>
 
-										<td>>${com_staffVO.st_nm}</td>
+										<td>${com_staffVO.st_nm}</td>
 
 										<td>${com_staffVO.st_tel}</td>
 
@@ -155,39 +155,42 @@
 
 		</div>
 		<!-- end row -->
-	</div>
-	<script>
-		var result = '${msg}';
 
-		if (result == 'SUCCESS') {
-			alert("처리가 완료되었습니다.");
-		}
-	</script>
+		<script>
+			var result = '${msg}';
 
-	<script>
-		$(document).ready(
-				function() {
+			if (result == 'SUCCESS') {
+				alert("처리가 완료되었습니다.");
+			}
+		</script>
 
-					$('#searchBtn').on(
-							"click",
-							function(event) {
+		<script>
+			$(document).ready(
+					function() {
 
-								self.location = "list"
-										+ '${pageMaker.makeQuery(1)}'
-										+ "&searchType="
-										+ $("select option:selected").val()
-										+ "&keyword="
-										+ $('#keywordInput').val();
+						$('#searchBtn').on(
+								"click",
+								function(event) {
 
-							});
+									self.location = "list"
+											+ '${pageMaker.makeQuery(1)}'
+											+ "&searchType="
+											+ $("select option:selected").val()
+											+ "&keyword="
+											+ $('#keywordInput').val();
 
-					$('#newBtn').on("click", function(evt) {
+								});
 
-						self.location = "register";
+						$('#newBtn').on("click", function(evt) {
+
+							self.location = "register";
+
+						});
 
 					});
-
-				});
-	</script>
+		</script>
+	</div>
 </section>
+
+
 <%@include file="../include/footer.jsp"%>

@@ -14,7 +14,7 @@ public class Com_sectionDAOImpl implements Com_sectionDAO{
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.zerock.mapper.Com_sectionMapper";
+	private static String namespace = "org.kiosk.mapper.Com_sectionMapper";
 
 	@Override
 	public void create(Com_sectionVO vo) throws Exception {

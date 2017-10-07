@@ -14,7 +14,7 @@ public class Com_menuDAOImpl implements Com_menuDAO{
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.zerock.mapper.Com_menuMapper";
+	private static String namespace = "org.kiosk.mapper.Com_menuMapper";
 
 	@Override
 	public void create(Com_menuVO vo) throws Exception {

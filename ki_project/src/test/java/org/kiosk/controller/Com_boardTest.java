@@ -28,7 +28,7 @@ public class Com_boardTest {
 	public void testCreate() throws Exception {
 
 		Com_boardVO vo = new Com_boardVO();
-		vo.setBbs_no(2);
+		//vo.setBbs_no(2);
 		vo.setBrd_cd("abaaa");
 		vo.setBbs_pno(3);
 		vo.setBbs_lv(2);
@@ -51,30 +51,22 @@ public class Com_boardTest {
 		dao.create(vo);
 	}
 
-	// @Test
+	 //@Test
 	public void testRead() throws Exception {
-		logger.info(dao.read(1).toString());
+		logger.info(dao.read(38).toString());
 	}
 
-	// @Test
+	//@Test
 	public void testUpdate() throws Exception {
 
 		Com_boardVO vo = new Com_boardVO();
-		vo.setBbs_no(1);
-		vo.setBrd_cd("code");
-		vo.setBbs_pno(1);
-		vo.setBbs_lv(1);
-		vo.setBbs_sort(1);
-		vo.setBbs_title("title");
+		vo.setBbs_no(40);
+		vo.setBrd_cd("event");
+		vo.setBbs_title("tester");
 		vo.setBbs_content("content");
 		vo.setBbs_file("file");
-		vo.setBbs_notice(12);
-		vo.setBbs_tag("해시태그sdfsdf?ㅎㅎ");
-		vo.setBbs_cate("카테고리");
-		vo.setBbs_hits(100);
 		vo.setBbs_state(1);
 		vo.setSection_cd("과코aaa드");
-		vo.setBbs_exp_inx(2);
 		vo.setBbs_exp_sdt(sqlDate);
 		vo.setBbs_exp_edt(sqlDate);
 		vo.setBbs_edt(sqlDate);
@@ -85,7 +77,7 @@ public class Com_boardTest {
 	// @Test
 	public void testDelete() throws Exception {
 
-		dao.delete(1);
+		dao.delete(40);
 	}
 
 	// @Test

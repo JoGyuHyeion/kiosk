@@ -46,6 +46,7 @@ public class SearchNoticeController {
 			throws Exception {
 
 		model.addAttribute(service.read(bbs_no));
+		
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
@@ -61,7 +62,7 @@ public class SearchNoticeController {
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/noticeboard/list";
+		return "redirect:/noticeboard/list?page=1";
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
@@ -72,7 +73,6 @@ public class SearchNoticeController {
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_boardVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
-
 		logger.info(cri.toString());
 		service.modify(board);
 
@@ -104,6 +104,6 @@ public class SearchNoticeController {
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/noticeboard/list";
+		return "redirect:/noticeboard/list?page=1";
 	}
 }

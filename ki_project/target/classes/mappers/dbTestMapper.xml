@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.zerock.mapper.DbTestMapper">
+<mapper namespace="org.kiosk.mapper.DbTestMapper">
 
 	<select id="select_DbTest" resultType="DbTestVO">
 		select * from dbTest where 

@@ -14,7 +14,7 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.zerock.mapper.Com_boardMapper";
+	private static String namespace = "org.kiosk.mapper.Com_boardMapper";
 
 	@Override
 	public void create(Com_boardVO vo) throws Exception {

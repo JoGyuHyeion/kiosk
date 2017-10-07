@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.zerock.mapper.MateMapper">
+<mapper namespace="org.kiosk.mapper.MateMapper">
 
 	<select id="read" resultType="MateDTO">
 		select st_no, st_nm, st_position, st_job, st_tel, st_email, img_filenm, st_sort, st_status 
