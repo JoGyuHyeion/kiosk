@@ -94,13 +94,10 @@ public class JsonStaffTest {
 
 //	 @Test
 	public void testMateListAll() throws Exception {
-		Com_staffVO vo = new Com_staffVO();
+		TeamsDTO vo = new TeamsDTO(); 
 		vo.setSection_cd("K010-S010");
-		vo.setSt_display(1);
 		vo.setTeam_cd("T02");
-
-		logger.info(mateDao.listAll(vo).toString());
-
+		logger.info(mateDao.list(vo).toString());
 	}
 
 	// @Test
@@ -113,10 +110,10 @@ public class JsonStaffTest {
 
 	// @Test
 	public void testTeamsRead() throws Exception {
-			Com_teamVO vo = new Com_teamVO();
-			vo.setSection_cd("K010-S010");
-			vo.setTeam_cd("T05");
-		logger.info(teamDao.read(vo).toString());
+//			Com_teamVO vo = new Com_teamVO();
+//			vo.setSection_cd("K010-S010");
+//			vo.setTeam_cd("T05");
+//		logger.info(teamDao.read(vo).toString());
 	}
 
 }

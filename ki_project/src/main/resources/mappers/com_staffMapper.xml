@@ -118,18 +118,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<select id="listSearch" resultType="Com_staffVO">
-<![CDATA[  
-  select * 
-  from com_staff 
-  where st_no > 0 
-]]>
-
+		<![CDATA[  
+ 			 select * 
+ 			 from com_staff 
+ 			 where st_no > 0 
+		]]>
 		<include refid="search"></include>
   
-<![CDATA[    
-  order by st_no desc
-  limit #{pageStart}, #{perPageNum}
-]]>
+		<![CDATA[    
+  			order by st_no desc
+  			limit #{pageStart}, #{perPageNum}
+		]]>
 	</select>
 
 	<select id="listSearchCount" resultType="int">
