@@ -77,23 +77,23 @@
 							</thead>
 
 							<tbody>
-								<c:forEach items="${list}" var="com_staffVO">
+								<c:forEach items="${list}" var="com_boardVO">
 
-									<tr >
+									<tr class="active">
 										<td><a
-											href="/sboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
+											href="/noticeboard/modifyPage${pageMaker.makeSearch(param.page)}&bbs_no=${com_boardVO.bbs_no}"
 											class="table-action-btn h2"><i
 												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
 
-										<td>${com_staffVO.section_cd}</td>
+										<td>${com_boardVO.bbs_no}</td>
 
-										<td>${com_staffVO.st_team}</td>
+										<td>${com_boardVO.section_cd}</td>
 
+										<td><a href="/noticeboard/readPage?bbs_no=${com_boardVO.bbs_no}">${com_boardVO.bbs_title}</a></td>
 
-										<td>${com_staffVO.st_nm}</td>
+										<td>${com_boardVO.bbs_exp_sdt}~${com_boardVO.bbs_exp_edt}</td>
 
-
-										<td>${com_staffVO.st_edt }</td>
+										<td>${com_boardVO.bbs_ndt}</td>
 
 									</tr>
 								</c:forEach>
@@ -171,5 +171,6 @@
 
 					});
 		</script>
-
-		<%@include file="../include/footer.jsp"%>
+	</div>
+</section>
+<%@include file="../include/footer.jsp"%>
