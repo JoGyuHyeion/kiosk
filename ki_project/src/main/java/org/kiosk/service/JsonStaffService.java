@@ -1,8 +1,6 @@
 package org.kiosk.service;
 
 import java.util.List;
-
-import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.dto.JsonStaffDTO;
 
 public interface JsonStaffService {

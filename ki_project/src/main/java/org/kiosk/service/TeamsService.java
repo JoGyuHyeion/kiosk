@@ -1,8 +1,6 @@
 package org.kiosk.service;
 
 import java.util.List;
-
-import org.kiosk.domain.Com_teamVO;
 import org.kiosk.dto.TeamsDTO;
 
 public interface TeamsService {

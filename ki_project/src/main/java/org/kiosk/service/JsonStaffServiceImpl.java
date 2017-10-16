@@ -2,8 +2,6 @@ package org.kiosk.service;
 
 import java.util.List;
 import javax.inject.Inject;
-
-import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.persistence.JsonStaffDAO;
 import org.springframework.stereotype.Service;

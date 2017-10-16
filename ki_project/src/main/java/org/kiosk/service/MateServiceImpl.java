@@ -1,10 +1,7 @@
 package org.kiosk.service;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
-import org.kiosk.domain.Com_staffVO;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
 import org.kiosk.persistence.MateDAO;
