@@ -167,19 +167,19 @@
 
 									<!--display, status javascript 코드 view 표시  -->
 									<script>
-<<<<<<< HEAD
+
 										var display = '<c:out value=${com_staffVO.st_display}/>';
 										var status = '<c:out value=${com_staffVO.st_status}/>';
 
 										if (display = 1) {
-=======
+
 										var display = '<c:out value="${com_staffVO.st_display}"/>';
 										var status = '<c:out value="${com_staffVO.st_status}"/>';
 										alert("Display, Status 확인 \n"
 												+ "표시여부: " + display
 												+ "\n근무 상태: " + status);
 										if (display == 1) {
->>>>>>> c6b3dc57caa53127f8b1543dcac9fc9702adaa77
+
 											document
 													.getElementById('st_display').checked = true;
 										} else {
@@ -188,7 +188,7 @@
 										if (status == 1) {
 											document
 													.getElementById('st_status1').checked = true;
-<<<<<<< HEAD
+
 										} else if (status = 2) {
 											document
 													.getElementById('st_status2').checked = true;
@@ -196,7 +196,7 @@
 											document
 													.getElementById('st_status3').checked = true;
 										} else if (status = 4) {
-=======
+
 										} else if (status == 2) {
 											document
 													.getElementById('st_status2').checked = true;
@@ -204,7 +204,7 @@
 											document
 													.getElementById('st_status3').checked = true;
 										} else if (status == 4) {
->>>>>>> c6b3dc57caa53127f8b1543dcac9fc9702adaa77
+
 											document
 													.getElementById('st_status4').checked = true;
 										}

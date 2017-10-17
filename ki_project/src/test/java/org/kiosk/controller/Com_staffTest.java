@@ -1,9 +1,7 @@
 package org.kiosk.controller;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kiosk.domain.Com_staffVO;
@@ -79,6 +77,10 @@ public class Com_staffTest {
 
 		logger.info(dao.listAll().toString());
 
+	}
+	@Test
+	public void testCount() throws Exception{
+		logger.info(String.valueOf(dao.maxNum()));
 	}
 
 	// @Test

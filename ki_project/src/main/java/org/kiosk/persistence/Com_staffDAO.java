@@ -15,6 +15,8 @@ public interface Com_staffDAO {
   public void update(Com_staffVO vo) throws Exception;
 
   public void delete(Integer st_no) throws Exception;
+  
+  public int maxNum() throws Exception;
 
   public List<Com_staffVO> listAll() throws Exception;
 

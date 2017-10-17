@@ -15,6 +15,8 @@ public interface Com_staffService {
   public void modify(Com_staffVO vo) throws Exception;
 
   public void remove(Integer st_no) throws Exception;
+  
+  public int maxNum() throws Exception;
 
   public List<Com_staffVO> listAll() throws Exception;
 

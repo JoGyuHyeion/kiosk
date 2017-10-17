@@ -39,7 +39,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-<<<<<<< HEAD
+
 <script src="/resources/assets/js/modernizr.min.js"></script>
 
 </head>
@@ -167,7 +167,7 @@
 		</div>
 	</header>
 	<!-- End Navigation Bar-->
-=======
+
         <script src="/resources/assets/js/modernizr.min.js"></script>
  		<!-- jQuery 2.1.4 -->
   		<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -450,4 +450,4 @@
             </div> <!-- end navbar-custom -->
         </header>
         <!-- End Navigation Bar-->
->>>>>>> c718f6c0b276656d7d57c48609db55c599051672
+
