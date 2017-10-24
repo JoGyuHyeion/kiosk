@@ -23,8 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update com_board set
 		brd_cd = #{brd_cd},
-		bbs_pno =
-		#{bbs_pno},
+		bbs_pno = #{bbs_pno},
 		bbs_lv = #{bbs_lv},
 		bbs_sort = #{bbs_sort},
 		bbs_title =

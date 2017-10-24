@@ -4,9 +4,6 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kiosk.domain.Com_sectionVO;
-import org.kiosk.domain.Com_staffVO;
-import org.kiosk.domain.Com_teamVO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;

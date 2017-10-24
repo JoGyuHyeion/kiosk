@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.com_iconMapper">
+
+	<select id="read" resultType="Com_iconDTO">
+		select
+		ic_no,ic_name,ic_icon,ic_able,ic_ndt
+		from com_icon
+		where
+		ic_no = #{ic_no}
+	</select>
+
+	<insert id="create">
+		insert into com_icon
+		(ic_no,ic_name,ic_icon,ic_able,ic_ndt)
+		values
+		(#{ic_no},#{ic_name},#{ic_icon},#{ic_able},#{ic_ndt})
+	</insert>
+
+	<update id="update">
+		update com_icon set
+		ic_name = #{ic_name},
+		ic_icon = #{ic_icon},
+		ic_able = #{ic_able},
+		ic_ndt = #{ic_ndt}
+		where
+		ic_no = #{ic_no}
+	</update>
+
+	<delete id="delete">
+		delete from com_icon where ic_no = #{ic_no}
+	</delete>
+
+	<select id="listAll" resultType="Com_iconDTO">
+ 		<![CDATA[ select * from com_icon]]>
+	</select>
+
+	<select id="listPage" resultType="Com_iconDTO">
+ 		<![CDATA[
+		select 
+		ic_no,ic_name,ic_icon,ic_able,ic_ndt
+		from com_icon 
+		where ic_no > 0 
+		order by ic_no desc
+		limit #{page}, 10
+ 		]]>
+	</select>
+
+	<select id="listCriteria" resultType="Com_iconDTO">
+ 		<![CDATA[
+		select 
+		ic_no,ic_name,ic_icon,ic_able,ic_ndt
+		from com_icon 
+		where ic_no > 0 
+		order by ic_no desc
+			limit #{pageStart}, #{perPageNum}
+ 		]]>
+	</select>
+
+	<select id="countPaging" resultType="int">
+ 		<![CDATA[
+		select count(ic_no) 
+		from 
+		com_icon 
+		where 
+		ic_no > 0 
+ 		]]>
+	</select>
+	
+</mapper>

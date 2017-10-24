@@ -4,7 +4,6 @@ import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.domain.Com_boardVO;
-import org.kiosk.domain.Com_boardVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.springframework.stereotype.Repository;
