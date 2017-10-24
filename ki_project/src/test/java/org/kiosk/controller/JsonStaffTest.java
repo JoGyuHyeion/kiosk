@@ -32,12 +32,12 @@ public class JsonStaffTest {
 	// @Test
 	public void testStaffCreate() throws Exception {
 
-		//JsonStaffDTO dto = new JsonStaffDTO();
+		// JsonStaffDTO dto = new JsonStaffDTO();
 
 		// staffdao.create(dto);
 	}
 
-	 //@Test
+	// @Test
 	public void testStaffRead() throws Exception {
 		logger.info(staffdao.read("S010").toString());
 	}
@@ -56,7 +56,7 @@ public class JsonStaffTest {
 		staffdao.delete("S010");
 	}
 
-	 @Test
+	@Test
 	public void testStaffListAll() throws Exception {
 		logger.info(staffdao.listAll("K010_S010").toString());
 
@@ -65,12 +65,12 @@ public class JsonStaffTest {
 	// @Test
 	public void testMateCreate() throws Exception {
 
-		//MateDTO dto = new MateDTO();
+		// MateDTO dto = new MateDTO();
 
 		// mateDao.create(dto);
 	}
 
-//	 @Test
+	// @Test
 	public void testMateRead() throws Exception {
 		logger.info(mateDao.read(1).toString());
 	}
@@ -89,9 +89,9 @@ public class JsonStaffTest {
 		mateDao.delete(1);
 	}
 
-//	 @Test
+	// @Test
 	public void testMateListAll() throws Exception {
-		TeamsDTO vo = new TeamsDTO(); 
+		TeamsDTO vo = new TeamsDTO();
 		vo.setSection_cd("K010-S010");
 		vo.setTeam_cd("T02");
 		logger.info(mateDao.list(vo).toString());
@@ -100,17 +100,17 @@ public class JsonStaffTest {
 	// @Test
 	public void testTeamsCreate() throws Exception {
 
-		//TeamsDTO dto = new TeamsDTO();
+		// TeamsDTO dto = new TeamsDTO();
 
 		// teamDao.create(dto);
 	}
 
 	// @Test
 	public void testTeamsRead() throws Exception {
-//			Com_teamVO vo = new Com_teamVO();
-//			vo.setSection_cd("K010-S010");
-//			vo.setTeam_cd("T05");
-//		logger.info(teamDao.read(vo).toString());
+		// Com_teamVO vo = new Com_teamVO();
+		// vo.setSection_cd("K010-S010");
+		// vo.setTeam_cd("T05");
+		// logger.info(teamDao.read(vo).toString());
 	}
 
 }

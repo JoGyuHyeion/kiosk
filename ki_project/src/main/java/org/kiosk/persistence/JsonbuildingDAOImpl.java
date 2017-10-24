@@ -6,7 +6,8 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.dto.Com_buildingDTO;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public class JsonbuildingDAOImpl implements JsonbuildingDAO {
 
 	@Inject

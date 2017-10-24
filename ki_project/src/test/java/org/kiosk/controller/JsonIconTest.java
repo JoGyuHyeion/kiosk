@@ -19,12 +19,12 @@ public class JsonIconTest {
 	@Inject
 	private JsoniconDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
+	private static Logger logger = LoggerFactory.getLogger(JsonIconTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-	// @Test
+	@Test
 	public void testCreate() throws Exception {
 
 		Com_iconDTO dto = new Com_iconDTO();
@@ -58,7 +58,7 @@ public class JsonIconTest {
 		dao.delete(1);
 	}
 
-	@Test
+	// @Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

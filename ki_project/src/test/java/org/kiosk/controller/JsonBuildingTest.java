@@ -19,25 +19,25 @@ public class JsonBuildingTest {
 	@Inject
 	private JsonbuildingDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
+	private static Logger logger = LoggerFactory.getLogger(JsonBuildingTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-	 @Test
+//	 @Test
 	public void testCreate() throws Exception {
 
 		Com_buildingDTO dto = new Com_buildingDTO();
 		dto.setBu_img("사진");
 		dto.setBu_name("1층");
-		dto.setBu_ndt(sqlDate);
+//		dto.setBu_ndt(sqlDate);
 		dao.create(dto);
 	}
 
-	// @Test
+	 @Test
 	public void testRead() throws Exception {
 
-		logger.info(dao.read(10093).toString());
+		logger.info(dao.read(1).toString());
 	}
 
 	// @Test

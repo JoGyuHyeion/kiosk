@@ -6,7 +6,8 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.dto.Com_videoDTO;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public class JsonvideoDAOImpl implements JsonvideoDAO {
 
 	@Inject

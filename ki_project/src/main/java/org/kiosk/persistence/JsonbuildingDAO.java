@@ -11,6 +11,6 @@ public interface JsonbuildingDAO {
 	public void update(Com_buildingDTO dto) throws Exception;
 
 	public void delete(Integer bu_no) throws Exception;
-	
+
 	public List<Com_buildingDTO> listAll() throws Exception;
 }

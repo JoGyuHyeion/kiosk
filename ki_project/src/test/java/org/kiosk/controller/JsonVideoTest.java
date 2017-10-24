@@ -19,12 +19,12 @@ public class JsonVideoTest {
 	@Inject
 	private JsonvideoDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
+	private static Logger logger = LoggerFactory.getLogger(JsonVideoTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-	// @Test
+	@Test
 	public void testCreate() throws Exception {
 
 		Com_videoDTO dto = new Com_videoDTO();
@@ -56,7 +56,7 @@ public class JsonVideoTest {
 		dao.delete(1);
 	}
 
-	@Test
+	// @Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

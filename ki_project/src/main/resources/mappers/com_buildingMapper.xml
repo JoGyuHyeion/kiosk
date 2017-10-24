@@ -15,9 +15,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into com_building
-		(bu_no,bu_name,bu_img,bu_ndt,bu_edt)
+		(bu_name,bu_img,bu_ndt)
 		values
-		(#{bu_no},#{bu_name},#{bu_img},#{bu_ndt},#{bu_edt})
+		(#{bu_name},#{bu_img},#{bu_ndt})
 	</insert>
 
 	<update id="update">
