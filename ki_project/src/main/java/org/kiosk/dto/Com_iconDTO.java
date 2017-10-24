@@ -2,7 +2,10 @@ package org.kiosk.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Com_iconDTO {
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int ic_no;
 	private String ic_name;
 	private String ic_icon;

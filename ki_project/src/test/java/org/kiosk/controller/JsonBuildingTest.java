@@ -24,13 +24,13 @@ public class JsonBuildingTest {
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-//	 @Test
+	 @Test
 	public void testCreate() throws Exception {
 
 		Com_buildingDTO dto = new Com_buildingDTO();
 		dto.setBu_img("사진");
 		dto.setBu_name("1층");
-//		dto.setBu_ndt(sqlDate);
+		dto.setBu_ndt(sqlDate);
 		dao.create(dto);
 	}
 
@@ -57,7 +57,7 @@ public class JsonBuildingTest {
 		dao.delete(1);
 	}
 
-	//@Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

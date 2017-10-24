@@ -13,7 +13,7 @@ public class JsonvideoDAOImpl implements JsonvideoDAO {
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.kiosk.mapper.com_buildingMapper";
+	private static String namespace = "org.kiosk.mapper.com_videoMapper";
 
 	@Override
 	public void create(Com_videoDTO dto) throws Exception {

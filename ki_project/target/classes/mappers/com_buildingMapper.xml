@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="Com_buildingDTO">
 		select
-		bu_no,bu_name,bu_img,bu_ndt,bu_edt
+		bu_no,bu_name,bu_img,bu_ndt
 		from com_building
 		where
 		bu_no = #{bu_no}
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update com_building set
 		bu_name = #{bu_name},
 		bu_img = #{bu_img},
-		bu_edt = #{bu_edt}
+		bu_ndt = #{bu_ndt}
 		where
 		bu_no = #{bu_no}
 	</update>

@@ -34,7 +34,7 @@ public class JsonVideoTest {
 		dao.create(dto);
 	}
 
-	// @Test
+	 @Test
 	public void testRead() throws Exception {
 
 		logger.info(dao.read(1).toString());
@@ -56,7 +56,7 @@ public class JsonVideoTest {
 		dao.delete(1);
 	}
 
-	// @Test
+	 @Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

@@ -2,7 +2,10 @@ package org.kiosk.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Com_videoDTO {
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int vi_no;
 	private String vi_name;
 	private String vi_video;

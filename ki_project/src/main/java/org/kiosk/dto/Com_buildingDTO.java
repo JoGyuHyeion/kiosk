@@ -2,12 +2,14 @@ package org.kiosk.dto;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Com_buildingDTO {
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int bu_no;
 	private String bu_name;
 	private String bu_img;
 	private Date bu_ndt;
-	private Date bu_edt;
 
 	public int getBu_no() {
 		return bu_no;
@@ -41,18 +43,12 @@ public class Com_buildingDTO {
 		this.bu_ndt = bu_ndt;
 	}
 
-	public Date getBu_edt() {
-		return bu_edt;
-	}
-
-	public void setBu_edt(Date bu_edt) {
-		this.bu_edt = bu_edt;
-	}
-
 	@Override
 	public String toString() {
-		return "Com_buildingVO [bu_no=" + bu_no + ", bu_name=" + bu_name + ", bu_img=" + bu_img + ", bu_ndt=" + bu_ndt
-				+ ", bu_edt=" + bu_edt + "]";
+		return "Com_buildingDTO [bu_no=" + bu_no + ", bu_name=" + bu_name + ", bu_img=" + bu_img + ", bu_ndt=" + bu_ndt
+				+ "]";
 	}
+
+
 
 }

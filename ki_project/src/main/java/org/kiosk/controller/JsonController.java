@@ -5,18 +5,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
-import org.kiosk.domain.Com_staffVO;
-import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.SampleVO;
+import org.kiosk.dto.Com_buildingDTO;
+import org.kiosk.dto.Com_iconDTO;
+import org.kiosk.dto.Com_videoDTO;
 import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
-import org.kiosk.service.Com_staffService;
 import org.kiosk.service.JsonGelleryService;
 import org.kiosk.service.JsonNoticeService;
 import org.kiosk.service.JsonStaffService;
+import org.kiosk.service.JsonbuildingService;
+import org.kiosk.service.JsoniconService;
+import org.kiosk.service.JsonvideoService;
 import org.kiosk.service.MateService;
 import org.kiosk.service.TeamsService;
 import org.slf4j.Logger;
@@ -44,6 +47,12 @@ public class JsonController {
 	private MateService mateService;
 	@Inject
 	private TeamsService teamsService;
+	@Inject
+	private JsonbuildingService jsonbuildingService;
+	@Inject
+	private JsoniconService jsoniconService;
+	@Inject
+	private JsonvideoService jsonvideoService;
 
 	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> sendStaff(@PathVariable("section_cd") String section_cd) {
@@ -92,6 +101,45 @@ public class JsonController {
 		ResponseEntity<List<JsonNoticeDTO>> entity = null;
 		try {
 			entity = new ResponseEntity<>(jsonNoticeService.listAll(section_cd), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET)
+	public ResponseEntity<List<Com_buildingDTO>> sendBuilding() {
+		logger.info("json/sendNotice/{section_cd}");
+		ResponseEntity<List<Com_buildingDTO>> entity = null;
+		try {
+			entity = new ResponseEntity<>(jsonbuildingService.listAll(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET)
+	public ResponseEntity<List<Com_iconDTO>> sendIcon() {
+		logger.info("json/sendNotice/{section_cd}");
+		ResponseEntity<List<Com_iconDTO>> entity = null;
+		try {
+			entity = new ResponseEntity<>(jsoniconService.listAll(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET)
+	public ResponseEntity<List<Com_videoDTO>> sendVideo() {
+		logger.info("json/sendNotice/{section_cd}");
+		ResponseEntity<List<Com_videoDTO>> entity = null;
+		try {
+			entity = new ResponseEntity<>(jsonvideoService.listAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

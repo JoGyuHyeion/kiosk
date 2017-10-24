@@ -5,7 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 import org.kiosk.dto.Com_iconDTO;
 import org.kiosk.persistence.JsoniconDAO;
-
+import org.springframework.stereotype.Service;
+@Service
 public class JsoniconServiceImpl implements JsoniconService {
 
 	@Inject
