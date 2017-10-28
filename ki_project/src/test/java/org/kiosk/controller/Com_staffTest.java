@@ -72,14 +72,15 @@ public class Com_staffTest {
 		dao.delete(1138);
 	}
 
-	// @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
 
 	}
-	@Test
-	public void testCount() throws Exception{
+
+	// @Test
+	public void testCount() throws Exception {
 		logger.info(String.valueOf(dao.maxNum()));
 	}
 
@@ -104,9 +105,9 @@ public class Com_staffTest {
 
 		List<Com_staffVO> list = dao.listCriteria(cri);
 
-		// for (Com_staffVO Com_staffVO : list) {
-		// logger.info(Com_staffVO.getBno() + ":" + Com_staffVO.getTitle());
-		// }
+		for (Com_staffVO Com_staffVO : list) {
+			logger.info(Com_staffVO.toString());
+		}
 	}
 
 	// @Test
