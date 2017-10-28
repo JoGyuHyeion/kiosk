@@ -2,7 +2,8 @@ package org.kiosk.dto;
 
 public class LoginDTO {
 
-	private String id;
+	private String
+			id;
 	private String password;
 	private boolean useCookie;
 
