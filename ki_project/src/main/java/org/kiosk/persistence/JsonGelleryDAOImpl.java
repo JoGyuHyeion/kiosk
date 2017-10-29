@@ -15,11 +15,19 @@ public class JsonGelleryDAOImpl implements JsonGelleryDAO {
 	private SqlSession session;
 	
 	private static String namespace = "org.kiosk.mapper.JsonGelleryMapper";
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/persistence/JsonGelleryDAOImpl.java
+	@Override
+	public void create(JsonGelleryDTO dto) throws Exception {
+		session.insert(namespace + ".create", dto);
+		
+	}
+=======
 //	@Override
 //	public void create(JsonGelleryDTO dto) throws Exception {
 //		session.insert(namespace + ".create", dto);
 //		
 //	}
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1:ki_project/src/main/java/org/kiosk/persistence/JsonGelleryDAOImpl.java
 	@Override
 	public JsonGelleryDTO read(Integer no) throws Exception {
 		return session.selectOne(namespace + ".read", no);

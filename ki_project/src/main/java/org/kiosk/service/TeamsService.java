@@ -1,6 +1,10 @@
 package org.kiosk.service;
 
 import java.util.List;
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/service/TeamsService.java
+
+=======
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1:ki_project/src/main/java/org/kiosk/service/TeamsService.java
 import org.kiosk.dto.TeamsDTO;
 
 public interface TeamsService {

@@ -2,48 +2,26 @@ package org.kiosk.dto;
 
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class TeamsDTO {
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private String team_cd;
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private String section_cd;
-	private String team_nm;
-	private Map<Integer, MateDTO> mate;
 
+	private String team_name;
+	private Map<Integer, MateDTO> mate;
+	
 	public TeamsDTO() {
 		super();
 	}
 
-	public TeamsDTO(String team_cd, String team_nm) {
+	public TeamsDTO(String team_name) {
 		super();
-		this.team_cd = team_cd;
-		this.team_nm = team_nm;
+		this.team_name = team_name;
 	}
 
-	public String getTeam_cd() {
-		return team_cd;
+	public String getTeam_name() {
+		return team_name;
 	}
 
-	public void setTeam_cd(String team_cd) {
-		this.team_cd = team_cd;
-	}
-
-	public String getSection_cd() {
-		return section_cd;
-	}
-
-	public void setSection_cd(String section_cd) {
-		this.section_cd = section_cd;
-	}
-
-	public String getTeam_nm() {
-		return team_nm;
-	}
-
-	public void setTeam_nm(String team_nm) {
-		this.team_nm = team_nm;
+	public void setTeam_name(String team_name) {
+		this.team_name = team_name;
 	}
 
 	public Map<Integer, MateDTO> getMate() {
@@ -56,8 +34,7 @@ public class TeamsDTO {
 
 	@Override
 	public String toString() {
-		return "TeamsDTO [team_cd=" + team_cd + ", section_cd=" + section_cd + ", team_nm=" + team_nm + ", mate=" + mate
-				+ "]";
+		return "TeamsVO [team_name=" + team_name + ", mate=" + mate + "]";
 	}
 
 }

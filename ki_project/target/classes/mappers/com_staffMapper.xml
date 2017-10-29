@@ -39,6 +39,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="listAll" resultType="org.kiosk.domain.Com_staffVO">
+<<<<<<< HEAD
+ <![CDATA[
+ select 
+   st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+ from 
+   com_staff 
+ where st_no > 0 
+ order by st_no desc
+ ]]>
+=======
 		 <![CDATA[
 		 select 
 		 st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
@@ -47,6 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where st_no > 0 
 		 order by st_no desc
 		 ]]>
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 	</select>
 
 	<select id="listPage" resultType="Com_staffVO">

@@ -4,7 +4,10 @@ import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.dto.MateDTO;
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/persistence/MateDAOImpl.java
+=======
 import org.kiosk.dto.TeamsDTO;
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1:ki_project/src/main/java/org/kiosk/persistence/MateDAOImpl.java
 import org.springframework.stereotype.Repository;
 @Repository
 public class MateDAOImpl implements MateDAO {

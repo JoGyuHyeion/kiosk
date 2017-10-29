@@ -15,23 +15,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into com_board
-		(bbs_no,brd_cd,bbs_pno,bbs_lv,bbs_sort,bbs_title,bbs_content,bbs_file,bbs_notice,bbs_tag,bbs_cate,bbs_hits,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt)
+		(brd_cd,bbs_pno,bbs_lv,bbs_sort,bbs_title,bbs_content,bbs_file,bbs_notice,bbs_tag,bbs_cate,bbs_hits,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt)
 		values
-		(#{bbs_no},#{brd_cd},#{bbs_pno},#{bbs_lv},#{bbs_sort},#{bbs_title},#{bbs_content},#{bbs_file},#{bbs_notice},#{bbs_tag},#{bbs_cate},#{bbs_hits},#{bbs_state},#{section_cd},#{bbs_exp_inx},#{bbs_exp_sdt},#{bbs_exp_edt},#{bbs_ndt},#{bbs_edt})
+		(#{brd_cd},#{bbs_pno},#{bbs_lv},#{bbs_sort},#{bbs_title},#{bbs_content},#{bbs_file},#{bbs_notice},#{bbs_tag},#{bbs_cate},#{bbs_hits},#{bbs_state},#{section_cd},#{bbs_exp_inx},#{bbs_exp_sdt},#{bbs_exp_edt},#{bbs_ndt},#{bbs_edt})
 	</insert>
 
 	<update id="update">
 		update com_board set
 		brd_cd = #{brd_cd},
-		bbs_pno = #{bbs_pno},
+		<!-- bbs_pno = #{bbs_pno},
 		bbs_lv = #{bbs_lv},
+<<<<<<< HEAD
+		bbs_sort = #{bbs_sort}, -->
+		bbs_title = #{bbs_title},
+=======
 		bbs_sort = #{bbs_sort},
 		bbs_title =
 		#{bbs_title},
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 		bbs_content = #{bbs_content},
 		bbs_file = #{bbs_file},
-		bbs_notice = #{bbc_notice},
+		<!-- bbs_notice = #{bbc_notice},
 		bbs_tag = #{bbs_tag},
+<<<<<<< HEAD
+		bbs_cate = #{bbs_cate},
+		bbs_hits = #{bbs_hits}, -->
+		bbs_state = #{bbs_state},
+		section_cd = #{section_cd},
+		<!--bbs_exp_inx = #{bbs_exp_inx}, -->
+		bbs_exp_sdt = #{bbs_exp_sdt},
+=======
 		bbs_cate =
 		#{bbs_cate},
 		bbs_hits = #{bbs_hits},
@@ -40,8 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bbs_exp_inx = #{bbs_exp_inx},
 		bbs_exp_sdt =
 		#{bbs_exp_sdt},
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 		bbs_exp_edt = #{bbs_exp_edt},
-		bbs_ndt = #{bbs_ndt},
+		<!-- bbs_ndt = #{bbs_ndt}, -->
 		bbs_edt = #{bbs_edt}
 		where
 		bbs_no = #{bbs_no}
@@ -52,9 +66,101 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="listAll" resultType="Com_boardVO">
- 		<![CDATA[ select * from com_board]]>
+ 		<![CDATA[ 
+ 			select * 
+ 			from com_board 
+ 			where bbs_no > 0 
+ 			order by bbs_no desc
+ 		]]>
+	</select>
+	
+	<select id="listPage" resultType="Com_boardVO">
+		<![CDATA[
+ 			select * 
+ 			from com_board 
+ 			where bbs_no > 0
+ 			order by bbs_no desc
+ 			limit #{page}, 10
+ 		]]>
+	
+	</select>
+	
+	<select id="listCriteria" resultType="Com_boardVO">
+		<![CDATA[
+ 			select * 
+ 			from com_board 
+ 			where bbs_no > 0
+ 			order by bbs_no desc
+ 			limit #{pageStart}, #{perPageNum} 
+ 		]]>
 	</select>
 
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+ 			select count(bbs_no) 
+ 			from com_board 
+ 			where bbs_no > 0 
+ 		]]>
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR content
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( content like CONCAT('%', #{keyword}, '%') OR writer
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%')
+				OR
+				content
+				like CONCAT('%', #{keyword}, '%')
+				OR
+				writer like CONCAT('%',
+				#{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+	
+	<select id="listSearch" resultType="Com_boardVO">
+		<![CDATA[  
+			 select * 
+ 			 from com_board 
+ 			 where bbs_no > 0 
+		]]>
+
+<<<<<<< HEAD
+		<include refid="search"></include>
+  
+		<![CDATA[    
+  			order by bbs_no desc
+  			limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[  
+ 			select count(bbs_no) 
+ 		 	from com_board 
+ 			where bbs_no > 0 
+		]]>
+	</select>
+	
+=======
 	<select id="listPage" resultType="Com_boardVO">
  		<![CDATA[
 		select 
@@ -130,4 +236,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 </mapper>

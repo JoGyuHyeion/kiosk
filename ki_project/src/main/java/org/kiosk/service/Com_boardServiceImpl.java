@@ -11,7 +11,7 @@ import org.kiosk.persistence.Com_boardDAO;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Com_boardServiceImpl implements Com_boardService {
+public class Com_boardServiceImpl implements Com_boardService{
 
 	@Inject
 	private Com_boardDAO dao;
@@ -19,7 +19,7 @@ public class Com_boardServiceImpl implements Com_boardService {
 	@Override
 	public void regist(Com_boardVO vo) throws Exception {
 		dao.create(vo);
-
+		
 	}
 
 	@Override
@@ -30,13 +30,13 @@ public class Com_boardServiceImpl implements Com_boardService {
 	@Override
 	public void modify(Com_boardVO vo) throws Exception {
 		dao.update(vo);
-
+		
 	}
 
 	@Override
 	public void remove(Integer bbs_no) throws Exception {
 		dao.delete(bbs_no);
-
+		
 	}
 
 	@Override

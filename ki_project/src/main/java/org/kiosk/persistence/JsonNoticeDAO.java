@@ -2,6 +2,10 @@ package org.kiosk.persistence;
 
 import java.util.List;
 
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/persistence/JsonNoticeDAO.java
+import org.kiosk.dto.JsonGelleryDTO;
+=======
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1:ki_project/src/main/java/org/kiosk/persistence/JsonNoticeDAO.java
 import org.kiosk.dto.JsonNoticeDTO;
 
 public interface JsonNoticeDAO {

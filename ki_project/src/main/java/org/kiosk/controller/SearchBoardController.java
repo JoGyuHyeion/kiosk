@@ -2,11 +2,18 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/controller/SearchBoardController.java
+
+=======
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1:ki_project/src/main/java/org/kiosk/controller/SearchBoardController.java
 import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.service.Com_staffService;
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/controller/SearchBoardController.java
+=======
 import org.kiosk.util.UploadFileUtils;
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1:ki_project/src/main/java/org/kiosk/controller/SearchBoardController.java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

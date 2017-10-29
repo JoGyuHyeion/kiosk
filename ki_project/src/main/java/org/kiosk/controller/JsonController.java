@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.inject.Inject;
+
 import org.kiosk.domain.SampleVO;
-import org.kiosk.dto.Com_buildingDTO;
-import org.kiosk.dto.Com_iconDTO;
-import org.kiosk.dto.Com_videoDTO;
 import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.dto.JsonStaffDTO;
@@ -17,134 +16,96 @@ import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.JsonGelleryService;
 import org.kiosk.service.JsonNoticeService;
 import org.kiosk.service.JsonStaffService;
-import org.kiosk.service.JsonbuildingService;
-import org.kiosk.service.JsoniconService;
-import org.kiosk.service.JsonvideoService;
 import org.kiosk.service.MateService;
 import org.kiosk.service.TeamsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/json")
 public class JsonController {
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
 
-	@Inject
-	private JsonGelleryService jsonGelleryService;
-	@Inject
-	private JsonNoticeService jsonNoticeService;
-	@Inject
-	private JsonStaffService jsonStaffService;
-	@Inject
-	private MateService mateService;
-	@Inject
-	private TeamsService teamsService;
-	@Inject
-	private JsonbuildingService jsonbuildingService;
-	@Inject
-	private JsoniconService jsoniconService;
-	@Inject
-	private JsonvideoService jsonvideoService;
+//	@Inject
+//	private JsonGelleryService gelleryService;
+//	@Inject
+//	private JsonNoticeService noticeService;
+//	@Inject
+//	private JsonStaffService staffService;
+//	@Inject
+//	private MateService mateService;
+//	@Inject
+//	private TeamsService teamsService;
 
-	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET)
-	public ResponseEntity<JsonStaffDTO> sendStaff(@PathVariable("section_cd") String section_cd) {
-		ResponseEntity<JsonStaffDTO> entity = null;
-		logger.info("json/sendStaff/{section_cd}");
-		try {
-			int mapIndex = 0;
-			JsonStaffDTO jsonStaffDTO = jsonStaffService.read(section_cd);
-			List<TeamsDTO> teamList = teamsService.list(section_cd);
+	@RequestMapping("/sendStaff")
+	public JsonStaffDTO sendStaff() {
+		JsonStaffDTO dto = new JsonStaffDTO();
+		dto.setSection_name("K010-S010");
+		dto.setSection_password("12345");
 
-			for (int index = 0; index < teamList.size(); index++) {
-				List<MateDTO> mateList = mateService.list(teamList.get(index));
-				Map<Integer, MateDTO> mateMap = new HashMap<Integer, MateDTO>();
-				mapIndex = 0;
-				for (MateDTO mateDTO : mateList) {
-					mateMap.put(mapIndex, mateDTO);
-					mapIndex++;
-				}
-				teamList.get(index).setMate(mateMap);
+		List<TeamsDTO> teams = new ArrayList<>();
+		for (int i = 0; i < 5; i++) {
+			TeamsDTO teamsdto = new TeamsDTO();
+			teamsdto.setTeam_name("임원");
+
+			Map<Integer, MateDTO> mate = new HashMap<>();
+
+			for (int j = 0; j < 4; j++) {
+				MateDTO matedto = new MateDTO();
+				matedto.setNo(j);
+				matedto.setName("명준");
+				matedto.setPosition("풀스텍");
+				matedto.setJob("웹 개발자");
+				matedto.setTel("010-5555-6666");
+				matedto.setEmail("kj@naver.com");
+				matedto.setImg_filenm("staff_00882.jpg");
+				matedto.setSort(4);
+				matedto.setStatus(2);
+				mate.put(j, matedto);
+				
 			}
-			jsonStaffDTO.setTeams(teamList);
-			entity = new ResponseEntity<>(jsonStaffDTO, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			teamsdto.setMate(mate);
+			teams.add(teamsdto);
+			
 		}
-		return entity;
+		dto.setTeams(teams);;
+
+		return dto;
 	}
 
-	@RequestMapping(value = "/sendGallery/{section_cd}", method = RequestMethod.GET)
-	public ResponseEntity<List<JsonGelleryDTO>> sendGallery(@PathVariable("section_cd") String section_cd) {
-		logger.info("json/sendGallery/{section_cd}");
-		ResponseEntity<List<JsonGelleryDTO>> entity = null;
-		try {
-			entity = new ResponseEntity<>(jsonGelleryService.listAll(section_cd), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	@RequestMapping("/sendGallery")
+	public List<JsonGelleryDTO> sendGallery() {
+
+		List<JsonGelleryDTO> list = new ArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			JsonGelleryDTO dto = new JsonGelleryDTO();
+			dto.setNo(i + 1);
+			dto.setTitle("abc");
+			dto.setCaption("캡션");
+			dto.setFilenm("/_files/gallery/none/2017/09/20170911-59b6c8ae25dad368727049.png");
+			list.add(dto);
 		}
-		return entity;
+		return list;
 	}
 
-	@RequestMapping(value = "/sendNotice/{section_cd}", method = RequestMethod.GET)
-	public ResponseEntity<List<JsonNoticeDTO>> sendNotice(@PathVariable("section_cd") String section_cd) {
-		logger.info("json/sendNotice/{section_cd}");
-		ResponseEntity<List<JsonNoticeDTO>> entity = null;
-		try {
-			entity = new ResponseEntity<>(jsonNoticeService.listAll(section_cd), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	@RequestMapping("/sendNotice")
+	public List<JsonNoticeDTO> sendNotice() {
+
+		List<JsonNoticeDTO> list = new ArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			JsonNoticeDTO dto = new JsonNoticeDTO();
+			dto.setBbs_no(i);
+			dto.setBbs_title("남명준씨");
+			dto.setBbs_content("바쁘시네 그참 데이터도 없구만");
+			dto.setBbs_file("/_files/board/");
+			list.add(dto);
 		}
-		return entity;
-	}
-	
-	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET)
-	public ResponseEntity<List<Com_buildingDTO>> sendBuilding() {
-		logger.info("json/sendNotice/{section_cd}");
-		ResponseEntity<List<Com_buildingDTO>> entity = null;
-		try {
-			entity = new ResponseEntity<>(jsonbuildingService.listAll(), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-	
-	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET)
-	public ResponseEntity<List<Com_iconDTO>> sendIcon() {
-		logger.info("json/sendNotice/{section_cd}");
-		ResponseEntity<List<Com_iconDTO>> entity = null;
-		try {
-			entity = new ResponseEntity<>(jsoniconService.listAll(), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-	
-	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET)
-	public ResponseEntity<List<Com_videoDTO>> sendVideo() {
-		logger.info("json/sendNotice/{section_cd}");
-		ResponseEntity<List<Com_videoDTO>> entity = null;
-		try {
-			entity = new ResponseEntity<>(jsonvideoService.listAll(), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
+		return list;
 	}
 
 	@RequestMapping("/sendErrorAuth")
