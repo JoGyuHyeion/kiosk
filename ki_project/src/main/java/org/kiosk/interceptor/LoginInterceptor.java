@@ -26,7 +26,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object userVO = modelMap.get("userVO");
-		//ë¡œê·¸ì¸í›„ íŒŒë¡œ readPageë¡œ ê°€ê¸°ìœ„í•´ UserControllerì—ì„œ í•„ìš”í•œ ì •ë³´ë¥¼ ë°›ì•„ì˜¨ë‹¤
+		//ë¡œê·¸?¸?›„ ?ŒŒë¡? readPageë¡? ê°?ê¸°ìœ„?•´ UserController?—?„œ ?•„?š”?•œ ? •ë³´ë?? ë°›ì•„?˜¨?‹¤
 		Criteria cri = (Criteria) modelMap.get("cri");
 		Object id_num = modelMap.get("id_num");
 
@@ -40,13 +40,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				logger.info("remember me................");
 				Cookie loginCookie = new Cookie("loginCookie", session.getId());
 				loginCookie.setPath("/");
-				loginCookie.setMaxAge(60 * 60 * 24 * 7);//60ì´ˆ60ë¶„24ì‹œê°„7ì£¼ì¼ê°„ ë³´ê´€ì´ 7ì£¼ì¼
-				response.addCookie(loginCookie);//ì¿ í‚¤ëŠ” ë°˜ë“œì‹œ HttpServletResponseì— ë‹´ê²¨ì„œ ì „ì†¡í•œë‹¤.
+				loginCookie.setMaxAge(60 * 60 * 24 * 7);//60ì´?60ë¶?24?‹œê°?7ì£¼ì¼ê°? ë³´ê?ì´? 7ì£¼ì¼
+				response.addCookie(loginCookie);//ì¿ í‚¤?Š” ë°˜ë“œ?‹œ HttpServletResponse?— ?‹´ê²¨ì„œ ? „?†¡?•œ?‹¤.
 			} // response.sendRedirect("/");
 			Object dest = session.getAttribute("dest");
 
-//			response.sendRedirect(dest != null ? (String) dest : "/sboard/readPage"+gotoReadPage(id_num, cri));	//ë¡œê·¸ì¸ ë˜ë©´ listë¡œ í™”ë©´ì´ ë°”ë€ë‹¤.
-			response.sendRedirect(dest != null ? (String) dest : "/");	//ë¡œê·¸ì¸ ë˜ë©´ listë¡œ í™”ë©´ì´ ë°”ë€ë‹¤.
+//			response.sendRedirect(dest != null ? (String) dest : "/sboard/readPage"+gotoReadPage(id_num, cri));	//ë¡œê·¸?¸ ?˜ë©? listë¡? ?™”ë©´ì´ ë°”ë?ë‹¤.
+			response.sendRedirect(dest != null ? (String) dest : "/");	//ë¡œê·¸?¸ ?˜ë©? listë¡? ?™”ë©´ì´ ë°”ë?ë‹¤.
 			 System.out.println("loginInterceptor post handle........................dest:"+dest);
 	
 		}

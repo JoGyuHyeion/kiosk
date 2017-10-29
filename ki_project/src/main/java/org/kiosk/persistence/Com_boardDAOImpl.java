@@ -43,7 +43,11 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	public List<Com_boardVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 	@Override
 	public List<Com_boardVO> listPage(int page) throws Exception {
 		if (page <= 0) {
@@ -74,6 +78,9 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return session.selectOne(namespace + ".listSearchCount", cri);
 	}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.com_bgimgMapper">
+
+	<select id="read" resultType="Com_bgImgDTO">
+		select
+		bi_no,bi_name,bi_img,bi_able,bi_ndt
+		from com_bgImg
+		where
+		bi_no = #{bi_no}
+	</select>
+
+	<insert id="create">
+		insert into com_bgImg
+		(bi_no,bi_name,bi_img,bi_able,bi_ndt)
+		values
+		(#{bi_no},#{bi_name},#{bi_img},#{bi_able},#{bi_ndt})
+	</insert>
+
+	<update id="update">
+		update com_bgImg set
+		bi_name = #{bi_name},
+		bi_img = #{bi_img},
+		bi_able = #{bi_able},
+		bi_ndt = #{bi_ndt}
+		where
+		bi_no = #{bi_no}
+	</update>
+
+	<delete id="delete">
+		delete from com_bgImg where bi_no = #{bi_no}
+	</delete>
+
+	<select id="listAll" resultType="Com_bgImgDTO">
+ 		<![CDATA[ select * from com_bgImg]]>
+	</select>
+
+	<select id="listPage" resultType="Com_bgImgDTO">
+ 		<![CDATA[
+		select 
+		bi_no,bi_name,bi_img,bi_able,bi_ndt
+		from com_bgImg 
+		where bi_no > 0 
+		order by bi_no desc
+		limit #{page}, 10
+ 		]]>
+	</select>
+
+	<select id="listCriteria" resultType="Com_bgImgDTO">
+ 		<![CDATA[
+		select 
+		bi_no,bi_name,bi_img,bi_able,bi_ndt
+		from com_bgImg 
+		where bi_no > 0 
+		order by bi_no desc
+			limit #{pageStart}, #{perPageNum}
+ 		]]>
+	</select>
+
+	<select id="countPaging" resultType="int">
+ 		<![CDATA[
+		select count(bi_no) 
+		from 
+		com_bgImg 
+		where 
+		bi_no > 0 
+ 		]]>
+	</select>
+	
+</mapper>

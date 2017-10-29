@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.com_videoMapper">
+
+	<select id="read" resultType="Com_videoDTO">
+		select
+		vi_no,vi_name,vi_video,vi_ndt
+		from com_video
+		where
+		vi_no = #{vi_no}
+	</select>
+
+	<insert id="create">
+		insert into com_video
+		(vi_no,vi_name,vi_video,vi_ndt)
+		values
+		(#{vi_no},#{vi_name},#{vi_video},#{vi_ndt})
+	</insert>
+
+	<update id="update">
+		update com_video set
+		vi_name = #{vi_name},
+		vi_video = #{vi_video},
+		vi_ndt = #{vi_ndt}
+		where
+		vi_no = #{vi_no}
+	</update>
+
+	<delete id="delete">
+		delete from com_video where vi_no = #{vi_no}
+	</delete>
+
+	<select id="listAll" resultType="Com_videoDTO">
+ 		<![CDATA[ select * from com_video]]>
+	</select>
+
+	<select id="listPage" resultType="Com_videoDTO">
+ 		<![CDATA[
+		select 
+		vi_no,vi_name,vi_video,vi_ndt
+		from com_video 
+		where vi_no > 0 
+		order by vi_no desc
+		limit #{page}, 10
+ 		]]>
+	</select>
+
+	<select id="listCriteria" resultType="Com_videoDTO">
+ 		<![CDATA[
+		select 
+		vi_no,vi_name,vi_video,vi_ndt
+		from com_video 
+		where vi_no > 0 
+		order by vi_no desc
+			limit #{pageStart}, #{perPageNum}
+ 		]]>
+	</select>
+
+	<select id="countPaging" resultType="int">
+ 		<![CDATA[
+		select count(vi_no) 
+		from 
+		com_video 
+		where 
+		vi_no > 0 
+ 		]]>
+	</select>
+	
+</mapper>

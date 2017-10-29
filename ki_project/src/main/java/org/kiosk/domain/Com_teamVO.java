@@ -2,18 +2,18 @@ package org.kiosk.domain;
 
 public class Com_teamVO {
 
-	private String section_id;
+	private String section_cd;
 	private String team_cd;
 	private String team_nm;
 	private int team_sort;
 	private String team_use;
 
-	public String getSection_id() {
-		return section_id;
+	public String getSection_cd() {
+		return section_cd;
 	}
 
-	public void setSection_id(String section_id) {
-		this.section_id = section_id;
+	public void setSection_cd(String section_cd) {
+		this.section_cd = section_cd;
 	}
 
 	public String getTeam_cd() {
@@ -50,7 +50,7 @@ public class Com_teamVO {
 
 	@Override
 	public String toString() {
-		return "Com_teamVO [section_id=" + section_id + ", team_cd=" + team_cd + ", team_nm=" + team_nm + ", team_sort="
+		return "Com_teamVO [section_cd=" + section_cd + ", team_cd=" + team_cd + ", team_nm=" + team_nm + ", team_sort="
 				+ team_sort + ", team_use=" + team_use + "]";
 	}
 

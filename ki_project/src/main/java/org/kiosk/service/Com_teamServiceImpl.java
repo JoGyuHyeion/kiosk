@@ -21,8 +21,8 @@ public class Com_teamServiceImpl implements Com_teamService{
 	}
 
 	@Override
-	public Com_teamVO read(Integer st_no) throws Exception {
-		return dao.read(st_no);
+	public Com_teamVO read(Com_teamVO vo) throws Exception {
+		return dao.read(vo);
 	}
 
 	@Override
@@ -32,8 +32,8 @@ public class Com_teamServiceImpl implements Com_teamService{
 	}
 
 	@Override
-	public void remove(Integer st_no) throws Exception {
-		dao.delete(st_no);
+	public void remove(Com_teamVO vo) throws Exception {
+		dao.delete(vo);
 		
 	}
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.teamMapper">
+
+	<select id="list" resultType="TeamsDTO">
+		select section_cd,team_cd,team_nm
+		from com_team
+		where
+		section_cd = #{section_cd} order by team_sort
+	</select>
+	
+</mapper>

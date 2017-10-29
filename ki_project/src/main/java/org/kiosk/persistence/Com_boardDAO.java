@@ -16,7 +16,11 @@ public interface Com_boardDAO {
 	  public void delete(Integer bbs_no) throws Exception;
 
 	  public List<Com_boardVO> listAll() throws Exception;
+<<<<<<< HEAD
 
+=======
+	  
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 	  public List<Com_boardVO> listPage(int page) throws Exception;
 
 	  public List<Com_boardVO> listCriteria(Criteria cri) throws Exception;
@@ -28,5 +32,8 @@ public interface Com_boardDAO {
 	  public List<Com_boardVO> listSearch(SearchCriteria cri)throws Exception;
 	  
 	  public int listSearchCount(SearchCriteria cri)throws Exception;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 }

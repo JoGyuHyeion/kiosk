@@ -7,20 +7,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into com_staff
-		(st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt)
-		values(#{st_nm},#{st_position},#{st_tel},#{st_email},#{st_job},#{st_profile},#{img_filenm},#{img_filenm1},#{section_cd},#{team_cd},#{st_team},#{st_sort},#{st_display},#{st_status},#{st_wdt},#{st_edt})
+		(st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt)
+		values(#{st_no},#{st_position},#{st_tel},#{st_email},#{st_job},#{st_profile},#{img_filenm},#{img_filenm1},#{section_cd},#{team_cd},#{st_team},#{st_sort},#{st_display},#{st_status},#{st_wdt},#{st_edt})
 	</insert>
 
 	<select id="read" resultType="org.kiosk.domain.Com_staffVO">
 		select
-		st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
 		from
 		com_staff
 		where st_no = #{st_no}
 	</select>
 
 	<update id="update">
-		update com_staff set st_nm =#{st_nm}, st_position
+		update com_staff set st_no =#{st_no}, st_position
 		=#{st_position},st_tel =#{st_tel},st_email =#{st_email},st_job
 		=#{st_job},st_profile =#{st_profile},img_filenm
 		=#{img_filenm},img_filenm1 =#{img_filenm1},section_cd
@@ -33,8 +33,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from com_staff where st_no = #{st_no}
 	</delete>
+	
+	<select id="maxNum" resultType="int">
+		select max(st_no) from com_staff
+	</select>
 
 	<select id="listAll" resultType="org.kiosk.domain.Com_staffVO">
+<<<<<<< HEAD
  <![CDATA[
  select 
    st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
@@ -43,43 +48,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  where st_no > 0 
  order by st_no desc
  ]]>
+=======
+		 <![CDATA[
+		 select 
+		 st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		 from 
+		 com_staff 
+		 where st_no > 0 
+		 order by st_no desc
+		 ]]>
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 	</select>
 
 	<select id="listPage" resultType="Com_staffVO">
- <![CDATA[
- select 
-  st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
- from 
-   com_staff 
- where st_no > 0 
- order by st_no desc
- limit #{page}, 10
- ]]>
+		 <![CDATA[
+		 select 
+		 st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		 from 
+		 com_staff 
+		 where st_no > 0 
+		 order by st_no desc
+		 limit #{page}, 10
+		 ]]>
 	</select>
 
 	<select id="listCriteria" resultType="Com_staffVO">
- <![CDATA[
- select 
-   st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
- from 
-   com_staff 
- where st_no > 0 
- order by st_no desc
- limit #{pageStart}, #{perPageNum}
- ]]>
+		 <![CDATA[
+		 select 
+		 st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		 from 
+		 com_staff 
+		 where st_no > 0 
+		 order by st_no desc
+		 limit #{pageStart}, #{perPageNum}
+	 	]]>
 	</select>
 
 
 
 	<select id="countPaging" resultType="int">
- <![CDATA[
- select 
-   count(st_no) 
- from 
-   com_staff 
- where 
-   st_no > 0 
- ]]>
+		 <![CDATA[
+		 select 
+		 count(st_no) 
+		 from 
+		 com_staff 
+		 where st_no > 0 
+		 ]]>
 	</select>
 
 
@@ -118,26 +132,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</sql>
 
 	<select id="listSearch" resultType="Com_staffVO">
-<![CDATA[  
-  select * 
-  from com_staff 
-  where st_no > 0 
-]]>
-
+		<![CDATA[  
+		 select * 
+		 from com_staff 
+		 where st_no > 0 
+		]]>
 		<include refid="search"></include>
   
-<![CDATA[    
-  order by st_no desc
-  limit #{pageStart}, #{perPageNum}
-]]>
+		<![CDATA[    
+		order by st_no desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
 	</select>
 
 	<select id="listSearchCount" resultType="int">
-<![CDATA[  
-  select count(st_no) 
-  from com_staff 
-  where st_no > 0 
-]]>
+		<![CDATA[  
+		  select count(st_no) 
+		  from com_staff 
+		  where st_no > 0 
+		]]>
 		<include refid="search"></include>
 
 	</select>

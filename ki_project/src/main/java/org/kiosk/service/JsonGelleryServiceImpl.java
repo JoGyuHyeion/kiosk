@@ -13,11 +13,11 @@ public class JsonGelleryServiceImpl implements JsonGelleryService {
 	@Inject
 	private JsonGelleryDAO dao;
 
-	@Override
-	public void regist(JsonGelleryDTO dto) throws Exception {
-		dao.create(dto);
-		
-	}
+//	@Override
+//	public void regist(JsonGelleryDTO dto) throws Exception {
+//		dao.create(dto);
+//		
+//	}
 
 	@Override
 	public JsonGelleryDTO read(Integer no) throws Exception {
@@ -37,8 +37,8 @@ public class JsonGelleryServiceImpl implements JsonGelleryService {
 	}
 
 	@Override
-	public List<JsonGelleryDTO> listAll() throws Exception {
-		return dao.listAll();
+	public List<JsonGelleryDTO> listAll(String section_cd) throws Exception {
+		return dao.listAll(section_cd);
 	}
 
 

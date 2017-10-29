@@ -6,7 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.Com_boardMapper">
 
 	<select id="read" resultType="Com_boardVO">
-		select * from com_board
+		select
+		bbs_no,brd_cd,bbs_pno,bbs_lv,bbs_sort,bbs_title,bbs_content,bbs_file,bbs_notice,bbs_tag,bbs_cate,bbs_hits,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt
+		from com_board
 		where
 		bbs_no = #{bbs_no}
 	</select>
@@ -23,18 +25,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		brd_cd = #{brd_cd},
 		<!-- bbs_pno = #{bbs_pno},
 		bbs_lv = #{bbs_lv},
+<<<<<<< HEAD
 		bbs_sort = #{bbs_sort}, -->
 		bbs_title = #{bbs_title},
+=======
+		bbs_sort = #{bbs_sort},
+		bbs_title =
+		#{bbs_title},
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 		bbs_content = #{bbs_content},
 		bbs_file = #{bbs_file},
 		<!-- bbs_notice = #{bbc_notice},
 		bbs_tag = #{bbs_tag},
+<<<<<<< HEAD
 		bbs_cate = #{bbs_cate},
 		bbs_hits = #{bbs_hits}, -->
 		bbs_state = #{bbs_state},
 		section_cd = #{section_cd},
 		<!--bbs_exp_inx = #{bbs_exp_inx}, -->
 		bbs_exp_sdt = #{bbs_exp_sdt},
+=======
+		bbs_cate =
+		#{bbs_cate},
+		bbs_hits = #{bbs_hits},
+		bbs_state = #{bbs_state},
+		section_cd = #{section_cd},
+		bbs_exp_inx = #{bbs_exp_inx},
+		bbs_exp_sdt =
+		#{bbs_exp_sdt},
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 		bbs_exp_edt = #{bbs_exp_edt},
 		<!-- bbs_ndt = #{bbs_ndt}, -->
 		bbs_edt = #{bbs_edt}
@@ -124,6 +143,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			 where bbs_no > 0 
 		]]>
 
+<<<<<<< HEAD
 		<include refid="search"></include>
   
 		<![CDATA[    
@@ -140,4 +160,81 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		]]>
 	</select>
 	
+=======
+	<select id="listPage" resultType="Com_boardVO">
+ 		<![CDATA[
+		select 
+		bbs_no,brd_cd,bbs_pno,bbs_lv,bbs_sort,bbs_title,bbs_content,bbs_file,bbs_notice,bbs_tag,bbs_cate,bbs_hits,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt
+		from com_board 
+		where bbs_no > 0 
+		order by bbs_no desc
+		limit #{page}, 10
+ 		]]>
+	</select>
+
+	<select id="listCriteria" resultType="Com_boardVO">
+ 		<![CDATA[
+		select 
+		bbs_no,brd_cd,bbs_pno,bbs_lv,bbs_sort,bbs_title,bbs_content,bbs_file,bbs_notice,bbs_tag,bbs_cate,bbs_hits,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt
+		from com_board 
+		where bbs_no > 0 
+		order by bbs_no desc
+			limit #{pageStart}, #{perPageNum}
+ 		]]>
+	</select>
+
+	<select id="countPaging" resultType="int">
+ 		<![CDATA[
+		select count(bbs_no) 
+		from 
+		com_board 
+		where 
+		bbs_no > 0 
+ 		]]>
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and bbs_title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and bbs_content like CONCAT('%', #{keyword}, '%')
+			</if>
+		
+			<if test="searchType == 'tc'.toString()">
+				and ( bbs_title like CONCAT('%', #{keyword}, '%') OR bbs_content
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+
+	<select id="listSearch" resultType="Com_boardVO">
+		<![CDATA[  
+		 select * 
+		 from com_board 
+		 where bbs_no > 0 
+		]]>
+		<include refid="search"></include>
+  
+		<![CDATA[    
+		order by bbs_no desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[  
+		  select count(bbs_no) 
+		  from com_board 
+		  where bbs_no > 0 
+		]]>
+		<include refid="search"></include>
+
+	</select>
+	
+	
+
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 </mapper>

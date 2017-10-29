@@ -13,11 +13,19 @@ public class JsonNoticeDAOImpl implements JsonNoticeDAO{
 	@Inject
 	private SqlSession session;
 	private static String namespace = "org.kiosk.mapper.jsonNoticeMapper";
+<<<<<<< HEAD:ki_project/src/main/java/org/kiosk/persistence/JsonNoticeDAOImpl.java
 	@Override
 	public void create(JsonNoticeDTO dto) throws Exception {
 		session.insert(namespace + ".create", dto);
 		
 	}
+=======
+//	@Override
+//	public void create(JsonNoticeDTO dto) throws Exception {
+//		session.insert(namespace + ".create", dto);
+//		
+//	}
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1:ki_project/src/main/java/org/kiosk/persistence/JsonNoticeDAOImpl.java
 	@Override
 	public JsonNoticeDTO read(Integer no) throws Exception {
 		return session.selectOne(namespace + ".read", no);
@@ -34,7 +42,7 @@ public class JsonNoticeDAOImpl implements JsonNoticeDAO{
 		
 	}
 	@Override
-	public List<JsonNoticeDTO> listAll() throws Exception {
-		return session.selectList(namespace + ".listAll");
+	public List<JsonNoticeDTO> listAll(String section_cd) throws Exception {
+		return session.selectList(namespace + ".listAll",section_cd);
 	}
 }

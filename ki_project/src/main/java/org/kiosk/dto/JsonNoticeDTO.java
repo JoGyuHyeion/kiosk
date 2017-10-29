@@ -7,6 +7,18 @@ public class JsonNoticeDTO {
 	private String bbs_content;
 	private String bbs_file;
 
+	public JsonNoticeDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public JsonNoticeDTO(int bbs_no, String bbs_title, String bbs_content, String bbs_file) {
+		super();
+		this.bbs_no = bbs_no;
+		this.bbs_title = bbs_title;
+		this.bbs_content = bbs_content;
+		this.bbs_file = bbs_file;
+	}
+
 	public int getBbs_no() {
 		return bbs_no;
 	}

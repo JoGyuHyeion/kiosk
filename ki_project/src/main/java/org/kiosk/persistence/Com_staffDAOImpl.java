@@ -42,6 +42,11 @@ public class Com_staffDAOImpl implements Com_staffDAO {
 	}
 
 	@Override
+	public int maxNum() throws Exception {
+		return session.selectOne(namespace + ".maxNum");
+	}
+
+	@Override
 	public List<Com_staffVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
@@ -78,4 +83,3 @@ public class Com_staffDAOImpl implements Com_staffDAO {
 	}
 
 }
-
