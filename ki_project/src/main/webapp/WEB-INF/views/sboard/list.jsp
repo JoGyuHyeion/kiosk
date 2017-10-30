@@ -100,7 +100,7 @@
 										<td><img
 											src="/resources/assets/images/users/avatar-2.jpg"
 											alt="contact-img" title="contact-img" class=" thumb-sm" /></td>
-
+																			
 										<td>${com_staffVO.section_cd}</td>
 
 										<td>${com_staffVO.st_team}</td>
@@ -189,5 +189,8 @@
 
 					});
 		</script>
+	</div>
+</section>
 
-		<%@include file="../include/footer.jsp"%>
+
+<%@include file="../include/footer.jsp"%>
