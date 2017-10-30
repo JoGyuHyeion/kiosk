@@ -134,9 +134,21 @@
 										<label class="col-md-2 control-label">직원표시</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
+<<<<<<< HEAD
 											<input type="checkbox" name="st_display" id="st_display"
 												value="1" switch="none" /> <label for="st_display"
 												data-on-label="On" data-off-label="Off"></label>
+=======
+<<<<<<< HEAD
+											<input type="checkbox" name="st_display" id="st_display"
+												value="1" switch="none" /> <label for="st_display"
+												data-on-label="On" data-off-label="Off"></label>
+=======
+											<input type="checkbox" name="st_display" id="st_display" value="1"
+												switch="none" /> <label for="st_display" data-on-label="On"
+												data-off-label="Off"></label>
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
+>>>>>>> 93a8adec24e50aea1eb28e65c21384a1b9c242c2
 										</div>
 									</div>
 									<!-- st_status     -->
@@ -167,12 +179,17 @@
 
 									<!--display, status javascript 코드 view 표시  -->
 									<script>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 93a8adec24e50aea1eb28e65c21384a1b9c242c2
 										var display = '<c:out value="${com_staffVO.st_display}"/>';
 										var status = '<c:out value="${com_staffVO.st_status}"/>';
 										alert("Display, Status 확인 \n"
 												+ "표시여부: " + display
 												+ "\n근무 상태: " + status);
 										if (display == 1) {
+<<<<<<< HEAD
 
 											document
 													.getElementById('st_display').checked = true;
@@ -193,6 +210,70 @@
 											document
 													.getElementById('st_status4').checked = true;
 										}
+=======
+											document
+													.getElementById('st_display').checked = true;
+										} else {
+										}
+
+										if (status == 1) {
+											document
+													.getElementById('st_status1').checked = true;
+										} else if (status == 2) {
+											document
+													.getElementById('st_status2').checked = true;
+										} else if (status == 3) {
+											document
+													.getElementById('st_status3').checked = true;
+										} else if (status == 4) {
+											document
+													.getElementById('st_status4').checked = true;
+										}
+=======
+
+									    var display = '<c:out value="${com_staffVO.st_display}"/>';
+									    var status = '<c:out value="${com_staffVO.st_status}"/>';
+									
+									    if (display = 1) {
+									
+									        var display = '<c:out value="${com_staffVO.st_display}"/>';
+									        var status = '<c:out value="${com_staffVO.st_status}"/>';
+									        alert("Display, Status 확인 \n"
+									            + "표시여부: " + display
+									            + "\n근무 상태: " + status);
+									        if (display == 1) {
+									
+									            document
+									                .getElementById('st_display').checked = true;
+									        } else {
+									        }
+									
+									        if (status == 1) {
+									            document
+									                .getElementById('st_status1').checked = true;
+									
+									        } else if (status = 2) {
+									            document
+									                .getElementById('st_status2').checked = true;
+									        } else if (status = 3) {
+									            document
+									                .getElementById('st_status3').checked = true;
+									        } else if (status = 4) {
+									
+									        } else if (status == 2) {
+									            document
+									                .getElementById('st_status2').checked = true;
+									        } else if (status == 3) {
+									            document
+									                .getElementById('st_status3').checked = true;
+									        } else if (status == 4) {
+									
+									            document
+									                .getElementById('st_status4').checked = true;
+									        }
+									    }
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
+>>>>>>> 93a8adec24e50aea1eb28e65c21384a1b9c242c2
 									</script>
 
 								</div>
@@ -213,12 +294,19 @@
 			<!-- end col -->
 
 			<script>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 93a8adec24e50aea1eb28e65c21384a1b9c242c2
 				$(document)
 						.ready(
 								function() {
 									var formObj = $("form[role='form']");
 									console.log(formObj);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 93a8adec24e50aea1eb28e65c21384a1b9c242c2
 									$("#change")
 											.on(
 													"click",
@@ -231,9 +319,29 @@
 										formObj.submit();
 									});
 								});
+<<<<<<< HEAD
+=======
+=======
+			    $(document).ready(function () {
+			        var formObj = $("form[role='form']");
+			        console.log(formObj);
+			
+			        $("#change").on("click", function () {
+			            self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+			                + "&searchType=${cri.searchType}&keyword=${cri.keyword}";
+			        });
+			
+			        $("#back").on("click", function () {
+			            formObj.submit();
+			        });
+			    });
+			
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
+>>>>>>> 93a8adec24e50aea1eb28e65c21384a1b9c242c2
 			</script>
 
 		</div>
+<<<<<<< HEAD
 		<div class="container">
 
 			<!-- Page-Title -->
@@ -459,8 +567,16 @@
 				</script>
 
 			</div>
+=======
+<<<<<<< HEAD
+	</div>
+</section>
+
+=======
+>>>>>>> 93a8adec24e50aea1eb28e65c21384a1b9c242c2
 </section>
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+>>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 <%@include file="../include/footer.jsp"%>
