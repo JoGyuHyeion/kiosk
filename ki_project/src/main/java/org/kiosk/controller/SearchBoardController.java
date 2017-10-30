@@ -77,10 +77,7 @@ public class SearchBoardController {
 	public void modifyPagingGET(int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
 		model.addAttribute(service.read(st_no));
-		
-		System.out.println("규현쓰 테스트");
 		logger.info(service.read(st_no).toString());
-		System.out.println("현아쓰 내껏임 노건들!!");
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
