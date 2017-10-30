@@ -25,7 +25,7 @@ public class SampleController {
 
     SampleVO vo = new SampleVO();
     vo.setFirstName("Í∏∏Îèô");
-    vo.setLastName("?ôç");
+    vo.setLastName("Ìôç");
     vo.setMno(123);
 
     return vo;
@@ -38,7 +38,7 @@ public class SampleController {
     for (int i = 0; i < 10; i++) {
       SampleVO vo = new SampleVO();
       vo.setFirstName("Í∏∏Îèô");
-      vo.setLastName("?ôç");
+      vo.setLastName("Ìôç");
       vo.setMno(i);
       list.add(vo);
     }
@@ -53,7 +53,7 @@ public class SampleController {
     for (int i = 0; i < 10; i++) {
       SampleVO vo = new SampleVO();
       vo.setFirstName("Í∏∏Îèô");
-      vo.setLastName("?ôç");
+      vo.setLastName("Ìôç");
       vo.setMno(i);
       map.put(i, vo);
     }
@@ -73,7 +73,7 @@ public class SampleController {
     for (int i = 0; i < 10; i++) {
       SampleVO vo = new SampleVO();
       vo.setFirstName("Í∏∏Îèô");
-      vo.setLastName("?ôç");
+      vo.setLastName("Ìôç");
       vo.setMno(i);
       list.add(vo);
     }

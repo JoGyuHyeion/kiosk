@@ -179,16 +179,6 @@
 
 				</div>
 			</div>
-<<<<<<< HEAD
-			<!-- /.box -->
-		</div>
-		<!--/.col (left) -->
-	</div>
-	<!-- /.row -->
-</section>
-<!-- /.content -->
-<%@include file="../include/footer.jsp"%>
-=======
 			<!-- end col -->
 
 			<script>
@@ -216,4 +206,3 @@
 </div>
 <!-- /.content-wrapper -->
 <%@include file="../include/footer.jsp"%>
->>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
