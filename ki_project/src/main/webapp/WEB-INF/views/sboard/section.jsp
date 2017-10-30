@@ -20,82 +20,83 @@
 	</form>
 	<div class="container-fluid">
 
-		
-<!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <h2>과관리</h2>
-      </ol>
-      <!-- Example DataTables Card-->
-      <div class="card mb-3">
-        <div class="card-header">
-          <h4>과목록</h4>
-          <select name="" id="" class="form-control col-md-4">
-            <option value="">기업</option>  
-            <option value="">기업</option>  
-            <option value="">기업</option>  
-            <option value="">기업</option>  
-          </select></div>
-        <div class="card-body">
+
+		<!-- Breadcrumbs-->
+		<ol class="breadcrumb">
+			<h2>과관리</h2>
+		</ol>
+		<!-- Example DataTables Card-->
+		<div class="card mb-3">
+			<div class="card-header">
+				<h4>과목록</h4>
+				<select name="" id="" class="form-control col-md-4">
+					<option value="">기업</option>
+					<option value="">기업</option>
+					<option value="">기업</option>
+					<option value="">기업</option>
+				</select>
+			</div>
+			<div class="card-body">
 
 
-          <div class="col-md-6">
-            <table class="table" id="dataTable" cellspacing="0">
-              <thead>
-                <tr>
-                  <th>과코드</th>
-                  <th>과명칭</th>
-                  <th>사용여부</th>
-                  <th>팀</th>
-                  <th> </th>
+				<div class="col-md-6">
+					<table class="table" id="dataTable" cellspacing="0">
+						<thead>
+							<tr>
+								<th>과코드</th>
+								<th>과명칭</th>
+								<th>사용여부</th>
+								<th>팀</th>
+								<th></th>
 
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th><input type="text" value="123" class="form-control"></th>
-                  <th><input type="text" value="기업 지원과" class="form-control"></th>
-                  <th><input type="checkbox" value="1" class="form-control"></th>
-                  <th><input type="button" value="X" class="btn-info"></th>
-                </tr>
-                <tr>
-                  <th><input type="text" value="123" class="form-control"></th>
-                  <th><input type="text" value="기업 지원과" class="form-control"></th>
-                  <th><input type="checkbox" value="1" class="form-control"></th>
-                  <th><input type="button" value="X" class="btn-info"></th>
-                </tr>
-                <tr>
-                  <th><input type="text" value="123" class="form-control"></th>
-                  <th><input type="text" value="기업 지원과" class="form-control"></th>
-                  <th><input type="checkbox" value="1" class="form-control"></th>
-                  <th><input type="button" value="X" class="btn-info"></th>
-                </tr>
-                <tr>
-                  <th><input type="text" value="123" class="form-control"></th>
-                  <th><input type="text" value="기업 지원과" class="form-control"></th>
-                  <th><input type="checkbox" value="1" class="form-control"></th>
-                  <th><input type="button" value="X" class="btn-info"></th>
-                </tr>
-                <tr>
-                  <th><input type="text" value="123" class="form-control"></th>
-                  <th><input type="text" value="기업 지원과" class="form-control"></th>
-                  <th><input type="checkbox" value="1" class="form-control"></th>
-                  <th><input type="button" value="X" class="btn-info"></th>
-                </tr>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th><input type="text" value="123" class="form-control"></th>
+								<th><input type="text" value="기업 지원과" class="form-control"></th>
+								<th><input type="checkbox" value="1" class="form-control"></th>
+								<th><input type="button" value="X" class="btn-info"></th>
+							</tr>
+							<tr>
+								<th><input type="text" value="123" class="form-control"></th>
+								<th><input type="text" value="기업 지원과" class="form-control"></th>
+								<th><input type="checkbox" value="1" class="form-control"></th>
+								<th><input type="button" value="X" class="btn-info"></th>
+							</tr>
+							<tr>
+								<th><input type="text" value="123" class="form-control"></th>
+								<th><input type="text" value="기업 지원과" class="form-control"></th>
+								<th><input type="checkbox" value="1" class="form-control"></th>
+								<th><input type="button" value="X" class="btn-info"></th>
+							</tr>
+							<tr>
+								<th><input type="text" value="123" class="form-control"></th>
+								<th><input type="text" value="기업 지원과" class="form-control"></th>
+								<th><input type="checkbox" value="1" class="form-control"></th>
+								<th><input type="button" value="X" class="btn-info"></th>
+							</tr>
+							<tr>
+								<th><input type="text" value="123" class="form-control"></th>
+								<th><input type="text" value="기업 지원과" class="form-control"></th>
+								<th><input type="checkbox" value="1" class="form-control"></th>
+								<th><input type="button" value="X" class="btn-info"></th>
+							</tr>
 
-              </tbody>
-            </table>
-            <div class="form-group" style="text-align:center;">
-                <button class="btn btn-primary">저장</button>
-                <button class="btn btn-success">+과추가</button>
-                
-    
-              </div>
-          </div>
-          
+						</tbody>
+					</table>
+					<div class="form-group" style="text-align: center;">
+						<button class="btn btn-primary">저장</button>
+						<button class="btn btn-success">+과추가</button>
 
-        </div>
-      </div>
-      <div class="card-footer small text-muted">과관리</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="card-footer small text-muted">과관리</div>
 
 
 
