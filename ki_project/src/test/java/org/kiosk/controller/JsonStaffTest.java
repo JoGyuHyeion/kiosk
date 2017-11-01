@@ -89,7 +89,7 @@ public class JsonStaffTest {
 		mateDao.delete(1);
 	}
 
-	// @Test
+	@Test
 	public void testMateListAll() throws Exception {
 		TeamsDTO vo = new TeamsDTO();
 		vo.setSection_cd("K010-S010");

@@ -21,20 +21,20 @@ public class JsonGelleryTest {
 
 	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
 
-	//@Test
+	// @Test
 	public void testCreate() throws Exception {
 
 		JsonGelleryDTO dto = new JsonGelleryDTO();
 		dto.setImg_title("규현");
 		dto.setImg_caption("몰라");
 		dto.setImg_filenm("img.jsp");
-		//dao.create(dto);
+		// dao.create(dto);
 	}
 
-	 //@Test
+	// @Test
 	public void testRead() throws Exception {
-		
-		 System.out.println("규현");	
+
+		System.out.println("규현");
 		logger.info(dao.read(10093).toString());
 	}
 
@@ -55,7 +55,7 @@ public class JsonGelleryTest {
 		dao.delete(10092);
 	}
 
-	 @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll("").toString());

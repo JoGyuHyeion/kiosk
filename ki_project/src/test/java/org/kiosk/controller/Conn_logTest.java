@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Conn_logVO;
 import org.kiosk.persistence.Conn_logDAO;
 import org.slf4j.Logger;
@@ -56,7 +55,7 @@ public class Conn_logTest {
 		dao.delete(1);
 	}
 
-	// @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

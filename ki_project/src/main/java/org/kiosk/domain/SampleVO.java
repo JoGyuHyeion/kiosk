@@ -1,7 +1,5 @@
 package org.kiosk.domain;
 
-import java.util.Map;
-
 public class SampleVO {
 
   private Integer mno;

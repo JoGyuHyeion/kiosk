@@ -33,9 +33,6 @@ public class FileUtils {
 	public static String getFileType(String type){
 		return fileMap.get(type.toUpperCase());
 	}
-//	public static void main(String args[]){
-//		System.out.println(getMediaType("jpg"));
-//	}
 }
 
 

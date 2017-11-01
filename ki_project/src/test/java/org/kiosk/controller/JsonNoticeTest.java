@@ -21,15 +21,15 @@ public class JsonNoticeTest {
 
 	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
 
-	 //@Test
+	// @Test
 	public void testCreate() throws Exception {
 
 		JsonNoticeDTO dto = new JsonNoticeDTO();
 		dto.setBbs_title("rbgus");
 		dto.setBbs_content("rbgus");
 		dto.setBbs_file("dfd.jsp");
-		
-		//dao.create(dto);
+
+		// dao.create(dto);
 	}
 
 	// @Test
@@ -54,7 +54,7 @@ public class JsonNoticeTest {
 		dao.delete(170928);
 	}
 
-	 @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll("K040-S200").toString());

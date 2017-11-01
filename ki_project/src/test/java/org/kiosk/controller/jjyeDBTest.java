@@ -53,7 +53,7 @@ public class jjyeDBTest {
 		dao.delete(1);
 	}
 
-	// @Test
+	 @Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

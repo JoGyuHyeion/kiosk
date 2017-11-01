@@ -54,7 +54,7 @@ public class Ci_sessionsTest {
 		dao.delete(170928);
 	}
 
-	// @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

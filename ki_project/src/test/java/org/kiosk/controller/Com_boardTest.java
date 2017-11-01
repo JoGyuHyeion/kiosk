@@ -28,7 +28,7 @@ public class Com_boardTest {
 	public void testCreate() throws Exception {
 
 		Com_boardVO vo = new Com_boardVO();
-		//vo.setBbs_no(2);
+		// vo.setBbs_no(2);
 		vo.setBrd_cd("abaaa");
 		vo.setBbs_pno(3);
 		vo.setBbs_lv(2);
@@ -51,12 +51,12 @@ public class Com_boardTest {
 		dao.create(vo);
 	}
 
-	 //@Test
+	// @Test
 	public void testRead() throws Exception {
 		logger.info(dao.read(38).toString());
 	}
 
-	//@Test
+	// @Test
 	public void testUpdate() throws Exception {
 
 		Com_boardVO vo = new Com_boardVO();
@@ -80,7 +80,7 @@ public class Com_boardTest {
 		dao.delete(40);
 	}
 
-	// @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

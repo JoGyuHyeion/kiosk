@@ -79,7 +79,7 @@ public class Com_menuTest {
 		dao.delete(1);
 	}
 
-	// @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

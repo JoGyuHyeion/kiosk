@@ -1,10 +1,8 @@
 package org.kiosk.persistence;
 
 import java.util.List;
-
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
-import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.springframework.stereotype.Repository;
 @Repository

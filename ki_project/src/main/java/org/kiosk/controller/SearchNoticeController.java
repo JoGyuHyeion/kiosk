@@ -25,7 +25,7 @@ public class SearchNoticeController {
 	private Com_boardService service;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, @RequestParam("page") int page)
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model)
 			throws Exception {
 
 		logger.info(cri.toString());
@@ -38,7 +38,6 @@ public class SearchNoticeController {
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("page", page);
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)

@@ -1,7 +1,5 @@
 package org.kiosk.domain;
 
-import java.util.Date;
-
 public class UserVO {
 
 	private String id;

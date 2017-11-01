@@ -23,7 +23,7 @@ public class JsonBgImgTest {
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-//	@Test
+	// @Test
 	public void testCreate() throws Exception {
 
 		Com_bgImgDTO dto = new Com_bgImgDTO();
@@ -34,13 +34,13 @@ public class JsonBgImgTest {
 		dao.create(dto);
 	}
 
-//	 @Test
+	// @Test
 	public void testRead() throws Exception {
 
 		logger.info(dao.read(1).toString());
 	}
 
-//	 @Test
+	// @Test
 	public void testUpdate() throws Exception {
 
 		Com_bgImgDTO dto = new Com_bgImgDTO();
@@ -57,7 +57,7 @@ public class JsonBgImgTest {
 		dao.delete(1);
 	}
 
-	 @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

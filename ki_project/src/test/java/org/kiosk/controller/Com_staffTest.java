@@ -91,9 +91,9 @@ public class Com_staffTest {
 
 		List<Com_staffVO> list = dao.listPage(page);
 
-		// for (Com_staffVO Com_staffVO : list) {
-		// logger.info(Com_staffVO.getBno() + ":" + Com_staffVO.getTitle());
-		// }
+		for (Com_staffVO Com_staffVO : list) {
+			logger.info(Com_staffVO.getSt_no() + ":" + Com_staffVO.getSt_job());
+		}
 	}
 
 	// @Test
@@ -143,9 +143,9 @@ public class Com_staffTest {
 
 		List<Com_staffVO> list = dao.listSearch(cri);
 
-		// for (Com_staffVO Com_staffVO : list) {
-		// logger.info(Com_staffVO.getBno() + ": " + Com_staffVO.getTitle());
-		// }
+		for (Com_staffVO Com_staffVO : list) {
+			logger.info(Com_staffVO.getSt_no() + ":" + Com_staffVO.getSt_job());
+		}
 
 		logger.info("=====================================");
 

@@ -39,13 +39,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-<<<<<<< HEAD
-<script src="/resources/assets/js/modernizr.min.js"></script>
-<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-=======
 
 <script src="/resources/assets/js/modernizr.min.js"></script>
->>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1
 
 </head>
 
@@ -171,9 +166,6 @@
 			</div>
 		</div>
 	</header>
-<<<<<<< HEAD
-	<!-- End Navigation Bar-->
-=======
 	<!-- End Navigation Bar-->
 
         <script src="/resources/assets/js/modernizr.min.js"></script>
@@ -181,4 +173,3 @@
   		<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
     </head>
->>>>>>> 8990e218fa1fb8e7e3d91484a8974a0d83798bc1

@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kiosk.domain.Com_sectionVO;
-import org.kiosk.domain.Com_staffVO;
 import org.kiosk.persistence.Com_sectionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +68,7 @@ public class Com_sectionTest {
 		dao.delete("xx과");
 	}
 
-	// @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
