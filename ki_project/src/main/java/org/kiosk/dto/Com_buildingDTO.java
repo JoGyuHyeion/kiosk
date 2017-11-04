@@ -1,9 +1,10 @@
 package org.kiosk.dto;
 
 import java.sql.Date;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
+@JsonRootName("building")
 public class Com_buildingDTO {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int bu_no;

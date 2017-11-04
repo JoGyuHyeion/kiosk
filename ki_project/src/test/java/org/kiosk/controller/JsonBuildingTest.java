@@ -1,5 +1,11 @@
 package org.kiosk.controller;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -10,6 +16,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
@@ -24,7 +35,7 @@ public class JsonBuildingTest {
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-	@Test
+//	@Test
 	public void testCreate() throws Exception {
 
 		Com_buildingDTO dto = new Com_buildingDTO();
@@ -34,7 +45,7 @@ public class JsonBuildingTest {
 		dao.create(dto);
 	}
 
-	@Test
+//	@Test
 	public void testRead() throws Exception {
 
 		logger.info(dao.read(1).toString());
@@ -56,11 +67,50 @@ public class JsonBuildingTest {
 		dao.delete(1);
 	}
 
-	@Test
+//	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
 
+	}
+
+//	@Test
+	public void whenSerializingUsingJsonRootName_thenCorrect() throws JsonProcessingException {
+
+		Com_buildingDTO dto = new Com_buildingDTO();
+		dto.setBu_img("img");
+		dto.setBu_name("name");
+		dto.setBu_ndt(sqlDate);
+		dto.setBu_no(1);
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+		String result = mapper.writeValueAsString(dto);
+		System.out.println(result);
+
+		assertThat(result, containsString("name"));
+		assertThat(result, containsString("building"));
+	}
+	
+	@Test
+	public void whenSerializingUsingListJsonRootName_thenCorrect() throws JsonProcessingException {
+
+		Com_buildingDTO dto = new Com_buildingDTO();
+		dto.setBu_img("img");
+		dto.setBu_name("name");
+		dto.setBu_ndt(sqlDate);
+		dto.setBu_no(1);
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+		
+		List<Com_buildingDTO> list = new ArrayList<Com_buildingDTO>();
+		list.add(dto);
+		list.add(dto);
+		String rootName = Com_buildingDTO.class.getAnnotation(JsonRootName.class).value();
+		String result =mapper.writer().withRootName(rootName).writeValueAsString(list);
+		System.out.println(result);
+
+		assertThat(result, containsString("name"));
+		assertThat(result, containsString("building"));
 	}
 
 }

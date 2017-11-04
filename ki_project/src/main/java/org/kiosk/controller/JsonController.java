@@ -31,6 +31,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 @RestController
 @RequestMapping("/json")
 public class JsonController {
@@ -107,13 +111,20 @@ public class JsonController {
 		}
 		return entity;
 	}
-	
+
 	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET)
-	public ResponseEntity<List<Com_buildingDTO>> sendBuilding() {
+	public ResponseEntity<Map<String,List<Com_buildingDTO>>> sendBuilding() {
 		logger.info("json/sendNotice/{section_cd}");
-		ResponseEntity<List<Com_buildingDTO>> entity = null;
+		ResponseEntity<Map<String,List<Com_buildingDTO>>> entity = null;
+		Map<String,List<Com_buildingDTO>> buildingList =null;
 		try {
-			entity = new ResponseEntity<>(jsonbuildingService.listAll(), HttpStatus.OK);
+			buildingList = new HashMap<String,List<Com_buildingDTO>>();
+			String rootName = Com_buildingDTO.class.getAnnotation(JsonRootName.class).value();
+			buildingList.put(rootName, jsonbuildingService.listAll());
+			
+			buildingList.put("원효관", jsonbuildingService.listAll());
+			
+			entity = new ResponseEntity<Map<String,List<Com_buildingDTO>>>(buildingList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -133,7 +144,7 @@ public class JsonController {
 		}
 		return entity;
 	}
-	
+
 	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_videoDTO>> sendVideo() {
 		logger.info("json/sendNotice/{section_cd}");
