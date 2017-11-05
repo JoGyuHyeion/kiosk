@@ -290,14 +290,14 @@
                                         <a href="#">디지털조직도</a>
                                     </li>
                                     <li>
-                                        <a href="#">갤러리</a>
+                                        <a href="#"></a>
                                     </li>
                                     <li class="active">
-                                        갤러리조회
+                                        동영상조회
                                     </li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">갤러리조회</h4>
+                            <h4 class="page-title">동영상조회</h4>
                         </div>
                     </div>
                 </div>
