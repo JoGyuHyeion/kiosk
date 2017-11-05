@@ -42,13 +42,13 @@ public class Com_staffDAOImpl implements Com_staffDAO {
 	}
 
 	@Override
-	public int maxNum() throws Exception {
-		return session.selectOne(namespace + ".maxNum");
+	public List<Com_staffVO> listAll() throws Exception {
+		return session.selectList(namespace + ".listAll");
 	}
 
 	@Override
-	public List<Com_staffVO> listAll() throws Exception {
-		return session.selectList(namespace + ".listAll");
+	public int lastInsertID() throws Exception {
+		return session.selectOne(namespace + ".lastInsertID");
 	}
 
 	@Override

@@ -34,10 +34,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_staff where st_no = #{st_no}
 	</delete>
 	
-	<select id="maxNum" resultType="int">
-		select max(st_no) from com_staff
-	</select>
-
 	<select id="listAll" resultType="org.kiosk.domain.Com_staffVO">
 		 <![CDATA[
 		 select 
@@ -49,6 +45,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 ]]>
 	</select>
 
+	<select id="lastInsertID" resultType="int">
+		 SELECT LAST_INSERT_ID(st_no) from com_staff order by st_no desc limit 1;
+	</select>
+	
 	<select id="listPage" resultType="Com_staffVO">
 		 <![CDATA[
 		 select 

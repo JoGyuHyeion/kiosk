@@ -72,16 +72,16 @@ public class Com_staffTest {
 		dao.delete(1138);
 	}
 
-	@Test
+//	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
 
 	}
 
-	// @Test
-	public void testCount() throws Exception {
-		logger.info(String.valueOf(dao.maxNum()));
+	 @Test
+	public void testLastInsertID() throws Exception {
+		logger.info(String.valueOf(dao.lastInsertID()));
 	}
 
 	// @Test

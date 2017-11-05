@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,22 +8,22 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/resources/assets/images/favicon.ico">
 
         <title>Zircos - Responsive Admin Dashboard Template</title>
 
         <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="../plugins/morris/morris.css">
+		<link rel="stylesheet" href="/resources/plugins/morris/morris.css">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/resources/plugins/switchery/switchery.min.css">
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,7 +32,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="/resources/assets/js/modernizr.min.js"></script>
 
     </head>
 
@@ -51,7 +53,7 @@
                         <!--</a>-->
                         <!-- Image Logo -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png" alt="" height="30">
+                            <img src="/resources/assets/images/logo.png" alt="" height="30">
                         </a>
 
                     </div>
@@ -81,7 +83,7 @@
                                     <li>
                                         <a href="#" class="user-list-item">
                                             <div class="avatar">
-                                                <img src="assets/images/users/avatar-2.jpg" alt="">
+                                                <img src="/resources/assets/images/users/avatar-2.jpg" alt="">
                                             </div>
                                             <div class="user-desc">
                                                 <span class="name">Patricia Beach</span>
@@ -93,7 +95,7 @@
                                     <li>
                                         <a href="#" class="user-list-item">
                                             <div class="avatar">
-                                                <img src="assets/images/users/avatar-3.jpg" alt="">
+                                                <img src="/resources/assets/images/users/avatar-3.jpg" alt="">
                                             </div>
                                             <div class="user-desc">
                                                 <span class="name">Connie Lucas</span>
@@ -105,7 +107,7 @@
                                     <li>
                                         <a href="#" class="user-list-item">
                                             <div class="avatar">
-                                                <img src="assets/images/users/avatar-4.jpg" alt="">
+                                                <img src="/resources/assets/images/users/avatar-4.jpg" alt="">
                                             </div>
                                             <div class="user-desc">
                                                 <span class="name">Margaret Becker</span>
@@ -170,7 +172,7 @@
                             </li>
 
                             <li class="dropdown navbar-c-items">
-                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
+                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="/resources/assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                     <li class="text-center">
                                         <h5>Hi, John</h5>
@@ -309,7 +311,7 @@
 
                     <div class="col-md-4 col-sm-6">
                         <div class="property-card">
-                            <div class="property-image" style="background: url('assets/images/properties/6.jpg') center center / cover no-repeat;">
+                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
                         </div>
 
                             <div class="property-content">
@@ -334,7 +336,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="property-card">
-                            <div class="property-image" style="background: url('assets/images/properties/6.jpg') center center / cover no-repeat;">
+                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
                         </div>
 
                             <div class="property-content">
@@ -359,7 +361,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="property-card">
-                            <div class="property-image" style="background: url('assets/images/properties/6.jpg') center center / cover no-repeat;">
+                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
                         </div>
 
                             <div class="property-content">
@@ -384,7 +386,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="property-card">
-                            <div class="property-image" style="background: url('assets/images/properties/6.jpg') center center / cover no-repeat;">
+                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
                         </div>
 
                             <div class="property-content">
@@ -409,7 +411,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="property-card">
-                            <div class="property-image" style="background: url('assets/images/properties/6.jpg') center center / cover no-repeat;">
+                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
                         </div>
 
                             <div class="property-content">
@@ -434,7 +436,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6">
                         <div class="property-card">
-                            <div class="property-image" style="background: url('assets/images/properties/6.jpg') center center / cover no-repeat;">
+                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
                         </div>
 
                             <div class="property-content">
@@ -506,30 +508,30 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
-        <script src="../plugins/switchery/switchery.min.js"></script>
+        <script src="/resources/assets/js/jquery.min.js"></script>
+        <script src="/resources/assets/js/bootstrap.min.js"></script>
+        <script src="/resources/assets/js/detect.js"></script>
+        <script src="/resources/assets/js/fastclick.js"></script>
+        <script src="/resources/assets/js/jquery.blockUI.js"></script>
+        <script src="/resources/assets/js/waves.js"></script>
+        <script src="/resources/assets/js/jquery.slimscroll.js"></script>
+        <script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
+        <script src="/resources/plugins/switchery/switchery.min.js"></script>
 
         <!-- Counter js  -->
-        <script src="../plugins/waypoints/jquery.waypoints.min.js"></script>
-        <script src="../plugins/counterup/jquery.counterup.min.js"></script>
+        <script src="/resources/plugins/waypoints/jquery.waypoints.min.js"></script>
+        <script src="/resources/plugins/counterup/jquery.counterup.min.js"></script>
 
         <!--Morris Chart-->
-		<script src="../plugins/morris/morris.min.js"></script>
-		<script src="../plugins/raphael/raphael-min.js"></script>
+		<script src="/resources/plugins/morris/morris.min.js"></script>
+		<script src="/resources/plugins/raphael/raphael-min.js"></script>
 
         <!-- Dashboard init -->
-        <script src="assets/pages/jquery.dashboard.js"></script>
+        <script src="/resources/assets/pages/jquery.dashboard.js"></script>
 
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <script src="/resources/assets/js/jquery.core.js"></script>
+        <script src="/resources/assets/js/jquery.app.js"></script>
 
     </body>
 </html>

@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
+import org.kiosk.service.Com_imageService;
+import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_staffService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -23,7 +25,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MyInfoBoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MyInfoBoardController.class);
-
+	
+	@Inject
+	private Com_sectionService service;
+	
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
 	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 

@@ -35,15 +35,15 @@ public class Com_staffServiceImpl implements Com_staffService {
 	public void remove(Integer st_no) throws Exception {
 		dao.delete(st_no);
 	}
-	
-	@Override
-	public int maxNum() throws Exception{
-		return dao.maxNum();
-	}
 
 	@Override
 	public List<Com_staffVO> listAll() throws Exception {
 		return dao.listAll();
+	}
+
+	@Override
+	public int lastInsertID() throws Exception {
+		return dao.lastInsertID() + 1;
 	}
 
 	@Override
@@ -67,4 +67,3 @@ public class Com_staffServiceImpl implements Com_staffService {
 	}
 
 }
-

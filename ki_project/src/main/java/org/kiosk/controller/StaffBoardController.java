@@ -32,7 +32,7 @@ public class StaffBoardController {
 
 	private String img_fileName = "staff_";
 	private String[] dirPath = { "staff" };
-	//필요에 따라  arraylist로 원하는 항목을  add 하여 array 변환하면 유동적인 path를 생성할수있다.
+	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
@@ -111,7 +111,7 @@ public class StaffBoardController {
 		logger.info(board.toString());
 
 		String img_filenm = UploadFileUtils.uploadImageFile(uploadPath, imgFile.getOriginalFilename(),
-				imgFile.getBytes(), img_fileName + (service.maxNum() + 1), dirPath);
+				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setImg_filenm(img_filenm);
 		service.regist(board);
 
