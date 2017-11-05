@@ -25,9 +25,8 @@ public class NoticeController {
 	private Com_boardService service;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
-
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+		logger.info("noticeboard/list - GET");
 		logger.info(cri.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
@@ -43,15 +42,15 @@ public class NoticeController {
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("bbs_no") int bbs_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
 			throws Exception {
-
+		logger.info("noticeboard/readPage - GET");
 		model.addAttribute(service.read(bbs_no));
-		
+
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
 	public String remove(@RequestParam("bbs_no") int bbs_no, SearchCriteria cri, RedirectAttributes rttr)
 			throws Exception {
-
+		logger.info("noticeboard/removePage - POST");
 		service.remove(bbs_no);
 
 		rttr.addAttribute("page", cri.getPage());
@@ -66,12 +65,13 @@ public class NoticeController {
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
 	public void modifyPagingGET(int bbs_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-
+		logger.info("noticeboard/modifyPage - GET");
 		model.addAttribute(service.read(bbs_no));
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_boardVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+		logger.info("noticeboard/modifyPage - POST");
 		logger.info(cri.toString());
 		service.modify(board);
 
@@ -89,13 +89,13 @@ public class NoticeController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET() throws Exception {
-
+		logger.info("noticeboard/register - GET");
 		logger.info("regist get ...........");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(Com_boardVO board, RedirectAttributes rttr) throws Exception {
-
+		logger.info("noticeboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 

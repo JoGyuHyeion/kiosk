@@ -27,14 +27,15 @@ public class MyInfoBoardController {
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
 	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
-		logger.info("myinfoboard/passwd ");
+		logger.info("myinfoboard/passwd - GET");
 	}
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.POST)
 	public String passwdPOST(SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 
+		logger.info("myinfoboard/passwd - POST");
 		logger.info(cri.toString());
-
+		
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
@@ -50,12 +51,13 @@ public class MyInfoBoardController {
 	@RequestMapping(value = "/section", method = RequestMethod.GET)
 	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
-		logger.info("myinfoboard/section ");
+		logger.info("myinfoboard/section - GET ");
 	}
 
 	@RequestMapping(value = "/section", method = RequestMethod.POST)
 	public String sectionPOST(SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 
+		logger.info("myinfoboard/section - POST ");
 		logger.info(cri.toString());
 
 		rttr.addAttribute("page", cri.getPage());
@@ -73,12 +75,13 @@ public class MyInfoBoardController {
 	@RequestMapping(value = "/team", method = RequestMethod.GET)
 	public void teamGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
-		logger.info("myinfoboard/team ");
+		logger.info("myinfoboard/team - GET ");
 	}
 
 	@RequestMapping(value = "/team", method = RequestMethod.POST)
 	public String teamPOST(SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 
+		logger.info("myinfoboard/team - POST ");
 		logger.info(cri.toString());
 
 		rttr.addAttribute("page", cri.getPage());

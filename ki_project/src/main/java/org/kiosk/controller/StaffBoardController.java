@@ -36,7 +36,7 @@ public class StaffBoardController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-
+		logger.info("sboard/list - GET");
 		logger.info(cri.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
@@ -52,14 +52,14 @@ public class StaffBoardController {
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
 			throws Exception {
-
+		logger.info("sboard/readPage - GET");
 		model.addAttribute(service.read(st_no));
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
 	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr)
 			throws Exception {
-
+		logger.info("sboard/removePage - POST");
 		service.remove(st_no);
 
 		rttr.addAttribute("page", cri.getPage());
@@ -74,14 +74,14 @@ public class StaffBoardController {
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
 	public void modifyPagingGET(int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-
+		logger.info("sboard/modifyPage - GET");
 		model.addAttribute(service.read(st_no));
 		logger.info(service.read(st_no).toString());
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_staffVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
-
+		logger.info("sboard/modifyPage - POST");
 		logger.info(cri.toString());
 		service.modify(board);
 
@@ -99,14 +99,14 @@ public class StaffBoardController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
-
+		logger.info("sboard/register - GET");
 		logger.info("regist get ...........");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(Com_staffVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile)
 			throws Exception {
-
+		logger.info("sboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
