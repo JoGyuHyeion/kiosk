@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,25 +8,25 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/resources/assets/images/favicon.ico">
 
         <title>Zircos - Responsive Admin Dashboard Template</title>
 
         
         <!-- Jquery filer css -->
-        <link href="plugins/jquery.filer/css/jquery.filer.css" rel="stylesheet" />
-        <link href="plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" />
+        <link href="/resources/plugins/jquery.filer/css/jquery.filer.css" rel="stylesheet" />
+        <link href="/resources/plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" />
 
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="/resources/assets/css/responsive.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="..//resources/plugins/switchery/switchery.min.css">
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +35,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="/resources/assets/js/modernizr.min.js"></script>
 
     </head>
 
@@ -54,7 +56,7 @@
                         <!--</a>-->
                         <!-- Image Logo -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png" alt="" height="30">
+                            <img src="/resources/assets/images/logo.png" alt="" height="30">
                         </a>
 
                     </div>
@@ -319,7 +321,7 @@
                
                
                
-                <!-- Page-Title -->
+                 <!-- Page-Title -->
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
@@ -342,7 +344,7 @@
                 </div>
                 <!-- end page title end breadcrumb -->
 
-                <div class="row">
+               <div class="row">
                     <div class="col-lg-12">
                         <div class="card-box">
                       
@@ -415,27 +417,27 @@
 
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
-        <script src="../plugins/switchery/switchery.min.js"></script>
+        <script src="/resources/assets/js/jquery.min.js"></script>
+        <script src="/resources/assets/js/bootstrap.min.js"></script>
+        <script src="/resources/assets/js/detect.js"></script>
+        <script src="/resources/assets/js/fastclick.js"></script>
+        <script src="/resources/assets/js/jquery.blockUI.js"></script>
+        <script src="/resources/assets/js/waves.js"></script>
+        <script src="/resources/assets/js/jquery.slimscroll.js"></script>
+        <script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
+        <script src="/resources/plugins/switchery/switchery.min.js"></script>
 
         <!-- Jquery filer js -->
-        <script src="plugins/jquery.filer/js/jquery.filer.min.js"></script>
+        <script src="/resources/plugins/jquery.filer/js/jquery.filer.min.js"></script>
 
 
   
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <script src="/resources/assets/js/jquery.core.js"></script>
+        <script src="/resources/assets/js/jquery.app.js"></script>
         
         <!-- page specific js -->
-        <script src="assets/pages/jquery.fileuploads.init.js"></script>
+        <script src="/resources/assets/pages/jquery.fileuploads.init.js"></script>
         
     </body>
 </html>
