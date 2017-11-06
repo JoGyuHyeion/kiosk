@@ -2,13 +2,9 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import org.kiosk.domain.Com_imageVO;
-import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.dto.Com_videoDTO;
-import org.kiosk.service.Com_imageService;
-import org.kiosk.service.Com_staffService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -36,11 +32,11 @@ public class MovieBoardController {
 
 	private String img_fileName = "movie_";
 	private String[] dirPath = { "movie" };
-	//필요에 따라  arraylist로 원하는 항목을  add 하여 array 변환하면 유동적인 path를 생성할수있다.
-	
+	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-		logger.info("galleryboard/list - GET");
+		logger.info("movieboard/list - GET");
 		logger.info(cri.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
@@ -52,17 +48,17 @@ public class MovieBoardController {
 
 		model.addAttribute("pageMaker", pageMaker);
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
-		logger.info("galleryboard/register - GET");
+		logger.info("movieboard/register - GET");
 		logger.info("regist get ...........");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_videoDTO board, RedirectAttributes rttr, @RequestParam("videoFile") MultipartFile videoFile)
-			throws Exception {
-		logger.info("galleryboard/register - POST");
+	public String registPOST(Com_videoDTO board, RedirectAttributes rttr,
+			@RequestParam("videoFile") MultipartFile videoFile) throws Exception {
+		logger.info("movieboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
@@ -73,9 +69,32 @@ public class MovieBoardController {
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/galleryboard/list";
+		return "redirect:/movieboard/list";
 	}
 
-	
+	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
+	public void modifyPagingGET(int vi_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+		logger.info("movieboard/modifyPage - GET");
+		model.addAttribute(service.read(vi_no));
+		logger.info(service.read(vi_no).toString());
+	}
+
+	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
+	public String modifyPagingPOST(Com_videoDTO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+		logger.info("movieboard/modifyPage - POST");
+		logger.info(cri.toString());
+		service.modify(board);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		logger.info(rttr.toString());
+
+		return "redirect:/movieboard/list";
+	}
 
 }

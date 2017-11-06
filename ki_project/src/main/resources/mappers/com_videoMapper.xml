@@ -108,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</sql>
 
-	<select id="listSearch" resultType="Com_staffVO">
+	<select id="listSearch" resultType="Com_videoDTO">
 		<![CDATA[  
 		 select * 
 		 from com_video 

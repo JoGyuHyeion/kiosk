@@ -73,8 +73,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	]]>
 	</select>
 
-
-
 	<select id="countPaging" resultType="int">
 		 <![CDATA[
 		 select 
@@ -84,8 +82,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where st_no > 0 
 		 ]]>
 	</select>
-
-
 
 	<sql id="search">
 		<if test="searchType != null">
