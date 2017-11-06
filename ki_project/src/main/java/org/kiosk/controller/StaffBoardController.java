@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/sboard/*")
+@RequestMapping("/staffboard/*")
 public class StaffBoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StaffBoardController.class);
