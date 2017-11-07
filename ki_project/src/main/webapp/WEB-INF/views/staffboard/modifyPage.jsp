@@ -223,7 +223,7 @@
 											.on(
 													"click",
 													function() {
-														self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+														self.location = "/staffboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
 																+ "&searchType=${cri.searchType}&keyword=${cri.keyword}";
 													});
 

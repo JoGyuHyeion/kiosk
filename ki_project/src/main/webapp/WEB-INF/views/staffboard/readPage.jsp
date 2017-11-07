@@ -320,19 +320,19 @@ $(document).ready(function(){
 	console.log(formObj);
 	
 	$("#modifyBtn").on("click", function(){
-		formObj.attr("action", "/sboard/modifyPage");
+		formObj.attr("action", "/staffboard/modifyPage");
 		formObj.attr("method", "get");		
 		formObj.submit();
 	});
 	
 	$("#removeBtn").on("click", function(){
-		formObj.attr("action", "/sboard/removePage");
+		formObj.attr("action", "/staffboard/removePage");
 		formObj.submit();
 	});
 	
 	$("#goListBtn ").on("click", function(){
 		formObj.attr("method", "get");
-		formObj.attr("action", "/sboard/list");
+		formObj.attr("action", "/staffboard/list");
 		formObj.submit();
 	});
 	

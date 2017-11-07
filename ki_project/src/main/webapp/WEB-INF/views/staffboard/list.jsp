@@ -93,7 +93,7 @@
 
 									<tr class="active">
 										<td><a
-											href="/sboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
+											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
 											class="table-action-btn h2"><i
 												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
 
