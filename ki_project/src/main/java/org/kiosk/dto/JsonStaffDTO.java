@@ -4,24 +4,24 @@ import java.util.List;
 
 public class JsonStaffDTO {
 
-	private String section_name;
-	private String section_password;
+	private String section_fullcode;
+	private String section_pass;
 	private List<TeamsDTO> teams;
 
-	public String getSection_name() {
-		return section_name;
+	public String getSection_fullcode() {
+		return section_fullcode;
 	}
 
-	public void setSection_name(String section_name) {
-		this.section_name = section_name;
+	public void setSection_fullcode(String section_fullcode) {
+		this.section_fullcode = section_fullcode;
 	}
 
-	public String getSection_password() {
-		return section_password;
+	public String getSection_pass() {
+		return section_pass;
 	}
 
-	public void setSection_password(String section_password) {
-		this.section_password = section_password;
+	public void setSection_pass(String section_pass) {
+		this.section_pass = section_pass;
 	}
 
 	public List<TeamsDTO> getTeams() {
@@ -34,7 +34,7 @@ public class JsonStaffDTO {
 
 	@Override
 	public String toString() {
-		return "JsonStaffVO [section_name=" + section_name + ", section_password=" + section_password + ", teams="
+		return "JsonStaffDTO [section_fullcode=" + section_fullcode + ", section_pass=" + section_pass + ", teams="
 				+ teams + "]";
 	}
 

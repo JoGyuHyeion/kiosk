@@ -111,7 +111,7 @@ public class JsonController {
 
 	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, List<Com_buildingDTO>>> sendBuilding() {
-		logger.info("json/sendNotice/{section_cd}");
+		logger.info("json/sendNotice");
 		ResponseEntity<Map<String, List<Com_buildingDTO>>> entity = null;
 		Map<String, List<Com_buildingDTO>> buildingList = null;
 		try {
@@ -131,7 +131,7 @@ public class JsonController {
 
 	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_iconDTO>> sendIcon() {
-		logger.info("json/sendNotice/{section_cd}");
+		logger.info("json/sendNotice");
 		ResponseEntity<List<Com_iconDTO>> entity = null;
 		try {
 			entity = new ResponseEntity<>(jsoniconService.listAll(), HttpStatus.OK);
@@ -144,7 +144,7 @@ public class JsonController {
 
 	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_videoDTO>> sendVideo() {
-		logger.info("json/sendNotice/{section_cd}");
+		logger.info("json/sendNotice");
 		ResponseEntity<List<Com_videoDTO>> entity = null;
 		try {
 			entity = new ResponseEntity<>(jsonvideoService.listAll(), HttpStatus.OK);

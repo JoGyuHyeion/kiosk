@@ -72,10 +72,14 @@ public class Com_staffTest {
 		dao.delete(1138);
 	}
 
-//	@Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
+		List<Com_staffVO> list = dao.listAll();
+		for (Com_staffVO Com_staffVO : list) {
+			logger.info(Com_staffVO.getSt_no() + ":" + Com_staffVO.getSt_job());
+		}
 
 	}
 

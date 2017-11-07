@@ -39,7 +39,7 @@ public class JsonStaffTest {
 
 	// @Test
 	public void testStaffRead() throws Exception {
-		logger.info(staffdao.read("S010").toString());
+		logger.info(staffdao.read("K010-S020").toString());
 	}
 
 	// @Test
@@ -56,9 +56,9 @@ public class JsonStaffTest {
 		staffdao.delete("S010");
 	}
 
-	@Test
+	// @Test
 	public void testStaffListAll() throws Exception {
-		logger.info(staffdao.listAll("K010_S010").toString());
+		logger.info(staffdao.listAll("K010-S010").toString());
 
 	}
 
