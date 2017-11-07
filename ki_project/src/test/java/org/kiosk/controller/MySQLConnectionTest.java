@@ -14,8 +14,8 @@ public class MySQLConnectionTest {
 
 	@Test
 	public void testConnection() throws Exception {
-//DB 연결은 여기서 테스트 하는 것이 아니라 DataSourceTest.java 에서 테스트 해야 된다. 
-//root-context.xml에 있는 정보들 중 url user pw 를 설정해야한다.
+		// DB 연결은 여기서 테스트 하는 것이 아니라 DataSourceTest.java 에서 테스트 해야 된다.
+		// root-context.xml에 있는 정보들 중 url user pw 를 설정해야한다.
 		Class.forName(DRIVER);
 
 		try (Connection con = DriverManager.getConnection(URL, USER, PW)) {

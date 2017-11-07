@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.MateMapper">
+
+	<select id="read" resultType="MateDTO">
+		select st_no, st_nm, st_position, st_job, st_tel, st_email, img_filenm, st_sort, st_status 
+		from com_staff
+		where st_no = #{st_no} 
+	</select>
+
+	<insert id="create">
+		insert into com_staff
+		(st_no, st_nm, st_position, st_job, st_tel, st_email, img_filenm, st_sort, st_status)
+		values
+		(#{st_no},#{st_nm},#{st_position},#{st_job},#{st_tel},#{st_email},#{img_filenm},#{st_sort},#{st_status})
+	</insert>
+
+	<update id="update">
+		update com_staff set
+		st_no = #{st_no},
+		st_nm = #{st_nm},
+		st_position = #{st_position},
+		st_job = #{st_job},
+		st_tel = #{st_tel},
+		st_email = #{st_email},
+		img_filenm = #{img_filenm},
+		st_sort = #{st_sort},
+		st_status = #{st_status},
+		where
+		st_no = #{st_no} 
+	</update>
+
+	<delete id="delete">
+		delete from com_staff where st_no = #{st_no} 
+	</delete>
+
+	<select id="list" resultType="MateDTO">
+ 		<![CDATA[ 
+		SELECT st_no, st_nm, st_position, st_job, st_tel, st_email, img_filenm, st_sort, st_status
+		FROM com_staff 
+		WHERE section_cd= #{section_cd} 
+		AND st_display = 1  
+		AND team_cd = #{team_cd}
+		ORDER BY st_sort, team_cd
+		]]>
+	</select>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.Conn_logMapper">
+
+	<select id="read" resultType="Conn_logVO">
+		select conn_id,device_id,regdate
+		from conn_log
+		where 
+		conn_id = #{conn_id}
+	</select>
+
+	<insert id="create">
+		insert into conn_log
+		(conn_id,device_id,regdate) values
+		(#{conn_id},#{device_id},#{regdate})
+	</insert>
+
+	<update id="update">
+		update conn_log set
+		device_id = #{device_id}, regdate = #{regdate}
+		where conn_id = #{conn_id}
+	</update>
+
+	<delete id="delete">
+		delete from conn_log where conn_id = #{conn_id}
+	</delete>
+
+	<select id="listAll" resultType="Conn_logVO">
+ 		<![CDATA[ select * from conn_log]]>
+	</select>
+
+</mapper>

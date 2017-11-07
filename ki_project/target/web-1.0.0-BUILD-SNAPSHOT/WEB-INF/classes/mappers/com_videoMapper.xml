@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.com_videoMapper">
+
+	<select id="read" resultType="Com_videoDTO">
+		select
+		vi_no,vi_name,vi_video,vi_ndt
+		from com_video
+		where
+		vi_no = #{vi_no}
+	</select>
+
+	<insert id="create">
+		insert into com_video
+		(vi_no,vi_name,vi_video,vi_ndt)
+		values
+		(#{vi_no},#{vi_name},#{vi_video},#{vi_ndt})
+	</insert>
+
+	<update id="update">
+		update com_video set
+		vi_name = #{vi_name},
+		vi_video =
+		#{vi_video},
+		vi_ndt = #{vi_ndt}
+		where
+		vi_no = #{vi_no}
+	</update>
+
+	<delete id="delete">
+		delete from com_video where vi_no = #{vi_no}
+	</delete>
+
+	<select id="listAll" resultType="Com_videoDTO">
+ 		<![CDATA[ select * from com_video]]>
+	</select>
+
+	<select id="lastInsertID" resultType="int">
+		SELECT
+		LAST_INSERT_ID(vi_no) from com_video order by vi_no desc limit 1;
+	</select>
+
+	<select id="listPage" resultType="Com_videoDTO">
+ 		<![CDATA[
+		select 
+		vi_no,vi_name,vi_video,vi_ndt
+		from com_video 
+		where vi_no > 0 
+		order by vi_no desc
+		limit #{page}, 10
+ 		]]>
+	</select>
+
+	<select id="listCriteria" resultType="Com_videoDTO">
+ 		<![CDATA[
+		select 
+		vi_no,vi_name,vi_video,vi_ndt
+		from com_video 
+		where vi_no > 0 
+		order by vi_no desc
+			limit #{pageStart}, #{perPageNum}
+ 		]]>
+	</select>
+
+	<select id="countPaging" resultType="int">
+ 		<![CDATA[
+		select count(vi_no) 
+		from 
+		com_video 
+		where 
+		vi_no > 0 
+ 		]]>
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR content
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( content like CONCAT('%', #{keyword}, '%') OR writer
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%')
+				OR
+				content
+				like CONCAT('%', #{keyword}, '%')
+				OR
+				writer like CONCAT('%',
+				#{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+
+	<select id="listSearch" resultType="Com_videoDTO">
+		<![CDATA[  
+		 select * 
+		 from com_video 
+		 where vi_no > 0 
+		]]>
+		<include refid="search"></include>
+  
+		<![CDATA[    
+		order by vi_no desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[  
+		  select count(vi_no) 
+		  from com_video 
+		  where vi_no > 0 
+		]]>
+		<include refid="search"></include>
+
+	</select>
+
+</mapper>

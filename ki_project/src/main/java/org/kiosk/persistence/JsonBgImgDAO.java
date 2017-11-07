@@ -15,7 +15,7 @@ public interface JsonBgImgDAO {
 	public void delete(Integer ic_no) throws Exception;
 
 	public List<Com_bgImgDTO> listAll() throws Exception;
-	
+
 	public int lastInsertID() throws Exception;
 
 	public List<Com_bgImgDTO> listPage(int page) throws Exception;

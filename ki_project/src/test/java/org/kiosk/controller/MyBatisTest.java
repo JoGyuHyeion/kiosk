@@ -10,31 +10,29 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations ={"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"})
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
 public class MyBatisTest {
 
-	@Inject 
+	@Inject
 	private SqlSessionFactory sqlFactory;
-	
+
 	@Test
-	public void testFactory(){
-		
+	public void testFactory() {
+
 		System.out.println(sqlFactory);
-		
+
 	}
-	
+
 	@Test
-	public void testSession()throws Exception{
-		
-		try(SqlSession session = sqlFactory.openSession()){
-			
+	public void testSession() throws Exception {
+
+		try (SqlSession session = sqlFactory.openSession()) {
+
 			System.out.println(session);
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 }
-
-

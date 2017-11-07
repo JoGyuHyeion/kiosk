@@ -25,10 +25,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MyInfoBoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MyInfoBoardController.class);
-	
+
 	@Inject
 	private Com_sectionService service;
-	
+
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
 	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
@@ -40,7 +40,7 @@ public class MyInfoBoardController {
 
 		logger.info("myinfoboard/passwd - POST");
 		logger.info(cri.toString());
-		
+
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
@@ -52,7 +52,7 @@ public class MyInfoBoardController {
 
 		return "redirect:/myinfoboard/passwd";
 	}
-	
+
 	@RequestMapping(value = "/section", method = RequestMethod.GET)
 	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
@@ -76,7 +76,7 @@ public class MyInfoBoardController {
 
 		return "redirect:/myinfoboard/section";
 	}
-	
+
 	@RequestMapping(value = "/team", method = RequestMethod.GET)
 	public void teamGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 

@@ -1,31 +1,10 @@
 package org.kiosk.controller;
 
-import java.util.Date;
-
-import javax.inject.Inject;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.kiosk.domain.Criteria;
-import org.kiosk.domain.SearchCriteria;
-import org.kiosk.domain.UserVO;
-import org.kiosk.dto.LoginDTO;
-import org.kiosk.service.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.WebUtils;
-
-@Controller
-@RequestMapping("user")
+//@Controller
+//@RequestMapping("user")
 public class UserController {
 
-	@Inject
+/*	@Inject
 	private UserService service;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -75,7 +54,7 @@ public class UserController {
 			
 
 			if (loginCookie != null) {
-				loginCookie.setPath("/");// ?Ç¥Í∞? ?õê?ïò?äî Í≤∞Î°ú Ïß??†ï
+				loginCookie.setPath("/");// ?ÔøΩÔøΩÔøΩ? ?ÔøΩÔøΩ?ÔøΩÔøΩ?ÔøΩÔøΩ Í≤∞Î°ú ÔøΩ??ÔøΩÔøΩ
 				loginCookie.setMaxAge(0);
 				response.addCookie(loginCookie);
 				service.keepLogin(vo.getId(), session.getId(), new Date());
@@ -83,5 +62,5 @@ public class UserController {
 			}
 		}
 		return "user/logout";
-	}
+	}*/
 }

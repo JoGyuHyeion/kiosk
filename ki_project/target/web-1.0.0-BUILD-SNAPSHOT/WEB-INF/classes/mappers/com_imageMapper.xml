@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.Com_imageMapper">
+
+	<select id="read" resultType="Com_imageVO">
+		select img_no,img_title,img_caption,img_filenm,img_gallery,img_sort,section_cd,img_status,wdt,edt 
+		from com_image
+		where
+		img_no = #{img_no}
+	</select>
+
+	<insert id="create">
+		insert into com_image
+		(img_no,img_title,img_caption,img_filenm,img_gallery,img_sort,section_cd,img_status,wdt,edt)
+		values
+		(#{img_no},#{img_title},#{img_caption},#{img_filenm},#{img_gallery},#{img_sort},#{section_cd},#{img_status},#{wdt},#{edt})
+	</insert>
+
+	<update id="update">
+		update com_image set
+		img_title = #{img_title},
+		img_caption = #{img_caption}, 
+		img_filenm = #{img_filenm}, 
+		img_gallery = #{img_gallery}, 
+		img_sort = #{img_sort},
+		section_cd = #{section_cd}, 
+		img_status = #{img_status},
+		wdt = #{wdt}, 
+		edt = #{edt}
+		where
+		img_no = #{img_no}
+	</update>
+
+	<delete id="delete">
+		delete from com_image where img_no = #{img_no}
+	</delete>
+
+	<select id="listAll" resultType="Com_imageVO">
+ 		<![CDATA[ select * from com_image]]>
+	</select>
+	
+	<select id="lastInsertID" resultType="int">
+		 SELECT LAST_INSERT_ID(img_no) from com_image order by img_no desc limit 1;
+	</select>
+	
+	<select id="listPage" resultType="Com_imageVO">
+		 <![CDATA[
+		 select 
+		 img_no,img_title,img_caption,img_filenm,img_gallery,img_sort,section_cd,img_status,wdt,edt 
+		 from 
+		 com_image 
+		 where img_no > 0 
+		 order by img_no desc
+		 limit #{page}, 10
+		 ]]>
+	</select>
+
+	<select id="listCriteria" resultType="Com_imageVO">
+		 <![CDATA[
+		 select 
+		 img_no,img_title,img_caption,img_filenm,img_gallery,img_sort,section_cd,img_status,wdt,edt 
+		 from 
+		 com_image 
+		 where img_no > 0 
+		 order by img_no desc
+		 limit #{pageStart}, #{perPageNum}
+	 	]]>
+	</select>
+
+
+
+	<select id="countPaging" resultType="int">
+		 <![CDATA[
+		 select 
+		 count(img_no) 
+		 from 
+		 com_image 
+		 where img_no > 0 
+		 ]]>
+	</select>
+
+
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR content
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( content like CONCAT('%', #{keyword}, '%') OR writer
+				like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%')
+				OR
+				content
+				like CONCAT('%', #{keyword}, '%')
+				OR
+				writer like CONCAT('%',
+				#{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
+
+	<select id="listSearch" resultType="Com_imageVO">
+		<![CDATA[  
+		 select * 
+		 from com_image 
+		 where img_no > 0 
+		]]>
+		<include refid="search"></include>
+  
+		<![CDATA[    
+		order by img_no desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[  
+		  select count(img_no) 
+		  from com_image 
+		  where img_no > 0 
+		]]>
+		<include refid="search"></include>
+
+	</select>
+	
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.Com_sectionMapper">
+
+	<select id="read" resultType="Com_sectionVO">
+		select bureau_cd,section_cd,section_name,section_type,section_sort,section_ip,section_id,section_pass,section_fullcode,section_fullpath,section_use 
+		from com_section
+		where
+		section_no = #{section_no}
+	</select>
+
+	<insert id="create">
+		insert into com_section
+		(bureau_cd,section_cd,section_name,section_type,section_sort,section_ip,section_id,section_pass,section_fullcode,section_fullpath,section_use)
+		values
+		(#{bureau_cd},#{section_cd},#{section_name},#{section_type},#{section_sort},#{section_ip},#{section_id},#{section_pass},#{section_fullcode},#{section_fullpath},#{section_use})
+	</insert>
+
+	<update id="update">
+		update com_section set
+		bureau_cd = #{bureau_cd},
+		section_name = #{section_name},
+		section_type = #{section_type},
+		section_sort = #{section_sort},
+		section_ip = #{section_ip},
+		section_id = #{section_id},
+		section_pass = #{section_pass},
+		section_fullcode = #{section_fullcode},
+		section_fullpath = #{section_fullpath},
+		section_use = #{section_use}
+		where
+		section_cd = #{section_cd}
+	</update>
+
+	<delete id="delete">
+		delete from com_section where section_cd = #{section_cd}
+	</delete>
+
+	<select id="listAll" resultType="Com_sectionVO">
+ 		<![CDATA[ select * from com_section]]>
+	</select>
+
+</mapper>

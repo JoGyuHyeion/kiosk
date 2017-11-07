@@ -110,25 +110,25 @@ public class JsonController {
 	}
 
 	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET)
-	public ResponseEntity<Map<String,List<Com_buildingDTO>>> sendBuilding() {
+	public ResponseEntity<Map<String, List<Com_buildingDTO>>> sendBuilding() {
 		logger.info("json/sendNotice/{section_cd}");
-		ResponseEntity<Map<String,List<Com_buildingDTO>>> entity = null;
-		Map<String,List<Com_buildingDTO>> buildingList =null;
+		ResponseEntity<Map<String, List<Com_buildingDTO>>> entity = null;
+		Map<String, List<Com_buildingDTO>> buildingList = null;
 		try {
-			buildingList = new HashMap<String,List<Com_buildingDTO>>();
+			buildingList = new HashMap<String, List<Com_buildingDTO>>();
 			String rootName = Com_buildingDTO.class.getAnnotation(JsonRootName.class).value();
 			buildingList.put(rootName, jsonbuildingService.listAll());
-			
+
 			buildingList.put("원효관", jsonbuildingService.listAll());
-			
-			entity = new ResponseEntity<Map<String,List<Com_buildingDTO>>>(buildingList, HttpStatus.OK);
+
+			entity = new ResponseEntity<Map<String, List<Com_buildingDTO>>>(buildingList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
-	
+
 	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_iconDTO>> sendIcon() {
 		logger.info("json/sendNotice/{section_cd}");
