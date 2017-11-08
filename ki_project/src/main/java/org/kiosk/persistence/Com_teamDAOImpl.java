@@ -9,7 +9,7 @@ import org.kiosk.domain.Com_teamVO;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class Com_teamDAOImpl implements Com_teamDAO{
+public class Com_teamDAOImpl implements Com_teamDAO {
 
 	@Inject
 	private SqlSession session;
@@ -19,7 +19,7 @@ public class Com_teamDAOImpl implements Com_teamDAO{
 	@Override
 	public void create(Com_teamVO vo) throws Exception {
 		session.insert(namespace + ".create", vo);
-		
+
 	}
 
 	@Override
@@ -30,13 +30,13 @@ public class Com_teamDAOImpl implements Com_teamDAO{
 	@Override
 	public void update(Com_teamVO vo) throws Exception {
 		session.update(namespace + ".update", vo);
-		
+
 	}
 
 	@Override
 	public void delete(Com_teamVO vo) throws Exception {
 		session.delete(namespace + ".delete", vo);
-		
+
 	}
 
 	@Override

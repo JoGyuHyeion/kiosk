@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
+
+import org.json.simple.JSONObject;
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.Com_iconVO;
+import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.SampleVO;
 import org.kiosk.dto.JsonGelleryDTO;
@@ -21,6 +24,7 @@ import org.kiosk.service.JsonNoticeService;
 import org.kiosk.service.JsonStaffService;
 import org.kiosk.service.Com_buildingService;
 import org.kiosk.service.Com_iconService;
+import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.service.MateService;
 import org.kiosk.service.TeamsService;
@@ -41,23 +45,25 @@ public class JsonController {
 	private static final Logger logger = LoggerFactory.getLogger(JsonController.class);
 
 	@Inject
-	private JsonGelleryService jsonGelleryService;
+	private JsonGelleryService gelleryService;
 	@Inject
-	private JsonNoticeService jsonNoticeService;
+	private JsonNoticeService noticeService;
 	@Inject
-	private JsonStaffService jsonStaffService;
+	private JsonStaffService staffService;
 	@Inject
 	private MateService mateService;
 	@Inject
 	private TeamsService teamsService;
 	@Inject
-	private Com_buildingService jsonbuildingService;
+	private Com_buildingService buildingService;
 	@Inject
-	private Com_iconService jsoniconService;
+	private Com_iconService iconService;
 	@Inject
-	private Com_videoService jsonvideoService;
+	private Com_videoService videoService;
 	@Inject
-	private Com_bgImgService jsonBgImgService;
+	private Com_bgImgService bgImgService;
+	// @Inject
+	// private Com_teamService ajaxTeamsService;
 
 	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> sendStaff(@PathVariable("section_cd") String section_cd) {
@@ -65,7 +71,7 @@ public class JsonController {
 		logger.info("json/sendStaff/{section_cd}");
 		try {
 			int mapIndex = 0;
-			JsonStaffDTO jsonStaffDTO = jsonStaffService.read(section_cd);
+			JsonStaffDTO jsonStaffDTO = staffService.read(section_cd);
 			List<TeamsDTO> teamList = teamsService.list(section_cd);
 
 			for (int index = 0; index < teamList.size(); index++) {
@@ -92,7 +98,7 @@ public class JsonController {
 		logger.info("json/sendGallery/{section_cd}");
 		ResponseEntity<List<JsonGelleryDTO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonGelleryService.listAll(section_cd), HttpStatus.OK);
+			entity = new ResponseEntity<>(gelleryService.listAll(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -105,7 +111,7 @@ public class JsonController {
 		logger.info("json/sendNotice/{section_cd}");
 		ResponseEntity<List<JsonNoticeDTO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonNoticeService.listAll(section_cd), HttpStatus.OK);
+			entity = new ResponseEntity<>(noticeService.listAll(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -121,9 +127,9 @@ public class JsonController {
 		try {
 			buildingList = new HashMap<String, List<Com_buildingVO>>();
 			String rootName = Com_buildingVO.class.getAnnotation(JsonRootName.class).value();
-			buildingList.put(rootName, jsonbuildingService.listAll());
+			buildingList.put(rootName, buildingService.listAll());
 
-			buildingList.put("원효관", jsonbuildingService.listAll());
+			buildingList.put("원효관", buildingService.listAll());
 
 			entity = new ResponseEntity<Map<String, List<Com_buildingVO>>>(buildingList, HttpStatus.OK);
 		} catch (Exception e) {
@@ -138,7 +144,7 @@ public class JsonController {
 		logger.info("json/sendIcon");
 		ResponseEntity<List<Com_iconVO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsoniconService.listAll(), HttpStatus.OK);
+			entity = new ResponseEntity<>(iconService.listAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -151,20 +157,60 @@ public class JsonController {
 		logger.info("json/sendVideo");
 		ResponseEntity<List<Com_videoVO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonvideoService.listAll(), HttpStatus.OK);
+			entity = new ResponseEntity<>(videoService.listAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
-	
+
 	@RequestMapping(value = "/sendBgImage", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_bgImgVO>> sendBgImage() {
 		logger.info("json/sendBgImage");
 		ResponseEntity<List<Com_bgImgVO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonBgImgService.listAll(), HttpStatus.OK);
+			entity = new ResponseEntity<>(bgImgService.listAll(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/getTeams/{section_cd}", method = RequestMethod.POST)
+	public ResponseEntity<JSONObject> getTeamsPost(@PathVariable("section_cd") String section_cd) {
+		logger.info("json/getTeams/{section_cd}");
+		ResponseEntity<JSONObject> entity = null;
+		JSONObject obj = null;
+		try {
+			obj = new JSONObject();
+			for (TeamsDTO dto : teamsService.list(section_cd)) {
+				System.out.println("규현 : " + dto.getTeam_cd());
+				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
+			}
+			entity = new ResponseEntity<>(obj, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/getTeams/{section_cd}", method = RequestMethod.GET)
+	public ResponseEntity<JSONObject> getTeams(@PathVariable("section_cd") String section_cd) {
+		logger.info("json/getTeams/{section_cd}");
+		ResponseEntity<JSONObject> entity = null;
+		JSONObject obj = null;
+		try {
+			obj = new JSONObject();
+			for (TeamsDTO dto : teamsService.list(section_cd)) {
+				System.out.println("규현 : " + dto.getTeam_cd());
+				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
+			}
+			entity = new ResponseEntity<>(obj, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

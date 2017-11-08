@@ -1,5 +1,7 @@
 package org.kiosk.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Com_teamVO {
 
 	private String section_cd;

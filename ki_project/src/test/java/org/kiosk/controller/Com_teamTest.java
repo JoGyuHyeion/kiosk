@@ -55,7 +55,7 @@ public class Com_teamTest {
 		dao.update(vo);
 	}
 
-//	@Test
+	// @Test
 	public void testDelete() throws Exception {
 		Com_teamVO vo = new Com_teamVO();
 		vo.setSection_cd("K010-S010");
@@ -63,10 +63,17 @@ public class Com_teamTest {
 		dao.delete(vo);
 	}
 
-	@Test
+	// @Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
+
+	}
+
+	@Test
+	public void testAjaxList() throws Exception {
+
+		logger.info(dao.ajaxList("K010-S010").toString());
 
 	}
 
