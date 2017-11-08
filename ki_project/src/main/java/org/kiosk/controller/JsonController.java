@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
+import org.json.simple.JSONObject;
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.Com_iconVO;
@@ -60,8 +61,10 @@ public class JsonController {
 	private Com_videoService videoService;
 	@Inject
 	private Com_bgImgService bgImgService;
+	// @Inject
+	// private Com_teamService ajaxTeamsService;
 
-	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> sendStaff(@PathVariable("section_cd") String section_cd) {
 		ResponseEntity<JsonStaffDTO> entity = null;
 		logger.info("json/sendStaff/{section_cd}");
@@ -89,7 +92,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendGallery/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/sendGallery/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<List<JsonGelleryDTO>> sendGallery(@PathVariable("section_cd") String section_cd) {
 		logger.info("json/sendGallery/{section_cd}");
 		ResponseEntity<List<JsonGelleryDTO>> entity = null;
@@ -102,7 +105,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendNotice/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/sendNotice/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<List<JsonNoticeDTO>> sendNotice(@PathVariable("section_cd") String section_cd) {
 		logger.info("json/sendNotice/{section_cd}");
 		ResponseEntity<List<JsonNoticeDTO>> entity = null;
@@ -115,7 +118,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, List<Com_buildingVO>>> sendBuilding() {
 		logger.info("json/sendBuilding");
 		ResponseEntity<Map<String, List<Com_buildingVO>>> entity = null;
@@ -135,7 +138,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_iconVO>> sendIcon() {
 		logger.info("json/sendIcon");
 		ResponseEntity<List<Com_iconVO>> entity = null;
@@ -148,7 +151,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_videoVO>> sendVideo() {
 		logger.info("json/sendVideo");
 		ResponseEntity<List<Com_videoVO>> entity = null;
@@ -161,7 +164,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendBgImage", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/sendBgImage", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_bgImgVO>> sendBgImage() {
 		logger.info("json/sendBgImage");
 		ResponseEntity<List<Com_bgImgVO>> entity = null;
