@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
-
-import org.json.simple.JSONObject;
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.Com_iconVO;
-import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.SampleVO;
 import org.kiosk.dto.JsonGelleryDTO;
@@ -24,7 +21,6 @@ import org.kiosk.service.JsonNoticeService;
 import org.kiosk.service.JsonStaffService;
 import org.kiosk.service.Com_buildingService;
 import org.kiosk.service.Com_iconService;
-import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.service.MateService;
 import org.kiosk.service.TeamsService;
@@ -37,6 +33,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @RestController
 @RequestMapping("/json")
@@ -62,10 +60,8 @@ public class JsonController {
 	private Com_videoService videoService;
 	@Inject
 	private Com_bgImgService bgImgService;
-	// @Inject
-	// private Com_teamService ajaxTeamsService;
 
-	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET)
+	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<JsonStaffDTO> sendStaff(@PathVariable("section_cd") String section_cd) {
 		ResponseEntity<JsonStaffDTO> entity = null;
 		logger.info("json/sendStaff/{section_cd}");
@@ -93,7 +89,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendGallery/{section_cd}", method = RequestMethod.GET)
+	@RequestMapping(value = "/sendGallery/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<List<JsonGelleryDTO>> sendGallery(@PathVariable("section_cd") String section_cd) {
 		logger.info("json/sendGallery/{section_cd}");
 		ResponseEntity<List<JsonGelleryDTO>> entity = null;
@@ -106,7 +102,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendNotice/{section_cd}", method = RequestMethod.GET)
+	@RequestMapping(value = "/sendNotice/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<List<JsonNoticeDTO>> sendNotice(@PathVariable("section_cd") String section_cd) {
 		logger.info("json/sendNotice/{section_cd}");
 		ResponseEntity<List<JsonNoticeDTO>> entity = null;
@@ -119,7 +115,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET)
+	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<Map<String, List<Com_buildingVO>>> sendBuilding() {
 		logger.info("json/sendBuilding");
 		ResponseEntity<Map<String, List<Com_buildingVO>>> entity = null;
@@ -139,7 +135,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET)
+	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<List<Com_iconVO>> sendIcon() {
 		logger.info("json/sendIcon");
 		ResponseEntity<List<Com_iconVO>> entity = null;
@@ -152,7 +148,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET)
+	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<List<Com_videoVO>> sendVideo() {
 		logger.info("json/sendVideo");
 		ResponseEntity<List<Com_videoVO>> entity = null;
@@ -165,7 +161,7 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/sendBgImage", method = RequestMethod.GET)
+	@RequestMapping(value = "/sendBgImage", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<List<Com_bgImgVO>> sendBgImage() {
 		logger.info("json/sendBgImage");
 		ResponseEntity<List<Com_bgImgVO>> entity = null;
@@ -178,19 +174,19 @@ public class JsonController {
 		return entity;
 	}
 
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/getTeams/{section_cd}", method = RequestMethod.POST)
-	public ResponseEntity<JSONObject> getTeamsPost(@PathVariable("section_cd") String section_cd) {
+	@RequestMapping(value = "/getTeams/{section_cd}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public ResponseEntity<String> getTeamsPOST(@PathVariable("section_cd") String section_cd) {
 		logger.info("json/getTeams/{section_cd}");
-		ResponseEntity<JSONObject> entity = null;
-		JSONObject obj = null;
+		ResponseEntity<String> entity = null;
+
 		try {
-			obj = new JSONObject();
+			Map<String, String> obj = new HashMap<String, String>();
 			for (TeamsDTO dto : teamsService.list(section_cd)) {
-				System.out.println("규현 : " + dto.getTeam_cd());
 				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
 			}
-			entity = new ResponseEntity<>(obj, HttpStatus.OK);
+			ObjectMapper om = new ObjectMapper();
+			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key로 정렬 설정
+			entity = new ResponseEntity<>(om.writeValueAsString(obj), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -198,19 +194,19 @@ public class JsonController {
 		return entity;
 	}
 
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/getTeams/{section_cd}", method = RequestMethod.GET)
-	public ResponseEntity<JSONObject> getTeams(@PathVariable("section_cd") String section_cd) {
+	@RequestMapping(value = "/getTeams/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	public ResponseEntity<String> getTeamsGET(@PathVariable("section_cd") String section_cd) {
 		logger.info("json/getTeams/{section_cd}");
-		ResponseEntity<JSONObject> entity = null;
-		JSONObject obj = null;
+		ResponseEntity<String> entity = null;
+
 		try {
-			obj = new JSONObject();
+			Map<String, String> obj = new HashMap<String, String>();
 			for (TeamsDTO dto : teamsService.list(section_cd)) {
-				System.out.println("규현 : " + dto.getTeam_cd());
 				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
 			}
-			entity = new ResponseEntity<>(obj, HttpStatus.OK);
+			ObjectMapper om = new ObjectMapper();
+			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key로 정렬 설정
+			entity = new ResponseEntity<>(om.writeValueAsString(obj), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

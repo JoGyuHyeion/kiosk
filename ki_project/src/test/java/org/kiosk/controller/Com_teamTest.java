@@ -70,11 +70,4 @@ public class Com_teamTest {
 
 	}
 
-	@Test
-	public void testAjaxList() throws Exception {
-
-		logger.info(dao.ajaxList("K010-S010").toString());
-
-	}
-
 }
