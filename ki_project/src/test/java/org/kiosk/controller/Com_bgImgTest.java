@@ -19,12 +19,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
 
-public class JsonBgImgTest {
+public class Com_bgImgTest {
 
 	@Inject
 	private Com_bgImgDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(JsonBgImgTest.class);
+	private static Logger logger = LoggerFactory.getLogger(Com_bgImgTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());

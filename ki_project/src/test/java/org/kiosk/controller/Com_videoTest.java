@@ -28,7 +28,7 @@ public class Com_videoTest {
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-	@Test
+//	@Test
 	public void testCreate() throws Exception {
 
 		Com_videoVO dto = new Com_videoVO();
@@ -38,7 +38,7 @@ public class Com_videoTest {
 		dao.create(dto);
 	}
 
-	@Test
+//	@Test
 	public void testRead() throws Exception {
 
 		logger.info(dao.read(1).toString());

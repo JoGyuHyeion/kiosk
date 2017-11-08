@@ -13,12 +13,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
 
-public class Com_TeamTest {
+public class Com_teamTest {
 
 	@Inject
 	private Com_teamDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(Com_TeamTest.class);
+	private static Logger logger = LoggerFactory.getLogger(Com_teamTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -55,7 +55,7 @@ public class Com_TeamTest {
 		dao.update(vo);
 	}
 
-	@Test
+//	@Test
 	public void testDelete() throws Exception {
 		Com_teamVO vo = new Com_teamVO();
 		vo.setSection_cd("K010-S010");

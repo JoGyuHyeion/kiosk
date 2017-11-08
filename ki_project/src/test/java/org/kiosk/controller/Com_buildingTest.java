@@ -25,12 +25,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
 
-public class JsonBuildingTest {
+public class Com_buildingTest {
 
 	@Inject
 	private Com_buildingDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(JsonBuildingTest.class);
+	private static Logger logger = LoggerFactory.getLogger(Com_buildingTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -67,7 +67,7 @@ public class JsonBuildingTest {
 		dao.delete(1);
 	}
 
-//	@Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

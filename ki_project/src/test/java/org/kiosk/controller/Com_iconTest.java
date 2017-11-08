@@ -18,17 +18,17 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
 
-public class JsonIconTest {
+public class Com_iconTest {
 
 	@Inject
 	private Com_iconDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(JsonIconTest.class);
+	private static Logger logger = LoggerFactory.getLogger(Com_iconTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-	@Test
+//	@Test
 	public void testCreate() throws Exception {
 
 		Com_iconVO dto = new Com_iconVO();
@@ -39,7 +39,7 @@ public class JsonIconTest {
 		dao.create(dto);
 	}
 
-	@Test
+//	@Test
 	public void testRead() throws Exception {
 
 		logger.info(dao.read(1).toString());
