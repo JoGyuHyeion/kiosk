@@ -4,9 +4,9 @@ import java.util.List;
 import javax.inject.Inject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.dto.Com_videoDTO;
 import org.kiosk.persistence.Com_videoDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +31,7 @@ public class Com_videoTest {
 	@Test
 	public void testCreate() throws Exception {
 
-		Com_videoDTO dto = new Com_videoDTO();
+		Com_videoVO dto = new Com_videoVO();
 		dto.setVi_name("비디오 이름");
 		dto.setVi_ndt(sqlDate);
 		dto.setVi_video("비디오");
@@ -47,7 +47,7 @@ public class Com_videoTest {
 	// @Test
 	public void testUpdate() throws Exception {
 
-		Com_videoDTO dto = new Com_videoDTO();
+		Com_videoVO dto = new Com_videoVO();
 		dto.setVi_name("비디오 이름");
 		dto.setVi_ndt(sqlDate);
 		dto.setVi_video("비디오");
@@ -77,9 +77,9 @@ public class Com_videoTest {
 
 		int page = 1;
 
-		List<Com_videoDTO> list = dao.listPage(page);
+		List<Com_videoVO> list = dao.listPage(page);
 
-		for (Com_videoDTO Com_videoDTO : list) {
+		for (Com_videoVO Com_videoDTO : list) {
 			logger.info(Com_videoDTO.getVi_no() + ":" + Com_videoDTO.getVi_name());
 		}
 	}
@@ -91,9 +91,9 @@ public class Com_videoTest {
 		cri.setPage(2);
 		cri.setPerPageNum(20);
 
-		List<Com_videoDTO> list = dao.listCriteria(cri);
+		List<Com_videoVO> list = dao.listCriteria(cri);
 
-		for (Com_videoDTO Com_videoDTO : list) {
+		for (Com_videoVO Com_videoDTO : list) {
 			logger.info(Com_videoDTO.toString());
 		}
 	}
@@ -129,9 +129,9 @@ public class Com_videoTest {
 
 		logger.info("=====================================");
 
-		List<Com_videoDTO> list = dao.listSearch(cri);
+		List<Com_videoVO> list = dao.listSearch(cri);
 
-		for (Com_videoDTO Com_videoDTO : list) {
+		for (Com_videoVO Com_videoDTO : list) {
 			logger.info(Com_videoDTO.getVi_no() + ":" + Com_videoDTO.getVi_name());
 		}
 

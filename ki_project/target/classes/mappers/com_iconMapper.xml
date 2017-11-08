@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.kiosk.mapper.com_iconMapper">
 
-	<select id="read" resultType="Com_iconDTO">
+	<select id="read" resultType="Com_iconVO">
 		select
 		ic_no,ic_name,ic_icon,ic_able,ic_ndt
 		from com_icon
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_icon where ic_no = #{ic_no}
 	</delete>
 
-	<select id="listAll" resultType="Com_iconDTO">
+	<select id="listAll" resultType="Com_iconVO">
  		<![CDATA[ select * from com_icon]]>
 	</select>
 	
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 SELECT LAST_INSERT_ID(ic_no) from com_icon order by ic_no desc limit 1;
 	</select>
 
-	<select id="listPage" resultType="Com_iconDTO">
+	<select id="listPage" resultType="Com_iconVO">
  		<![CDATA[
 		select 
 		ic_no,ic_name,ic_icon,ic_able,ic_ndt
@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		]]>
 	</select>
 
-	<select id="listCriteria" resultType="Com_iconDTO">
+	<select id="listCriteria" resultType="Com_iconVO">
  		<![CDATA[
 		select 
 		ic_no,ic_name,ic_icon,ic_able,ic_ndt
@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</sql>
 
-	<select id="listSearch" resultType="Com_iconDTO">
+	<select id="listSearch" resultType="Com_iconVO">
 		<![CDATA[  
 		 select * 
 		 from com_icon 

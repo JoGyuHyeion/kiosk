@@ -5,11 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.dto.Com_bgImgDTO;
-import org.kiosk.dto.Com_bgImgDTO;
-import org.kiosk.persistence.JsonBgImgDAO;
+import org.kiosk.persistence.Com_bgImgDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,7 +22,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class JsonBgImgTest {
 
 	@Inject
-	private JsonBgImgDAO dao;
+	private Com_bgImgDAO dao;
 
 	private static Logger logger = LoggerFactory.getLogger(JsonBgImgTest.class);
 
@@ -33,7 +32,7 @@ public class JsonBgImgTest {
 	// @Test
 	public void testCreate() throws Exception {
 
-		Com_bgImgDTO dto = new Com_bgImgDTO();
+		Com_bgImgVO dto = new Com_bgImgVO();
 		dto.setBi_able(true);
 		dto.setBi_img("아이콘");
 		dto.setBi_name("아이콘 이름");
@@ -50,7 +49,7 @@ public class JsonBgImgTest {
 	// @Test
 	public void testUpdate() throws Exception {
 
-		Com_bgImgDTO dto = new Com_bgImgDTO();
+		Com_bgImgVO dto = new Com_bgImgVO();
 		dto.setBi_able(true);
 		dto.setBi_img("아이콘");
 		dto.setBi_name("아이콘 이름");
@@ -81,9 +80,9 @@ public class JsonBgImgTest {
 
 		int page = 1;
 
-		List<Com_bgImgDTO> list = dao.listPage(page);
+		List<Com_bgImgVO> list = dao.listPage(page);
 
-		for (Com_bgImgDTO Com_bgImgDTO : list) {
+		for (Com_bgImgVO Com_bgImgDTO : list) {
 			logger.info(Com_bgImgDTO.getBi_no() + ":" + Com_bgImgDTO.getBi_name());
 		}
 	}
@@ -95,9 +94,9 @@ public class JsonBgImgTest {
 		cri.setPage(2);
 		cri.setPerPageNum(20);
 
-		List<Com_bgImgDTO> list = dao.listCriteria(cri);
+		List<Com_bgImgVO> list = dao.listCriteria(cri);
 
-		for (Com_bgImgDTO Com_bgImgDTO : list) {
+		for (Com_bgImgVO Com_bgImgDTO : list) {
 			logger.info(Com_bgImgDTO.toString());
 		}
 	}
@@ -133,9 +132,9 @@ public class JsonBgImgTest {
 
 		logger.info("=====================================");
 
-		List<Com_bgImgDTO> list = dao.listSearch(cri);
+		List<Com_bgImgVO> list = dao.listSearch(cri);
 
-		for (Com_bgImgDTO Com_bgImgDTO : list) {
+		for (Com_bgImgVO Com_bgImgDTO : list) {
 			logger.info(Com_bgImgDTO.getBi_no() + ":" + Com_bgImgDTO.getBi_name());
 		}
 

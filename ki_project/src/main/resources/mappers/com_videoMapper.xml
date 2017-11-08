@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.kiosk.mapper.com_videoMapper">
 
-	<select id="read" resultType="Com_videoDTO">
+	<select id="read" resultType="Com_videoVO">
 		select
 		vi_no,vi_name,vi_video,vi_ndt
 		from com_video
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_video where vi_no = #{vi_no}
 	</delete>
 
-	<select id="listAll" resultType="Com_videoDTO">
+	<select id="listAll" resultType="Com_videoVO">
  		<![CDATA[ select * from com_video]]>
 	</select>
 
@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LAST_INSERT_ID(vi_no) from com_video order by vi_no desc limit 1;
 	</select>
 
-	<select id="listPage" resultType="Com_videoDTO">
+	<select id="listPage" resultType="Com_videoVO">
  		<![CDATA[
 		select 
 		vi_no,vi_name,vi_video,vi_ndt
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		]]>
 	</select>
 
-	<select id="listCriteria" resultType="Com_videoDTO">
+	<select id="listCriteria" resultType="Com_videoVO">
  		<![CDATA[
 		select 
 		vi_no,vi_name,vi_video,vi_ndt
@@ -108,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</sql>
 
-	<select id="listSearch" resultType="Com_videoDTO">
+	<select id="listSearch" resultType="Com_videoVO">
 		<![CDATA[  
 		 select * 
 		 from com_video 

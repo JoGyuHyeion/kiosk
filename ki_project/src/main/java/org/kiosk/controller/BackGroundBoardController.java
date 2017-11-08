@@ -2,10 +2,11 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+
+import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.dto.Com_bgImgDTO;
-import org.kiosk.service.JsonBgImgService;
+import org.kiosk.service.Com_bgImgService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ public class BackGroundBoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BackGroundBoardController.class);
 
 	@Inject
-	private JsonBgImgService service;
+	private Com_bgImgService service;
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -56,7 +57,7 @@ public class BackGroundBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_bgImgDTO board, RedirectAttributes rttr, @RequestParam("iconFile") MultipartFile iconFile)
+	public String registPOST(Com_bgImgVO board, RedirectAttributes rttr, @RequestParam("iconFile") MultipartFile iconFile)
 			throws Exception {
 		logger.info("backGroundboard/register - POST");
 		logger.info("regist post ...........");
@@ -80,7 +81,7 @@ public class BackGroundBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_bgImgDTO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_bgImgVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("backGroundboard/modifyPage - POST");
 		logger.info(cri.toString());
 		service.modify(board);

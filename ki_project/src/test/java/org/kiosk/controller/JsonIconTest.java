@@ -4,10 +4,10 @@ import java.util.List;
 import javax.inject.Inject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.kiosk.domain.Com_iconVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.dto.Com_iconDTO;
-import org.kiosk.persistence.JsoniconDAO;
+import org.kiosk.persistence.Com_iconDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,7 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class JsonIconTest {
 
 	@Inject
-	private JsoniconDAO dao;
+	private Com_iconDAO dao;
 
 	private static Logger logger = LoggerFactory.getLogger(JsonIconTest.class);
 
@@ -31,7 +31,7 @@ public class JsonIconTest {
 	@Test
 	public void testCreate() throws Exception {
 
-		Com_iconDTO dto = new Com_iconDTO();
+		Com_iconVO dto = new Com_iconVO();
 		dto.setIc_able(true);
 		dto.setIc_icon("아이콘");
 		dto.setIc_name("아이콘 이름");
@@ -48,7 +48,7 @@ public class JsonIconTest {
 	// @Test
 	public void testUpdate() throws Exception {
 
-		Com_iconDTO dto = new Com_iconDTO();
+		Com_iconVO dto = new Com_iconVO();
 		dto.setIc_able(true);
 		dto.setIc_icon("아이콘");
 		dto.setIc_name("아이콘 이름");
@@ -79,9 +79,9 @@ public class JsonIconTest {
 
 		int page = 1;
 
-		List<Com_iconDTO> list = dao.listPage(page);
+		List<Com_iconVO> list = dao.listPage(page);
 
-		for (Com_iconDTO Com_iconDTO : list) {
+		for (Com_iconVO Com_iconDTO : list) {
 			logger.info(Com_iconDTO.getIc_no() + ":" + Com_iconDTO.getIc_name());
 		}
 	}
@@ -93,9 +93,9 @@ public class JsonIconTest {
 		cri.setPage(2);
 		cri.setPerPageNum(20);
 
-		List<Com_iconDTO> list = dao.listCriteria(cri);
+		List<Com_iconVO> list = dao.listCriteria(cri);
 
-		for (Com_iconDTO Com_iconDTO : list) {
+		for (Com_iconVO Com_iconDTO : list) {
 			logger.info(Com_iconDTO.toString());
 		}
 	}
@@ -131,9 +131,9 @@ public class JsonIconTest {
 
 		logger.info("=====================================");
 
-		List<Com_iconDTO> list = dao.listSearch(cri);
+		List<Com_iconVO> list = dao.listSearch(cri);
 
-		for (Com_iconDTO Com_iconDTO : list) {
+		for (Com_iconVO Com_iconDTO : list) {
 			logger.info(Com_iconDTO.getIc_no() + ":" + Com_iconDTO.getIc_name());
 		}
 

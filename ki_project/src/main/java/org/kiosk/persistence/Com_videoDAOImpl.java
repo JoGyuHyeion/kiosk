@@ -3,9 +3,9 @@ package org.kiosk.persistence;
 import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
+import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.dto.Com_videoDTO;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -17,19 +17,19 @@ public class Com_videoDAOImpl implements Com_videoDAO {
 	private static String namespace = "org.kiosk.mapper.com_videoMapper";
 
 	@Override
-	public void create(Com_videoDTO dto) throws Exception {
+	public void create(Com_videoVO dto) throws Exception {
 		session.insert(namespace + ".create", dto);
 
 	}
 
 	@Override
-	public Com_videoDTO read(Integer vi_no) throws Exception {
+	public Com_videoVO read(Integer vi_no) throws Exception {
 		return session.selectOne(namespace + ".read", vi_no);
 
 	}
 
 	@Override
-	public void update(Com_videoDTO dto) throws Exception {
+	public void update(Com_videoVO dto) throws Exception {
 		session.update(namespace + ".update", dto);
 
 	}
@@ -41,7 +41,7 @@ public class Com_videoDAOImpl implements Com_videoDAO {
 	}
 
 	@Override
-	public List<Com_videoDTO> listAll() throws Exception {
+	public List<Com_videoVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
 
@@ -51,7 +51,7 @@ public class Com_videoDAOImpl implements Com_videoDAO {
 	}
 
 	@Override
-	public List<Com_videoDTO> listPage(int page) throws Exception {
+	public List<Com_videoVO> listPage(int page) throws Exception {
 		if (page <= 0) {
 			page = 1;
 		}
@@ -62,7 +62,7 @@ public class Com_videoDAOImpl implements Com_videoDAO {
 	}
 
 	@Override
-	public List<Com_videoDTO> listCriteria(Criteria cri) throws Exception {
+	public List<Com_videoVO> listCriteria(Criteria cri) throws Exception {
 		return session.selectList(namespace + ".listCriteria", cri);
 	}
 
@@ -72,7 +72,7 @@ public class Com_videoDAOImpl implements Com_videoDAO {
 	}
 
 	@Override
-	public List<Com_videoDTO> listSearch(SearchCriteria cri) throws Exception {
+	public List<Com_videoVO> listSearch(SearchCriteria cri) throws Exception {
 		return session.selectList(namespace + ".listSearch", cri);
 	}
 

@@ -2,10 +2,11 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+
+import org.kiosk.domain.Com_iconVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.dto.Com_iconDTO;
-import org.kiosk.service.JsoniconService;
+import org.kiosk.service.Com_iconService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ public class IconBoardController {
 	private static final Logger logger = LoggerFactory.getLogger(IconBoardController.class);
 
 	@Inject
-	private JsoniconService service;
+	private Com_iconService service;
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -56,7 +57,7 @@ public class IconBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_iconDTO board, RedirectAttributes rttr, @RequestParam("iconFile") MultipartFile iconFile)
+	public String registPOST(Com_iconVO board, RedirectAttributes rttr, @RequestParam("iconFile") MultipartFile iconFile)
 			throws Exception {
 		logger.info("iconboard/register - POST");
 		logger.info("regist post ...........");
@@ -80,7 +81,7 @@ public class IconBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_iconDTO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
 		logger.info(cri.toString());
 		service.modify(board);

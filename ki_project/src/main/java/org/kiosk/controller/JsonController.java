@@ -5,21 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
+import org.kiosk.domain.Com_bgImgVO;
+import org.kiosk.domain.Com_buildingVO;
+import org.kiosk.domain.Com_iconVO;
+import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.SampleVO;
-import org.kiosk.dto.Com_buildingDTO;
-import org.kiosk.dto.Com_iconDTO;
-import org.kiosk.dto.Com_videoDTO;
 import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
+import org.kiosk.service.Com_bgImgService;
 import org.kiosk.service.JsonGelleryService;
 import org.kiosk.service.JsonNoticeService;
 import org.kiosk.service.JsonStaffService;
-import org.kiosk.service.JsonbuildingService;
-import org.kiosk.service.JsoniconService;
-import org.kiosk.service.JsonvideoService;
+import org.kiosk.service.Com_buildingService;
+import org.kiosk.service.Com_iconService;
+import org.kiosk.service.Com_videoService;
 import org.kiosk.service.MateService;
 import org.kiosk.service.TeamsService;
 import org.slf4j.Logger;
@@ -49,11 +51,13 @@ public class JsonController {
 	@Inject
 	private TeamsService teamsService;
 	@Inject
-	private JsonbuildingService jsonbuildingService;
+	private Com_buildingService jsonbuildingService;
 	@Inject
-	private JsoniconService jsoniconService;
+	private Com_iconService jsoniconService;
 	@Inject
-	private JsonvideoService jsonvideoService;
+	private Com_videoService jsonvideoService;
+	@Inject
+	private Com_bgImgService jsonBgImgService;
 
 	@RequestMapping(value = "/sendStaff/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> sendStaff(@PathVariable("section_cd") String section_cd) {
@@ -110,18 +114,18 @@ public class JsonController {
 	}
 
 	@RequestMapping(value = "/sendBuilding", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, List<Com_buildingDTO>>> sendBuilding() {
-		logger.info("json/sendNotice");
-		ResponseEntity<Map<String, List<Com_buildingDTO>>> entity = null;
-		Map<String, List<Com_buildingDTO>> buildingList = null;
+	public ResponseEntity<Map<String, List<Com_buildingVO>>> sendBuilding() {
+		logger.info("json/sendBuilding");
+		ResponseEntity<Map<String, List<Com_buildingVO>>> entity = null;
+		Map<String, List<Com_buildingVO>> buildingList = null;
 		try {
-			buildingList = new HashMap<String, List<Com_buildingDTO>>();
-			String rootName = Com_buildingDTO.class.getAnnotation(JsonRootName.class).value();
+			buildingList = new HashMap<String, List<Com_buildingVO>>();
+			String rootName = Com_buildingVO.class.getAnnotation(JsonRootName.class).value();
 			buildingList.put(rootName, jsonbuildingService.listAll());
 
 			buildingList.put("원효관", jsonbuildingService.listAll());
 
-			entity = new ResponseEntity<Map<String, List<Com_buildingDTO>>>(buildingList, HttpStatus.OK);
+			entity = new ResponseEntity<Map<String, List<Com_buildingVO>>>(buildingList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -130,9 +134,9 @@ public class JsonController {
 	}
 
 	@RequestMapping(value = "/sendIcon", method = RequestMethod.GET)
-	public ResponseEntity<List<Com_iconDTO>> sendIcon() {
-		logger.info("json/sendNotice");
-		ResponseEntity<List<Com_iconDTO>> entity = null;
+	public ResponseEntity<List<Com_iconVO>> sendIcon() {
+		logger.info("json/sendIcon");
+		ResponseEntity<List<Com_iconVO>> entity = null;
 		try {
 			entity = new ResponseEntity<>(jsoniconService.listAll(), HttpStatus.OK);
 		} catch (Exception e) {
@@ -143,11 +147,24 @@ public class JsonController {
 	}
 
 	@RequestMapping(value = "/sendVideo", method = RequestMethod.GET)
-	public ResponseEntity<List<Com_videoDTO>> sendVideo() {
-		logger.info("json/sendNotice");
-		ResponseEntity<List<Com_videoDTO>> entity = null;
+	public ResponseEntity<List<Com_videoVO>> sendVideo() {
+		logger.info("json/sendVideo");
+		ResponseEntity<List<Com_videoVO>> entity = null;
 		try {
 			entity = new ResponseEntity<>(jsonvideoService.listAll(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/sendBgImage", method = RequestMethod.GET)
+	public ResponseEntity<List<Com_bgImgVO>> sendBgImage() {
+		logger.info("json/sendBgImage");
+		ResponseEntity<List<Com_bgImgVO>> entity = null;
+		try {
+			entity = new ResponseEntity<>(jsonBgImgService.listAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

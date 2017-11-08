@@ -10,8 +10,8 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kiosk.dto.Com_buildingDTO;
-import org.kiosk.persistence.JsonbuildingDAO;
+import org.kiosk.domain.Com_buildingVO;
+import org.kiosk.persistence.Com_buildingDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,7 +28,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class JsonBuildingTest {
 
 	@Inject
-	private JsonbuildingDAO dao;
+	private Com_buildingDAO dao;
 
 	private static Logger logger = LoggerFactory.getLogger(JsonBuildingTest.class);
 
@@ -38,7 +38,7 @@ public class JsonBuildingTest {
 //	@Test
 	public void testCreate() throws Exception {
 
-		Com_buildingDTO dto = new Com_buildingDTO();
+		Com_buildingVO dto = new Com_buildingVO();
 		dto.setBu_img("사진");
 		dto.setBu_name("1층");
 		dto.setBu_ndt(sqlDate);
@@ -54,7 +54,7 @@ public class JsonBuildingTest {
 	// @Test
 	public void testUpdate() throws Exception {
 
-		Com_buildingDTO dto = new Com_buildingDTO();
+		Com_buildingVO dto = new Com_buildingVO();
 		dto.setBu_no(1);
 		dto.setBu_img("사진");
 		dto.setBu_name("1층");
@@ -77,7 +77,7 @@ public class JsonBuildingTest {
 //	@Test
 	public void whenSerializingUsingJsonRootName_thenCorrect() throws JsonProcessingException {
 
-		Com_buildingDTO dto = new Com_buildingDTO();
+		Com_buildingVO dto = new Com_buildingVO();
 		dto.setBu_img("img");
 		dto.setBu_name("name");
 		dto.setBu_ndt(sqlDate);
@@ -94,7 +94,7 @@ public class JsonBuildingTest {
 	@Test
 	public void whenSerializingUsingListJsonRootName_thenCorrect() throws JsonProcessingException {
 
-		Com_buildingDTO dto = new Com_buildingDTO();
+		Com_buildingVO dto = new Com_buildingVO();
 		dto.setBu_img("img");
 		dto.setBu_name("name");
 		dto.setBu_ndt(sqlDate);
@@ -102,10 +102,10 @@ public class JsonBuildingTest {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
 		
-		List<Com_buildingDTO> list = new ArrayList<Com_buildingDTO>();
+		List<Com_buildingVO> list = new ArrayList<Com_buildingVO>();
 		list.add(dto);
 		list.add(dto);
-		String rootName = Com_buildingDTO.class.getAnnotation(JsonRootName.class).value();
+		String rootName = Com_buildingVO.class.getAnnotation(JsonRootName.class).value();
 		String result =mapper.writer().withRootName(rootName).writeValueAsString(list);
 		System.out.println(result);
 

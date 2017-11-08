@@ -2,9 +2,10 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+
+import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.dto.Com_videoDTO;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -56,7 +57,7 @@ public class MovieBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_videoDTO board, RedirectAttributes rttr,
+	public String registPOST(Com_videoVO board, RedirectAttributes rttr,
 			@RequestParam("videoFile") MultipartFile videoFile) throws Exception {
 		logger.info("movieboard/register - POST");
 		logger.info("regist post ...........");
@@ -80,7 +81,7 @@ public class MovieBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_videoDTO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_videoVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("movieboard/modifyPage - POST");
 		logger.info(cri.toString());
 		service.modify(board);

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.kiosk.mapper.com_bgimgMapper">
 
-	<select id="read" resultType="Com_bgImgDTO">
+	<select id="read" resultType="Com_bgImgVO">
 		select
 		bi_no,bi_name,bi_img,bi_able,bi_ndt
 		from com_bgImg
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_bgImg where bi_no = #{bi_no}
 	</delete>
 
-	<select id="listAll" resultType="Com_bgImgDTO">
+	<select id="listAll" resultType="Com_bgImgVO">
  		<![CDATA[ select * from com_bgImg]]>
 	</select>
 	
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 SELECT LAST_INSERT_ID(bi_no) from com_bgImg order by bi_no desc limit 1;
 	</select>
 
-	<select id="listPage" resultType="Com_bgImgDTO">
+	<select id="listPage" resultType="Com_bgImgVO">
  		<![CDATA[
 		select 
 		bi_no,bi_name,bi_img,bi_able,bi_ndt
@@ -53,7 +53,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		]]>
 	</select>
 
-	<select id="listCriteria" resultType="Com_bgImgDTO">
+	<select id="listCriteria" resultType="Com_bgImgVO">
  		<![CDATA[
 		select 
 		bi_no,bi_name,bi_img,bi_able,bi_ndt
@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</sql>
 
-	<select id="listSearch" resultType="Com_bgImgDTO">
+	<select id="listSearch" resultType="Com_bgImgVO">
 		<![CDATA[  
 		 select * 
 		 from com_bgImg 
