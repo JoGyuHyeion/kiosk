@@ -60,8 +60,8 @@ public class Com_staffTest {
 	public void testUpdate() throws Exception {
 
 		Com_staffVO vo = new Com_staffVO();
-		vo.setSt_nm("조규현");
-		vo.setSt_no(1139);
+		//vo.setSt_nm("조규현");
+		//vo.setSt_no(1139);
 
 		dao.update(vo);
 	}

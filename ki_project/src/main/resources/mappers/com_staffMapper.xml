@@ -7,26 +7,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into com_staff
-		(st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt)
-		values(#{st_no},#{st_position},#{st_tel},#{st_email},#{st_job},#{st_profile},#{img_filenm},#{img_filenm1},#{section_cd},#{team_cd},#{st_team},#{st_sort},#{st_display},#{st_status},#{st_wdt},#{st_edt})
+		(st_no,st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt)
+		values(#{st_no},#{st_nm},#{st_position},#{st_tel},#{st_email},#{st_job},#{st_profile},#{img_filenm},#{img_filenm1},#{section_cd},#{team_cd},#{st_team},#{st_sort},#{st_display},#{st_status},now(),now())
 	</insert>
 
 	<select id="read" resultType="org.kiosk.domain.Com_staffVO">
 		select
-		st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		st_no,st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
 		from
 		com_staff
 		where st_no = #{st_no}
 	</select>
 
 	<update id="update">
-		update com_staff set st_no =#{st_no}, st_position
+		update com_staff set st_no =#{st_no},st_nm=#{st_nm},st_position
 		=#{st_position},st_tel =#{st_tel},st_email =#{st_email},st_job
 		=#{st_job},st_profile =#{st_profile},img_filenm
 		=#{img_filenm},img_filenm1 =#{img_filenm1},section_cd
 		=#{section_cd},team_cd =#{team_cd},st_team =#{st_team},st_sort
-		=#{st_sort},st_display =#{st_display},st_status =#{st_status},st_wdt
-		=#{st_wdt},st_edt =#{st_edt}
+		=#{st_sort},st_display =#{st_display},st_status =#{st_status},st_edt =now()
 		where st_no = #{st_no}
 	</update>
 
@@ -37,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listAll" resultType="org.kiosk.domain.Com_staffVO">
 		 <![CDATA[
 		 select 
-		 st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		 st_no,st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
 		 from 
 		 com_staff 
 		 where st_no > 0 
@@ -52,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listPage" resultType="Com_staffVO">
 		 <![CDATA[
 		 select 
-		 st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		 st_no,st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
 		 from 
 		 com_staff 
 		 where st_no > 0 
@@ -64,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listCriteria" resultType="Com_staffVO">
 		 <![CDATA[
 		 select 
-		 st_no,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
+		 st_no,st_nm,st_position,st_tel,st_email,st_job,st_profile,img_filenm,img_filenm1,section_cd,team_cd,st_team,st_sort,st_display,st_status,st_wdt,st_edt
 		 from 
 		 com_staff 
 		 where st_no > 0 

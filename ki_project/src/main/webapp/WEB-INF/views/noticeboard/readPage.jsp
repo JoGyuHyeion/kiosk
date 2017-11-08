@@ -112,30 +112,21 @@ pageEncoding="UTF-8"%>
                     </div>
 
                     <script>
-                        $(document).ready(function() {
+                    
+                    $(document)
+					.ready(
+							function() {
+								var formObj = $("form[role='form']");
+								console.log(formObj);
 
-                        var formObj = $("form[role='form']");
+								$("#change").on("click",function() {
+													self.location = "/noticeboard/modifyPage?page=${cri.page}&perPageNum=${cri.perPageNum}&bbs_no=${com_boardVO.bbs_no}";
+												});
 
-                        console.log(formObj);
-
-                        $(".btn-primary").on("click",function() {
-                        formObj.attr("action","/noticeboard/modifyPage");
-                        formObj.attr("method","get");
-                        formObj.submit();
-                        });
-
-                        $(".btn-danger").on("click",function() {
-                        formObj.attr("action","/noticeboard/removePage");
-                        formObj.submit();
-                        });
-
-                        $(".btn-warning").on("click",function() {
-                        formObj.attr("method","get");
-                        formObj.attr("action","/noticeboard/list");
-                        formObj.submit();
-                        });
-
-                        });
+								$("#back").on("click", function() {
+									self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+								});
+							});
                     </script>
 
                 </div>
