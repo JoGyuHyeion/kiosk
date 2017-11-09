@@ -5,6 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.kiosk.mapper.Com_boardMapper">
 
+	<insert id="create">
+		insert into com_board
+		(bbs_no,brd_cd,bbs_pno,bbs_lv,bbs_sort,bbs_title,bbs_content,bbs_file,bbs_notice,bbs_tag,bbs_cate,bbs_hits,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt)
+		values
+		(#{bbs_no},#{brd_cd},#{bbs_pno},#{bbs_lv},#{bbs_sort},#{bbs_title},#{bbs_content},#{bbs_file},#{bbs_notice},#{bbs_tag},#{bbs_cate},#{bbs_hits},#{bbs_state},#{section_cd},#{bbs_exp_inx},#{bbs_exp_sdt},#{bbs_exp_edt},now(),now())
+	</insert>
+
 	<select id="read" resultType="Com_boardVO">
 		select
 		bbs_no,brd_cd,bbs_pno,bbs_lv,bbs_sort,bbs_title,bbs_content,bbs_file,bbs_notice,bbs_tag,bbs_cate,bbs_hits,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt
@@ -13,17 +20,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bbs_no = #{bbs_no}
 	</select>
 
-	<insert id="create">
-		insert into com_board
-		(bbs_no,brd_cd,bbs_pno,bbs_lv,bbs_sort,bbs_title,bbs_content,bbs_file,bbs_notice,bbs_tag,bbs_cate,bbs_hits,bbs_state,section_cd,bbs_exp_inx,bbs_exp_sdt,bbs_exp_edt,bbs_ndt,bbs_edt)
-		values
-		(#{bbs_no},#{brd_cd},#{bbs_pno},#{bbs_lv},#{bbs_sort},#{bbs_title},#{bbs_content},#{bbs_file},#{bbs_notice},#{bbs_tag},#{bbs_cate},#{bbs_hits},#{bbs_state},#{section_cd},#{bbs_exp_inx},#{bbs_exp_sdt},#{bbs_exp_edt},now(),now())
-	</insert>
-
 	<update id="update">
 		update com_board set
 		brd_cd = #{brd_cd},
-		bbs_pno = #{bbs_pno},
+		bbs_pno =
+		#{bbs_pno},
 		bbs_lv = #{bbs_lv},
 		bbs_sort = #{bbs_sort},
 		bbs_title =
@@ -85,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bbs_no > 0 
  		]]>
 	</select>
-	
+
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
@@ -94,9 +95,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="searchType == 'c'.toString()">
 				and bbs_content like CONCAT('%', #{keyword}, '%')
 			</if>
-		
+
 			<if test="searchType == 'tc'.toString()">
-				and ( bbs_title like CONCAT('%', #{keyword}, '%') OR bbs_content
+				and ( bbs_title like CONCAT('%', #{keyword}, '%') OR
+				bbs_content
 				like
 				CONCAT('%', #{keyword}, '%'))
 			</if>
@@ -126,7 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="search"></include>
 
 	</select>
-	
-	
+
+
 
 </mapper>
