@@ -41,8 +41,6 @@
 							<input type='hidden' name='brd_cd' value="${com_boardVO.brd_cd}">
 							<input type='hidden' name='page' value="${cri.page}"> <input
 								type='hidden' name='perPageNum' value="${cri.perPageNum}">
-							<input type='hidden' name='searchType' value="${cri.searchType}">
-							<input type='hidden' name='keyword' value="${cri.keyword}">
 
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
@@ -99,12 +97,11 @@
 									<button type="submit"
 										class="btn btn-primary waves-effect w-md waves-light m-b-5"
 										id="change">수정</button>
-									<button type="submit"
+									<button type="button"
 										class="btn btn-warning waves-effect w-md waves-light m-b-5"
-										id="back">돌아가기</button>
+										id="back" onclick="history.go(-1)">돌아가기</button>
 								</div>
 							</div>
-
 						</form>
 					</div>
 
@@ -112,27 +109,6 @@
 				</div>
 			</div>
 			<!-- end col -->
-
-			<script>
-				$(document)
-						.ready(
-								function() {
-									var formObj = $("form[role='form']");
-									console.log(formObj);
-									$("#change")
-											.on(
-													"click",
-													function() {
-														self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
-																+ "&searchType=${cri.searchType}&keyword=${cri.keyword}";
-													});
-
-									$("#back").on("click", function() {
-
-										self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-									});
-								});
-			</script>
 		</div>
 	</div>
 </section>

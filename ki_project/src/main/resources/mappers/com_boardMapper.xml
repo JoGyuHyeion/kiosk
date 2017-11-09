@@ -88,20 +88,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
+		<if test="keyword != null">
 				and bbs_title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'c'.toString()">
-				and bbs_content like CONCAT('%', #{keyword}, '%')
-			</if>
-
-			<if test="searchType == 'tc'.toString()">
-				and ( bbs_title like CONCAT('%', #{keyword}, '%') OR
-				bbs_content
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
 		</if>
 	</sql>
 

@@ -48,6 +48,13 @@ public class GalleryBoardController {
 
 		model.addAttribute("pageMaker", pageMaker);
 	}
+	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
+	public void read(@RequestParam("img_no") int img_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
+			throws Exception {
+		logger.info("galleryboard/readPage - GET");
+		model.addAttribute(service.read(img_no));
+
+	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
@@ -87,7 +94,6 @@ public class GalleryBoardController {
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -95,6 +101,20 @@ public class GalleryBoardController {
 		logger.info(rttr.toString());
 
 		return "redirect:/galleryboard/list";
+	}
+	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
+	public String remove(@RequestParam("img_no") int img_no, SearchCriteria cri, RedirectAttributes rttr)
+			throws Exception {
+		logger.info("galleryboard/removePage - POST");
+		service.remove(img_no);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("keyword", cri.getKeyword());
+
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		return "redirect:/galleryboard/list?page=1";
 	}
 
 }

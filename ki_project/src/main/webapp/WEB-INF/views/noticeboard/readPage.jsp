@@ -106,29 +106,10 @@ pageEncoding="UTF-8"%>
                            		class="btn btn-danger waves-effect w-md waves-light m-b-5"
                            		id="delete">삭제</button>
                         </form>
-                        <button type="submit"
+                        <button type="button"
                             class="btn btn-warning waves-effect w-md waves-light m-b-5"
-                            id="back">돌아가기</button>
+                            id="back" onclick="history.go(-1)">돌아가기</button>
                     </div>
-
-                    <script>
-                    
-                    $(document)
-					.ready(
-							function() {
-								var formObj = $("form[role='form']");
-								console.log(formObj);
-
-								$("#change").on("click",function() {
-													self.location = "/noticeboard/modifyPage?page=${cri.page}&perPageNum=${cri.perPageNum}&bbs_no=${com_boardVO.bbs_no}";
-												});
-
-								$("#back").on("click", function() {
-									self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-								});
-							});
-                    </script>
-
                 </div>
 
             </div>

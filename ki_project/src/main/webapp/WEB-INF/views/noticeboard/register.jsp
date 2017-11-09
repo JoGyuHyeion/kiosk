@@ -98,7 +98,6 @@
 				</div>
 			</div>
 			<!-- end col -->
-
 		</div>
 	</div>
 	<!-- /.content -->

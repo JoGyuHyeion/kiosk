@@ -4,7 +4,6 @@ import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.domain.Com_imageVO;
-import org.kiosk.domain.Com_imageVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.springframework.stereotype.Repository;
@@ -56,7 +55,7 @@ public class Com_imageDAOImpl implements Com_imageDAO {
 			page = 1;
 		}
 
-		page = (page - 1) * 10;
+		page = (page - 1) * 6;
 
 		return session.selectList(namespace + ".listPage", page);
 	}
