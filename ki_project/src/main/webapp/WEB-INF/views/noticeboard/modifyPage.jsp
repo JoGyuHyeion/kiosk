@@ -123,12 +123,13 @@
 											.on(
 													"click",
 													function() {
-														self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+														self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
 																+ "&searchType=${cri.searchType}&keyword=${cri.keyword}";
 													});
 
 									$("#back").on("click", function() {
-										formObj.submit();
+
+										self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 									});
 								});
 			</script>

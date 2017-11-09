@@ -23,7 +23,7 @@
 						</ol>
 					</div>
 					<h4 class="page-title">
-						직원수정 <small>직원을 <code>수정</code> 할 수 있습니다.
+						직원수정 <small>직원을 <code>등록</code> 할 수 있습니다.
 						</small>
 					</h4>
 				</div>
@@ -41,7 +41,6 @@
 							<input type='hidden' name='page'> <input type='hidden'
 								name='perPageNum'"> <input type='hidden'
 								name='searchType'"> <input type='hidden' name='keyword'>
-
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- st_nm -->
@@ -187,15 +186,8 @@
 								function() {
 									var formObj = $("form[role='form']");
 									console.log(formObj);
-									$("#back")
-											.on(
-													"click",
-													function() {
+									$("#back").on("click",function() {
 														self.location = "/staffboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-													});
-
-									$("#back").on("click", function() {
-										formObj.submit();
 									});
 								});
 			</script>

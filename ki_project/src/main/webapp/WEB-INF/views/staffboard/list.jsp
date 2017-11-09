@@ -107,7 +107,7 @@
 
 										<td>${com_staffVO.st_job}</td>
 
-										<td>${com_staffVO.st_nm}</td>
+										<td><a href="/staffboard/readPage?st_no=${com_staffVO.st_no}">${com_staffVO.st_nm}</a></td>
 
 										<td>${com_staffVO.st_tel}</td>
 
