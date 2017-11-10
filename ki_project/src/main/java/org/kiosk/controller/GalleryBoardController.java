@@ -38,7 +38,7 @@ public class GalleryBoardController {
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("galleryboard/list - GET");
 		logger.info(cri.toString());
-
+		cri.setPerPageNum(6);
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
 		PageMaker pageMaker = new PageMaker();

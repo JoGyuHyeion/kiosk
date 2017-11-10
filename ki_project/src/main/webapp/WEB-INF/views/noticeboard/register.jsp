@@ -71,8 +71,6 @@
 												name="bbs_exp_edt">
 										</div>
 									</div>
-
-
 									<!-- bbs_state     -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">표시여부</label>

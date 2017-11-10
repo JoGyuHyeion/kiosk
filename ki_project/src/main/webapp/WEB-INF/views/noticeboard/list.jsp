@@ -15,13 +15,8 @@
 		<input type='hidden' name='page' value="${cri.page}"> <input
 			type='hidden' name='perPageNum' value="${cri.perPageNum}"> <input
 			type='hidden' name='keyword' value="${cri.keyword}">
-
 	</form>
 	<div class="container">
-
-
-
-
 		<!-- Page-Title -->
 		<div class="row">
 			<div class="col-sm-12">

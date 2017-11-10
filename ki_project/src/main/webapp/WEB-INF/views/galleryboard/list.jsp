@@ -6,10 +6,7 @@
 <%@include file="../include/header.jsp"%>
 <!-- Main content -->
 <section class="wrapper">
-
-
 	<div class="container">
-
 		<!-- Page-Title -->
 		<div class="row">
 			<div class="col-sm-12">
@@ -51,7 +48,7 @@
 									<form action="/galleryboard/removePage" method="post">
 										<button type="submit"
 											class="btn btn-danger btn-inline waves-effect waves-light">
-											<i class="glyphicon  glyphicon-trash"></i>삭제
+											<i class="glyphicon glyphicon-trash"></i>삭제
 										</button>
 									</form>
 								</div>

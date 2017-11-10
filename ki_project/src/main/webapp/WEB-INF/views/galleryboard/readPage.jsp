@@ -42,41 +42,62 @@
 									<div class="form-group">
 										<label class="col-md-2 control-label">제목</label>
 										<div class="col-md-10">
-											<input type="text" class="form-control" placeholder="Name"
-												id="img_title" name="img_title">
+											<input type="text" class="form-control" readonly="readonly"
+												placeholder="Name" id="img_title" name="img_title"
+												value="${com_imageVO.img_title}">
 										</div>
 									</div>
-									<!-- img_filenm -->
-									<div class="form-group clearfix">
-										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="files[]" id="filer_input2"
-												multiple="multiple">
+									<!-- img -->
+									<div class="form-group">
+										<label class="col-md-2 control-label">사진</label>
+										<div class="col-md-10">
+											<img src="/resources/assets/images/properties/6.jpg">
 										</div>
 									</div>
-
 									<!-- img_gallery  노출 여부   -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
 											<input type="checkbox" name="img_gallery" id="img_gallery"
-												switch="none" /> <label for="img_gallery"
+												value="1" switch="none" onclick="return false" /> <label for="img_gallery"
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
 								</div>
 							</div>
-
-
-
 						</form>
 					</div>
 					<div class="form-group" style="text-align: center">
-						<button type="submit"
-							class="btn btn-primary waves-effect w-md waves-light m-b-5">수정</button>
-						<button type="submit"
-							class="btn btn-warning waves-effect w-md waves-light m-b-5">돌아가기</button>
+						<button type="button"
+							class="btn btn-primary waves-effect w-md waves-light m-b-5"
+							id="change">수정</button>
+						<form action="/galleryboard/removePage" method="post">
+							<input type="hidden" name="img_no" value="${com_imageVO.img_no}">
+							<button type="submit"
+								class="btn btn-danger waves-effect w-md waves-light m-b-5"
+								id="delete">삭제</button>
+						</form>
+						<button type="button"
+							class="btn btn-warning waves-effect w-md waves-light m-b-5"
+							id="back" onclick="history.go(-1)">돌아가기</button>
 					</div>
+					<script>
+						$(document)
+								.ready(
+										function() {
+											var formObj = $("form[role='form']");
+											console.log(formObj);
+
+											$("#change")
+													.on(
+															"click",
+															function() {
+																self.location = "/galleryboard/modifyPage?img_no=${com_imageVO.img_no}";
+															});
+
+										});
+					</script>
 
 				</div>
 			</div>
@@ -85,7 +106,13 @@
 
 		</div>
 		<!-- end row -->
+		<script>
 
+		if(${com_imageVO.img_gallery}==1){
+			$('input:checkbox[id="img_gallery"]').attr("checked", true);
+		}
+
+		</script>
 	</div>
 	<!-- end container -->
 </section>

@@ -34,8 +34,6 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-
-
 					<div class="row">
 						<form method="post" role="form">
 							<input type='hidden' name='brd_cd' value="${com_boardVO.brd_cd}">
@@ -88,8 +86,8 @@
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
 											<input type="checkbox" name="bbs_state" id="bbs_state"
-												value="1" switch="none" /> <label for="bbs_state"
-												data-on-label="On" data-off-label="Off"></label>
+												value="1" switch="none" /> <label
+												for="bbs_state" data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
 								</div>
@@ -104,12 +102,17 @@
 							</div>
 						</form>
 					</div>
-
-
 				</div>
 			</div>
 			<!-- end col -->
 		</div>
+		<script>
+
+			if(${com_boardVO.bbs_state}==1){
+				$('input:checkbox[id="bbs_state"]').attr("checked", true);
+			}
+
+		</script>
 	</div>
 </section>
 <%@include file="../include/footer.jsp"%>
