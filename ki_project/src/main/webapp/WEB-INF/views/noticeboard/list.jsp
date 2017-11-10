@@ -14,15 +14,9 @@
 
 		<input type='hidden' name='page' value="${cri.page}"> <input
 			type='hidden' name='perPageNum' value="${cri.perPageNum}"> <input
-			type='hidden' name='searchType' value="${cri.searchType}"> <input
 			type='hidden' name='keyword' value="${cri.keyword}">
-
 	</form>
 	<div class="container">
-
-
-
-
 		<!-- Page-Title -->
 		<div class="row">
 			<div class="col-sm-12">
@@ -46,20 +40,19 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<div class="col-sm-4">
-							<form role="form">
+						<form role="form" method="get">
+							<div class="col-sm-4">
 								<div class="form-group">
-									<input type="text" id="search-input" class="form-control"
+									<input type="text" id="search-input" class="form-control" name="keyword"
 										placeholder="Please Name">
-
 								</div>
-							</form>
-						</div>
-						<div class="col-sm-1">
-							<button type="submit" class="btn btn-danger">
-								<i class="fa fa-search"> 찾기</i>
-							</button>
-						</div>
+							</div>
+							<div class="col-sm-1">
+								<button type="submit" class="btn btn-danger">
+									<i class="fa fa-search" id="serch"> 찾기</i>
+								</button>
+							</div>
+						</form>
 					</div>
 
 					<div class="table-responsive">
@@ -89,7 +82,8 @@
 
 										<td>${com_boardVO.section_cd}</td>
 
-										<td><a href="/noticeboard/readPage?bbs_no=${com_boardVO.bbs_no}">${com_boardVO.bbs_title}</a></td>
+										<td><a
+											href="/noticeboard/readPage?bbs_no=${com_boardVO.bbs_no}">${com_boardVO.bbs_title}</a></td>
 
 										<td>${com_boardVO.bbs_exp_sdt}~${com_boardVO.bbs_exp_edt}</td>
 
@@ -156,8 +150,6 @@
 
 									self.location = "list"
 											+ '${pageMaker.makeQuery(1)}'
-											+ "&searchType="
-											+ $("select option:selected").val()
 											+ "&keyword="
 											+ $('#keywordInput').val();
 

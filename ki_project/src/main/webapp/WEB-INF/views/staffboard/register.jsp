@@ -34,13 +34,8 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-
-
 					<div class="row">
-						<form role="form" method="post" enctype="multipart/form-data">
-							<input type='hidden' name='page'> <input type='hidden'
-								name='perPageNum'"> <input type='hidden'
-								name='searchType'"> <input type='hidden' name='keyword'>
+						<form role="form" method="post">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- st_nm -->
@@ -91,13 +86,13 @@
 												name="st_profile"> ${com_staffVO.st_profile}</textarea>
 										</div>
 									</div>
-									<!-- st_filenm -->
+									<!-- img_filenm -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">사진</label>
 										<div class="col-md-10">
-											<input type="file" class="form-control" id="st_filenm"
-												name="imgFile" accept="image/*"> <small>사진
-												최소 사이즈는 가로320px 세로400px입니다.</small>
+											<input type="file" class="form-control" id="img_filenm"
+												name="img_filenm"> <small>사진 최소 사이즈는 가로320px
+												세로400px입니다.</small>
 										</div>
 									</div>
 								</div>
@@ -155,27 +150,20 @@
 												<input type="radio" name="st_status" id="st_status4"
 													value="4"> <label for="st_status4"> 교육 </label>
 											</div>
-
 										</div>
-										<!-- end col -->
 									</div>
-
-
-
 								</div>
 							</div>
+							<div class="form-group" style="text-align: center">
+								<button type="submit"
+									class="btn btn-primary waves-effect w-md waves-light m-b-5"
+									id="change">등록</button>
+								<button type="button"
+									class="btn btn-warning waves-effect w-md waves-light m-b-5"
+									id="back">돌아가기</button>
+							</div>
+						</form>
 					</div>
-					<div class="form-group" style="text-align: center">
-						<button type="submit"
-							class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
-						<button type="button"
-							class="btn btn-warning waves-effect w-md waves-light m-b-5"
-							id="back">돌아가기</button>
-					</div>
-					</form>
-
-
-
 				</div>
 			</div>
 			<!-- end col -->
@@ -186,15 +174,18 @@
 								function() {
 									var formObj = $("form[role='form']");
 									console.log(formObj);
-									$("#back").on("click",function() {
+									$("#back")
+											.on(
+													"click",
+													function() {
 														self.location = "/staffboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-									});
+													});
 								});
 			</script>
 
 		</div>
+	</div>
+	<!-- /.content -->
 </section>
-<!-- /.content -->
-</div>
 <!-- /.content-wrapper -->
 <%@include file="../include/footer.jsp"%>

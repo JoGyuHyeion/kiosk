@@ -32,8 +32,6 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-
-
 					<div class="row">
 						<form method="post" role="form">
 							<input type='hidden' name='brd_cd' value="notice">
@@ -73,8 +71,6 @@
 												name="bbs_exp_edt">
 										</div>
 									</div>
-
-
 									<!-- bbs_state     -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">표시여부</label>
@@ -89,39 +85,20 @@
 								<div class="form-group" style="text-align: center">
 									<button type="submit"
 										class="btn btn-primary waves-effect w-md waves-light m-b-5"
-										id="change">수정</button>
-									<button type="submit"
+										id="change">등록</button>
+									<button type="button"
 										class="btn btn-warning waves-effect w-md waves-light m-b-5"
-										id="back">돌아가기</button>
+										id="back" onclick="history.go(-1)">돌아가기</button>
 								</div>
 							</div>
 						</form>
 					</div>
-
 				</div>
 			</div>
 			<!-- end col -->
-
-			<script>
-				$(document)
-						.ready(
-								function() {
-									var formObj = $("form[role='form']");
-									console.log(formObj);
-									$("#change")
-											.on(
-													"click",
-													function() {
-														self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
-																+ "&searchType=${cri.searchType}&keyword=${cri.keyword}";
-													});
-
-									$("#back").on("click", function() {
-										formObj.submit();
-									});
-								});
-			</script>
 		</div>
 	</div>
+	<!-- /.content -->
 </section>
+<!-- /.content-wrapper -->
 <%@include file="../include/footer.jsp"%>
