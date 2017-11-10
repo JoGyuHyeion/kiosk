@@ -32,8 +32,6 @@
 				<div class="card-box">
 					<div class="row">
 						<form method="post" role="form">
-							<input type='hidden' name='page' value="${cri.page}"> <input
-								type='hidden' name='perPageNum' value="${cri.perPageNum}">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
