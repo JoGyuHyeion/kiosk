@@ -32,8 +32,6 @@
 				<div class="card-box">
 					<div class="row">
 						<form method="post" role="form">
-							<input type='hidden' name='page' value="${cri.page}"> <input
-								type='hidden' name='perPageNum' value="${cri.perPageNum}">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
@@ -81,8 +79,9 @@
 		<!-- end row -->
 		<script>
 
-		if(${com_imageVO.img_gallery}==1){
-			$('input:checkbox[id="img_gallery"]').attr("checked", true);
+		var input = ${com_imageVO.img_gallery};
+		if (input == 1) { //값 비교
+			$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
 		}
 
 		</script>

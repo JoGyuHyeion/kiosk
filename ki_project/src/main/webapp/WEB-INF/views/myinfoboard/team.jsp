@@ -7,11 +7,7 @@
 <%@include file="../include/header.jsp"%>
 <!-- Main content -->
 <section class="wrapper">
-
-
 	<div class="container">
-
-
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
@@ -50,54 +46,29 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td><input type="text" class="form-control" size="3"
-														value="T00" readonly="readonly"></td>
-													<td><input type="text" class="form-control" size="40"
-														value="임원"></td>
-													<td><input type="text" class="form-control" size="3"
-														value="1"></td>
-													<td><input type="checkbox"
-														style="align-content: center" class="" name="" id=""></td>
-													<td><a href="#" class="table-action-btn h2"><i
-															class="mdi mdi-close-box-outline text-danger"></i></a></td>
-												</tr>
-												<tr>
-													<td><input type="text" class="form-control" size="3"
-														value="T01" readonly="readonly"></td>
-													<td><input type="text" class="form-control" size="40"
-														value="기업지원팀"></td>
-													<td><input type="text" class="form-control" size="3"
-														value="2"></td>
-													<td><input type="checkbox"
-														style="align-content: center" class="" name="" id=""></td>
-													<td><a href="#" class="table-action-btn h2"><i
-															class="mdi mdi-close-box-outline text-danger"></i></a></td>
-												</tr>
-												<tr>
-													<td><input type="text" class="form-control" size="3"
-														value="T00" readonly="readonly"></td>
-													<td><input type="text" class="form-control" size="40"
-														value="임원"></td>
-													<td><input type="text" class="form-control" size="3"
-														value="1"></td>
-													<td><input type="checkbox"
-														style="align-content: center" class="" name="" id=""></td>
-													<td><a href="#" class="table-action-btn h2"><i
-															class="mdi mdi-close-box-outline text-danger"></i></a></td>
-												</tr>
-												<tr>
-													<td><input type="text" class="form-control" size="3"
-														value="T01" readonly="readonly"></td>
-													<td><input type="text" class="form-control" size="40"
-														value="기업지원팀"></td>
-													<td><input type="text" class="form-control" size="3"
-														value="2"></td>
-													<td><input type="checkbox"
-														style="align-content: center" class="" name="" id=""></td>
-													<td><a href="#" class="table-action-btn h2"><i
-															class="mdi mdi-close-box-outline text-danger"></i></a></td>
-												</tr>
+
+												<c:forEach items="${list}" var="com_teamVO">
+
+													<tr>
+														<td><input type="text" class="form-control"
+															id="team_cd" name="team_cd" size="3"
+															value="${com_teamVO.team_cd}" readonly="readonly"></td>
+														<td><input type="text" class="form-control"
+															id="team_nm" name="team_nm" size="40"
+															value="${com_teamVO.team_nm}"></td>
+														<td><input type="text" class="form-control"
+															id="team_sort" name="team_sort" size="3"
+															value="${com_teamVO.team_sort}"></td>
+														<td><div style="padding: 5px">
+																<input type="checkbox" name="team_use" switch="none"
+																	value="${com_teamVO.team_use}" /><label for="team_use"
+																	data-on-label="On" data-off-label="Off"></label>
+															</div></td>
+														<td><a href="#" class="table-action-btn h2"><i
+																class="mdi mdi-close-box-outline text-danger"></i></a></td>
+													</tr>
+
+												</c:forEach>
 											</tbody>
 											<tfoot>
 												<tr>
@@ -117,34 +88,26 @@
 									</div>
 									<!-- end table responsive -->
 								</div>
-
-
 							</div>
 							<!-- end card-box -->
-
-
-
 						</div>
 						<!-- end col -->
-
-
 					</div>
 					<!-- end row -->
-
-
 				</div>
 				<!-- end card-box -->
-
-
-
 			</div>
 			<!-- end col -->
-
-
 		</div>
+		<script>
+			$('input:checkbox[name="team_use"]').each(function() {
+				if (this.value == 1) { //값 비교
+					this.checked = true; //checked 처리
+				}
+			});
+		</script>
 		<!-- end row -->
-
-
-
-		<!-- end row -->
-		<%@include file="../include/footer.jsp"%>
+	</div>
+</section>
+<!-- end row -->
+<%@include file="../include/footer.jsp"%>

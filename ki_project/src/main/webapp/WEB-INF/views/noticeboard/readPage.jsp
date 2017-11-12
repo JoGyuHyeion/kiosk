@@ -130,11 +130,10 @@
 			<!-- end col -->
 		</div>
 		<script>
-
-		if(${com_boardVO.bbs_state}==1){
-			$('input:checkbox[id="bbs_state"]').attr("checked", true);
+		var input = ${com_boardVO.bbs_state};
+		if (input == 1) { //값 비교
+			$('input:checkbox[id="bbs_state"]').attr("checked", true); //checked 처리
 		}
-
 		</script>
 	</div>
 </section>

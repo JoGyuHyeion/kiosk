@@ -86,8 +86,8 @@
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
 											<input type="checkbox" name="bbs_state" id="bbs_state"
-												value="1" switch="none" /> <label
-												for="bbs_state" data-on-label="On" data-off-label="Off"></label>
+												value="1" switch="none" /> <label for="bbs_state"
+												data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
 								</div>
@@ -107,11 +107,10 @@
 			<!-- end col -->
 		</div>
 		<script>
-
-			if(${com_boardVO.bbs_state}==1){
-				$('input:checkbox[id="bbs_state"]').attr("checked", true);
-			}
-
+				var input = ${com_boardVO.bbs_state};
+			     if(input==1){ //값 비교
+			    	 $('input:checkbox[id="bbs_state"]').attr("checked", true); //checked 처리
+			      }
 		</script>
 	</div>
 </section>

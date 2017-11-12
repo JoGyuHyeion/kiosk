@@ -8,6 +8,7 @@ import org.kiosk.domain.SearchCriteria;
 import org.kiosk.service.Com_imageService;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_staffService;
+import org.kiosk.service.Com_teamService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,8 @@ public class MyInfoBoardController {
 
 	@Inject
 	private Com_sectionService service;
+	@Inject
+	private Com_teamService teamService;
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
 	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
@@ -81,12 +84,15 @@ public class MyInfoBoardController {
 	public void teamGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
 		logger.info("myinfoboard/team - GET ");
+		model.addAttribute("list",teamService.listAll());
 	}
 
 	@RequestMapping(value = "/team", method = RequestMethod.POST)
 	public String teamPOST(SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 
 		logger.info("myinfoboard/team - POST ");
+
+		teamService.listAll();
 		logger.info(cri.toString());
 
 		rttr.addAttribute("page", cri.getPage());
