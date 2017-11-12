@@ -43,8 +43,8 @@
 						<form role="form" method="get">
 							<div class="col-sm-4">
 								<div class="form-group">
-									<input type="text" id="search-input" class="form-control" name="keyword"
-										placeholder="Please Name">
+									<input type="text" id="search-input" class="form-control"
+										name="keyword" placeholder="Please Name">
 								</div>
 							</div>
 							<div class="col-sm-1">

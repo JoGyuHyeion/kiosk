@@ -79,8 +79,9 @@
 		<!-- end row -->
 		<script>
 
-		if(${com_imageVO.img_gallery}==1){
-			$('input:checkbox[id="img_gallery"]').attr("checked", true);
+		var input = ${com_imageVO.img_gallery};
+		if (input == 1) { //값 비교
+			$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
 		}
 
 		</script>
