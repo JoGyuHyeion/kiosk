@@ -17,15 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into com_video
 		(vi_no,vi_name,vi_video,vi_ndt)
 		values
-		(#{vi_no},#{vi_name},#{vi_video},#{vi_ndt})
+		(#{vi_no},#{vi_name},#{vi_video},now())
 	</insert>
 
 	<update id="update">
 		update com_video set
 		vi_name = #{vi_name},
 		vi_video =
-		#{vi_video},
-		vi_ndt = #{vi_ndt}
+		#{vi_video}
 		where
 		vi_no = #{vi_no}
 	</update>
@@ -75,48 +74,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		]]>
 	</select>
 
-	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				and title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'c'.toString()">
-				and content like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'w'.toString()">
-				and writer like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'tc'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%') OR content
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'cw'.toString()">
-				and ( content like CONCAT('%', #{keyword}, '%') OR writer
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'tcw'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%')
-				OR
-				content
-				like CONCAT('%', #{keyword}, '%')
-				OR
-				writer like CONCAT('%',
-				#{keyword}, '%'))
-			</if>
-		</if>
-	</sql>
-
 	<select id="listSearch" resultType="Com_videoVO">
 		<![CDATA[  
 		 select * 
 		 from com_video 
-		 where vi_no > 0 
-		]]>
-		<include refid="search"></include>
-  
-		<![CDATA[    
+		 where vi_no > 0   
 		order by vi_no desc
 		limit #{pageStart}, #{perPageNum}
 		]]>
@@ -128,7 +90,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  from com_video 
 		  where vi_no > 0 
 		]]>
-		<include refid="search"></include>
 
 	</select>
 

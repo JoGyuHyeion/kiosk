@@ -85,7 +85,7 @@
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
 											<input type="checkbox" name="bbs_state" id="bbs_state"
-												value="1" switch="none" onclick="return false"/> <label
+												value="1" switch="none" onclick="return false" /> <label
 												for="bbs_state" data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
@@ -106,7 +106,7 @@
 						</form>
 						<button type="button"
 							class="btn btn-warning waves-effect w-md waves-light m-b-5"
-							id="back" onclick="history.go(-1)">돌아가기</button>
+							id="back">돌아가기</button>
 					</div>
 					<script>
 						$(document)
@@ -122,6 +122,13 @@
 																self.location = "/noticeboard/modifyPage?bbs_no=${com_boardVO.bbs_no}";
 															});
 
+											$("#back")
+													.on(
+															"click",
+															function() {
+																self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+															});
+
 										});
 					</script>
 				</div>
@@ -130,10 +137,13 @@
 			<!-- end col -->
 		</div>
 		<script>
-		var input = ${com_boardVO.bbs_state};
-		if (input == 1) { //값 비교
-			$('input:checkbox[id="bbs_state"]').attr("checked", true); //checked 처리
-		}
+			var input = $
+			{
+				com_boardVO.bbs_state
+			};
+			if (input == 1) { //값 비교
+				$('input:checkbox[id="bbs_state"]').attr("checked", true); //checked 처리
+			}
 		</script>
 	</div>
 </section>

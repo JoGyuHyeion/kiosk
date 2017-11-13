@@ -53,6 +53,7 @@
 								</button>
 							</div>
 						</form>
+						<a href="/noticeboard/register" class="btn btn-primary ">작성</a>
 					</div>
 
 					<div class="table-responsive">
@@ -65,7 +66,7 @@
 									<th>제목</th>
 									<th>노출기간</th>
 									<th>작성시간</th>
-
+									<th>삭제</th>
 								</tr>
 							</thead>
 
@@ -88,6 +89,13 @@
 										<td>${com_boardVO.bbs_exp_sdt}~${com_boardVO.bbs_exp_edt}</td>
 
 										<td>${com_boardVO.bbs_ndt}</td>
+										<td><form action="/noticeboard/removePage" method="post">
+												<input type="hidden" name="bbs_no"
+													value="${com_boardVO.bbs_no}">
+												<button type="submit" class="table-action-btn h2">
+													<i class="mdi mdi-close-box-outline text-danger"></i>
+												</button>
+											</form></td>
 
 									</tr>
 								</c:forEach>
@@ -154,12 +162,6 @@
 											+ $('#keywordInput').val();
 
 								});
-
-						$('#newBtn').on("click", function(evt) {
-
-							self.location = "register";
-
-						});
 
 					});
 		</script>

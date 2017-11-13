@@ -1,50 +1,57 @@
 package org.kiosk.persistence;
 
 import java.util.List;
+
 import javax.inject.Inject;
+
 import org.apache.ibatis.session.SqlSession;
-import org.kiosk.domain.Com_boardVO;
+import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class Com_boardDAOImpl implements Com_boardDAO {
+public class Com_staff2DAOImpl implements Com_staff2DAO {
 
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.kiosk.mapper.Com_boardMapper";
+	private static String namespace = "org.kiosk.mapper.Com_staff2Mapper";
 
 	@Override
-	public void create(Com_boardVO vo) throws Exception {
+	public void create(Com_staff2VO vo) throws Exception {
 		session.insert(namespace + ".create", vo);
 	}
 
 	@Override
-	public Com_boardVO read(Integer bbs_no) throws Exception {
-		return session.selectOne(namespace + ".read", bbs_no);
+	public Com_staff2VO read(Integer st_no) throws Exception {
+		return session.selectOne(namespace + ".read", st_no);
 	}
 
 	@Override
-	public void update(Com_boardVO vo) throws Exception {
+	public void update(Com_staff2VO vo) throws Exception {
 		session.update(namespace + ".update", vo);
 
 	}
 
 	@Override
-	public void delete(Integer bbs_no) throws Exception {
-		session.delete(namespace + ".delete", bbs_no);
+	public void delete(Integer st_no) throws Exception {
+		session.delete(namespace + ".delete", st_no);
 
 	}
 
 	@Override
-	public List<Com_boardVO> listAll() throws Exception {
+	public List<Com_staff2VO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
 
 	@Override
-	public List<Com_boardVO> listPage(int page) throws Exception {
+	public int lastInsertID() throws Exception {
+		return session.selectOne(namespace + ".lastInsertID");
+	}
+
+	@Override
+	public List<Com_staff2VO> listPage(int page) throws Exception {
 		if (page <= 0) {
 			page = 1;
 		}
@@ -55,7 +62,7 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	}
 
 	@Override
-	public List<Com_boardVO> listCriteria(Criteria cri) throws Exception {
+	public List<Com_staff2VO> listCriteria(Criteria cri) throws Exception {
 		return session.selectList(namespace + ".listCriteria", cri);
 	}
 
@@ -65,7 +72,7 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	}
 
 	@Override
-	public List<Com_boardVO> listSearch(SearchCriteria cri) throws Exception {
+	public List<Com_staff2VO> listSearch(SearchCriteria cri) throws Exception {
 		return session.selectList(namespace + ".listSearch", cri);
 	}
 
@@ -73,4 +80,5 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return session.selectOne(namespace + ".listSearchCount", cri);
 	}
+
 }

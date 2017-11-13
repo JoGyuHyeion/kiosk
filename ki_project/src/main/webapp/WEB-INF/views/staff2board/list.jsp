@@ -70,6 +70,7 @@
 								<i class="fa fa-search"> 찾기</i>
 							</button>
 						</div>
+						<a href="/staff2board/register" class="btn btn-primary ">작성</a>
 					</div>
 
 					<div class="table-responsive">
@@ -84,34 +85,43 @@
 									<th>이름</th>
 									<th>전화번호</th>
 									<th>Update</th>
+									<th>삭제</th>
 
 								</tr>
 							</thead>
 
 							<tbody>
-								<c:forEach items="${list}" var="com_staffVO">
+								<c:forEach items="${list}" var="com_staff2VO">
 
 									<tr class="active">
 										<td><a
-											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
+											href="/staff2board/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staff2VO.st_no}"
 											class="table-action-btn h2"><i
 												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
 
 										<td><img
 											src="/resources/assets/images/users/avatar-2.jpg"
 											alt="contact-img" title="contact-img" class=" thumb-sm" /></td>
-																			
-										<td>${com_staffVO.section_cd}</td>
 
-										<td>${com_staffVO.st_team}</td>
+										<td>${com_staff2VO.real_use_dep_nm}</td>
 
-										<td>${com_staffVO.st_job}</td>
+										<td>${com_staff2VO.team_cd}</td>
 
-										<td><a href="/staffboard/readPage?st_no=${com_staffVO.st_no}">${com_staffVO.st_nm}</a></td>
+										<td>${com_staff2VO.posit_nm}</td>
 
-										<td>${com_staffVO.st_tel}</td>
+										<td><a
+											href="/staff2board/readPage?st_no=${com_staff2VO.st_no}">${com_staff2VO.usr_nm}</a></td>
 
-										<td>${com_staffVO.st_edt }</td>
+										<td>${com_staff2VO.telno}</td>
+
+										<td>${com_staff2VO.st_edt}</td>
+										<td><form action="/staff2board/removePage" method="post">
+												<input type="hidden" name="st_no"
+													value="${com_staff2VO.st_no}">
+												<button type="submit" class="table-action-btn h2">
+													<i class="mdi mdi-close-box-outline text-danger"></i>
+												</button>
+											</form></td>
 
 									</tr>
 								</c:forEach>
@@ -129,11 +139,11 @@
 								class="fa fa-angle-left"></i></a></li>
 						<c:if test="${pageMaker.prev}">
 							<li><a
-								href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
+								href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
 						</c:if>
 
-						<c:forEach begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}" var="idx">
+						<c:forEach begin="${pageMaker.startPage }"
+							end="${pageMaker.endPage }" var="idx">
 							<li
 								<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
 								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
@@ -180,12 +190,6 @@
 											+ $('#keywordInput').val();
 
 								});
-
-						$('#newBtn').on("click", function(evt) {
-
-							self.location = "register";
-
-						});
 
 					});
 		</script>
