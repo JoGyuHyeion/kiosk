@@ -60,8 +60,8 @@
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
 											<input type="checkbox" name="img_gallery" id="img_gallery"
-												value="1" switch="none" onclick="return false" /> <label for="img_gallery"
-												data-on-label="On" data-off-label="Off"></label>
+												value="1" switch="none" onclick="return false" /> <label
+												for="img_gallery" data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
 								</div>
@@ -80,7 +80,7 @@
 						</form>
 						<button type="button"
 							class="btn btn-warning waves-effect w-md waves-light m-b-5"
-							id="back" onclick="history.go(-1)">돌아가기</button>
+							id="back">돌아가기</button>
 					</div>
 					<script>
 						$(document)
@@ -95,6 +95,12 @@
 															function() {
 																self.location = "/galleryboard/modifyPage?img_no=${com_imageVO.img_no}";
 															});
+											$("#back")
+													.on(
+															"click",
+															function() {
+																self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+															});
 
 										});
 					</script>
@@ -107,11 +113,13 @@
 		</div>
 		<!-- end row -->
 		<script>
-
-		var input = ${com_imageVO.img_gallery};
-		if (input == 1) { //값 비교
-			$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
-		}
+			var input = $
+			{
+				com_imageVO.img_gallery
+			};
+			if (input == 1) { //값 비교
+				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
+			}
 		</script>
 	</div>
 	<!-- end container -->

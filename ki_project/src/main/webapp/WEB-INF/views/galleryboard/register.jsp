@@ -31,7 +31,7 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form">
+						<form method="post" role="form" enctype="multipart/form-data">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
@@ -45,7 +45,7 @@
 									<!-- img_filenm -->
 									<div class="form-group clearfix">
 										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="files[]" id="filer_input2"
+											<input type="file" name="imgFile" id="img_filenm"
 												multiple="multiple">
 										</div>
 									</div>
@@ -65,16 +65,33 @@
 										class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
 									<button type="button"
 										class="btn btn-warning waves-effect w-md waves-light m-b-5"
-										onclick="history.go(-1)">돌아가기</button>
+										id="back">돌아가기</button>
 								</div>
+
 							</div>
 						</form>
 					</div>
+					<script>
+						$(document)
+								.ready(
+										function() {
+											var formObj = $("form[role='form']");
+											console.log(formObj);
+											$("#back")
+													.on(
+															"click",
+															function() {
+																self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+															});
+
+										});
+					</script>
 				</div>
 			</div>
-			<!-- end col -->
 		</div>
-		<!-- end row -->
+		<!-- end col -->
+	</div>
+	<!-- end row -->
 	</div>
 	<!-- end container -->
 </section>

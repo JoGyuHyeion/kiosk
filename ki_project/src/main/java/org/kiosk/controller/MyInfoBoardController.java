@@ -1,15 +1,9 @@
 package org.kiosk.controller;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
-import org.kiosk.domain.Com_staffVO;
-import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.service.Com_imageService;
 import org.kiosk.service.Com_sectionService;
-import org.kiosk.service.Com_staffService;
 import org.kiosk.service.Com_teamService;
-import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -17,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller

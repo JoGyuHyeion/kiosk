@@ -45,7 +45,7 @@
 									<button type="button"
 										class="btn btn-custom btn-inline waves-effect waves-light"
 										onclick="location.href='/galleryboard/modifyPage?img_no=${com_imageVO.img_no}'">정보수정</button>
-									<form action="/galleryboard/removePage" method="post">
+									<form action="/galleryboard/removePage?img_no=${com_imageVO.img_no }" method="post">
 										<button type="submit"
 											class="btn btn-danger btn-inline waves-effect waves-light">
 											<i class="glyphicon glyphicon-trash"></i>삭제
