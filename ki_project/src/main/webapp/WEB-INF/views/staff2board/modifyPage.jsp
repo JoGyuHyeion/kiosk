@@ -39,7 +39,6 @@
 					<div class="row">
 						<form method="post" role="form">
 						
-							<input type='hidden' name='st_no' value="${com_boardVO.st_no}">
 							<input type='hidden' name='page' value="${cri.page}"> <input
 								type='hidden' name='perPageNum' value="${cri.perPageNum}">
 

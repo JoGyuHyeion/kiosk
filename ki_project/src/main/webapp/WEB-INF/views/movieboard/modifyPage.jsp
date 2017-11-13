@@ -15,11 +15,11 @@
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
 							<li><a href="#">동영상</a></li>
-							<li class="active">동영상등록</li>
+							<li class="active">동영상수정</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						동영상등록 <small>동영상을 <code>등록</code> 할 수 있습니다.
+						동영상등록 <small>동영상을 <code>수정</code> 할 수 있습니다.
 						</small>
 					</h4>
 				</div>
@@ -30,29 +30,30 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-				<div class="row">
-						<form method="post" role="form" enctype="multipart/form-data">
+					<div class="row">
+						<form method="post" role="form">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
-									<!-- vi_name-->
+									<!-- vi_name -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">제목</label>
 										<div class="col-md-10">
 											<input type="text" class="form-control" placeholder="Name"
-												id="vi_name" name="vi_name">
+												id="vi_name" name="vi_name" value="${com_videoVO.vi_name}">
 										</div>
 									</div>
 									<!-- vi_video -->
 									<div class="form-group clearfix">
 										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="videoFile" id="vi_video"
+											<input type="file" name="files[]" id="filer_input2"
 												multiple="multiple">
 										</div>
 									</div>
 
 									<div class="form-group" style="text-align: center">
 										<button type="submit"
-											class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
+											class="btn btn-primary waves-effect w-md waves-light m-b-5"
+											id="change">수정</button>
 										<button type="button"
 											class="btn btn-warning waves-effect w-md waves-light m-b-5"
 											id="back">돌아가기</button>

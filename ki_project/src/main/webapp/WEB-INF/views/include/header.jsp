@@ -142,8 +142,8 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-										<li><a href="page-starter.html">동영상등록</a></li>
-										<li><a href="page-login.html">동영상조희</a></li>
+										<li><a href="/movieboard/register">동영상등록</a></li>
+										<li><a href="/movieboard/list?page=1&perPageNum=6">동영상조희</a></li>
 									</ul>
 								</li>
 							</ul></li>

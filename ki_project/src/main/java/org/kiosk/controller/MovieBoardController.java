@@ -39,7 +39,7 @@ public class MovieBoardController {
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("movieboard/list - GET");
 		logger.info(cri.toString());
-
+		cri.setPerPageNum(6);
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
 		PageMaker pageMaker = new PageMaker();
@@ -88,14 +88,25 @@ public class MovieBoardController {
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-		rttr.addAttribute("searchType", cri.getSearchType());
-		rttr.addAttribute("keyword", cri.getKeyword());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		logger.info(rttr.toString());
 
 		return "redirect:/movieboard/list";
+	}
+	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
+	public String remove(@RequestParam("vi_no") int vi_no, SearchCriteria cri, RedirectAttributes rttr)
+			throws Exception {
+		logger.info("movieboard/removePage - POST");
+		service.remove(vi_no);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		return "redirect:/movieboard/list?page=1";
 	}
 
 }

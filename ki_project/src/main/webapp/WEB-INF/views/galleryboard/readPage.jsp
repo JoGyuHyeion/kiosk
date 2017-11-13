@@ -17,11 +17,11 @@
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
 							<li><a href="#">갤러리</a></li>
-							<li class="active">갤러리등록</li>
+							<li class="active">갤러리수정</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						갤러리등록 <small>갤러리를 <code>등록</code> 할 수 있습니다.
+						갤러리등록 <small>갤러리를 <code>수정</code> 할 수 있습니다.
 						</small>
 					</h4>
 				</div>

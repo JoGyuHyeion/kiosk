@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="Com_staff2VO">
 		select
-		usr_nm,st_key,posit_nm,telno,img_filenm,email_addr,adi_info7
+		st_no,usr_nm,st_key,posit_nm,telno,img_filenm,email_addr,adi_info7
 		from com_staff2
 		where
 		st_no = #{st_no}
