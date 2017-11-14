@@ -1,537 +1,145 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
-        <meta name="author" content="Coderthemes">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page session="false"%>
 
-        <link rel="shortcut icon" href="/resources/assets/images/favicon.ico">
-
-        <title>Zircos - Responsive Admin Dashboard Template</title>
-
-        <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="/resources/plugins/morris/morris.css">
-
-        <!-- App css -->
-        <link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="/resources/assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="/resources/assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="/resources/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="/resources/assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="/resources/assets/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="/resources/assets/css/responsive.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="/resources/plugins/switchery/switchery.min.css">
-
-        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-        <script src="/resources/assets/js/modernizr.min.js"></script>
-
-    </head>
+<%@include file="../include/header.jsp"%>
+<!-- Main content -->
+<section class="wrapper">
 
 
-    <body>
+	<div class="container">
+
+		<!-- Page-Title -->
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="page-title-box">
+					<div class="btn-group pull-right">
+						<ol class="breadcrumb hide-phone p-0 m-0">
+							<li><a href="#">Zircos</a></li>
+							<li><a href="#">Kiosk관리</a></li>
+							<li class="active">Icon 수정</li>
+						</ol>
+					</div>
+					<h4 class="page-title">Icon 수정</h4>
+				</div>
+			</div>
+		</div>
+		<!-- end page title end breadcrumb -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card-box">
 
 
-        <!-- Navigation Bar-->
-        <header id="topnav">
-            <div class="topbar-main">
-                <div class="container">
+					<div class="row">
+						<c:forEach items="${list}" var="com_iconVO">
+							<div class="col-md-2">
+								<div class="text-center card-box">
+									<h4 class="m-b-5">${com_iconVO.ic_name}</h4>
+									<div class="text-center">
+										<img src="/resources/upload/icon/${com_iconVO.ic_icon}" alt=""
+											width="150" height="150">
+									</div>
+									<p class="text-muted font-13">마지막 수정 날짜 :
+										${com_iconVO.ic_ndt}</p>
 
-                    <!-- Logo container-->
-                    <div class="logo">
-                        <!-- Text Logo -->
-                        <!--<a href="index.html" class="logo">-->
-                            <!--Zircos-->
-                        <!--</a>-->
-                        <!-- Image Logo -->
-                        <a href="index.html" class="logo">
-                            <img src="/resources/assets/images/logo.png" alt="" height="30">
-                        </a>
+									<div class="row">
+										<button
+											class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
+											data-toggle="modal" data-target="#imageModal">수정</button>
+									</div>
 
-                    </div>
-                    <!-- End Logo container-->
-
-
-                    <div class="menu-extras">
-
-                        <ul class="nav navbar-nav navbar-right pull-right">
-                            <li class="navbar-c-items">
-                                <form role="search" class="navbar-left app-search pull-left hidden-xs">
-                                     <input type="text" placeholder="Search..." class="form-control">
-                                     <a href=""><i class="fa fa-search"></i></a>
-                                </form>
-                            </li>
-
-                            <li class="dropdown navbar-c-items">
-                                 <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
-                                    <i class="mdi mdi-email"></i>
-                                    <span class="badge up bg-danger">8</span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list">
-                                    <li class="text-center">
-                                        <h5>Messages</h5>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="avatar">
-                                                <img src="/resources/assets/images/users/avatar-2.jpg" alt="">
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">Patricia Beach</span>
-                                                <span class="desc">There are new settings available</span>
-                                                <span class="time">2 hours ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="avatar">
-                                                <img src="/resources/assets/images/users/avatar-3.jpg" alt="">
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">Connie Lucas</span>
-                                                <span class="desc">There are new settings available</span>
-                                                <span class="time">2 hours ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="avatar">
-                                                <img src="/resources/assets/images/users/avatar-4.jpg" alt="">
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">Margaret Becker</span>
-                                                <span class="desc">There are new settings available</span>
-                                                <span class="time">2 hours ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="all-msgs text-center">
-                                        <p class="m-0"><a href="#">See all Messages</a></p>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown navbar-c-items">
-                                 <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <span class="badge up bg-success">4</span>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list">
-                                    <li class="text-center">
-                                        <h5>Notifications</h5>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="icon bg-info">
-                                                <i class="mdi mdi-account"></i>
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">New Signup</span>
-                                                <span class="time">5 hours ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="icon bg-danger">
-                                                <i class="mdi mdi-comment"></i>
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">New Message received</span>
-                                                <span class="time">1 day ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="user-list-item">
-                                            <div class="icon bg-warning">
-                                                <i class="mdi mdi-settings"></i>
-                                            </div>
-                                            <div class="user-desc">
-                                                <span class="name">Settings</span>
-                                                <span class="time">1 day ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="all-msgs text-center">
-                                        <p class="m-0"><a href="#">See all Notification</a></p>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown navbar-c-items">
-                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="/resources/assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
-                                <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
-                                    <li class="text-center">
-                                        <h5>Hi, John</h5>
-                                    </li>
-                                    <li><a href="javascript:void(0)"><i class="ti-user m-r-5"></i> Profile</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-settings m-r-5"></i> Settings</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-lock m-r-5"></i> Lock screen</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-power-off m-r-5"></i> Logout</a></li>
-                                </ul>
-
-                            </li>
-                        </ul>
-                        <div class="menu-item">
-                            <!-- Mobile menu toggle-->
-                            <a class="navbar-toggle">
-                                <div class="lines">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                            </a>
-                            <!-- End mobile menu toggle-->
-                        </div>
-                    </div>
-                    <!-- end menu-extras -->
-
-                </div> <!-- end container -->
-            </div>
-            <!-- end topbar-main -->
-
-            <div class="navbar-custom">
-                <div class="container">
-                    <div id="navigation">
-                        <!-- Navigation Menu-->
-                        <ul class="navigation-menu">
-                            <!-- 기초설정 -->
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-google-pages"></i>기초설정</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="myinfo_pswd.html">비밀번호변경</a></li>
-                                            <li><a href="section_set.html">과관리</a></li>
-                                            <li><a href="page-register.html">Kiosk배경화면</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                              <!-- 직원등록 -->
-                              <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-google-pages"></i>직원등록</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="staff_table.html">직원등록</a></li>
-                                            <li><a href="staff_modifyPage.html">직원조희</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- 갤러리 -->
-                            <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-google-pages"></i>갤러리</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="page-starter.html">갤러리등록</a></li>
-                                            <li><a href="gallery_table.html">갤러리조희</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                             <!-- 동영상 -->
-                             <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-google-pages"></i>동영상</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="page-starter.html">동영상등록</a></li>
-                                            <li><a href="page-login.html">동영상조희</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                              <!-- 공지사항 -->
-                              <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-google-pages"></i>공지사항</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="notice_modify.html">공지사항등록</a></li>
-                                            <li><a href="notice_table.html">공지사항조희</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                            
-        
-                    </div>
-                </div>
-            </div>
-        
-        </header>
-
-        <div class="wrapper">
-            <div class="container">
-
-                <!-- Page-Title -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="page-title-box">
-                            <div class="btn-group pull-right">
-                                <ol class="breadcrumb hide-phone p-0 m-0">
-                                    <li>
-                                        <a href="#">디지털조직도</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">갤러리</a>
-                                    </li>
-                                    <li class="active">
-                                        갤러리조회
-                                    </li>
-                                </ol>
-                            </div>
-                            <h4 class="page-title">갤러리조회</h4>
-                        </div>
-                    </div>
-                </div>
-                <!-- end page title end breadcrumb -->
-
-       
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
 
 
+		</div>
+	</div>
+	<!-- end col -->
 
-                    <div class="col-md-4 col-sm-6">
-                        <div class="property-card">
-                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
-                        </div>
+	<!-- modal  -->
+	<div class="modal fade" id="imageModal" tabindex="-1" role="dialog"
+		aria-labelledby="imageModalModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="imageModalLabel">ICON 수정</h4>
+				</div>
+				<div></div>
+				<div class="modal-body">
+					<form action="modifypage" method="post">
+						<!--<input type='hidden' name='page' value="${cri.page}"> <input
+								type='hidden' name='perPageNum' value="${cri.perPageNum}">
+							<input type='hidden' name='searchType' value="${cri.searchType}">
+							<input type='hidden' name='keyword' value="${cri.keyword}">-->
+						<div class="form-group">
+							<p class="text-muted font-13 m-b-15 ">Default / Custom 여부</p>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="Custom" value="Custom"
+									name="radioInline"> <label for="Custom"> Custom
+								</label>
+							</div>
+							<div class="radio radio-inline">
+								<input type="radio" id="Default" value="Default"
+									name="radioInline" checked> <label for="Default">
+									Default </label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="image" class="control-label">파일 등록</label> <input
+								type="file" id="file_upload" class="form-control" id="image">
+						</div>
 
-                            <div class="property-content">
-                                <div class="listingInfo">
-                                    <p></p>
-                                    <div class="">
-                                        
-                                        <h3 class="text-overflow"><a href="#" class="text-dark">4BHK Alexander Court,New York</a></h3>
-                                        
-                                        <div class="m-t-20" style="text-align: center">
-                                            <button type="button" class="btn btn-custom btn-inline waves-effect waves-light">정보수정</button>
-                                            <button type="button" class="btn btn-danger btn-inline waves-effect waves-light"><i class="glyphicon  glyphicon-trash"></i>삭제</button>
-                                        </div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">수정하기</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                                    </div>
-                                </div>
-                                <!-- end. Card actions -->
-                            </div>
-                            <!-- /inner row -->
-                        </div>
-                        <!-- End property item -->
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="property-card">
-                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
-                        </div>
+	<script>
 
-                            <div class="property-content">
-                                <div class="listingInfo">
-                                    <p></p>
-                                    <div class="">
-                                        
-                                        <h3 class="text-overflow"><a href="#" class="text-dark">4BHK Alexander Court,New York</a></h3>
-                                        
-                                        <div class="m-t-20" style="text-align: center">
-                                            <button type="button" class="btn btn-custom btn-inline waves-effect waves-light">정보수정</button>
-                                            <button type="button" class="btn btn-danger btn-inline waves-effect waves-light"><i class="glyphicon  glyphicon-trash"></i>삭제</button>
-                                        </div>
+		$(document).ready(
+				function() {
+					$('#imageModal').on('show.bs.modal', function(event) {
+						var button = $(event.relatedTarget) 
+						var recipient = button.data('whatever') 
+						var modal = $(this)
+						modal.find('.modal-body input').val(recipient)
+					});
 
-                                    </div>
-                                </div>
-                                <!-- end. Card actions -->
-                            </div>
-                            <!-- /inner row -->
-                        </div>
-                        <!-- End property item -->
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="property-card">
-                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
-                        </div>
+					$('#file_upload').attr('disabled', true);
 
-                            <div class="property-content">
-                                <div class="listingInfo">
-                                    <p></p>
-                                    <div class="">
-                                        
-                                        <h3 class="text-overflow"><a href="#" class="text-dark">4BHK Alexander Court,New York</a></h3>
-                                        
-                                        <div class="m-t-20" style="text-align: center">
-                                            <button type="button" class="btn btn-custom btn-inline waves-effect waves-light">정보수정</button>
-                                            <button type="button" class="btn btn-danger btn-inline waves-effect waves-light"><i class="glyphicon  glyphicon-trash"></i>삭제</button>
-                                        </div>
+					$("input[type='radio']").change(
+							function() {
+								var radioValue = $(
+										'input[name=radioInline]:checked')
+										.attr('id');
+								//alert(radioValue);
+								if (radioValue == "Custom") {
+									$('#file_upload').attr('disabled', false);
+								} else if (radioValue == "Default") {
+									$('#file_upload').attr('disabled', true);
+								}
+							});
+				});
+	</script>
 
-                                    </div>
-                                </div>
-                                <!-- end. Card actions -->
-                            </div>
-                            <!-- /inner row -->
-                        </div>
-                        <!-- End property item -->
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="property-card">
-                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
-                        </div>
-
-                            <div class="property-content">
-                                <div class="listingInfo">
-                                    <p></p>
-                                    <div class="">
-                                        
-                                        <h3 class="text-overflow"><a href="#" class="text-dark">4BHK Alexander Court,New York</a></h3>
-                                        
-                                        <div class="m-t-20" style="text-align: center">
-                                            <button type="button" class="btn btn-custom btn-inline waves-effect waves-light">정보수정</button>
-                                            <button type="button" class="btn btn-danger btn-inline waves-effect waves-light"><i class="glyphicon  glyphicon-trash"></i>삭제</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- end. Card actions -->
-                            </div>
-                            <!-- /inner row -->
-                        </div>
-                        <!-- End property item -->
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="property-card">
-                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
-                        </div>
-
-                            <div class="property-content">
-                                <div class="listingInfo">
-                                    <p></p>
-                                    <div class="">
-                                        
-                                        <h3 class="text-overflow"><a href="#" class="text-dark">4BHK Alexander Court,New York</a></h3>
-                                        
-                                        <div class="m-t-20" style="text-align: center">
-                                            <button type="button" class="btn btn-custom btn-inline waves-effect waves-light">정보수정</button>
-                                            <button type="button" class="btn btn-danger btn-inline waves-effect waves-light"><i class="glyphicon  glyphicon-trash"></i>삭제</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- end. Card actions -->
-                            </div>
-                            <!-- /inner row -->
-                        </div>
-                        <!-- End property item -->
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="property-card">
-                            <div class="property-image" style="background: url('/resources/assets/images/properties/6.jpg') center center / cover no-repeat;">
-                        </div>
-
-                            <div class="property-content">
-                                <div class="listingInfo">
-                                    <p></p>
-                                    <div class="">
-                                        
-                                        <h3 class="text-overflow"><a href="#" class="text-dark">4BHK Alexander Court,New York</a></h3>
-                                        
-                                        <div class="m-t-20" style="text-align: center">
-                                            <button type="button" class="btn btn-custom btn-inline waves-effect waves-light">정보수정</button>
-                                            <button type="button" class="btn btn-danger btn-inline waves-effect waves-light"><i class="glyphicon  glyphicon-trash"></i>삭제</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- end. Card actions -->
-                            </div>
-                            <!-- /inner row -->
-                        </div>
-                        <!-- End property item -->
-                    </div>
-                    <!-- end col -->
-                    <div class="text-right">
-                        <ul class="pagination pagination-split m-t-0">
-                            <li class="disabled">
-                                <a href="#"><i class="fa fa-angle-left"></i></a>
-                            </li>
-                            <li>
-                                <a href="#">1</a>
-                            </li>
-                            <li class="active">
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-angle-right"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- end row -->
-
-
-
-                <!-- Footer -->
-                <footer class="footer text-right">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 text-center">
-                                2016 - 2017 © Zircos.
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End Footer -->
-
-            </div>
-        </div>
-
-
-
-        <!-- jQuery  -->
-        <script src="/resources/assets/js/jquery.min.js"></script>
-        <script src="/resources/assets/js/bootstrap.min.js"></script>
-        <script src="/resources/assets/js/detect.js"></script>
-        <script src="/resources/assets/js/fastclick.js"></script>
-        <script src="/resources/assets/js/jquery.blockUI.js"></script>
-        <script src="/resources/assets/js/waves.js"></script>
-        <script src="/resources/assets/js/jquery.slimscroll.js"></script>
-        <script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
-        <script src="/resources/plugins/switchery/switchery.min.js"></script>
-
-        <!-- Counter js  -->
-        <script src="/resources/plugins/waypoints/jquery.waypoints.min.js"></script>
-        <script src="/resources/plugins/counterup/jquery.counterup.min.js"></script>
-
-        <!--Morris Chart-->
-		<script src="/resources/plugins/morris/morris.min.js"></script>
-		<script src="/resources/plugins/raphael/raphael-min.js"></script>
-
-        <!-- Dashboard init -->
-        <script src="/resources/assets/pages/jquery.dashboard.js"></script>
-
-        <!-- App js -->
-        <script src="/resources/assets/js/jquery.core.js"></script>
-        <script src="/resources/assets/js/jquery.app.js"></script>
-
-    </body>
-</html>
+	</div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<%@include file="../include/footer.jsp"%>
