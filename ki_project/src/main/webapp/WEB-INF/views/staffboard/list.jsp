@@ -129,11 +129,11 @@
 								class="fa fa-angle-left"></i></a></li>
 						<c:if test="${pageMaker.prev}">
 							<li><a
-								href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
+								href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
 						</c:if>
 
-						<c:forEach begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }" var="idx">
+						<c:forEach begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}" var="idx">
 							<li
 								<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
 								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>

@@ -19,7 +19,6 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	@Override
 	public void create(Com_boardVO vo) throws Exception {
 		session.insert(namespace + ".create", vo);
-
 	}
 
 	@Override

@@ -42,6 +42,8 @@
 
 <script src="/resources/assets/js/modernizr.min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 
@@ -74,7 +76,8 @@
 
 
 
-						<button type="button" class="btn btn-danger waves-effect w-md waves-light m-b-5">
+						<button type="button"
+							class="btn btn-danger waves-effect w-md waves-light m-b-5">
 							<i class="ti-power-off m-r-5"></i> Logout
 						</button>
 
@@ -120,8 +123,8 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-										<li><a href="page-starter.html">직원등록</a></li>
-										<li><a href="page-login.html">직원조희</a></li>
+										<li><a href="/staff2board/register">직원등록</a></li>
+										<li><a href="/staff2board/list?page=1&perPageNum=10">직원조희</a></li>
 									</ul>
 								</li>
 							</ul></li>
@@ -131,8 +134,8 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-										<li><a href="page-starter.html">갤러리등록</a></li>
-										<li><a href="page-login.html">갤러리조희</a></li>
+										<li><a href="/galleryboard/register">갤러리등록</a></li>
+										<li><a href="/galleryboard/list?page=1&perPageNum=6">갤러리조희</a></li>
 									</ul>
 								</li>
 							</ul></li>
@@ -142,8 +145,8 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-										<li><a href="page-starter.html">동영상등록</a></li>
-										<li><a href="page-login.html">동영상조희</a></li>
+										<li><a href="/movieboard/register">동영상등록</a></li>
+										<li><a href="/movieboard/list?page=1&perPageNum=6">동영상조희</a></li>
 									</ul>
 								</li>
 							</ul></li>
@@ -153,12 +156,22 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-										<li><a href="page-starter.html">공지사항등록</a></li>
-										<li><a href="page-login.html">공지사항조희</a></li>
+										<li><a href="/noticeboard/register">공지사항등록</a></li>
+										<li><a href="/noticeboard/list?page=1&perPageNum=10">공지사항조희</a></li>
 									</ul>
 								</li>
 							</ul></li>
-
+						<!-- kiosk설정 --> 
+						<li class="has-submenu"><a href="#"><i
+								class="mdi mdi-google-pages"></i>Kiosk 설정</a>
+							<ul class="submenu megamenu">
+								<li>
+									<ul>
+										<li><a href="/iconboard/list">Icon</a></li>
+										<li><a href="/staff2board/list?page=1&perPageNum=10">Building</a></li>
+									</ul>
+								</li>
+							</ul></li>
 					</ul>
 
 
@@ -168,8 +181,7 @@
 	</header>
 	<!-- End Navigation Bar-->
 
-        <script src="/resources/assets/js/modernizr.min.js"></script>
- 		<!-- jQuery 2.1.4 -->
-  		<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-
-    </head>
+	<script src="/resources/assets/js/modernizr.min.js"></script>
+	<!-- jQuery 2.1.4 -->
+	<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+</head>

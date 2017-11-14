@@ -1,7 +1,6 @@
 package org.kiosk.controller;
 
 import javax.inject.Inject;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.persistence.Com_teamDAO;

@@ -8,7 +8,7 @@ public class Com_staff2VO {
 	private String real_use_dep_nm;
 	private String usr_nm;
 	private String logon_id;
-	private String key;
+	private String st_key;
 	private String class_nm;
 	private String posit_nm;
 	private String telno;
@@ -17,7 +17,7 @@ public class Com_staff2VO {
 	private int usr_work_state_code_nm;
 	private int st_status;
 	private int engm_se;
-	private String adi_info;
+	private String adi_info7;
 	private int st_sort;
 	private String section_cd;
 	private String team_cd;
@@ -56,12 +56,12 @@ public class Com_staff2VO {
 		this.logon_id = logon_id;
 	}
 
-	public String getKey() {
-		return key;
+	public String getSt_key() {
+		return st_key;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
+	public void setSt_key(String st_key) {
+		this.st_key = st_key;
 	}
 
 	public String getClass_nm() {
@@ -128,12 +128,12 @@ public class Com_staff2VO {
 		this.engm_se = engm_se;
 	}
 
-	public String getAdi_info() {
-		return adi_info;
+	public String getAdi_info7() {
+		return adi_info7;
 	}
 
-	public void setAdi_info(String adi_info) {
-		this.adi_info = adi_info;
+	public void setAdi_info7(String adi_info7) {
+		this.adi_info7 = adi_info7;
 	}
 
 	public int getSt_sort() {
@@ -179,10 +179,10 @@ public class Com_staff2VO {
 	@Override
 	public String toString() {
 		return "Com_staff2VO [st_no=" + st_no + ", real_use_dep_nm=" + real_use_dep_nm + ", usr_nm=" + usr_nm
-				+ ", logon_id=" + logon_id + ", key=" + key + ", class_nm=" + class_nm + ", posit_nm=" + posit_nm
+				+ ", logon_id=" + logon_id + ", st_key=" + st_key + ", class_nm=" + class_nm + ", posit_nm=" + posit_nm
 				+ ", telno=" + telno + ", img_filenm=" + img_filenm + ", email_addr=" + email_addr
 				+ ", usr_work_state_code_nm=" + usr_work_state_code_nm + ", st_status=" + st_status + ", engm_se="
-				+ engm_se + ", adi_info=" + adi_info + ", st_sort=" + st_sort + ", section_cd=" + section_cd
+				+ engm_se + ", adi_info7=" + adi_info7 + ", st_sort=" + st_sort + ", section_cd=" + section_cd
 				+ ", team_cd=" + team_cd + ", st_wdt=" + st_wdt + ", st_edt=" + st_edt + "]";
 	}
 

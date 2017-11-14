@@ -97,7 +97,7 @@
 										id="change">수정</button>
 									<button type="button"
 										class="btn btn-warning waves-effect w-md waves-light m-b-5"
-										id="back" onclick="history.go(-1)">돌아가기</button>
+										id="back">돌아가기</button>
 								</div>
 							</div>
 						</form>
@@ -107,10 +107,27 @@
 			<!-- end col -->
 		</div>
 		<script>
-				var input = ${com_boardVO.bbs_state};
-			     if(input==1){ //값 비교
-			    	 $('input:checkbox[id="bbs_state"]').attr("checked", true); //checked 처리
-			      }
+			var input = $
+			{
+				com_boardVO.bbs_state
+			};
+			if (input == 1) { //값 비교
+				$('input:checkbox[id="bbs_state"]').attr("checked", true); //checked 처리
+			}
+
+			$(document)
+					.ready(
+							function() {
+								var formObj = $("form[role='form']");
+								console.log(formObj);
+								$("#back")
+										.on(
+												"click",
+												function() {
+													self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+												});
+
+							});
 		</script>
 	</div>
 </section>
