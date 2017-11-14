@@ -27,7 +27,13 @@
         <script src="/resources/assets/js/jquery.slimscroll.js"></script>
         <script src="/resources/assets/js/jquery.scrollTo.min.js"></script>
         <script src="/resources/plugins/switchery/switchery.min.js"></script>
-
+	
+		<!-- fileupload -->
+		 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		 <script src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js'></script>
+		 <script src='https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.js'></script>
+		 <script src='/resources/assets/js/fileupload.js'></script>
+		
         <!-- App js -->
         <script src="/resources/assets/js/jquery.core.js"></script>
         <script src="/resources/assets/js/jquery.app.js"></script>

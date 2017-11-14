@@ -53,7 +53,9 @@
 								</button>
 							</div>
 						</form>
-						<a href="/noticeboard/register" class="btn btn-primary ">작성</a>
+						<div class="col-sm-1">
+							<a href="/noticeboard/register" class="btn btn-primary ">작성</a>
+						</div>
 					</div>
 
 					<div class="table-responsive">
@@ -73,7 +75,7 @@
 							<tbody>
 								<c:forEach items="${list}" var="com_boardVO">
 
-									<tr class="active">
+									<tr class="">
 										<td><a
 											href="/noticeboard/modifyPage${pageMaker.makeSearch(param.page)}&bbs_no=${com_boardVO.bbs_no}"
 											class="table-action-btn h2"><i
