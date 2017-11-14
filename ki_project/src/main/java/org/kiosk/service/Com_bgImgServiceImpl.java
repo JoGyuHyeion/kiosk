@@ -42,6 +42,11 @@ public class Com_bgImgServiceImpl implements Com_bgImgService {
 	public List<Com_bgImgVO> listAll() throws Exception {
 		return dao.listAll();
 	}
+	
+	@Override
+	public List<Com_bgImgVO> jsonList() throws Exception {
+		return dao.jsonList();
+	}
 
 	@Override
 	public int lastInsertID() throws Exception {

@@ -52,7 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="listAll" resultType="Com_boardVO">
- 		<![CDATA[ select * from com_board]]>
+ 		<![CDATA[ 
+ 		select * from com_board
+ 		]]>
 	</select>
 
 	<select id="listPage" resultType="Com_boardVO">

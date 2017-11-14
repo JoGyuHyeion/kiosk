@@ -38,6 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<![CDATA[ select * from com_bgImg]]>
 	</select>
 	
+	<select id="jsonList" resultType="Com_bgImgVO">
+ 		<![CDATA[ select * from com_bgImg where bi_able = 1]]>
+	</select>
+	
 	<select id="lastInsertID" resultType="int">
 		 SELECT LAST_INSERT_ID(bi_no) from com_bgImg order by bi_no desc limit 1;
 	</select>

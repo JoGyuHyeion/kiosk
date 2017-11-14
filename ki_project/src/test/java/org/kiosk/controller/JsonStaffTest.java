@@ -93,7 +93,7 @@ public class JsonStaffTest {
 	public void testMateListAll() throws Exception {
 		TeamsDTO vo = new TeamsDTO();
 		vo.setSection_cd("K010-S010");
-		vo.setTeam_cd("T02");
+		vo.setTeam_cd("T00");
 		logger.info(mateDao.list(vo).toString());
 	}
 
