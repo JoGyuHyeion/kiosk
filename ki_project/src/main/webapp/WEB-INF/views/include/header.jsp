@@ -38,12 +38,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-
-
+<!-- fileUpload CSS -->
+<link rel="stylesheet"
+	href="/resources/assets/css/file_input.css">
+	
 <script src="/resources/assets/js/modernizr.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<!--  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'> -->
+<link rel='stylesheet prefetch' href='https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.css'>
 </head>
 
 
@@ -63,7 +67,7 @@
 					<!--</a>-->
 					<!-- Image Logo -->
 					<a href="index.html" class="logo"> <img
-						src="/resources/assets/images/logo.png" alt="" height="30">
+						src="/resources/assets/logo(clean).png" alt="" height="30">
 					</a>
 
 				</div>
@@ -112,6 +116,7 @@
 								<li>
 									<ul>
 										<li><a href="myinfo_pswd.html">비밀번호변경</a></li>
+										<li><a href="section_set.html">국관리</a></li>
 										<li><a href="section_set.html">과관리</a></li>
 										<li><a href="page-register.html">Kiosk배경화면</a></li>
 									</ul>
@@ -163,12 +168,15 @@
 							</ul></li>
 						<!-- kiosk설정 --> 
 						<li class="has-submenu"><a href="#"><i
-								class="mdi mdi-google-pages"></i>Kiosk 설정</a>
+								class="mdi mdi-google-pages"></i>manager</a>
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
 										<li><a href="/iconboard/list">Icon</a></li>
+										<li><a href="/backGroundboard/list">바탕화면</a></li>
 										<li><a href="/staff2board/list?page=1&perPageNum=10">Building</a></li>
+									    <li><a href="/backGroundboard/list">USB</a></li>
+									
 									</ul>
 								</li>
 							</ul></li>

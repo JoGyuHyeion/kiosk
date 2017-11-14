@@ -30,38 +30,46 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-				<div class="row">
-						<form method="post" role="form" enctype="multipart/form-data">
-							<div class="col-md-7">
+					<div class="row">
+						<div class="col-md-7">
+
+							<form method="post" role="form" enctype="multipart/form-data">
 								<div class="form-horizontal" role="form">
 									<!-- vi_name-->
 									<div class="form-group">
-										<label class="col-md-2 control-label">제목</label>
-										<div class="col-md-10">
+										<label class="col-md-3 control-label">제목</label>
+										<div class="col-md-7">
 											<input type="text" class="form-control" placeholder="Name"
 												id="vi_name" name="vi_name">
 										</div>
 									</div>
 									<!-- vi_video -->
-									<div class="form-group clearfix">
-										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="videoFile" id="vi_video"
-												multiple="multiple">
+									<div class="form-group">
+										<label class="col-md-3 control-label">동영상 파일</label> <input
+											id="videoName"
+											class="file_input_textbox form-control col-md-5 " readonly />
+										<div class="file_input_div">
+											<input type="button" value="파일"
+												class="file_input_button btn btn-primary" /> <input
+												type="file" class="file_input_hidden" data-icon='false'
+												onchange="javascript:var path = document.getElementById('videoName').value = this.value.split('\\').pop().split('/').pop()"
+												accept="video/*" name="videoFile" id="vi_video" />
 										</div>
 									</div>
-
-									<div class="form-group" style="text-align: center">
-										<button type="submit"
-											class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
-										<button type="button"
-											class="btn btn-warning waves-effect w-md waves-light m-b-5"
-											id="back">돌아가기</button>
-									</div>
 								</div>
-							</div>
-						</form>
+						</div>
 					</div>
-					<script>
+
+					<div class="form-group" style="text-align: center">
+						<button type="submit"
+							class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
+						<button type="button"
+							class="btn btn-warning waves-effect w-md waves-light m-b-5"
+							id="back">돌아가기</button>
+					</div>
+					</form>
+				</div>
+				<script>
 						$(document)
 								.ready(
 										function() {
@@ -77,12 +85,12 @@
 										});
 					</script>
 
-				</div>
 			</div>
-			<!-- end col -->
-
 		</div>
-		<!-- end row -->
+		<!-- end col -->
+
+	</div>
+	<!-- end row -->
 
 	</div>
 	<!-- end container -->
