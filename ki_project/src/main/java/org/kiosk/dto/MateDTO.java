@@ -3,11 +3,11 @@ package org.kiosk.dto;
 public class MateDTO {
 
 	private int st_no;
-	private String st_nm;
-	private String st_position;
-	private String st_job;
-	private String st_tel;
-	private String st_email;
+	private String real_use_dep_nm;
+	private String posit_nm;
+	private String adi_info7;
+	private String telno;
+	private String email_addr;
 	private String img_filenm;
 	private int st_sort;
 	private int st_status;
@@ -20,44 +20,44 @@ public class MateDTO {
 		this.st_no = st_no;
 	}
 
-	public String getSt_nm() {
-		return st_nm;
+	public String getReal_use_dep_nm() {
+		return real_use_dep_nm;
 	}
 
-	public void setSt_nm(String st_nm) {
-		this.st_nm = st_nm;
+	public void setReal_use_dep_nm(String real_use_dep_nm) {
+		this.real_use_dep_nm = real_use_dep_nm;
 	}
 
-	public String getSt_position() {
-		return st_position;
+	public String getPosit_nm() {
+		return posit_nm;
 	}
 
-	public void setSt_position(String st_position) {
-		this.st_position = st_position;
+	public void setPosit_nm(String posit_nm) {
+		this.posit_nm = posit_nm;
 	}
 
-	public String getSt_job() {
-		return st_job;
+	public String getAdi_info7() {
+		return adi_info7;
 	}
 
-	public void setSt_job(String st_job) {
-		this.st_job = st_job;
+	public void setAdi_info7(String adi_info7) {
+		this.adi_info7 = adi_info7;
 	}
 
-	public String getSt_tel() {
-		return st_tel;
+	public String getTelno() {
+		return telno;
 	}
 
-	public void setSt_tel(String st_tel) {
-		this.st_tel = st_tel;
+	public void setTelno(String telno) {
+		this.telno = telno;
 	}
 
-	public String getSt_email() {
-		return st_email;
+	public String getEmail_addr() {
+		return email_addr;
 	}
 
-	public void setSt_email(String st_email) {
-		this.st_email = st_email;
+	public void setEmail_addr(String email_addr) {
+		this.email_addr = email_addr;
 	}
 
 	public String getImg_filenm() {
@@ -86,9 +86,9 @@ public class MateDTO {
 
 	@Override
 	public String toString() {
-		return "MateDTO [st_no=" + st_no + ", st_nm=" + st_nm + ", st_position=" + st_position + ", st_job=" + st_job
-				+ ", st_tel=" + st_tel + ", st_email=" + st_email + ", img_filenm=" + img_filenm + ", st_sort="
-				+ st_sort + ", st_status=" + st_status + "]";
+		return "MateDTO [st_no=" + st_no + ", real_use_dep_nm=" + real_use_dep_nm + ", posit_nm=" + posit_nm
+				+ ", adi_info7=" + adi_info7 + ", telno=" + telno + ", email_addr=" + email_addr + ", img_filenm="
+				+ img_filenm + ", st_sort=" + st_sort + ", st_status=" + st_status + "]";
 	}
 
 }

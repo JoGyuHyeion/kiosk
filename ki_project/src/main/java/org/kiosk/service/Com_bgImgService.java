@@ -16,6 +16,8 @@ public interface Com_bgImgService {
 	public void remove(Integer ic_no) throws Exception;
 
 	public List<Com_bgImgVO> listAll() throws Exception;
+	
+	public List<Com_bgImgVO> jsonList() throws Exception;
 
 	public int lastInsertID() throws Exception;
 

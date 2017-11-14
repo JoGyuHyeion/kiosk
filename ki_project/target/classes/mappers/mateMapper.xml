@@ -6,26 +6,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.MateMapper">
 
 	<select id="read" resultType="MateDTO">
-		select st_no, st_nm, st_position, st_job, st_tel, st_email, img_filenm, st_sort, st_status 
-		from com_staff
+		select st_no, real_use_dep_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status 
+		from com_staff2
 		where st_no = #{st_no} 
 	</select>
 
 	<insert id="create">
-		insert into com_staff
-		(st_no, st_nm, st_position, st_job, st_tel, st_email, img_filenm, st_sort, st_status)
+		insert into com_staff2
+		(real_use_dep_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status)
 		values
-		(#{st_no},#{st_nm},#{st_position},#{st_job},#{st_tel},#{st_email},#{img_filenm},#{st_sort},#{st_status})
+		(#{real_use_dep_nm},#{posit_nm},#{adi_info7},#{telno},#{email_addr},#{img_filenm},#{st_sort},#{st_status})
 	</insert>
 
 	<update id="update">
-		update com_staff set
-		st_no = #{st_no},
-		st_nm = #{st_nm},
-		st_position = #{st_position},
-		st_job = #{st_job},
-		st_tel = #{st_tel},
-		st_email = #{st_email},
+		update com_staff2 set
+		real_use_dep_nm = #{real_use_dep_nm},
+		posit_nm = #{posit_nm},
+		adi_info7 = #{adi_info7},
+		telno = #{telno},
+		email_addr = #{email_addr},
 		img_filenm = #{img_filenm},
 		st_sort = #{st_sort},
 		st_status = #{st_status},
@@ -34,15 +33,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<delete id="delete">
-		delete from com_staff where st_no = #{st_no} 
+		delete from com_staff2 where st_no = #{st_no} 
 	</delete>
 
 	<select id="list" resultType="MateDTO">
  		<![CDATA[ 
-		SELECT st_no, st_nm, st_position, st_job, st_tel, st_email, img_filenm, st_sort, st_status
-		FROM com_staff 
+		SELECT st_no, real_use_dep_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status 
+		FROM com_staff2 
 		WHERE section_cd= #{section_cd} 
-		AND st_display = 1  
+		AND usr_work_state_code_nm = "재직"  
 		AND team_cd = #{team_cd}
 		ORDER BY st_sort, team_cd
 		]]>
