@@ -117,7 +117,7 @@ public class StaffBoardController {
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/staffboard/list";
+		return "redirect:/staffboard/list?page=1";
 	}
 
 }

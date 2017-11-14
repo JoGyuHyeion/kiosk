@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="listAll" resultType="Com_teamVO">
- 		<![CDATA[ select * from com_team]]>
+ 		<![CDATA[select * from com_team]]>
 	</select>
 	
 </mapper>
