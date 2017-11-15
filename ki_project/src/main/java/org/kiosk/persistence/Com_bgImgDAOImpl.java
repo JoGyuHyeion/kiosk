@@ -44,6 +44,11 @@ public class Com_bgImgDAOImpl implements Com_bgImgDAO {
 	}
 	
 	@Override
+	public List<Com_bgImgVO> jsonList() throws Exception {
+		return session.selectList(namespace + ".jsonList");
+	}
+	
+	@Override
 	public int lastInsertID() throws Exception {
 		return session.selectOne(namespace + ".lastInsertID");
 	}

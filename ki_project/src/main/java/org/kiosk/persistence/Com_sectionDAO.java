@@ -14,4 +14,7 @@ public interface Com_sectionDAO {
 	  public void delete(String section_cd) throws Exception;
 
 	  public List<Com_sectionVO> listAll() throws Exception;
+	  
+	  public List<Com_sectionVO> bureauList(String bureau_cd) throws Exception;
+
 }

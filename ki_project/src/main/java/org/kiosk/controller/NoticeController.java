@@ -83,7 +83,7 @@ public class NoticeController {
 
 		return "redirect:/noticeboard/list";
 	}
-
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET() throws Exception {
 		logger.info("noticeboard/register - GET");

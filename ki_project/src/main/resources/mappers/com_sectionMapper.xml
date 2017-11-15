@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.Com_sectionMapper">
 
 	<select id="read" resultType="Com_sectionVO">
-		select bureau_cd,section_cd,section_name,section_type,section_sort,section_ip,section_id,section_pass,section_fullcode,section_fullpath,section_use 
+		select
+		bureau_cd,section_cd,section_name,section_type,section_sort,section_ip,section_id,section_pass,section_fullcode,section_fullpath,section_use
 		from com_section
 		where
 		section_no = #{section_no}
@@ -26,9 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		section_type = #{section_type},
 		section_sort = #{section_sort},
 		section_ip = #{section_ip},
-		section_id = #{section_id},
+		section_id =
+		#{section_id},
 		section_pass = #{section_pass},
-		section_fullcode = #{section_fullcode},
+		section_fullcode =
+		#{section_fullcode},
 		section_fullpath = #{section_fullpath},
 		section_use = #{section_use}
 		where
@@ -36,11 +39,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<delete id="delete">
-		delete from com_section where section_cd = #{section_cd}
+		delete from com_section where section_cd =
+		#{section_cd}
 	</delete>
 
 	<select id="listAll" resultType="Com_sectionVO">
  		<![CDATA[ select * from com_section]]>
 	</select>
+
+	<select id="bureau_list" resultType="Com_sectionVO">
+ 		<![CDATA[ 
+ 		select * from com_section 
+ 		where bureau_cd = #{bureau_cd}
+ 		]]>
+	</select>
+
 
 </mapper>

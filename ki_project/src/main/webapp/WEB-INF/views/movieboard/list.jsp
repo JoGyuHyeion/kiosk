@@ -45,13 +45,14 @@
 								</h3>
 
 								<div class="m-t-20" style="text-align: center">
-									<button type="button"
-										class="btn btn-custom btn-inline waves-effect waves-light"
-										onclick="location.href='/movieboard/modifyPage${pageMaker.makeSearch(param.page)}&vi_no=${com_videoVO.vi_no}'">정보수정</button>
 
 									<form
 										action="/movieboard/removePage?vi_no=${com_videoVO.vi_no}"
 										method="post">
+										<button type="button"
+											class="btn btn-custom btn-inline waves-effect waves-light"
+											onclick="location.href='/movieboard/modifyPage${pageMaker.makeSearch(param.page)}&vi_no=${com_videoVO.vi_no}'">정보수정</button>
+
 										<button type="submit"
 											class="btn btn-danger btn-inline waves-effect waves-light">
 											<i class="glyphicon glyphicon-trash"></i>삭제

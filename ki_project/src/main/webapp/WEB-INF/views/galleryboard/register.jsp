@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <%@include file="../include/header.jsp"%>
+
 <!-- Main content -->
 <section class="wrapper">
 	<div class="container">
@@ -31,27 +32,20 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form" enctype="multipart/form-data">
-							<div class="col-md-7">
+						<div class="col-md-7">
+							<form method="post" role="form" enctype="multipart/form-data">
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
 									<div class="form-group">
-										<label class="col-md-2 control-label">제목</label>
-										<div class="col-md-10">
+										<label class="col-md-3 control-label">제목</label>
+										<div class="col-md-7">
 											<input type="text" class="form-control" placeholder="Name"
 												id="img_title" name="img_title">
 										</div>
 									</div>
-									<!-- img_filenm -->
-									<div class="form-group clearfix">
-										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="imgFile" id="img_filenm"
-												multiple="multiple">
-										</div>
-									</div>
 									<!-- img_gallery  노출 여부   -->
 									<div class="form-group">
-										<label class="col-md-2 control-label">표시여부</label>
+										<label class="col-md-3 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
 											<input type="checkbox" name="img_gallery" id="img_gallery"
@@ -59,18 +53,45 @@
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-md-3 control-label">이미지 파일</label> <input
+											id="imgName"
+											class="file_input_textbox form-control col-md-5 " readonly />
+										<div class="file_input_div">
+											<input type="button" value="파일"
+												class="file_input_button btn btn-primary" /> <input
+												type="file" class="file_input_hidden" data-icon='false'
+												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												accept="image/*" name="imgFile" id="img_filenm" />
+										</div>
+									</div>
 								</div>
-								<div class="form-group" style="text-align: center">
-									<button type="submit"
-										class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
-									<button type="button"
-										class="btn btn-warning waves-effect w-md waves-light m-b-5"
-										id="back">돌아가기</button>
-								</div>
+						</div>
 
-							</div>
-						</form>
+
+
+						<!-- img_filenm -->
+						<!-- 		<div class="form-group">
+										<div class="col-sm-12 padding-left-0 padding-right-0">
+											<input type="file" name="imgFile" id="img_filenm"
+												multiple="multiple">
+										</div>
+									</div>-->
+
+
 					</div>
+					<div class="form-group" style="text-align: center">
+						<button type="submit"
+							class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
+						<button type="button"
+							class="btn btn-warning waves-effect w-md waves-light m-b-5"
+							id="back">돌아가기</button>
+					</div>
+					</form>
+
+
+
+
 					<script>
 						$(document)
 								.ready(

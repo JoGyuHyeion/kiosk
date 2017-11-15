@@ -44,5 +44,11 @@ public class Com_bureauDAOImpl implements Com_bureauDAO{
 		return session.selectList(namespace+".listAll");
 		
 	}
+	
+	@Override
+	public List<Com_bureauVO> bureauList(String bureau_cd) throws Exception {
+		return session.selectList(namespace+".bureau_list",bureau_cd);
+		
+	}
 
 }

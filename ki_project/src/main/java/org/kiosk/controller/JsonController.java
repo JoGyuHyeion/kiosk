@@ -169,7 +169,7 @@ public class JsonController {
 		logger.info("json/sendBgImage");
 		ResponseEntity<List<Com_bgImgVO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(bgImgService.listAll(), HttpStatus.OK);
+			entity = new ResponseEntity<>(bgImgService.jsonList(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
