@@ -91,7 +91,6 @@
 												value="1" switch="none" /> <label for="bbs_state"
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
-										<p>${com_boardVO.bbs_state}</p>
 									</div>
 								</div>
 								<div class="form-group" style="text-align: center">
@@ -110,18 +109,20 @@
 			<!-- end col -->
 		</div>
 		<script>
-			var input = $
-			{
-				com_boardVO.bbs_state
-			};
-			if (input == 1) { //값 비교
-				$('input:checkbox[id="bbs_state"]').attr("checked", true); //checked 처리
-			}
+			
+			
 
 			$(document)
 					.ready(
 							function() {
 								var formObj = $("form[role='form']");
+								var bbs_state ="<c:out value="${bbs_state}"/>";
+								if(bbs_state == 1){
+									 $("#bbs_state").attr('checked',true);			
+								}else{
+									 $("#bbs_state").attr('checked',false);	
+								}
+								
 								console.log(formObj);
 								$("#back")
 										.on(
@@ -130,8 +131,6 @@
 													self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 												});
 								
-								alert(bbs_state);
-
 							});
 		</script>
 	</div>

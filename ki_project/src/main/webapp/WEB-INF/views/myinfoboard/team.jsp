@@ -59,11 +59,11 @@
 														<td><input type="text" class="form-control"
 															id="team_sort" name="team_sort" size="3"
 															value="${com_teamVO.team_sort}"></td>
-														<c:set var="team_use" value="&{com_teamVO.team_use}" />
+														<c:set var="team_use" value="${com_teamVO.team_use}" />
 														<td><div style="padding: 5px">
 																<input type="checkbox" name="team_use" switch="none"
-																	value="${com_teamVO.team_use}" /><label for="team_use"
-																	data-on-label="On" data-off-label="Off"></label>
+																	id="team_use" value="${com_teamVO.team_use}" /><label
+																	for="team_use" data-on-label="On" data-off-label="Off"></label>
 															</div></td>
 														<td><a href="#" class="table-action-btn h2"><i
 																class="mdi mdi-close-box-outline text-danger"></i></a></td>
@@ -80,8 +80,9 @@
 																class="btn btn-primary waves-effect w-md waves-light m-b-5">저장</button>
 															<button data-toggle="modal" data-target="#teamModal"
 																class="btn btn-warning waves-effect w-md waves-light m-b-5"
-																href="#teamAdd"><i class="fa fa-plus-circle"></i>
-																팀추가</button>
+																href="#teamAdd">
+																<i class="fa fa-plus-circle"></i> 팀추가
+															</button>
 														</div>
 													</td>
 												</tr>
@@ -115,17 +116,19 @@
 					</div>
 					<div></div>
 					<div class="modal-body">
-						<form class="form-horizontal"action="modifypage" method="post">
+						<form class="form-horizontal" action="modifypage" method="post">
 							<div class="form-group">
 								<label class="col-sm-2 control-label" for="team_cd">팀코드</label>
 								<div class="col-sm-10">
-									<input type="text" id="team_cd" name="team_cd" value="" maxlength="3" placeholder="팀코드 ex) T08" class="form-control">
+									<input type="text" id="team_cd" name="team_cd" value=""
+										maxlength="3" placeholder="팀코드 ex) T08" class="form-control">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label" for="team_nm">팀명</label>
 								<div class="col-sm-10">
-									<input type="text" id="team_nm" name="team_nm" value="" maxlength="30" placeholder="팀명(30자 이내)" class="form-control">
+									<input type="text" id="team_nm" name="team_nm" value=""
+										maxlength="30" placeholder="팀명(30자 이내)" class="form-control">
 								</div>
 							</div>
 						</form>
@@ -157,31 +160,38 @@
 					team_cd = $("#team_cd").val();
 					team_nm = $("#team_nm").val();
 
-					if(team_cd.length == 0) return false;
-					if(team_nm.length == 0) return false;
+					if (team_cd.length == 0)
+						return false;
+					if (team_nm.length == 0)
+						return false;
 
 					$.ajax({
-						url:'/team/insert',
-						type:'post',
-						data:{"team_cd":team_cd, "team_nm":team_nm},
-						success:function(data) {
+						url : '/team/insert',
+						type : 'post',
+						data : {
+							"team_cd" : team_cd,
+							"team_nm" : team_nm
+						},
+						success : function(data) {
 							location.reload();
 						}
 					});
-				
+
 				});
 
 				$(".team-del").click(function() {
 					var team_cd = $(this).data("teamcd");
 					$.ajax({
-						url:'/team/del',
-						type:'post',
-						dataType:'json',
-						data:{"team_cd":team_cd},
-						success:function(data) {
-							if(data.row == 1) {
+						url : '/team/del',
+						type : 'post',
+						dataType : 'json',
+						data : {
+							"team_cd" : team_cd
+						},
+						success : function(data) {
+							if (data.row == 1) {
 								location.reload();
-							} else if(data.row == 0) {
+							} else if (data.row == 0) {
 								alert(data.msg);
 							}
 						}
