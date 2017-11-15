@@ -2,6 +2,7 @@ package org.kiosk.controller;
 
 import javax.inject.Inject;
 import org.kiosk.domain.SearchCriteria;
+import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
 import org.slf4j.Logger;
@@ -23,6 +24,8 @@ public class MyInfoBoardController {
 	private Com_sectionService service;
 	@Inject
 	private Com_teamService teamService;
+	@Inject
+	private Com_bureauService bureauService;
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
 	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
@@ -49,9 +52,12 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/section", method = RequestMethod.GET)
-	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model,@ModelAttribute("bcd") String bcd) throws Exception {
 
 		logger.info("myinfoboard/section - GET ");
+		model.addAttribute("bureauService",bureauService.listAll());
+		model.addAttribute("bcd",service.bureauList(bcd));
+
 	}
 
 	@RequestMapping(value = "/section", method = RequestMethod.POST)
@@ -66,7 +72,7 @@ public class MyInfoBoardController {
 		rttr.addAttribute("keyword", cri.getKeyword());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
-
+		
 		logger.info(rttr.toString());
 
 		return "redirect:/myinfoboard/section";

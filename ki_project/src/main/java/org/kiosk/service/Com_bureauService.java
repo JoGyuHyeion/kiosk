@@ -15,5 +15,6 @@ public interface Com_bureauService {
 	public void remove(String bureau_cd) throws Exception;
 
 	public List<Com_bureauVO> listAll() throws Exception;
+	
 
 }
