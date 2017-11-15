@@ -41,9 +41,9 @@ public class Com_staff2Test {
 		vo.setTelno("img1");
 		vo.setImg_filenm("img_filenm1");
 		vo.setEmail_addr("부서");
-		vo.setUsr_work_state_code_nm(1);
+		vo.setUsr_work_state_code_nm("1");
 		vo.setSt_status(1);
-		vo.setEngm_se(0);
+		vo.setEngm_se("11");
 		vo.setAdi_info7("3");
 		vo.setSt_sort(5);
 		vo.setSection_cd("3");

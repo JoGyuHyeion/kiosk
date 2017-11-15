@@ -41,13 +41,13 @@
 							<div class="">
 
 								<h3 class="text-overflow">
-									<a href="#" class="text-dark">${com_videoVO.vi_name}</a>
+									<a href="/movieboard/readPage?vi_no=${com_videoVO.vi_no}" class="text-dark">${com_videoVO.vi_name}</a>
 								</h3>
 
 								<div class="m-t-20" style="text-align: center">
 
 									<form
-										action="/movieboard/removePage?vi_no=${com_videoVO.vi_no }"
+										action="/movieboard/removePage?vi_no=${com_videoVO.vi_no}"
 										method="post">
 										<button type="button"
 											class="btn btn-custom btn-inline waves-effect waves-light"

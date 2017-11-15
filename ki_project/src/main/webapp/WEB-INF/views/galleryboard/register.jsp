@@ -113,8 +113,6 @@
 		<!-- end col -->
 	</div>
 	<!-- end row -->
-	</div>
-	<!-- end container -->
 </section>
 <!-- end wrapper -->
 

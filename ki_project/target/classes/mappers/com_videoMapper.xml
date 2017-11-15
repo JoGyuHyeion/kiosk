@@ -15,9 +15,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into com_video
-		(vi_no,vi_name,vi_video,vi_ndt)
+		(vi_name,vi_video,vi_ndt)
 		values
-		(#{vi_no},#{vi_name},#{vi_video},now())
+		(#{vi_name},#{vi_video},now())
 	</insert>
 
 	<update id="update">

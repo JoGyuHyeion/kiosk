@@ -48,6 +48,7 @@ public class GalleryBoardController {
 
 		model.addAttribute("pageMaker", pageMaker);
 	}
+
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("img_no") int img_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
 			throws Exception {
@@ -101,6 +102,7 @@ public class GalleryBoardController {
 
 		return "redirect:/galleryboard/list";
 	}
+
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
 	public String remove(@RequestParam("img_no") int img_no, SearchCriteria cri, RedirectAttributes rttr)
 			throws Exception {
