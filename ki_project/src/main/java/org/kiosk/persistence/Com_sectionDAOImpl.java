@@ -43,5 +43,12 @@ public class Com_sectionDAOImpl implements Com_sectionDAO{
 	public List<Com_sectionVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
+	 
+
+	@Override
+	public List<Com_sectionVO> bureauList(String bureau_cd) throws Exception {
+		return session.selectList(namespace + ".bureau_list",bureau_cd);
+	}
+
 
 }

@@ -23,48 +23,42 @@
 			</div>
 		</div>
 		<!-- end page title end breadcrumb -->
+		<div class="portfolioContainer">
 
-		<c:forEach items="${list}" var="com_imageVO">
-			<div class="col-md-4 col-sm-6">
-				<div class="property-card">
-					<div class="property-image"
-						style="background: url('/resources/assets/images/properties/6.jpg') center center/cover no-repeat;">
-					</div>
+			<c:forEach items="${list}" var="com_imageVO">
 
-					<div class="property-content">
-						<div class="listingInfo">
-							<p></p>
-							<div class="">
-
-								<h3 class="text-overflow">
-									<a href="/galleryboard/readPage?img_no=${com_imageVO.img_no}"
-										class="text-dark">${com_imageVO.img_title}</a>
-								</h3>
-
-								<div class="m-t-20" style="text-align: center">
-									<button type="button"
-										class="btn btn-custom btn-inline waves-effect waves-light"
-										onclick="location.href='/galleryboard/modifyPage${pageMaker.makeSearch(param.page)}&img_no=${com_imageVO.img_no}'">정보수정</button>
-									<form
-										action="/galleryboard/removePage?img_no=${com_imageVO.img_no }"
-										method="post">
-										<button type="submit"
-											class="btn btn-danger btn-inline waves-effect waves-light">
-											<i class="glyphicon glyphicon-trash"></i>삭제
-										</button>
-									</form>
-								</div>
-
-							</div>
+				<div class="col-sm-6 col-md-4">
+					<div class="thumb">
+						<!-- <a href="/resources/upload${com_imageVO.img_filenm}" class="image-popup"
+							title="Screenshot-1"> <img
+							src="/resources/upload${com_imageVO.img_filenm}" class="thumb-img"
+							alt="work-thumbnail">
+						</a>-->
+						<a href="/resources/assets/images/1.jpg" class="image-popup"
+							title="Screenshot-1"> <img
+							src="/resources/assets/images/properties/1.jpg" class="thumb-img"
+							alt="work-thumbnail">
+						</a>
+						<div class="gal-detail">
+							<h4>${com_imageVO.img_title}</h4>
+							<form
+								action="/galleryboard/removePage?img_no=${com_imageVO.img_no }"
+								method="post">
+								<button type="button"
+									class="btn btn-custom btn-inline waves-effect waves-light"
+									onclick="location.href='/galleryboard/modifyPage${pageMaker.makeSearch(param.page)}&img_no=${com_imageVO.img_no}'">정보수정</button>
+								<button type="submit"
+									class="btn btn-danger btn-inline waves-effect waves-light">
+									<i class="glyphicon glyphicon-trash"></i>삭제
+								</button>
+							</form>
 						</div>
-						<!-- end. Card actions -->
 					</div>
-					<!-- /inner row -->
 				</div>
-				<!-- End property item -->
-			</div>
-		</c:forEach>
 
+
+			</c:forEach>
+		</div>
 		<!-- end col -->
 		<div class="text-right">
 			<ul class="pagination pagination-split m-t-0">
@@ -93,7 +87,5 @@
 		</div>
 		<!-- end row -->
 	</div>
-
-
 </section>
 <%@include file="../include/footer.jsp"%>

@@ -15,5 +15,7 @@ public interface Com_bureauDAO {
 	public void delete(String bureau_cd) throws Exception;
 
 	public List<Com_bureauVO> listAll() throws Exception;
+	
+	public List<Com_bureauVO> bureauList(String bureau_cd) throws Exception;
 
 }

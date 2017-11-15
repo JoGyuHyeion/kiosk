@@ -40,5 +40,7 @@ public class Com_bureauServiceImpl implements Com_bureauService {
 	public List<Com_bureauVO> listAll() throws Exception {
 		return dao.listAll();
 	}
+	
+
 
 }
