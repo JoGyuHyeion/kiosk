@@ -57,15 +57,15 @@ public class IconBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_iconVO board, RedirectAttributes rttr, @RequestParam("iconFile") MultipartFile iconFile)
-			throws Exception {
+	public String registPOST(Com_iconVO board, RedirectAttributes rttr,
+			@RequestParam("iconFile") MultipartFile iconFile) throws Exception {
 		logger.info("iconboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
 		String icon_filenm = UploadFileUtils.uploadImageFile(uploadPath, iconFile.getOriginalFilename(),
 				iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
-		board.setIc_icon(icon_filenm );
+		board.setIc_icon(icon_filenm);
 		service.regist(board);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -81,15 +81,23 @@ public class IconBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr,
+			MultipartFile iconFile) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
 		logger.info(cri.toString());
+		String icon_filenm;
+		if (board.isIc_default() == 0) {
+			icon_filenm = UploadFileUtils.uploadImageFile(uploadPath, iconFile.getOriginalFilename(),
+					iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
+			board.setIc_icon(icon_filenm);
+		} else {
+			icon_filenm="icon1.png";
+		}
+
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-		rttr.addAttribute("searchType", cri.getSearchType());
-		rttr.addAttribute("keyword", cri.getKeyword());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 

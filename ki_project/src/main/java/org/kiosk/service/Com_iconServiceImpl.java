@@ -16,8 +16,8 @@ public class Com_iconServiceImpl implements Com_iconService {
 	private Com_iconDAO dao;
 
 	@Override
-	public void regist(Com_iconVO dto) throws Exception {
-		dao.create(dto);
+	public void regist(Com_iconVO vo) throws Exception {
+		dao.create(vo);
 
 	}
 
@@ -27,8 +27,8 @@ public class Com_iconServiceImpl implements Com_iconService {
 	}
 
 	@Override
-	public void modify(Com_iconVO dto) throws Exception {
-		dao.update(dto);
+	public void modify(Com_iconVO vo) throws Exception {
+		dao.update(vo);
 
 	}
 

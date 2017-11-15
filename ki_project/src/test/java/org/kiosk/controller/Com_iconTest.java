@@ -32,7 +32,7 @@ public class Com_iconTest {
 	public void testCreate() throws Exception {
 
 		Com_iconVO dto = new Com_iconVO();
-		dto.setIc_able(true);
+		dto.setIc_default(1);
 		dto.setIc_icon("아이콘");
 		dto.setIc_name("아이콘 이름");
 		dto.setIc_ndt(sqlDate);
@@ -49,7 +49,7 @@ public class Com_iconTest {
 	public void testUpdate() throws Exception {
 
 		Com_iconVO dto = new Com_iconVO();
-		dto.setIc_able(true);
+		dto.setIc_default(1);
 		dto.setIc_icon("아이콘");
 		dto.setIc_name("아이콘 이름");
 		dto.setIc_ndt(sqlDate);

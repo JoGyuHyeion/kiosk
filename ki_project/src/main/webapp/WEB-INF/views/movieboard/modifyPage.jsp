@@ -45,7 +45,7 @@
 									<!-- vi_video -->
 									<div class="form-group clearfix">
 										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="files[]" id="filer_input2"
+											<input type="file" name="videoFile" id="vi_video"
 												multiple="multiple">
 										</div>
 									</div>

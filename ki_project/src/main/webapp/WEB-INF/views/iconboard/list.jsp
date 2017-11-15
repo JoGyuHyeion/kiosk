@@ -76,11 +76,9 @@
 				</div>
 				<div></div>
 				<div class="modal-body">
-					<form action="modifypage" method="post">
-						<!--<input type='hidden' name='page' value="${cri.page}"> <input
-								type='hidden' name='perPageNum' value="${cri.perPageNum}">
-							<input type='hidden' name='searchType' value="${cri.searchType}">
-							<input type='hidden' name='keyword' value="${cri.keyword}">-->
+					<form action="/iconboard/modifyPage" method="post">
+
+						<input type="hidden" name="ic_default" id="ic_default" value='${com_iconVO.ic_default}'>
 						<div class="form-group">
 							<p class="text-muted font-13 m-b-15 ">Default / Custom 여부</p>
 							<div class="radio radio-info radio-inline">
@@ -98,24 +96,25 @@
 							<label for="image" class="control-label">파일 등록</label> <input
 								type="file" id="file_upload" class="form-control" id="image">
 						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">수정하기</button>
+						</div>
 
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">수정하기</button>
-				</div>
+
 			</div>
 		</div>
 	</div>
 
 	<script>
-
 		$(document).ready(
 				function() {
 					$('#imageModal').on('show.bs.modal', function(event) {
-						var button = $(event.relatedTarget) 
-						var recipient = button.data('whatever') 
+						var button = $(event.relatedTarget)
+						var recipient = button.data('whatever')
 						var modal = $(this)
 						modal.find('.modal-body input').val(recipient)
 					});
@@ -137,9 +136,7 @@
 				});
 	</script>
 
-	</div>
-</section>
 <!-- /.content -->
-</div>
+</section>
 <!-- /.content-wrapper -->
 <%@include file="../include/footer.jsp"%>
