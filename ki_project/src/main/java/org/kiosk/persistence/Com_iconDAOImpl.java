@@ -16,8 +16,8 @@ public class Com_iconDAOImpl implements Com_iconDAO {
 	private static String namespace = "org.kiosk.mapper.com_iconMapper";
 
 	@Override
-	public void create(Com_iconVO dto) throws Exception {
-		session.insert(namespace + ".create", dto);
+	public void create(Com_iconVO vo) throws Exception {
+		session.insert(namespace + ".create", vo);
 
 	}
 
@@ -27,8 +27,8 @@ public class Com_iconDAOImpl implements Com_iconDAO {
 	}
 
 	@Override
-	public void update(Com_iconVO dto) throws Exception {
-		session.update(namespace + ".update", dto);
+	public void update(Com_iconVO vo) throws Exception {
+		session.update(namespace + ".update", vo);
 
 	}
 

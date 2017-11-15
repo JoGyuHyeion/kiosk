@@ -7,11 +7,11 @@ import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 
 public interface Com_iconDAO {
-	public void create(Com_iconVO dto) throws Exception;
+	public void create(Com_iconVO vo) throws Exception;
 
 	public Com_iconVO read(Integer ic_no) throws Exception;
 
-	public void update(Com_iconVO dto) throws Exception;
+	public void update(Com_iconVO vo) throws Exception;
 
 	public void delete(Integer ic_no) throws Exception;
 

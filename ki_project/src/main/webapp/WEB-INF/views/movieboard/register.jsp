@@ -30,7 +30,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-				<div class="row">
+					<div class="row">
 						<form method="post" role="form" enctype="multipart/form-data">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
@@ -39,7 +39,7 @@
 										<label class="col-md-2 control-label">제목</label>
 										<div class="col-md-10">
 											<input type="text" class="form-control" placeholder="Name"
-												id="vi_name" name="vi_name">
+												id="vi_video" name="vi_video">
 										</div>
 									</div>
 									<!-- vi_video -->
@@ -49,14 +49,13 @@
 												multiple="multiple">
 										</div>
 									</div>
-
-									<div class="form-group" style="text-align: center">
-										<button type="submit"
-											class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
-										<button type="button"
-											class="btn btn-warning waves-effect w-md waves-light m-b-5"
-											id="back">돌아가기</button>
-									</div>
+								</div>
+								<div class="form-group" style="text-align: center">
+									<button type="submit"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
+									<button type="button"
+										class="btn btn-warning waves-effect w-md waves-light m-b-5"
+										id="back">돌아가기</button>
 								</div>
 							</div>
 						</form>

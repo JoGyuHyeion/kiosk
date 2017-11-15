@@ -9,7 +9,7 @@ public class Com_iconVO {
 	private int ic_no;
 	private String ic_name;
 	private String ic_icon;
-	private boolean ic_able;
+	private int ic_default;
 	private Date ic_ndt;
 
 	public int getIc_no() {
@@ -36,12 +36,12 @@ public class Com_iconVO {
 		this.ic_icon = ic_icon;
 	}
 
-	public boolean isIc_able() {
-		return ic_able;
+	public int isIc_default() {
+		return ic_default;
 	}
 
-	public void setIc_able(boolean ic_able) {
-		this.ic_able = ic_able;
+	public void setIc_default(int ic_default) {
+		this.ic_default = ic_default;
 	}
 
 	public Date getIc_ndt() {
@@ -54,8 +54,8 @@ public class Com_iconVO {
 
 	@Override
 	public String toString() {
-		return "Com_iconVO [ic_no=" + ic_no + ", ic_name=" + ic_name + ", ic_icon=" + ic_icon + ", ic_able=" + ic_able
-				+ ", ic_ndt=" + ic_ndt + "]";
+		return "Com_iconVO [ic_no=" + ic_no + ", ic_name=" + ic_name + ", ic_icon=" + ic_icon + ", ic_default="
+				+ ic_default + ", ic_ndt=" + ic_ndt + "]";
 	}
 
 }
