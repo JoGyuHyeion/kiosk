@@ -42,4 +42,9 @@ public class Com_sectionServiceImpl implements Com_sectionService {
 		return dao.listAll();
 	}
 
+	@Override
+	public List<Com_sectionVO> bureauList(String bureau_cd) throws Exception {
+		return dao.bureauList(bureau_cd);
+	}
+
 }

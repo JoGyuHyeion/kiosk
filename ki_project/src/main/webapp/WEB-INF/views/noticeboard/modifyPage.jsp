@@ -75,12 +75,14 @@
 												name="bbs_exp_sdt" value="${com_boardVO.bbs_exp_sdt}">
 											<span class="input-group-addon"> ~ </span> <input type="date"
 												class="form-control" id="bbs_exp_edt" name="bbs_exp_edt"
-												value="${com_boardVO.bbs_exp_sdt}">
+												value="${com_boardVO.bbs_exp_edt}">
+												
 										</div>
 									</div>
 
 
 									<!-- bbs_state     -->
+									<c:set value = "${com_boardVO.bbs_state}" var="bbs_state"/>
 									<div class="form-group">
 										<label for="bbs_state" class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
@@ -89,6 +91,7 @@
 												value="1" switch="none" /> <label for="bbs_state"
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
+										<p>${com_boardVO.bbs_state}</p>
 									</div>
 								</div>
 								<div class="form-group" style="text-align: center">
@@ -126,6 +129,8 @@
 												function() {
 													self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 												});
+								
+								alert(bbs_state);
 
 							});
 		</script>

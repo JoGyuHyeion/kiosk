@@ -21,15 +21,11 @@
 
 								<label class=" col-md-2 control-label" for="search_bcd">국코드</label>
 								<select id="search_bcd" name="search_bcd" class="form-control">
-									<option value="none">::해당 국을 선택하세요!</option>
-									<option value="K010" selected="selected">경제산업국</option>
-									<option value="K020">도시개발국</option>
-									<option value="K030">문화관광실</option>
-									<option value="K040">시민행정국</option>
-									<option value="K050">특별기관</option>
-									<option value="K060">농업기술센터</option>
-									<option value="K070">의회</option>
-									<option value="K999">부서이동</option>
+									<c:forEach items="${bureauService}" var="com_bureauVO">
+										<option value="${com_bureauVO.bureau_cd}">${com_bureauVO.bureau_name}</option>
+
+									</c:forEach>
+
 								</select>
 							</form>
 						</div>
@@ -46,56 +42,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td><input type="text" class="form-control" size="6"
-											value="S010" readonly="readonly"></td>
-										<td><input type="text" class="form-control" size="40"
-											value="기업지원과"></td>
-										<td><input type="checkbox" style="align-content: center"
-											class="" name="" id=""></td>
-										<td><a href="#" class="table-action-btn h2"><i
-												class="mdi mdi-close-box-outline text-danger"></i></a></td>
-									</tr>
-									<tr>
-										<td><input type="text" class="form-control" size="6"
-											value="S010" readonly="readonly"></td>
-										<td><input type="text" class="form-control" size="40"
-											value="기업지원과"></td>
-										<td><input type="checkbox" style="align-content: center"
-											class="" name="" id=""></td>
-										<td><a href="#" class="table-action-btn h2"><i
-												class="mdi mdi-close-box-outline text-danger"></i></a></td>
-									</tr>
-									<tr>
-										<td><input type="text" class="form-control" size="6"
-											value="S010" readonly="readonly"></td>
-										<td><input type="text" class="form-control" size="40"
-											value="기업지원과"></td>
-										<td><input type="checkbox" style="align-content: center"
-											class="" name="" id=""></td>
-										<td><a href="#" class="table-action-btn h2"><i
-												class="mdi mdi-close-box-outline text-danger"></i></a></td>
-									</tr>
-									<tr>
-										<td><input type="text" class="form-control" size="6"
-											value="S010" readonly="readonly"></td>
-										<td><input type="text" class="form-control" size="40"
-											value="기업지원과"></td>
-										<td><input type="checkbox" style="align-content: center"
-											class="" name="" id=""></td>
-										<td><a href="#" class="table-action-btn h2"><i
-												class="mdi mdi-close-box-outline text-danger"></i></a></td>
-									</tr>
-									<tr>
-										<td><input type="text" class="form-control" size="6"
-											value="S010" readonly="readonly"></td>
-										<td><input type="text" class="form-control" size="40"
-											value="기업지원과"></td>
-										<td><input type="checkbox" style="align-content: center"
-											class="" name="" id=""></td>
-										<td><a href="#" class="table-action-btn h2"><i
-												class="mdi mdi-close-box-outline text-danger"></i></a></td>
-									</tr>
+									<c:forEach items="${bcd}" var= "com_sectionVO">
+										<tr>
+											<td><input type="text" class="form-control" size="6"
+												value="${com_sectionVO.section_cd}" readonly="readonly"></td>
+											<td><input type="text" class="form-control" size="40"
+												value="${com_sectionVO.section_name}"></td>
+											<td><input type="checkbox" style="align-content: center"
+												class="" name="" id=""></td>
+											<td><a href="#" class="table-action-btn h2"><i
+													class="mdi mdi-close-box-outline text-danger"></i></a></td>
+										</tr>
+									</c:forEach>
+
 								</tbody>
 								<tfoot>
 									<tr>
@@ -103,10 +62,10 @@
 											<div class="form-group" style="text-align: center">
 												<button type="button" id="btnSave"
 													class="btn btn-primary waves-effect w-md waves-light m-b-5">저장</button>
-												<a data-toggle="modal"
-													class="btn btn-warning waves-effect w-md waves-light m-b-5"
-													href="#sectionAdd"><i class="fa fa-plus-circle"></i>
-													과추가</a>
+												<button data-toggle="modal" data-target="#sectionModal"
+													class="btn btn-warning waves-effect w-md waves-light m-b-5">
+													<i class="fa fa-plus-circle"></i> 과추가
+												</button>
 											</div>
 										</td>
 									</tr>
@@ -129,6 +88,101 @@
 		</div>
 		<!-- end row -->
 
+		<!-- modal  -->
+		<div class="modal fade" id="sectionModal" tabindex="-1" role="dialog"
+			aria-labelledby="sectionModalModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="imageModalLabel">과정보</h4>
+					</div>
+					<div></div>
+					<div class="modal-body">
+						<form action="modifypage" method="post">
+							<!--<input type='hidden' name='page' value="${cri.page}"> <input
+								type='hidden' name='perPageNum' value="${cri.perPageNum}">
+							<input type='hidden' name='searchType' value="${cri.searchType}">
+							<input type='hidden' name='keyword' value="${cri.keyword}">-->
+
+							<div class="form-group">
+								<label for="image" class="control-label">과명칭</label> <input
+									type="text" id="section_name" class="form-control">
+							</div>
+
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">과추가</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function() {
+				
+				$("#search_bcd").change(function() {
+					var bcd = $("#search_bcd option:selected").val();
+					var url = "/myinfoboard/section?bcd=" + bcd;
+					alert(url);
+					location.href = url;
+					alert(전환);
+
+				});
+
+				$('#search_bcd option[value=bcd]').attr('selected', 'selected');
+				
+
+				$('#sectionAdd').on('show.bs.modal', function(event) {
+					$("#section_name").val("");
+
+					$("#section_name").focus();
+
+					var button = $(event.relatedTarget)
+					var recipient = button.data('whatever')
+					var modal = $(this)
+					modal.find('.modal-body input').val(recipient)
+
+					$.ajax({
+						url : '/section/insert',
+						type : 'post',
+						data : {
+							"bureau_cd" : bureau_cd,
+							"section_name" : section_name
+						},
+						success : function(data) {
+
+							//location.reload();
+						}
+					});
+				});
+				$(".section-del").click(function() {
+					var bureau_cd = $("#search_bcd option:selected").val();
+					var section_cd = $(this).data("sectioncd");
+					$.ajax({
+						url : '/section/del',
+						type : 'post',
+						dataType : 'json',
+						data : {
+							"bureau_cd" : bureau_cd,
+							"section_cd" : section_cd
+						},
+						success : function(data) {
+							if (data.row == 1) {
+								location.reload();
+							} else if (data.row == 0) {
+								alert(data.msg);
+							}
+						}
+					});
+				});
+
+			});
+		</script>
 
 
 		<!-- end row -->
