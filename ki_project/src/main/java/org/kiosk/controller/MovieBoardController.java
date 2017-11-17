@@ -35,7 +35,7 @@ public class MovieBoardController {
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
-	private String img_fileName = "movie_";
+	private String video_fileName = "movie_";
 	private String[] dirPath = { "movie" };
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 
@@ -67,11 +67,17 @@ public class MovieBoardController {
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
+<<<<<<< HEAD
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
 		String video_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, videoFile.getOriginalFilename(),
 				videoFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setVi_video(video_filenm);
+=======
+		String vi_video = UploadFileUtils.uploadImageFile(uploadPath, videoFile.getOriginalFilename(),
+				videoFile.getBytes(), video_fileName + (service.lastInsertID()), dirPath);
+		board.setVi_video(vi_video);
+>>>>>>> 4508eaf5fa25d7724301e69dffeb89ed910adb9b
 		service.regist(board);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -119,4 +125,11 @@ public class MovieBoardController {
 		return "redirect:/movieboard/list?page=1";
 	}
 
+	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
+	public void read(@RequestParam("vi_no") int vi_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
+			throws Exception {
+		logger.info("movieboard/readPage - GET");
+		model.addAttribute(service.read(vi_no));
+
+	}
 }

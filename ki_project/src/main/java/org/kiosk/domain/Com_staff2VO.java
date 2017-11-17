@@ -14,9 +14,9 @@ public class Com_staff2VO {
 	private String telno;
 	private String img_filenm;
 	private String email_addr;
-	private int usr_work_state_code_nm;
+	private String usr_work_state_code_nm;
 	private int st_status;
-	private int engm_se;
+	private String engm_se;
 	private String adi_info7;
 	private int st_sort;
 	private String section_cd;
@@ -104,11 +104,11 @@ public class Com_staff2VO {
 		this.email_addr = email_addr;
 	}
 
-	public int getUsr_work_state_code_nm() {
+	public String getUsr_work_state_code_nm() {
 		return usr_work_state_code_nm;
 	}
 
-	public void setUsr_work_state_code_nm(int usr_work_state_code_nm) {
+	public void setUsr_work_state_code_nm(String usr_work_state_code_nm) {
 		this.usr_work_state_code_nm = usr_work_state_code_nm;
 	}
 
@@ -120,11 +120,11 @@ public class Com_staff2VO {
 		this.st_status = st_status;
 	}
 
-	public int getEngm_se() {
+	public String getEngm_se() {
 		return engm_se;
 	}
 
-	public void setEngm_se(int engm_se) {
+	public void setEngm_se(String engm_se) {
 		this.engm_se = engm_se;
 	}
 

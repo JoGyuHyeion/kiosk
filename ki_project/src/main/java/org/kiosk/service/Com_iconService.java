@@ -7,11 +7,11 @@ import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 
 public interface Com_iconService {
-	public void regist(Com_iconVO dto) throws Exception;
+	public void regist(Com_iconVO vo) throws Exception;
 
 	public Com_iconVO read(Integer ic_no) throws Exception;
 
-	public void modify(Com_iconVO dto) throws Exception;
+	public void modify(Com_iconVO vo) throws Exception;
 
 	public void remove(Integer ic_no) throws Exception;
 
