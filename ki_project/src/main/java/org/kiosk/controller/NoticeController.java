@@ -1,11 +1,14 @@
 package org.kiosk.controller;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.kiosk.domain.Com_boardVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.service.Com_boardService;
+import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -24,10 +28,19 @@ public class NoticeController {
 	@Inject
 	private Com_boardService service;
 
+	@Resource(name = "UploadFileUtils")
+	private UploadFileUtils uploadFileUtils;
+
+	@Resource(name = "uploadPath")
+	private String uploadPath;
+
+	private String img_fileName = "notice_";
+	private String[] dirPath = { "notice" };
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("noticeboard/list - GET");
-		logger.info("test-"+cri.toString());
+		logger.info("test-" + cri.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
@@ -83,7 +96,7 @@ public class NoticeController {
 
 		return "redirect:/noticeboard/list";
 	}
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET() throws Exception {
 		logger.info("noticeboard/register - GET");
@@ -91,10 +104,17 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_boardVO board, RedirectAttributes rttr) throws Exception {
+	public String registPOST(Com_boardVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile,
+			HttpServletRequest request) throws Exception {
 		logger.info("noticeboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
+		board.setBbs_file(img_filenm);
 
 		service.regist(board);
 

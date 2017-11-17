@@ -16,6 +16,8 @@ public interface Com_boardService {
 	public void remove(Integer bbs_no) throws Exception;
 
 	public List<Com_boardVO> listAll() throws Exception;
+	
+	public int lastInsertID() throws Exception;
 
 	public List<Com_boardVO> listCriteria(Criteria cri) throws Exception;
 

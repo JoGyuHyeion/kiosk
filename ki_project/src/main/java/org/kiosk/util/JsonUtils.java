@@ -5,10 +5,10 @@ import org.json.simple.JSONObject;
 
 public class JsonUtils {
 	
-	private static JSONArray jArray;
+	private  JSONArray jArray;
 	
 	// 이미지 파일 json형식
-	public static JSONArray uploadJsonPicture(String[] imgArr) {
+	public  JSONArray uploadJsonPicture(String[] imgArr) {
 		jArray = new JSONArray();
 		for (int i = 0; i < imgArr.length; i++) {
 			JSONObject obj = new JSONObject();

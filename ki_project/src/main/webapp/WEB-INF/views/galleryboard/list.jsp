@@ -38,6 +38,9 @@
 							title="Screenshot-1"> <img
 							src="/resources/assets/images/properties/1.jpg" class="thumb-img"
 							alt="work-thumbnail">
+							
+							
+							<img src="${pageContext.request.contextPath}/resources/upload/gallery/s_gallery_10096.jpg" class="thumb-img"	alt="work-thumbnail">
 						</a>
 						<div class="gal-detail">
 							<h4>${com_imageVO.img_title}</h4>

@@ -4,18 +4,25 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
+@Component("UploadFileUtils")
 public class UploadFileUtils {
 
-	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
+	@Resource(name = "FileUtils")
+	private FileUtils fileUtils;
 
-	public static String uploadImageFile(String uploadPath, String originalName, byte[] fileData, String savedName,
+	private final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
+
+	public String uploadImageFile(String uploadPath, String originalName, byte[] fileData, String savedName,
 			String[] dirPath) throws Exception {
 		// String savedPath = calcPath(uploadPath);
 		String savedPath = savePath(uploadPath, dirPath);
@@ -23,7 +30,7 @@ public class UploadFileUtils {
 		String uploadedFileName = null;
 		savedName = savedName + "." + formatName;
 
-		if (FileUtils.getMediaType(formatName) != null) {
+		if (fileUtils.getMediaType(formatName) != null) {
 			File target = new File(uploadPath + savedPath, savedName);
 			FileCopyUtils.copy(fileData, target);
 			uploadedFileName = makeThumbnail(uploadPath, savedPath, savedName);
@@ -38,7 +45,7 @@ public class UploadFileUtils {
 	}
 
 	// 썸네일 이미지 생성(이미지 파일)
-	private static String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {
+	private String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 300);
 		String thumbnailName = uploadPath + path + File.separator + "s_" + fileName;
@@ -50,13 +57,13 @@ public class UploadFileUtils {
 		return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 
-	private static String makeIcon(String uploadPath, String path, String fileName) throws Exception {
+	private String makeIcon(String uploadPath, String path, String fileName) throws Exception {
 
 		String iconName = uploadPath + path + File.separator + fileName;
 		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 
-	private static String calcPath(String uploadPath) {
+	private String calcPath(String uploadPath) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -69,7 +76,7 @@ public class UploadFileUtils {
 		return datePath;
 	}
 
-	private static String savePath(String uploadPath, String... paths) {
+	private String savePath(String uploadPath, String... paths) {
 		String savePath = "";
 		for (String path : paths) {
 			savePath = savePath + File.separator + path;
@@ -78,7 +85,7 @@ public class UploadFileUtils {
 		return savePath;
 	}
 
-	private static void makeDir(String uploadPath, String... paths) {
+	private void makeDir(String uploadPath, String... paths) {
 
 		if (new File(paths[paths.length - 1]).exists()) {
 			return;
@@ -91,22 +98,30 @@ public class UploadFileUtils {
 		}
 	}
 
-	public static void deleteFile(String uploadPath, String... files) {
+	public void deleteFile(String uploadPath, String fileName) {
 
-		logger.info("delete all files: " + files);
-		if (files == null || files.length == 0) {
-		}
-		for (String fileName : files) {
-			if (fileName != null) {
-				String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
-				MediaType mType = FileUtils.getMediaType(formatName);
-				if (mType != null) {
-					String front = fileName.substring(0, 12);
-					String end = fileName.substring(14);
-					new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
-				}
-				new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
+		logger.info("delete all files: " + fileName);
+
+		if (fileName != null) {
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+			MediaType mType = fileUtils.getMediaType(formatName);
+			if (mType != null) {
+				String notSName=fileName.replace("s_", "");
+				System.out.println("notSName : "+notSName);
+//				String front = fileName.substring(0, 12);
+//				String end = fileName.substring(14);
+//				
+//				System.out.println("front : "+front);
+//				System.out.println("end : "+end);
+//				System.out.println("total1 : "+uploadPath + (front + end).replace('/', File.separatorChar));
+//				new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
+				System.out.println("total1 : "+uploadPath + (notSName).replace('/', File.separatorChar));
+				new File(uploadPath + (notSName).replace('/', File.separatorChar)).delete();
+			
 			}
+			System.out.println("total : "+uploadPath+fileName.replace('/', File.separatorChar));
+			new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 		}
+
 	}
 }

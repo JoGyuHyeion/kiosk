@@ -2,6 +2,8 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.kiosk.domain.Com_imageVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
@@ -27,6 +29,9 @@ public class GalleryBoardController {
 	@Inject
 	private Com_imageService service;
 
+	@Resource(name = "UploadFileUtils")
+	private UploadFileUtils uploadFileUtils;
+
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
@@ -48,6 +53,7 @@ public class GalleryBoardController {
 
 		model.addAttribute("pageMaker", pageMaker);
 	}
+
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("img_no") int img_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
 			throws Exception {
@@ -63,13 +69,15 @@ public class GalleryBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_imageVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile)
-			throws Exception {
+	public String registPOST(Com_imageVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile,
+			HttpServletRequest request) throws Exception {
 		logger.info("galleryboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
-		String img_filenm = UploadFileUtils.uploadImageFile(uploadPath, imgFile.getOriginalFilename(),
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setImg_filenm(img_filenm);
 		service.regist(board);
@@ -101,10 +109,16 @@ public class GalleryBoardController {
 
 		return "redirect:/galleryboard/list";
 	}
+
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
-	public String remove(@RequestParam("img_no") int img_no, SearchCriteria cri, RedirectAttributes rttr)
-			throws Exception {
+	public String remove(@RequestParam("img_no") int img_no, SearchCriteria cri, RedirectAttributes rttr,
+			HttpServletRequest request) throws Exception {
 		logger.info("galleryboard/removePage - POST");
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println("경로 : " + root_path + uploadPath);
+		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(img_no).getImg_filenm());
 		service.remove(img_no);
 
 		rttr.addAttribute("page", cri.getPage());
