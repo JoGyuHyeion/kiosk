@@ -67,17 +67,12 @@ public class MovieBoardController {
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
-<<<<<<< HEAD
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
 		String video_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, videoFile.getOriginalFilename(),
-				videoFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
-		board.setVi_video(video_filenm);
-=======
-		String vi_video = UploadFileUtils.uploadImageFile(uploadPath, videoFile.getOriginalFilename(),
 				videoFile.getBytes(), video_fileName + (service.lastInsertID()), dirPath);
-		board.setVi_video(vi_video);
->>>>>>> 4508eaf5fa25d7724301e69dffeb89ed910adb9b
+		board.setVi_video(video_filenm);
+
 		service.regist(board);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -112,7 +107,7 @@ public class MovieBoardController {
 	public String remove(@RequestParam("vi_no") int vi_no, SearchCriteria cri, RedirectAttributes rttr,
 			HttpServletRequest request) throws Exception {
 		logger.info("movieboard/removePage - POST");
-		
+
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
 		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(vi_no).getVi_video());

@@ -62,11 +62,8 @@ public class IconBoardController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(Com_iconVO board, RedirectAttributes rttr,
-<<<<<<< HEAD
 			@RequestParam("iconFile") MultipartFile iconFile, HttpServletRequest request) throws Exception {
-=======
-			@RequestParam("iconFile") MultipartFile iconFile) throws Exception {
->>>>>>> 4508eaf5fa25d7724301e69dffeb89ed910adb9b
+
 		logger.info("iconboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
@@ -87,14 +84,14 @@ public class IconBoardController {
 	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr,
 			MultipartFile iconFile) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
-		logger.info("test1"+cri.toString());
+		logger.info("test1" + cri.toString());
 		String icon_filenm;
 
 		if (board.isIc_default() == 0) {
-			icon_filenm = UploadFileUtils.uploadImageFile(uploadPath, iconFile.getOriginalFilename(),
+			icon_filenm = uploadFileUtils.uploadImageFile(uploadPath, iconFile.getOriginalFilename(),
 					iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		} else {
-			icon_filenm = "icon"+board.getIc_no()+".png";
+			icon_filenm = "icon" + board.getIc_no() + ".png";
 		}
 		logger.info("test" + icon_filenm + " " + board.isIc_default());
 
