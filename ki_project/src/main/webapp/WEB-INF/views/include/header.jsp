@@ -52,7 +52,7 @@
 
 <!--venobox lightbox-->
 <link rel="stylesheet"
-	href="/plugins/magnific-popup/css/magnific-popup.css" />
+	href="/resources/plugins/magnific-popup/css/magnific-popup.css" />
 
 </head>
 

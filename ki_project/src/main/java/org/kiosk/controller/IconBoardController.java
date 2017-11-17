@@ -73,27 +73,22 @@ public class IconBoardController {
 		return "redirect:/iconboard/list";
 	}
 
-	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-	public void modifyPagingGET(int ic_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-		logger.info("iconboard/modifyPage - GET");
-		model.addAttribute(service.read(ic_no));
-		logger.info(service.read(ic_no).toString());
-	}
-
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr,
 			MultipartFile iconFile) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
-		logger.info(cri.toString());
+		logger.info("test1"+cri.toString());
 		String icon_filenm;
+
 		if (board.isIc_default() == 0) {
 			icon_filenm = UploadFileUtils.uploadImageFile(uploadPath, iconFile.getOriginalFilename(),
 					iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
-			board.setIc_icon(icon_filenm);
 		} else {
-			icon_filenm="icon1.png";
+			icon_filenm = "icon"+board.getIc_no()+".png";
 		}
+		logger.info("test" + icon_filenm + " " + board.isIc_default());
 
+		board.setIc_icon(icon_filenm);
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());

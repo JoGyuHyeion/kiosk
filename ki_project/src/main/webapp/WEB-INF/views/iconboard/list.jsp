@@ -33,7 +33,8 @@
 
 
 					<div class="row">
-						<c:forEach items="${list}" var="com_iconVO">
+						<c:forEach items="${list}" var="com_iconVO">						
+						<input type="hidden" id="ic_no" name="ic_no" value="${com_iconVO.ic_no}">
 							<div class="col-md-2">
 								<div class="text-center card-box">
 									<h4 class="m-b-5">${com_iconVO.ic_name}</h4>
@@ -47,7 +48,7 @@
 									<div class="row">
 										<button
 											class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
-											data-toggle="modal" data-target="#imageModal">수정</button>
+											data-toggle="modal" data-target="#imageModal" data-icNo="${com_iconVO.ic_no}">수정</button>
 									</div>
 
 								</div>
@@ -76,30 +77,30 @@
 				</div>
 				<div></div>
 				<div class="modal-body">
-					<form action="/iconboard/modifyPage" method="post">
-
-						<input type="hidden" name="ic_default" id="ic_default" value='${com_iconVO.ic_default}'>
+					<form action="/iconboard/modifyPage" method="post"
+						enctype="multipart/form-data">
+						<input type="text" id="ic_no" name="ic_no">
+							
 						<div class="form-group">
 							<p class="text-muted font-13 m-b-15 ">Default / Custom 여부</p>
 							<div class="radio radio-info radio-inline">
-								<input type="radio" id="Custom" value="Custom"
-									name="radioInline"> <label for="Custom"> Custom
-								</label>
+								<input type="radio" id="Custom" value="0" name="ic_default">
+								<label for="Custom"> Custom </label>
 							</div>
 							<div class="radio radio-inline">
-								<input type="radio" id="Default" value="Default"
-									name="radioInline" checked> <label for="Default">
-									Default </label>
+								<input type="radio" id="Default" value="1" name="ic_default"
+									checked> <label for="Default"> Default </label>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="image" class="control-label">파일 등록</label> <input
-								type="file" id="file_upload" class="form-control" id="image">
+								type="file" id="file_upload" class="form-control"
+								name="iconFile">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">수정하기</button>
+							<button type="submit" class="btn btn-primary" >수정하기</button>
 						</div>
 
 					</form>
@@ -113,10 +114,11 @@
 		$(document).ready(
 				function() {
 					$('#imageModal').on('show.bs.modal', function(event) {
-						var button = $(event.relatedTarget)
-						var recipient = button.data('whatever')
-						var modal = $(this)
-						modal.find('.modal-body input').val(recipient)
+						var button = $(event.relatedTarget);
+						var ic_no = button.data('icNo');
+						alert(ic_no);
+						var modal = $(this);
+						modal.find('.modal-body input').val(ic_no);
 					});
 
 					$('#file_upload').attr('disabled', true);
@@ -124,8 +126,8 @@
 					$("input[type='radio']").change(
 							function() {
 								var radioValue = $(
-										'input[name=radioInline]:checked')
-										.attr('id');
+										'input[name=ic_default]:checked').attr(
+										'id');
 								//alert(radioValue);
 								if (radioValue == "Custom") {
 									$('#file_upload').attr('disabled', false);
@@ -134,9 +136,10 @@
 								}
 							});
 				});
+
 	</script>
 
-<!-- /.content -->
+	<!-- /.content -->
 </section>
 <!-- /.content-wrapper -->
 <%@include file="../include/footer.jsp"%>
