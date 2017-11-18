@@ -31,14 +31,11 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-<<<<<<< HEAD
 						<form method="post" role="form" enctype="multipart/form-data">
 							<div class="col-md-7">
-=======
 						<div class="col-md-7">
 
 							<form method="post" role="form" enctype="multipart/form-data">
->>>>>>> 707341ae304f93802333e9b08a381bdcb86bf019
 								<div class="form-horizontal" role="form">
 									<!-- vi_name-->
 									<div class="form-group">
@@ -61,7 +58,6 @@
 												accept="video/*" name="videoFile" id="vi_video" />
 										</div>
 									</div>
-<<<<<<< HEAD
 								</div>
 								<div class="form-group" style="text-align: center">
 									<button type="submit"
@@ -69,8 +65,6 @@
 									<button type="button"
 										class="btn btn-warning waves-effect w-md waves-light m-b-5"
 										id="back">돌아가기</button>
-=======
->>>>>>> 707341ae304f93802333e9b08a381bdcb86bf019
 								</div>
 						</div>
 					</div>
