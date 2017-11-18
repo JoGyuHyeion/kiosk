@@ -34,7 +34,7 @@
 							src="/resources/upload${com_imageVO.img_filenm}" class="thumb-img"
 							alt="work-thumbnail">
 						</a>-->
-						<a href="/resources/assets/images/1.jpg" class="image-popup"
+						<a href="/resources/assets/images/properties/1.jpg" class="image-popup"
 							title="Screenshot-1"> 
 							<img
 							src="/resources/assets/images/properties/1.jpg" class="thumb-img"

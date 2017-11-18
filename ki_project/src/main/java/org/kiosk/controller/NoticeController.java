@@ -60,15 +60,26 @@ public class NoticeController {
 
 	}
 
-	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
-	public String remove(@RequestParam("bbs_no") int bbs_no, SearchCriteria cri, RedirectAttributes rttr)
-			throws Exception {
-		logger.info("noticeboard/removePage - POST");
-		service.remove(bbs_no);
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public void registGET() throws Exception {
+		logger.info("noticeboard/register - GET");
+		logger.info("regist get ...........");
+	}
 
-		rttr.addAttribute("page", cri.getPage());
-		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-		rttr.addAttribute("keyword", cri.getKeyword());
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String registPOST(Com_boardVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile,
+			HttpServletRequest request) throws Exception {
+		logger.info("noticeboard/register - POST");
+		logger.info("regist post ...........");
+		logger.info(board.toString());
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		String bbs_file = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
+		board.setBbs_file(bbs_file);
+
+		service.regist(board);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
@@ -97,29 +108,23 @@ public class NoticeController {
 		return "redirect:/noticeboard/list";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET() throws Exception {
-		logger.info("noticeboard/register - GET");
-		logger.info("regist get ...........");
-	}
-
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_boardVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile,
+	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
+	public String remove(@RequestParam("bbs_no") int bbs_no, SearchCriteria cri, RedirectAttributes rttr,
 			HttpServletRequest request) throws Exception {
-		logger.info("noticeboard/register - POST");
-		logger.info("regist post ...........");
-		logger.info(board.toString());
+		logger.info("noticeboard/removePage - POST");
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
-				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
-		board.setBbs_file(img_filenm);
+		System.out.println("경로 : " + root_path + uploadPath);
+		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(bbs_no).getBbs_file());
+		service.remove(bbs_no);
 
-		service.regist(board);
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/noticeboard/list?page=1";
 	}
+
 }
