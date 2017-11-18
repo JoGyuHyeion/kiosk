@@ -2,6 +2,7 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.PageMaker;
@@ -27,6 +28,9 @@ public class BackGroundBoardController {
 
 	@Inject
 	private Com_bgImgService service;
+
+	@Resource(name = "UploadFileUtils")
+	private UploadFileUtils uploadFileUtils;
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -57,15 +61,17 @@ public class BackGroundBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_bgImgVO board, RedirectAttributes rttr, @RequestParam("iconFile") MultipartFile iconFile)
-			throws Exception {
+	public String registPOST(Com_bgImgVO board, RedirectAttributes rttr,
+			@RequestParam("iconFile") MultipartFile iconFile, HttpServletRequest request) throws Exception {
 		logger.info("backGroundboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
-		String icon_filenm = UploadFileUtils.uploadImageFile(uploadPath, iconFile.getOriginalFilename(),
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		String icon_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, iconFile.getOriginalFilename(),
 				iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
-		board.setBi_img(icon_filenm );
+		board.setBi_img(icon_filenm);
 		service.regist(board);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");

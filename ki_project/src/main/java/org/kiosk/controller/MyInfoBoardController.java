@@ -26,6 +26,15 @@ public class MyInfoBoardController {
 	private Com_teamService teamService;
 	@Inject
 	private Com_bureauService bureauService;
+	
+	
+	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
+	public void newUserGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+		
+		logger.info("myinfoboard/passwd - GET");
+		model.addAttribute("sectionList",service.listAll());
+
+	}
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
 	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {

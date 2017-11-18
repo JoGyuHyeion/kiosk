@@ -2,6 +2,7 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.PageMaker;
@@ -27,6 +28,9 @@ public class MovieBoardController {
 
 	@Inject
 	private Com_videoService service;
+
+	@Resource(name = "UploadFileUtils")
+	private UploadFileUtils uploadFileUtils;
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -58,14 +62,17 @@ public class MovieBoardController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(Com_videoVO board, RedirectAttributes rttr,
-			@RequestParam("videoFile") MultipartFile videoFile) throws Exception {
+			@RequestParam("videoFile") MultipartFile videoFile, HttpServletRequest request) throws Exception {
 		logger.info("movieboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
-		String vi_video = UploadFileUtils.uploadImageFile(uploadPath, videoFile.getOriginalFilename(),
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		String video_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, videoFile.getOriginalFilename(),
 				videoFile.getBytes(), video_fileName + (service.lastInsertID()), dirPath);
-		board.setVi_video(vi_video);
+		board.setVi_video(video_filenm);
+
 		service.regist(board);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -97,14 +104,17 @@ public class MovieBoardController {
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
-	public String remove(@RequestParam("vi_no") int vi_no, SearchCriteria cri, RedirectAttributes rttr)
-			throws Exception {
+	public String remove(@RequestParam("vi_no") int vi_no, SearchCriteria cri, RedirectAttributes rttr,
+			HttpServletRequest request) throws Exception {
 		logger.info("movieboard/removePage - POST");
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(vi_no).getVi_video());
 		service.remove(vi_no);
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/movieboard/list?page=1";

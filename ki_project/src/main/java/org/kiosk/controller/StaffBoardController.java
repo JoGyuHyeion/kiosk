@@ -2,6 +2,8 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
@@ -26,6 +28,9 @@ public class StaffBoardController {
 
 	@Inject
 	private Com_staffService service;
+
+	@Resource(name = "UploadFileUtils")
+	private UploadFileUtils uploadFileUtils;
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -57,16 +62,19 @@ public class StaffBoardController {
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
-	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr)
-			throws Exception {
+	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr,
+			HttpServletRequest request) throws Exception {
 		logger.info("staffboard/removePage - POST");
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(st_no).getImg_filenm());
 		service.remove(st_no);
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("searchType", cri.getSearchType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/staffboard/list?page=1";
@@ -104,13 +112,15 @@ public class StaffBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_staffVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile)
-			throws Exception {
+	public String registPOST(Com_staffVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile,
+			HttpServletRequest request) throws Exception {
 		logger.info("staffboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
-		String img_filenm = UploadFileUtils.uploadImageFile(uploadPath, imgFile.getOriginalFilename(),
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setImg_filenm(img_filenm);
 		service.regist(board);

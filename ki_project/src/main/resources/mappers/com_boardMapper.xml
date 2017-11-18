@@ -56,6 +56,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from com_board
  		]]>
 	</select>
+	
+	<select id="lastInsertID" resultType="int">
+		SELECT
+		LAST_INSERT_ID(bbs_no) from com_board order by bbs_no desc limit 1;
+	</select>
 
 	<select id="listPage" resultType="Com_boardVO">
  		<![CDATA[

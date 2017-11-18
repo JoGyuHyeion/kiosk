@@ -16,6 +16,8 @@ public interface Com_boardDAO {
 	public void delete(Integer bbs_no) throws Exception;
 
 	public List<Com_boardVO> listAll() throws Exception;
+	
+	public int lastInsertID() throws Exception;
 
 	public List<Com_boardVO> listPage(int page) throws Exception;
 

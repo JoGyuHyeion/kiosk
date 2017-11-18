@@ -2,6 +2,8 @@ package org.kiosk.controller;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
@@ -27,6 +29,9 @@ public class Staff2BoardController {
 	@Inject
 	private Com_staff2Service service;
 
+	@Resource(name = "UploadFileUtils")
+	private UploadFileUtils uploadFileUtils;
+
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
@@ -37,10 +42,10 @@ public class Staff2BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("staff2board/list - GET");
-		logger.info("test-"+cri.toString());
+		logger.info("test-" + cri.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
-		logger.info("test2"+cri.toString());
+		logger.info("test2" + cri.toString());
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -101,13 +106,15 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_staff2VO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile)
-			throws Exception {
+	public String registPOST(Com_staff2VO board, RedirectAttributes rttr,
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request) throws Exception {
 		logger.info("staff2board/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
-		String img_filenm = UploadFileUtils.uploadImageFile(uploadPath, imgFile.getOriginalFilename(),
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setImg_filenm(img_filenm);
 		service.regist(board);

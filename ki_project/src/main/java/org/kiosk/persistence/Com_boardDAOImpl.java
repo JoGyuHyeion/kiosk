@@ -4,6 +4,7 @@ import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.domain.Com_boardVO;
+import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.springframework.stereotype.Repository;
@@ -41,6 +42,11 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	@Override
 	public List<Com_boardVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
+	}
+
+	@Override
+	public int lastInsertID() throws Exception {
+		return session.selectOne(namespace + ".lastInsertID");
 	}
 
 	@Override
