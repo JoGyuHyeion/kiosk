@@ -25,14 +25,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object userVO = modelMap.get("userVO");
-	//	Criteria cri = (Criteria) modelMap.get("cri");
 		
-
 		if (userVO != null) {
 
 			logger.info("new login success");
 			session.setAttribute(LOGIN, userVO);
-//			 response.sendRedirect("/home/");
+			 
 			if (request.getParameter("useCookie") != null) {
 
 				logger.info("remember me................");
@@ -40,10 +38,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				loginCookie.setPath("/");
 				loginCookie.setMaxAge(60 * 60 * 24 * 7);
 				response.addCookie(loginCookie);
-			} // response.sendRedirect("/");
+			}
 			Object dest = session.getAttribute("dest");
-
-			// response.sendRedirect(dest != null ? (String) dest : "/sboard/readPage"+gotoReadPage(id_num, cri)); 
+ 
 			response.sendRedirect(dest != null ? (String) dest : "/staff2board/list");
 			System.out.println("loginInterceptor post handle........................dest:" + dest);
 
