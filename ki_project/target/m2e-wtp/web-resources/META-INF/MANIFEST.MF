@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: yeon
 Build-Jdk: 1.8.0_144
+=======
+Built-By: user
+Build-Jdk: 1.8.0_121
+>>>>>>> 52dc2609f3b7274ee5c62b7aa7fa5a7303d3d594
 Created-By: Maven Integration for Eclipse
 

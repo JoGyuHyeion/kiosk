@@ -1,11 +1,15 @@
 package org.kiosk.domain;
 
+import java.sql.Timestamp;
+
 public class UserVO {
 
 	private String id;
 	private String name;
 	private String password;
-	private int upoint;
+	private int auth;
+	private String sessionkey;
+	private String sessionlimit;
 
 	public String getId() {
 		return id;
@@ -30,18 +34,35 @@ public class UserVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 
-	public int getUpoint() {
-		return upoint;
+	public int getAuth() {
+		return auth;
 	}
 
-	public void setUpoint(int upoint) {
-		this.upoint = upoint;
+	public void setAuth(int auth) {
+		this.auth = auth;
+	}
+
+	public String getSessionkey() {
+		return sessionkey;
+	}
+
+	public void setSessionkey(String sessionkey) {
+		this.sessionkey = sessionkey;
+	}
+
+	public String getSessionlimit() {
+		return sessionlimit;
+	}
+
+	public void setSessionlimit(String sessionlimit) {
+		this.sessionlimit = sessionlimit;
 	}
 
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", name=" + name + ", password=" + password + ", upoint=" + upoint + "]";
+		return "UserVO [id=" + id + ", name=" + name + ", password=" + password + ", auth=" + auth + ", sessionkey="
+				+ sessionkey + ", sessionlimit=" + sessionlimit + "]";
 	}
+
 }

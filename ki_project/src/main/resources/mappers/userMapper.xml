@@ -6,19 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.UserMapper">
 
 	<select id="login" resultType="UserVO">
-
-		select id, name, password from user where id = #{id} and password =
-		#{password}
-
+		select id, name, password from user 
+		where id = #{id} 
+		and password = #{password}
 	</select>
 
 	<update id="keepLogin">
-		update user set sessionKey = #{sessionId}, sessionLimit = #{next} where id =
-		#{id}
+		update user set sessionKey = #{sessionId}, sessionLimit = #{next} 
+		where id = #{id}
 	</update>
 
 	<select id="checkUserWithSessionKey" resultType="UserVO">
-		select * from user where sessionKey = #{value} and sessionlimit > now()
+		select * from user 
+		where sessionKey = #{value} 
+		and sessionlimit > now()
 	</select>
 
 </mapper>
