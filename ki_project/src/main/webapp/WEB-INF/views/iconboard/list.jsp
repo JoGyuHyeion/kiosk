@@ -116,7 +116,7 @@
 					$('#imageModal').on('show.bs.modal', function(event) {
 						var button = $(event.relatedTarget);
 						var ic_no = button.data('icNo');
-						alert(ic_no);
+						//alert(ic_no);
 						var modal = $(this);
 						modal.find('.modal-body input').val(ic_no);
 					});

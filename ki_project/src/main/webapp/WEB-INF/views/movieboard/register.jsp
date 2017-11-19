@@ -26,26 +26,32 @@
 			</div>
 		</div>
 		<!-- end page title end breadcrumb -->
-
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
 <<<<<<< HEAD
+						<!--<form method="post" role="form" enctype="multipart/form-data"
+							onsubmit="return formCheck()">
+						<div class="col-md-7">
+						-->
+						<div class="col-md-7">
+							<form method="post" role="form" enctype="multipart/form-data"
+								onsubmit="return formCheck()">
+=======
 						<form method="post" role="form" enctype="multipart/form-data">
 							<div class="col-md-7">
-=======
 						<div class="col-md-7">
 
 							<form method="post" role="form" enctype="multipart/form-data">
->>>>>>> 707341ae304f93802333e9b08a381bdcb86bf019
+>>>>>>> b9b46668f4c13b891ee0e26ef2279e7d9987c3bb
 								<div class="form-horizontal" role="form">
 									<!-- vi_name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">제목</label>
 										<div class="col-md-7">
 											<input type="text" class="form-control" placeholder="Name"
-												id="vi_video" name="vi_video">
+												id="vi_name" name="vi_name">
 										</div>
 									</div>
 									<!-- vi_video -->
@@ -61,7 +67,6 @@
 												accept="video/*" name="videoFile" id="vi_video" />
 										</div>
 									</div>
-<<<<<<< HEAD
 								</div>
 								<div class="form-group" style="text-align: center">
 									<button type="submit"
@@ -69,22 +74,21 @@
 									<button type="button"
 										class="btn btn-warning waves-effect w-md waves-light m-b-5"
 										id="back">돌아가기</button>
-=======
->>>>>>> 707341ae304f93802333e9b08a381bdcb86bf019
 								</div>
+							</form>
 						</div>
 					</div>
-
-					<div class="form-group" style="text-align: center">
-						<button type="submit"
-							class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
-						<button type="button"
-							class="btn btn-warning waves-effect w-md waves-light m-b-5"
-							id="back">돌아가기</button>
-					</div>
-					</form>
-				</div>
-				<script>
+					<!--<div class="form-group" style="text-align: center">
+							<button type="submit"
+								class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
+							<button type="button"
+								class="btn btn-warning waves-effect w-md waves-light m-b-5"
+								id="back">돌아가기</button>
+						</div>
+						</form>
+					</div> 
+					-->
+					<script>
 						$(document)
 								.ready(
 										function() {
@@ -98,15 +102,25 @@
 															});
 
 										});
+						function formCheck() {
+							if ($.trim($("#vi_name").val()) == "") {
+								alert("제목을 입력하세요");
+								$("#vi_name").focus();
+								return false;
+							}else if ($.trim($("#vi_video").val()) == "") {
+								alert("동영상을 첨부하세요");
+								$("#vi_video").focus();
+								return false;
+							}
+							return true;
+
+						}
 					</script>
-
+				</div>
 			</div>
+			<!-- end col -->
 		</div>
-		<!-- end col -->
-
-	</div>
-	<!-- end row -->
-
+		<!-- end row -->
 	</div>
 	<!-- end container -->
 </section>

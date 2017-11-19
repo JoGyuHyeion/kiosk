@@ -27,13 +27,13 @@
 			</div>
 		</div>
 		<!-- end page title end breadcrumb -->
-
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
 						<div class="col-md-7">
-							<form method="post" role="form" enctype="multipart/form-data">
+							<form method="post" role="form" enctype="multipart/form-data"
+								onsubmit="return formCheck()")>
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
 									<div class="form-group">
@@ -53,6 +53,7 @@
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
+									<!-- img_filenm -->
 									<div class="form-group">
 										<label class="col-md-3 control-label">이미지 파일</label> <input
 											id="imgName"
@@ -66,32 +67,23 @@
 										</div>
 									</div>
 								</div>
-						</div>
-
-
-
-						<!-- img_filenm -->
-						<!-- 		<div class="form-group">
+								<!-- img_filenm -->
+								<!-- 		<div class="form-group">
 										<div class="col-sm-12 padding-left-0 padding-right-0">
 											<input type="file" name="imgFile" id="img_filenm"
 												multiple="multiple">
 										</div>
 									</div>-->
-
-
+								<div class="form-group" style="text-align: center">
+									<button type="submit"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
+									<button type="button"
+										class="btn btn-warning waves-effect w-md waves-light m-b-5"
+										id="back">돌아가기</button>
+								</div>
+							</form>
+						</div>
 					</div>
-					<div class="form-group" style="text-align: center">
-						<button type="submit"
-							class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
-						<button type="button"
-							class="btn btn-warning waves-effect w-md waves-light m-b-5"
-							id="back">돌아가기</button>
-					</div>
-					</form>
-
-
-
-
 					<script>
 						$(document)
 								.ready(
@@ -106,15 +98,28 @@
 															});
 
 										});
+						
+						function formCheck() {
+							if ($.trim($("#img_title").val()) == "") {
+								alert("제목을 입력하세요");
+								$("#img_title").focus();
+								return false;
+							}else if ($.trim($("#img_filenm").val()) == "") {
+								alert("사진을 첨부하세요");
+								$("#img_filenm").focus();
+								return false;
+							}
+							return true;
+
+						}
 					</script>
 				</div>
 			</div>
+			<!-- end col -->
 		</div>
-		<!-- end col -->
+		<!-- end row -->
 	</div>
-	<!-- end row -->
+	<!-- end container -->
 </section>
 <!-- end wrapper -->
-
-
 <%@include file="../include/footer.jsp"%>

@@ -33,9 +33,10 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form">
-							<input type='hidden' name='brd_cd' value="notice">
-							<div class="col-md-7">
+						<div class="col-md-7">
+							<form method="post" role="form" enctype="multipart/form-data"
+								onsubmit="return formCheck()">
+								<input type='hidden' name='brd_cd' value="notice">
 								<div class="form-horizontal" role="form">
 									<!-- bbs_title -->
 									<div class="form-group">
@@ -55,12 +56,26 @@
 									</div>
 									<!-- bbs_file -->
 									<div class="form-group">
+										<label class="col-md-2 control-label">첨부 파일</label> <input
+											id="fileName"
+											class="file_input_textbox form-control col-md-5 " readonly />
+										<div class="file_input_div">
+											<input type="button" value="파일"
+												class="file_input_button btn btn-primary" /> <input
+												type="file" class="file_input_hidden" data-icon='false'
+												onchange="javascript:var path = document.getElementById('fileName').value = this.value.split('\\').pop().split('/').pop()"
+												name="imgFile" id="bbs_file" />
+										</div>
+									</div>
+									<!-- 
+									<div class="form-group">
 										<label class="col-md-2 control-label">첨부이미지</label>
 										<div class="col-md-10">
 											<input type="file" class="form-control" id="bbs_file"
 												name="bbs_file">
 										</div>
 									</div>
+									 -->
 									<!-- bbs_exp_sdt, bbs_exp_edt -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">공지기간</label>
@@ -81,39 +96,65 @@
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
+									<div class="form-group" style="text-align: center">
+										<button type="submit"
+											class="btn btn-primary waves-effect w-md waves-light m-b-5"
+											id="change">등록</button>
+										<button type="button"
+											class="btn btn-warning waves-effect w-md waves-light m-b-5"
+											id="back">돌아가기</button>
+									</div>
 								</div>
-								<div class="form-group" style="text-align: center">
-									<button type="submit"
-										class="btn btn-primary waves-effect w-md waves-light m-b-5"
-										id="change">등록</button>
-									<button type="button"
-										class="btn btn-warning waves-effect w-md waves-light m-b-5"
-										id="back">돌아가기</button>
-								</div>
-							</div>
-						</form>
-						<script>
-							$(document)
-									.ready(
-											function() {
-												var formObj = $("form[role='form']");
-												console.log(formObj);
-												$("#back")
-														.on(
-																"click",
-																function() {
-																	self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-																});
-
-											});
-						</script>
+							</form>
+						</div>
 					</div>
+					<script>
+						$(document)
+								.ready(
+										function() {
+											var formObj = $("form[role='form']");
+											console.log(formObj);
+											$("#back")
+													.on(
+															"click",
+															function() {
+																self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+															});
+
+										});
+						function formCheck() {
+							if ($.trim($("#bbs_title").val()) == "") {
+								alert("제목을 입력하세요");
+								$("#bbs_title").focus();
+								return false;
+							}else if ($.trim($("#bbs_content").val()) == "") {
+								alert("내용을 입력하세요");
+								$("#bbs_content").focus();
+								return false;
+							}else if ($("#bbs_exp_sdt").val() == "") {
+								alert("노출 시작 날짜를 설정하세요");
+								$("#bbs_exp_sdt").focus();
+								return false;
+							}else if ($("#bbs_exp_edt").val() == "") {
+								alert("노출 시작 날짜를 설정하세요");
+								$("#bbs_exp_edt").focus();
+								return false;
+							}else if ($.trim($("#bbs_file").val()) == "") {
+								alert("파일을 첨부하세요");
+								$("#bbs_file").focus();
+								return false;
+							}
+							return true;
+
+						}
+					</script>
 				</div>
 			</div>
 			<!-- end col -->
 		</div>
+		<!-- end row -->
 	</div>
-	<!-- /.content -->
+	<!-- end container -->
 </section>
-<!-- /.content-wrapper -->
+<!-- end wrapper -->
 <%@include file="../include/footer.jsp"%>

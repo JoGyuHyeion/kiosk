@@ -35,7 +35,8 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form role="form" method="post" enctype="multipart/form-data">
+						<form role="form" method="post" enctype="multipart/form-data"
+							onsubmit="return formCheck()">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- usr_nm -->
@@ -88,13 +89,25 @@
 									</div>
 									<!-- img_filenm -->
 									<div class="form-group">
+										<label class="col-md-2 control-label">이미지 파일</label> <input
+											id="imgName"
+											class="file_input_textbox form-control col-md-5 " readonly />
+										<div class="file_input_div">
+											<input type="button" value="파일"
+												class="file_input_button btn btn-primary" /> <input
+												type="file" class="file_input_hidden" data-icon='false'
+												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												accept="image/*" name="imgFile" id="img_filenm" />
+										</div>
+									</div>
+									<!-- <div class="form-group">
 										<label class="col-md-2 control-label">사진</label>
 										<div class="col-md-10">
 											<input type="file" class="form-control" id="img_filenm"
 												name="imgFile"> <small>사진 최소 사이즈는 가로320px
 												세로400px입니다.</small>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -165,28 +178,72 @@
 							</div>
 						</form>
 					</div>
+					<script>
+						$(document)
+								.ready(
+										function() {
+											var formObj = $("form[role='form']");
+											console.log(formObj);
+											$("#back")
+													.on(
+															"click",
+															function() {
+																self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+															});
+										});
+
+						function formCheck() {
+							if ($.trim($("#usr_nm").val()) == "") {
+								alert("이름을 입력하세요");
+								$("#usr_nm").focus();
+								return false;
+							} else if ($.trim($("#posit_nm").val()) == "") {
+								alert("직위를 입력하세요");
+								$("#posit_nm").focus();
+								return false;
+							} else if ($.trim($("#telno").val()) == "") {
+								alert("전화번호를 입력하세요");
+								$("#telno").focus();
+								return false;
+							} else if ($.trim($("#email_addr").val()) == "") {
+								alert("이메일을 입력하세요");
+								$("#email_addr").focus();
+								return false;
+							} else if ($.trim($("#st_key").val()) == "") {
+								alert("대표 업무를 입력하세요");
+								$("#st_key").focus();
+								return false;
+							} else if ($.trim($("#adi_info7").val()) == "") {
+								alert("사무 설명을 입력하세요");
+								$("#adi_info7").focus();
+								return false;
+							} else if ($.trim($("#img_filenm").val()) == "") {
+								alert("사진을 첨부하세요");
+								$("#img_filenm").focus();
+								return false;
+							} else if ($.trim($("#section_cd").val()) == "") {
+								alert("근무 부서를 선택하세요");
+								$("#section_cd").focus();
+								return false;
+							} else if ($.trim($("#team_cd").val()) == "") {
+								alert("근무 팀을 선택하세요");
+								$("#team_cd").focus();
+								return false;
+							} else if(!$(':input:radio[name=st_status]:checked').val()){
+								alert("상태를 선택해주세요");
+								return false;
+							}
+							return true;
+
+						}
+					</script>
 				</div>
 			</div>
 			<!-- end col -->
-
-			<script>
-				$(document)
-						.ready(
-								function() {
-									var formObj = $("form[role='form']");
-									console.log(formObj);
-									$("#back")
-											.on(
-													"click",
-													function() {
-														self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-													});
-								});
-			</script>
-
 		</div>
+		<!-- end row -->
 	</div>
-	<!-- /.content -->
+	<!-- end container -->
 </section>
-<!-- /.content-wrapper -->
+<!-- end wrapper -->
 <%@include file="../include/footer.jsp"%>
