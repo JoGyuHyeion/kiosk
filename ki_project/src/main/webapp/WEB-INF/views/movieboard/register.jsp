@@ -30,21 +30,9 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-<<<<<<< HEAD
-						<!--<form method="post" role="form" enctype="multipart/form-data"
+						<form method="post" role="form" enctype="multipart/form-data"
 							onsubmit="return formCheck()">
-						<div class="col-md-7">
-						-->
-						<div class="col-md-7">
-							<form method="post" role="form" enctype="multipart/form-data"
-								onsubmit="return formCheck()">
-=======
-						<form method="post" role="form" enctype="multipart/form-data">
 							<div class="col-md-7">
-						<div class="col-md-7">
-
-							<form method="post" role="form" enctype="multipart/form-data">
->>>>>>> b9b46668f4c13b891ee0e26ef2279e7d9987c3bb
 								<div class="form-horizontal" role="form">
 									<!-- vi_name-->
 									<div class="form-group">
@@ -75,19 +63,9 @@
 										class="btn btn-warning waves-effect w-md waves-light m-b-5"
 										id="back">돌아가기</button>
 								</div>
-							</form>
-						</div>
-					</div>
-					<!--<div class="form-group" style="text-align: center">
-							<button type="submit"
-								class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
-							<button type="button"
-								class="btn btn-warning waves-effect w-md waves-light m-b-5"
-								id="back">돌아가기</button>
-						</div>
+							</div>
 						</form>
-					</div> 
-					-->
+					</div>
 					<script>
 						$(document)
 								.ready(
