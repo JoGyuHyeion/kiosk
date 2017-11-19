@@ -31,7 +31,7 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form">
+						<form method="post" role="form" enctype="multipart/form-data">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
@@ -43,13 +43,6 @@
 												value="${com_imageVO.img_title}">
 										</div>
 									</div>
-									<!-- img_filenm -->
-									<div class="form-group clearfix">
-										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="files[]" id="filer_input2"
-												multiple="multiple">
-										</div>
-									</div>
 									<!-- img_gallery  노출 여부   -->
 									<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
 										<label class="col-md-2 control-label">표시여부</label>
@@ -58,6 +51,20 @@
 											<input type="checkbox" name="img_gallery" id="img_gallery"
 												switch="none" value="1" /> <label for="img_gallery"
 												data-on-label="On" data-off-label="Off"></label>
+										</div>
+									</div>
+									<!-- img_filenm -->
+									<div class="form-group">
+										<label class="col-md-3 control-label">이미지 파일</label> <input
+											id="imgName"
+											class="file_input_textbox form-control col-md-5 "
+											readonly="readonly" />
+										<div class="file_input_div">
+											<input type="button" value="파일"
+												class="file_input_button btn btn-primary" /> <input
+												type="file" class="file_input_hidden" data-icon='false'
+												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												accept="image/*" name="imgFile" id="img_filenm" />
 										</div>
 									</div>
 								</div>

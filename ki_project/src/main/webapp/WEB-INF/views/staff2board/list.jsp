@@ -19,10 +19,6 @@
 
 	</form>
 	<div class="container">
-
-
-
-
 		<!-- Page-Title -->
 		<div class="row">
 			<div class="col-sm-12">
@@ -92,13 +88,18 @@
 
 							<tbody>
 								<c:forEach items="${list}" var="com_staff2VO">
-
+									<%-- 						
 									<tr class="active">
 										<td><a
 											href="/staff2board/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staff2VO.st_no}"
 											class="table-action-btn h2"><i
 												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
-
+ 									--%>
+									<tr class="">
+										<td><a
+											href="/staff2board/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staff2VO.st_no}"
+											class="btn btn-default"><i
+												class="glyphicon glyphicon-glass glyphicon-edit"></i></a></td>
 										<td><img
 											src="/resources/assets/images/users/avatar-2.jpg"
 											alt="contact-img" title="contact-img" class=" thumb-sm" /></td>
@@ -118,11 +119,10 @@
 										<td><form action="/staff2board/removePage" method="post">
 												<input type="hidden" name="st_no"
 													value="${com_staff2VO.st_no}">
-												<button type="submit" class="table-action-btn h2">
-													<i class="mdi mdi-close-box-outline text-danger"></i>
+												<button type="submit" class="btn btn-default">
+													<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
 												</button>
 											</form></td>
-
 									</tr>
 								</c:forEach>
 							</tbody>

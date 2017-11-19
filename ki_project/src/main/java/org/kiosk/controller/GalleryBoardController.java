@@ -95,9 +95,20 @@ public class GalleryBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_imageVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_imageVO board, SearchCriteria cri, RedirectAttributes rttr,
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request) throws Exception {
 		logger.info("galleryboard/modifyPage - POST");
 		logger.info(cri.toString());
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println("경로 : " + root_path + uploadPath);
+		
+		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getImg_no()).getImg_filenm());
+
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
+		board.setImg_filenm(img_filenm);
+
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());

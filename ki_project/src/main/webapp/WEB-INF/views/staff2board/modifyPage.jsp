@@ -38,7 +38,7 @@
 
 					<div class="row">
 						<form method="post" role="form">
-						
+
 							<input type='hidden' name='page' value="${cri.page}"> <input
 								type='hidden' name='perPageNum' value="${cri.perPageNum}">
 
@@ -208,8 +208,6 @@
 							</div>
 						</form>
 					</div>
-
-
 				</div>
 			</div>
 			<!-- end col -->

@@ -62,14 +62,25 @@ public class Staff2BoardController {
 		model.addAttribute(service.read(st_no));
 	}
 
-	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
-	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr)
-			throws Exception {
-		logger.info("staff2board/removePage - POST");
-		service.remove(st_no);
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+		logger.info("staff2board/register - GET");
+		logger.info("regist get ...........");
+	}
 
-		rttr.addAttribute("page", cri.getPage());
-		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String registPOST(Com_staff2VO board, RedirectAttributes rttr,
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request) throws Exception {
+		logger.info("staff2board/register - POST");
+		logger.info("regist post ...........");
+		logger.info(board.toString());
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
+		board.setImg_filenm(img_filenm);
+		service.regist(board);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
@@ -99,25 +110,19 @@ public class Staff2BoardController {
 		return "redirect:/staff2board/list";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
-		logger.info("staff2board/register - GET");
-		logger.info("regist get ...........");
-	}
-
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_staff2VO board, RedirectAttributes rttr,
-			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request) throws Exception {
-		logger.info("staff2board/register - POST");
-		logger.info("regist post ...........");
-		logger.info(board.toString());
+	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
+	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr,
+			HttpServletRequest request) throws Exception {
+		logger.info("staff2board/removePage - POST");
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
-				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
-		board.setImg_filenm(img_filenm);
-		service.regist(board);
+		System.out.println("경로 : " + root_path + uploadPath);
+		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(st_no).getImg_filenm());
+		service.remove(st_no);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 

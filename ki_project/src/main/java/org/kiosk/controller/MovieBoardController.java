@@ -54,6 +54,14 @@ public class MovieBoardController {
 		model.addAttribute("pageMaker", pageMaker);
 	}
 
+	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
+	public void read(@RequestParam("vi_no") int vi_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
+			throws Exception {
+		logger.info("movieboard/readPage - GET");
+		model.addAttribute(service.read(vi_no));
+
+	}
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
 		logger.info("movieboard/register - GET");
@@ -120,11 +128,4 @@ public class MovieBoardController {
 		return "redirect:/movieboard/list?page=1";
 	}
 
-	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("vi_no") int vi_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
-		logger.info("movieboard/readPage - GET");
-		model.addAttribute(service.read(vi_no));
-
-	}
 }

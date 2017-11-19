@@ -7,8 +7,6 @@
 <%@include file="../include/header.jsp"%>
 <!-- Main content -->
 <section class="wrapper">
-
-
 	<div class="container">
 
 		<!-- Page-Title -->
@@ -35,12 +33,9 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form">
-							<input type='hidden' name='brd_cd' value="${com_boardVO.brd_cd}">
-							<input type='hidden' name='page' value="${cri.page}"> <input
-								type='hidden' name='perPageNum' value="${cri.perPageNum}">
-
-							<div class="col-md-7">
+						<div class="col-md-7">
+							<form method="post" role="form">
+								<input type='hidden' name='brd_cd' value="${com_boardVO.brd_cd}">
 								<div class="form-horizontal" role="form">
 									<!-- bbs_title -->
 									<div class="form-group">
@@ -61,7 +56,8 @@
 									</div>
 									<!-- bbs_file -->
 									<div class="form-group">
-										<label for="bbs_file" class="col-md-2 control-label">첨부이미지</label>
+										<label for="bbs_file" class="col-md-2 control-label">첨부
+											파일</label>
 										<div class="col-md-10">
 											<input type="file" class="form-control" id="bbs_file"
 												name="bbs_file">
@@ -70,19 +66,17 @@
 									<!-- bbs_exp_sdt, bbs_exp_edt -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">공지기간</label>
-										<div class="col-md-10">
+										<div class="col-md-8 input-group">
 											<input type="date" class="form-control" id="bbs_exp_sdt"
 												name="bbs_exp_sdt" value="${com_boardVO.bbs_exp_sdt}">
 											<span class="input-group-addon"> ~ </span> <input type="date"
 												class="form-control" id="bbs_exp_edt" name="bbs_exp_edt"
 												value="${com_boardVO.bbs_exp_edt}">
-												
+
 										</div>
 									</div>
-
-
 									<!-- bbs_state     -->
-									<c:set value = "${com_boardVO.bbs_state}" var="bbs_state"/>
+									<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
 									<div class="form-group">
 										<label for="bbs_state" class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
@@ -92,22 +86,51 @@
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
+									<div class="form-group" style="text-align: center">
+										<button type="submit"
+											class="btn btn-primary waves-effect w-md waves-light m-b-5"
+											id="change">수정</button>
+										<button type="button"
+											class="btn btn-warning waves-effect w-md waves-light m-b-5"
+											id="back">돌아가기</button>
+									</div>
 								</div>
-								<div class="form-group" style="text-align: center">
-									<button type="submit"
-										class="btn btn-primary waves-effect w-md waves-light m-b-5"
-										id="change">수정</button>
-									<button type="button"
-										class="btn btn-warning waves-effect w-md waves-light m-b-5"
-										id="back">돌아가기</button>
-								</div>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
+					<script>
+						var input = $
+						{
+							com_boardVO.bbs_state
+						};
+						if (input == 1) { //값 비교
+							$('input:checkbox[id="bbs_state"]').attr("checked",
+									true); //checked 처리
+						}
+
+						$(document)
+								.ready(
+										function() {
+											var formObj = $("form[role='form']");
+											console.log(formObj);
+											$("#back")
+													.on(
+															"click",
+															function() {
+																self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+															});
+
+											alert(bbs_state);
+
+										});
+					</script>
 				</div>
 			</div>
 			<!-- end col -->
 		</div>
+<<<<<<< HEAD
+		<!-- end row -->
+=======
 		<script>
 			
 			
@@ -133,6 +156,9 @@
 								
 							});
 		</script>
+>>>>>>> b9b46668f4c13b891ee0e26ef2279e7d9987c3bb
 	</div>
+	<!-- end container -->
 </section>
+<!-- end wrapper -->
 <%@include file="../include/footer.jsp"%>
