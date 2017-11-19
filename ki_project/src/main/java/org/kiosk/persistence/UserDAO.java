@@ -7,12 +7,9 @@ import org.kiosk.dto.LoginDTO;
 
 public interface UserDAO {
 
-	public UserVO login(LoginDTO dto)throws Exception;
+	public UserVO login(LoginDTO dto) throws Exception;
 
-  public void keepLogin(String id, String sessionId, Date next);
-  
-  public UserVO checkUserWithSessionKey(String value);	
+	public void keepLogin(String id, String sessionId, Date next);
+
+	public UserVO checkUserWithSessionKey(String value);
 }
-
-
-

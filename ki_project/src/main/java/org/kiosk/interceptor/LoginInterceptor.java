@@ -20,19 +20,19 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		 System.out.println("loginInterceptor post handle........................");
+		System.out.println("loginInterceptor post handle........................");
 		HttpSession session = request.getSession();
 
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object userVO = modelMap.get("userVO");
-		Criteria cri = (Criteria) modelMap.get("cri");
-		Object id_num = modelMap.get("id_num");
+	//	Criteria cri = (Criteria) modelMap.get("cri");
+		
 
 		if (userVO != null) {
 
 			logger.info("new login success");
 			session.setAttribute(LOGIN, userVO);
-
+//			 response.sendRedirect("/home/");
 			if (request.getParameter("useCookie") != null) {
 
 				logger.info("remember me................");
@@ -43,12 +43,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			} // response.sendRedirect("/");
 			Object dest = session.getAttribute("dest");
 
-//			response.sendRedirect(dest != null ? (String) dest : "/sboard/readPage"+gotoReadPage(id_num, cri));	//로그?�� ?���? list�? ?��면이 바�?�다.
-			response.sendRedirect(dest != null ? (String) dest : "/");	
-			 System.out.println("loginInterceptor post handle........................dest:"+dest);
-	
+			// response.sendRedirect(dest != null ? (String) dest : "/sboard/readPage"+gotoReadPage(id_num, cri)); 
+			response.sendRedirect(dest != null ? (String) dest : "/staff2board/list");
+			System.out.println("loginInterceptor post handle........................dest:" + dest);
+
 		}
 	}
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -61,9 +62,5 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		return true;
-	}
-	private String gotoReadPage(Object id_num,Criteria cri){
-		String path="?id_num="+id_num+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
-		return path;
 	}
 }

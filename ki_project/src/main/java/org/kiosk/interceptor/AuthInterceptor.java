@@ -47,7 +47,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 			}
 
-			response.sendRedirect("/user/login?id_num=1&page=1&perPageNum=10");
+			response.sendRedirect("/");
 			return false;
 		}
 		return true;

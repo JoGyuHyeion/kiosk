@@ -86,8 +86,8 @@
 
 
 
-						<button type="button"
-							class="btn btn-danger waves-effect w-md waves-light m-b-5">
+						<button type="button" class="btn btn-danger waves-effect w-md waves-light m-b-5" onclick="
+						location.href='/logout'">
 							<i class="ti-power-off m-r-5"></i> Logout
 						</button>
 

@@ -11,52 +11,48 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class SampleInterceptor extends HandlerInterceptorAdapter {
 
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
 
-  @Override
-  public void postHandle(HttpServletRequest request,
-      HttpServletResponse response, Object handler,
-      ModelAndView modelAndView) throws Exception {
-  
-    System.out.println("sampleInterceptor post handle........................");
-    
-    Object result = modelAndView.getModel().get("result");
-    
-    if(result != null){
-      System.out.println("result exists");
-      request.getSession().setAttribute("result", result);
-      response.sendRedirect("/doA");
-    }
-    
-  }
+		System.out.println("sampleInterceptor post handle........................");
 
+		Object result = modelAndView.getModel().get("result");
 
+		if (result != null) {
+			System.out.println("result exists : " + result);
+			request.getSession().setAttribute("result", result);
+			response.sendRedirect("/home/doA");
+		}
 
-  @Override
-  public boolean preHandle(HttpServletRequest request, 
-      HttpServletResponse response, Object handler) throws Exception {
+	}
 
-    System.out.println("sampleInterceptor pre handle..........................");
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
 
-    HandlerMethod method = (HandlerMethod) handler;
-    Method methodObj = method.getMethod();
+		System.out.println("sampleInterceptor pre handle..........................");
 
-    System.out.println("Bean: " + method.getBean());
-    System.out.println("Method: " + methodObj);
+		HandlerMethod method = (HandlerMethod) handler;
+		Method methodObj = method.getMethod();
 
-    return true;
+		System.out.println("Bean: " + method.getBean());
+		System.out.println("Method: " + methodObj);
 
-  }
+		return true;
+
+	}
 
 }
 
-
-//@Override
-//public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-//  ModelAndView modelAndView) throws Exception {
+// @Override
+// public void postHandle(HttpServletRequest request, HttpServletResponse
+// response, Object handler,
+// ModelAndView modelAndView) throws Exception {
 //
-//System.out.println("post handle.........");
+// System.out.println("post handle.........");
 //
-//}
+// }
 
 // @Override
 // public boolean preHandle(HttpServletRequest request,
