@@ -58,7 +58,7 @@
 										<label class="col-md-3 control-label">이미지 파일</label> <input
 											id="imgName"
 											class="file_input_textbox form-control col-md-5 "
-											readonly />
+											readonly="readonly" />
 										<div class="file_input_div">
 											<input type="button" value="파일"
 												class="file_input_button btn btn-primary" /> <input
