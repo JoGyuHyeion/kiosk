@@ -44,7 +44,7 @@
 										</div>
 									</div>
 									<!-- img_gallery  노출 여부   -->
-									<div class="form-group">
+									<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
 										<label class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
@@ -85,26 +85,27 @@
 		</div>
 		<!-- end row -->
 		<script>
+			var input = $
+			{
+				com_imageVO.img_gallery
+			};
+			if (input == 1) { //값 비교
+				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
+			}
 
-		var input = ${com_imageVO.img_gallery};
-		if (input == 1) { //값 비교
-			$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
-		}
-		
-		$(document)
-		.ready(
-				function() {
-					var formObj = $("form[role='form']");
-					console.log(formObj);
-					$("#back")
-							.on(
-									"click",
-									function() {
-										self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-									});
+			$(document)
+					.ready(
+							function() {
+								var formObj = $("form[role='form']");
+								console.log(formObj);
+								$("#back")
+										.on(
+												"click",
+												function() {
+													self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+												});
 
-				});
-
+							});
 		</script>
 	</div>
 	<!-- end container -->

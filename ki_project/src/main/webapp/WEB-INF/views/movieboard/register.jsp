@@ -30,6 +30,7 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
+<<<<<<< HEAD
 						<!--<form method="post" role="form" enctype="multipart/form-data"
 							onsubmit="return formCheck()">
 						<div class="col-md-7">
@@ -37,6 +38,13 @@
 						<div class="col-md-7">
 							<form method="post" role="form" enctype="multipart/form-data"
 								onsubmit="return formCheck()">
+=======
+						<form method="post" role="form" enctype="multipart/form-data">
+							<div class="col-md-7">
+						<div class="col-md-7">
+
+							<form method="post" role="form" enctype="multipart/form-data">
+>>>>>>> b9b46668f4c13b891ee0e26ef2279e7d9987c3bb
 								<div class="form-horizontal" role="form">
 									<!-- vi_name-->
 									<div class="form-group">

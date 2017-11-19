@@ -85,7 +85,6 @@
 												value="1" switch="none" /> <label for="bbs_state"
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
-										<p>${com_boardVO.bbs_state}</p>
 									</div>
 									<div class="form-group" style="text-align: center">
 										<button type="submit"
@@ -129,7 +128,35 @@
 			</div>
 			<!-- end col -->
 		</div>
+<<<<<<< HEAD
 		<!-- end row -->
+=======
+		<script>
+			
+			
+
+			$(document)
+					.ready(
+							function() {
+								var formObj = $("form[role='form']");
+								var bbs_state ="<c:out value="${bbs_state}"/>";
+								if(bbs_state == 1){
+									 $("#bbs_state").attr('checked',true);			
+								}else{
+									 $("#bbs_state").attr('checked',false);	
+								}
+								
+								console.log(formObj);
+								$("#back")
+										.on(
+												"click",
+												function() {
+													self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+												});
+								
+							});
+		</script>
+>>>>>>> b9b46668f4c13b891ee0e26ef2279e7d9987c3bb
 	</div>
 	<!-- end container -->
 </section>

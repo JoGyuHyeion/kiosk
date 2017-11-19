@@ -121,8 +121,9 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
+										<li><a href="/myinfoboard/newUser">계정생성(Super)</a></li>
 										<li><a href="/myinfoboard/passwd">비밀번호변경</a></li>
-										<li><a href="/myinfoboard/section?bcd=k000">국관리</a></li>
+										<li><a href="/myinfoboard/section?bcd=k000">국관리(Super)</a></li>
 										<li><a href="/myinfoboard/team">과관리</a></li>
 									</ul>
 								</li>
