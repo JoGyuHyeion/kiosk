@@ -11,11 +11,11 @@ public class JsonStaffDAOImpl implements JsonStaffDAO {
 	private SqlSession session;
 	private static String namespace = "org.kiosk.mapper.JsonStaffMapper";
 
-//	@Override
-//	public void create(JsonStaffDTO dto) throws Exception {
-//		session.insert(namespace + ".create", dto);
-//
-//	}
+	@Override
+	public void create(JsonStaffDTO dto) throws Exception {
+		session.insert(namespace + ".create", dto);
+
+	}
 
 	@Override
 	public JsonStaffDTO read(String section_cd) throws Exception {

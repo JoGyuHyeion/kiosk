@@ -7,17 +7,22 @@ import javax.inject.Inject;
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.persistence.JsonNoticeDAO;
 import org.springframework.stereotype.Service;
+
 @Service
-public class JsonNoticeServiceImpl implements JsonNoticeService{
-	
+public class JsonNoticeServiceImpl implements JsonNoticeService {
+
 	@Inject
 	private JsonNoticeDAO dao;
+	@Inject
+	private Vol_checkService volService;
+	
+	private static final String VERSION="board";
 
-//	@Override
-//	public void regist(JsonNoticeDTO dto) throws Exception {
-//		dao.create(dto);
-//		
-//	}
+	@Override
+	public void regist(JsonNoticeDTO dto) throws Exception {
+		dao.create(dto);
+		volService.update(VERSION);
+	}
 
 	@Override
 	public JsonNoticeDTO read(Integer no) throws Exception {
@@ -27,13 +32,13 @@ public class JsonNoticeServiceImpl implements JsonNoticeService{
 	@Override
 	public void modify(JsonNoticeDTO dto) throws Exception {
 		dao.update(dto);
-		
+		volService.update(VERSION);
 	}
 
 	@Override
 	public void remove(Integer no) throws Exception {
 		dao.delete(no);
-		
+		volService.update(VERSION);
 	}
 
 	@Override

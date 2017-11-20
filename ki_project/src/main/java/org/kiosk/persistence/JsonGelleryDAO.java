@@ -6,7 +6,7 @@ import org.kiosk.dto.JsonGelleryDTO;
 
 public interface JsonGelleryDAO {
 	
-	  //public void create(JsonGelleryDTO dto) throws Exception;
+	  public void create(JsonGelleryDTO dto) throws Exception;
 
 	  public JsonGelleryDTO read(Integer no) throws Exception;
 

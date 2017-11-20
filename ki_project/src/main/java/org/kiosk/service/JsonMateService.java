@@ -6,7 +6,7 @@ import org.kiosk.dto.TeamsDTO;
 
 public interface JsonMateService {
 
-//	  public void regist(MateDTO dto) throws Exception;
+	  public void regist(MateDTO dto) throws Exception;
 	  
 	  public MateDTO read(Integer no) throws Exception;
 

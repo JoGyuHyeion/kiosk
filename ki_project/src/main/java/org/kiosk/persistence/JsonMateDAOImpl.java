@@ -12,11 +12,11 @@ public class JsonMateDAOImpl implements JsonMateDAO {
 	private SqlSession session;
 	private static String namespace = "org.kiosk.mapper.MateMapper";
 
-//	@Override
-//	public void create(MateDTO dto) throws Exception {
-//		session.insert(namespace + ".create", dto);
-//
-//	}
+	@Override
+	public void create(MateDTO dto) throws Exception {
+		session.insert(namespace + ".create", dto);
+
+	}
 
 	@Override
 	public MateDTO read(Integer no) throws Exception {

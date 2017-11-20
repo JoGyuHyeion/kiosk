@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class Vol_checkTest {
 	@Inject
 	private Vol_checkDAO dao;
-
+	private static final String VERSION="session";
 	private static Logger logger = LoggerFactory.getLogger(Vol_checkTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
@@ -29,6 +29,6 @@ public class Vol_checkTest {
 
 //	 @Test
 	public void testUpdate() throws Exception {
-		dao.update("board");
+		dao.update(VERSION);
 	}
 }

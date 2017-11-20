@@ -2,12 +2,10 @@ package org.kiosk.service;
 
 import java.util.List;
 import javax.inject.Inject;
-
 import org.kiosk.domain.Com_iconVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.persistence.Com_iconDAO;
-import org.kiosk.persistence.Vol_checkDAO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,12 +14,14 @@ public class Com_iconServiceImpl implements Com_iconService {
 	@Inject
 	private Com_iconDAO dao;
 	@Inject
-	private Vol_checkDAO vol_dao;
+	private Vol_checkService volService;
+	
+	private static final String VERSION="icon";
 
 	@Override
 	public void regist(Com_iconVO vo) throws Exception {
 		dao.create(vo);
-		vol_dao.update("icon");
+		volService.update(VERSION);
 	}
 
 	@Override
@@ -32,13 +32,13 @@ public class Com_iconServiceImpl implements Com_iconService {
 	@Override
 	public void modify(Com_iconVO vo) throws Exception {
 		dao.update(vo);
-		vol_dao.update("icon");
+		volService.update(VERSION);
 	}
 
 	@Override
 	public void remove(Integer ic_no) throws Exception {
 		dao.delete(ic_no);
-		vol_dao.update("icon");
+		volService.update(VERSION);
 	}
 
 	@Override

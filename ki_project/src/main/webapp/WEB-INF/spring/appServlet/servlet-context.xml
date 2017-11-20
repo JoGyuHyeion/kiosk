@@ -68,8 +68,41 @@
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg value="resources\upload"></beans:constructor-arg>
 	</beans:bean>
-	<!-- <beans:bean id="uploadPath" class="java.lang.String"> <beans:constructor-arg 
-		value="D:/resources"></beans:constructor-arg> </beans:bean> -->
-	<!-- <beans:bean id="ipPath" class="java.lang.String"> <beans:constructor-arg 
-		value="http://ar.roboprint.co.kr:8080/"></beans:constructor-arg> </beans:bean> -->
+
+	<beans:bean id="sessionVersion" class="java.lang.String">
+		<beans:constructor-arg value="session"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="bgImgVersion" class="java.lang.String">
+		<beans:constructor-arg value="bgImg"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="boardVersion" class="java.lang.String">
+		<beans:constructor-arg value="board"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="bureauVersion" class="java.lang.String">
+		<beans:constructor-arg value="bureau"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="iconVersion" class="java.lang.String">
+		<beans:constructor-arg value="icon"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="imageVersion" class="java.lang.String">
+		<beans:constructor-arg value="image"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="menuVersion" class="java.lang.String">
+		<beans:constructor-arg value="menu"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="sectionVersion" class="java.lang.String">
+		<beans:constructor-arg value="section"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="teamVersion" class="java.lang.String">
+		<beans:constructor-arg value="team"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="videoVersion" class="java.lang.String">
+		<beans:constructor-arg value="video"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="logVersion" class="java.lang.String">
+		<beans:constructor-arg value="log"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="buildingVersion" class="java.lang.String">
+		<beans:constructor-arg value="building"></beans:constructor-arg>
+	</beans:bean>
 </beans:beans>

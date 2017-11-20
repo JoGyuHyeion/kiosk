@@ -6,7 +6,6 @@ import org.kiosk.domain.Com_imageVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.persistence.Com_imageDAO;
-import org.kiosk.persistence.Vol_checkDAO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,12 +14,14 @@ public class Com_imageServiceImpl implements Com_imageService {
 	@Inject
 	private Com_imageDAO dao;
 	@Inject
-	private Vol_checkDAO vol_dao;
+	private Vol_checkService volService;
+	
+	private static final String VERSION="image";
 
 	@Override
 	public void regist(Com_imageVO vo) throws Exception {
 		dao.create(vo);
-		vol_dao.update("image");
+		volService.update(VERSION);
 	}
 
 	@Override
@@ -31,13 +32,13 @@ public class Com_imageServiceImpl implements Com_imageService {
 	@Override
 	public void modify(Com_imageVO vo) throws Exception {
 		dao.update(vo);
-		vol_dao.update("image");
+		volService.update(VERSION);
 	}
 
 	@Override
 	public void remove(Integer img_no) throws Exception {
 		dao.delete(img_no);
-		vol_dao.update("image");
+		volService.update(VERSION);
 	}
 
 	@Override

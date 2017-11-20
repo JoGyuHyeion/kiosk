@@ -15,10 +15,15 @@ public class Com_staffServiceImpl implements Com_staffService {
 
 	@Inject
 	private Com_staffDAO dao;
+	@Inject
+	private Vol_checkService volService;
+	
+	private static final String VERSION="staff";
 
 	@Override
 	public void regist(Com_staffVO vo) throws Exception {
 		dao.create(vo);
+		volService.update(VERSION);
 	}
 
 	@Override
@@ -29,11 +34,13 @@ public class Com_staffServiceImpl implements Com_staffService {
 	@Override
 	public void modify(Com_staffVO vo) throws Exception {
 		dao.update(vo);
+		volService.update(VERSION);
 	}
 
 	@Override
 	public void remove(Integer st_no) throws Exception {
 		dao.delete(st_no);
+		volService.update(VERSION);
 	}
 
 	@Override
