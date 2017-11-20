@@ -13,13 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where
 		vol_no = #{vol_no}
 	</select>
-
+	
 	<update id="update">
 		update vol_check set
-		session = #{session}
+		${col_name} = now()
 		where
-		bbs_no = #{bbs_no}
+		vol_no = 1
 	</update>
-
 
 </mapper>

@@ -8,6 +8,7 @@ import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.persistence.Com_staff2DAO;
+import org.kiosk.persistence.Vol_checkDAO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,11 +16,13 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 
 	@Inject
 	private Com_staff2DAO dao;
+	@Inject
+	private Vol_checkDAO vol_dao;
 
 	@Override
 	public void regist(Com_staff2VO vo) throws Exception {
 		dao.create(vo);
-
+		vol_dao.update("staff");
 	}
 
 	@Override
@@ -30,11 +33,13 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 	@Override
 	public void modify(Com_staff2VO vo) throws Exception {
 		dao.update(vo);
+		vol_dao.update("staff");
 	}
 
 	@Override
 	public void remove(Integer st_no) throws Exception {
 		dao.delete(st_no);
+		vol_dao.update("staff");
 	}
 
 	@Override

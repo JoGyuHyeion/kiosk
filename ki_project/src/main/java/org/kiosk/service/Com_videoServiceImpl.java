@@ -7,6 +7,7 @@ import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.persistence.Com_videoDAO;
+import org.kiosk.persistence.Vol_checkDAO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,11 +15,13 @@ public class Com_videoServiceImpl implements Com_videoService {
 
 	@Inject
 	private Com_videoDAO dao;
+	@Inject
+	private Vol_checkDAO vol_dao;
 
 	@Override
 	public void regist(Com_videoVO dto) throws Exception {
 		dao.create(dto);
-
+		vol_dao.update("video");
 	}
 
 	@Override
@@ -30,13 +33,13 @@ public class Com_videoServiceImpl implements Com_videoService {
 	@Override
 	public void modify(Com_videoVO dto) throws Exception {
 		dao.update(dto);
-
+		vol_dao.update("video");
 	}
 
 	@Override
 	public void remove(Integer vi_no) throws Exception {
 		dao.delete(vi_no);
-
+		vol_dao.update("video");
 	}
 
 	@Override

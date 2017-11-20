@@ -29,7 +29,6 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	@Override
 	public void update(Com_boardVO vo) throws Exception {
 		session.update(namespace + ".update", vo);
-
 	}
 
 	@Override
