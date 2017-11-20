@@ -4,7 +4,7 @@ import java.util.List;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
 
-public interface MateDAO {
+public interface JsonMateDAO {
 
 	  //public void create(MateDTO dto) throws Exception;
 	  

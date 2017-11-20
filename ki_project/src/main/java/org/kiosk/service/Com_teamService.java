@@ -14,5 +14,7 @@ public interface Com_teamService {
 	public void remove(Com_teamVO vo) throws Exception;
 
 	public List<Com_teamVO> listAll() throws Exception;
+	
+	public List<Com_teamVO> jsonList(String bureau_cd) throws Exception;
 
 }

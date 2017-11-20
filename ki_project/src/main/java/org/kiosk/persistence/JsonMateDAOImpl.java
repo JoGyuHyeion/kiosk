@@ -7,7 +7,7 @@ import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
 import org.springframework.stereotype.Repository;
 @Repository
-public class MateDAOImpl implements MateDAO {
+public class JsonMateDAOImpl implements JsonMateDAO {
 	@Inject
 	private SqlSession session;
 	private static String namespace = "org.kiosk.mapper.MateMapper";

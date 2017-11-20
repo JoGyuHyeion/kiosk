@@ -8,8 +8,8 @@ import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
 import org.kiosk.persistence.JsonStaffDAO;
-import org.kiosk.persistence.MateDAO;
-import org.kiosk.persistence.TeamsDAO;
+import org.kiosk.persistence.JsonMateDAO;
+import org.kiosk.persistence.JsonTeamsDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,9 +23,9 @@ public class JsonStaffTest {
 	@Inject
 	private JsonStaffDAO staffdao;
 	@Inject
-	private MateDAO mateDao;
+	private JsonMateDAO mateDao;
 	@Inject
-	private TeamsDAO teamDao;
+	private JsonTeamsDAO teamDao;
 
 	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
 

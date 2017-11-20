@@ -4,12 +4,12 @@ import java.util.List;
 import javax.inject.Inject;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
-import org.kiosk.persistence.MateDAO;
+import org.kiosk.persistence.JsonMateDAO;
 import org.springframework.stereotype.Service;
 @Service
-public class MateServiceImpl implements MateService {
+public class JsonMateServiceImpl implements JsonMateService {
 	@Inject
-	private MateDAO dao;
+	private JsonMateDAO dao;
 
 //	@Override
 //	public void regist(MateDTO dto) throws Exception {

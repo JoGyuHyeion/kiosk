@@ -42,4 +42,9 @@ public class Com_teamServiceImpl implements Com_teamService {
 		return dao.listAll();
 	}
 
+	@Override
+	public List<Com_teamVO> jsonList(String bureau_cd) throws Exception {
+		return dao.jsonList(bureau_cd);
+	}
+
 }

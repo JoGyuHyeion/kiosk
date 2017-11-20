@@ -1,9 +1,9 @@
-package org.kiosk.persistence;
+package org.kiosk.service;
 
 import java.util.List;
 import org.kiosk.dto.TeamsDTO;
 
-public interface TeamsDAO {
+public interface JsonTeamsService {
 	
 //	  public void create(TeamsDTO dto) throws Exception;
 

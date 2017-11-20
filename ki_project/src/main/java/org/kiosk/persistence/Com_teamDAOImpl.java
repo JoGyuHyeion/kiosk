@@ -44,4 +44,9 @@ public class Com_teamDAOImpl implements Com_teamDAO {
 		return session.selectList(namespace + ".listAll");
 	}
 
+	@Override
+	public List<Com_teamVO> jsonList(String bureau_cd) throws Exception {
+		return session.selectList(namespace + ".jsonList",bureau_cd);
+	}
+
 }

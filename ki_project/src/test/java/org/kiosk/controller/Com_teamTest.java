@@ -1,6 +1,8 @@
 package org.kiosk.controller;
 
 import javax.inject.Inject;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.persistence.Com_teamDAO;
@@ -62,10 +64,17 @@ public class Com_teamTest {
 		dao.delete(vo);
 	}
 
-	// @Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
+
+	}
+
+	// @Test
+	public void testJsonList() throws Exception {
+
+		logger.info(dao.jsonList("K010").toString());
 
 	}
 

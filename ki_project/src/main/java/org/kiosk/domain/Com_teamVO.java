@@ -1,11 +1,16 @@
 package org.kiosk.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Com_teamVO {
 
 	private String section_cd;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String team_cd;
 	private String team_nm;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int team_sort;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String team_use;
 
 	public String getSection_cd() {

@@ -32,7 +32,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="listAll" resultType="Com_bureauVO">
- 		<![CDATA[ select * from com_bureau]]>
+ 		<![CDATA[ 
+ 		select * 
+ 		from com_bureau
+ 		order by bureau_cd asc
+ 		]]>
 	</select>
 
 
