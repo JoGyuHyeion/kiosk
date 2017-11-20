@@ -3,6 +3,8 @@ package org.kiosk.service;
 import java.util.List;
 
 import org.kiosk.domain.Com_buildingVO;
+import org.kiosk.domain.Criteria;
+import org.kiosk.domain.SearchCriteria;
 
 public interface Com_buildingService {
 	public void regist(Com_buildingVO dto) throws Exception;
@@ -12,6 +14,17 @@ public interface Com_buildingService {
 	public void modify(Com_buildingVO dto) throws Exception;
 
 	public void remove(Integer bu_no) throws Exception;
-	
+
 	public List<Com_buildingVO> listAll() throws Exception;
+
+	public int lastInsertID() throws Exception;
+
+	public List<Com_buildingVO> listCriteria(Criteria cri) throws Exception;
+
+	public int listCountCriteria(Criteria cri) throws Exception;
+
+	public List<Com_buildingVO> listSearchCriteria(SearchCriteria cri) throws Exception;
+
+	public int listSearchCount(SearchCriteria cri) throws Exception;
+
 }

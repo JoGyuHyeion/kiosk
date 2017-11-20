@@ -8,6 +8,7 @@ import org.kiosk.domain.Com_boardVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.persistence.Com_boardDAO;
+import org.kiosk.persistence.Vol_checkDAO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,11 +16,13 @@ public class Com_boardServiceImpl implements Com_boardService {
 
 	@Inject
 	private Com_boardDAO dao;
-
+	@Inject
+	private Vol_checkDAO vol_dao;
+	
 	@Override
 	public void regist(Com_boardVO vo) throws Exception {
 		dao.create(vo);
-
+		vol_dao.update("board");
 	}
 
 	@Override
@@ -30,13 +33,13 @@ public class Com_boardServiceImpl implements Com_boardService {
 	@Override
 	public void modify(Com_boardVO vo) throws Exception {
 		dao.update(vo);
-
+		vol_dao.update("board");
 	}
 
 	@Override
 	public void remove(Integer bbs_no) throws Exception {
 		dao.delete(bbs_no);
-
+		vol_dao.update("board");
 	}
 
 	@Override
