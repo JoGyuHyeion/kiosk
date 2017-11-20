@@ -126,7 +126,7 @@
 													.on(
 															"click",
 															function() {
-																self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+																self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 															});
 
 										});
