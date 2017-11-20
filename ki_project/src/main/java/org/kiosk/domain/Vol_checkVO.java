@@ -2,8 +2,10 @@ package org.kiosk.domain;
 
 import java.sql.Date;
 
-public class Vol_checkVO {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class Vol_checkVO {
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int vol_no;
 	private Date session;
 	private Date bgImg;

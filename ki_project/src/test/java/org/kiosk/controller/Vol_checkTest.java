@@ -22,12 +22,12 @@ public class Vol_checkTest {
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-	//@Test
+	@Test
 	public void testRead() throws Exception {
 		logger.info(dao.read(1).toString());
 	}
 
-	 @Test
+//	 @Test
 	public void testUpdate() throws Exception {
 		dao.update("board");
 	}

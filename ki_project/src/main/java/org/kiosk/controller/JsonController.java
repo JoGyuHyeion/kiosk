@@ -12,6 +12,7 @@ import org.kiosk.domain.Com_iconVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.SampleVO;
+import org.kiosk.domain.Vol_checkVO;
 import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.dto.JsonStaffDTO;
@@ -28,6 +29,7 @@ import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.service.JsonMateService;
 import org.kiosk.service.JsonTeamsService;
+import org.kiosk.service.Vol_checkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -68,8 +70,21 @@ public class JsonController {
 	private Com_videoService videoService;
 	@Inject
 	private Com_bgImgService bgImgService;
-	// @Inject
-	// private Com_teamService ajaxTeamsService;
+	@Inject
+	private Vol_checkService vol_checkService;
+	
+	@RequestMapping(value = "/getVersion", method = RequestMethod.GET)
+	public ResponseEntity<Vol_checkVO> getVersion() {
+		logger.info("json/getVersion");
+		ResponseEntity<Vol_checkVO> entity = null;
+		try {
+			entity = new ResponseEntity<>(vol_checkService.read(1), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 
 	@RequestMapping(value = "/getStaff/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> getStaff(@PathVariable("section_cd") String section_cd) {
