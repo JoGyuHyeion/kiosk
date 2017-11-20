@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <%@include file="../include/header.jsp"%>
+
 <!-- Main content -->
 <section class="wrapper">
 	<div class="container">
@@ -15,38 +16,36 @@
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
 							<li><a href="#">갤러리</a></li>
-							<li class="active">갤러리수정</li>
+							<li class="active">갤러리등록</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						갤러리등록 <small>갤러리를 <code>수정</code> 할 수 있습니다.
+						갤러리등록 <small>갤러리를 <code>등록</code> 할 수 있습니다.
 						</small>
 					</h4>
 				</div>
 			</div>
 		</div>
 		<!-- end page title end breadcrumb -->
-
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form" enctype="multipart/form-data">
-							<div class="col-md-7">
+						<div class="col-md-7">
+							<form method="post" role="form" enctype="multipart/form-data"
+								onsubmit="return formCheck()")>
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
 									<div class="form-group">
-										<label class="col-md-2 control-label">제목</label>
-										<div class="col-md-10">
+										<label class="col-md-3 control-label">제목</label>
+										<div class="col-md-7">
 											<input type="text" class="form-control" placeholder="Name"
-												id="img_title" name="img_title"
-												value="${com_imageVO.img_title}">
+												id="img_title" name="img_title">
 										</div>
 									</div>
 									<!-- img_gallery  노출 여부   -->
 									<div class="form-group">
-										<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
-										<label class="col-md-2 control-label">표시여부</label>
+										<label class="col-md-3 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
 											<input type="checkbox" name="img_gallery" id="img_gallery"
@@ -54,13 +53,11 @@
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
-
 									<!-- img_filenm -->
 									<div class="form-group">
-										<label class="col-md-2 control-label">이미지 파일</label> <input
+										<label class="col-md-3 control-label">이미지 파일</label> <input
 											id="imgName"
-											class="file_input_textbox form-control col-md-5 "
-											readonly="readonly" />
+											class="file_input_textbox form-control col-md-5 " readonly />
 										<div class="file_input_div">
 											<input type="button" value="파일"
 												class="file_input_button btn btn-primary" /> <input
@@ -70,49 +67,59 @@
 										</div>
 									</div>
 								</div>
+								<!-- img_filenm -->
+								<!-- 		<div class="form-group">
+										<div class="col-sm-12 padding-left-0 padding-right-0">
+											<input type="file" name="imgFile" id="img_filenm"
+												multiple="multiple">
+										</div>
+									</div>-->
 								<div class="form-group" style="text-align: center">
 									<button type="submit"
-										class="btn btn-primary waves-effect w-md waves-light m-b-5"
-										id="change">수정</button>
+										class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
 									<button type="button"
 										class="btn btn-warning waves-effect w-md waves-light m-b-5"
 										id="back">돌아가기</button>
 								</div>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
+					<script>
+						$(document)
+								.ready(
+										function() {
+											var formObj = $("form[role='form']");
+											console.log(formObj);
+											$("#back")
+													.on(
+															"click",
+															function() {
+																self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+															});
+
+										});
+						
+						function formCheck() {
+							if ($.trim($("#img_title").val()) == "") {
+								alert("제목을 입력하세요");
+								$("#img_title").focus();
+								return false;
+							}else if ($.trim($("#img_filenm").val()) == "") {
+								alert("사진을 첨부하세요");
+								$("#img_filenm").focus();
+								return false;
+							}
+							return true;
+
+						}
+					</script>
 				</div>
 			</div>
+			<!-- end col -->
 		</div>
-		<!-- end col -->
+		<!-- end row -->
 	</div>
-	<!-- end row -->
-	<script>
-			var input = $
-			{
-				com_imageVO.img_gallery
-			};
-			if (input == 1) { //값 비교
-				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
-			}
-
-			$(document)
-					.ready(
-							function() {
-								var formObj = $("form[role='form']");
-								console.log(formObj);
-								$("#back")
-										.on(
-												"click",
-												function() {
-													self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-												});
-
-							});
-		</script>
 	<!-- end container -->
 </section>
 <!-- end wrapper -->
-
-
 <%@include file="../include/footer.jsp"%>

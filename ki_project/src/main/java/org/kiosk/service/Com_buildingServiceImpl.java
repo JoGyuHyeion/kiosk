@@ -5,18 +5,24 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.kiosk.domain.Com_buildingVO;
+import org.kiosk.domain.Criteria;
+import org.kiosk.domain.SearchCriteria;
 import org.kiosk.persistence.Com_buildingDAO;
+import org.kiosk.persistence.Vol_checkDAO;
 import org.springframework.stereotype.Service;
+
 @Service
 public class Com_buildingServiceImpl implements Com_buildingService {
 
 	@Inject
 	private Com_buildingDAO dao;
-
+	@Inject
+	private Vol_checkDAO vol_dao;
+	
 	@Override
 	public void regist(Com_buildingVO dto) throws Exception {
 		dao.create(dto);
-
+		vol_dao.update("building");
 	}
 
 	@Override
@@ -27,18 +33,43 @@ public class Com_buildingServiceImpl implements Com_buildingService {
 	@Override
 	public void modify(Com_buildingVO dto) throws Exception {
 		dao.update(dto);
-
+		vol_dao.update("building");
 	}
 
 	@Override
 	public void remove(Integer bu_no) throws Exception {
 		dao.delete(bu_no);
-
+		vol_dao.update("building");
 	}
 
 	@Override
 	public List<Com_buildingVO> listAll() throws Exception {
 		return dao.listAll();
+	}
+
+	@Override
+	public int lastInsertID() throws Exception {
+		return dao.lastInsertID() + 1;
+	}
+
+	@Override
+	public List<Com_buildingVO> listCriteria(Criteria cri) throws Exception {
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public int listCountCriteria(Criteria cri) throws Exception {
+		return dao.countPaging(cri);
+	}
+
+	@Override
+	public List<Com_buildingVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+		return dao.listSearch(cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return dao.listSearchCount(cri);
 	}
 
 }
