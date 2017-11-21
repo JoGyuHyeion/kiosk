@@ -42,14 +42,22 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${bcd}" var= "com_sectionVO">
+									<c:forEach items="${bcd}" var="com_sectionVO">
 										<tr>
 											<td><input type="text" class="form-control" size="6"
 												value="${com_sectionVO.section_cd}" readonly="readonly"></td>
 											<td><input type="text" class="form-control" size="40"
 												value="${com_sectionVO.section_name}"></td>
-											<td><input type="checkbox" style="align-content: center"
-												class="" name="" id=""></td>
+											<td>
+												<div style="padding: 5px">
+													<input type="checkbox" name="team_use" switch="none"
+														id="section_use"
+														<c:if test = "${com_sectionVO.section_use eq '1'}">checked</c:if> /><label
+														for="section_use" data-on-label="On" data-off-label="Off"></label>
+												</div>
+											</td>
+
+											<td>${com_sectionVO.section_use}</td>
 											<td><a href="#" class="table-action-btn h2"><i
 													class="mdi mdi-close-box-outline text-danger"></i></a></td>
 										</tr>
@@ -123,65 +131,75 @@
 			</div>
 		</div>
 		<script>
-			$(document).ready(function() {
-				
-				$("#search_bcd").change(function() {
-					var bcd = $("#search_bcd option:selected").val();
-					var url = "/myinfoboard/section?bcd=" + bcd;
-					alert(url);
-					location.href = url;
-					alert(전환);
+			$(document).ready(
+					function() {
 
-				});
+						$("#search_bcd").change(function() {
+							var bcd = $("#search_bcd option:selected").val();
+							var url = "/myinfoboard/section?bcd=" + bcd;
+							alert(url);
+							location.href = url;
 
-				$('#search_bcd option[value=bcd]').attr('selected', 'selected');
-				
+						});
 
-				$('#sectionAdd').on('show.bs.modal', function(event) {
-					$("#section_name").val("");
+						$('#sectionAdd').on('show.bs.modal', function(event) {
+							$("#section_name").val("");
 
-					$("#section_name").focus();
+							$("#section_name").focus();
 
-					var button = $(event.relatedTarget)
-					var recipient = button.data('whatever')
-					var modal = $(this)
-					modal.find('.modal-body input').val(recipient)
+							var button = $(event.relatedTarget)
+							var recipient = button.data('whatever')
+							var modal = $(this)
+							modal.find('.modal-body input').val(recipient)
 
-					$.ajax({
-						url : '/section/insert',
-						type : 'post',
-						data : {
-							"bureau_cd" : bureau_cd,
-							"section_name" : section_name
-						},
-						success : function(data) {
+							$.ajax({
+								url : '/section/insert',
+								type : 'post',
+								data : {
+									"bureau_cd" : bureau_cd,
+									"section_name" : section_name
+								},
+								success : function(data) {
 
-							//location.reload();
-						}
-					});
-				});
-				$(".section-del").click(function() {
-					var bureau_cd = $("#search_bcd option:selected").val();
-					var section_cd = $(this).data("sectioncd");
-					$.ajax({
-						url : '/section/del',
-						type : 'post',
-						dataType : 'json',
-						data : {
-							"bureau_cd" : bureau_cd,
-							"section_cd" : section_cd
-						},
-						success : function(data) {
-							if (data.row == 1) {
-								location.reload();
-							} else if (data.row == 0) {
-								alert(data.msg);
+									//location.reload();
+								}
+							});
+						});
+						$(".section-del").click(
+								function() {
+									var bureau_cd = $(
+											"#search_bcd option:selected")
+											.val();
+									var section_cd = $(this).data("sectioncd");
+									$.ajax({
+										url : '/section/del',
+										type : 'post',
+										dataType : 'json',
+										data : {
+											"bureau_cd" : bureau_cd,
+											"section_cd" : section_cd
+										},
+										success : function(data) {
+											if (data.row == 1) {
+												location.reload();
+											} else if (data.row == 0) {
+												alert(data.msg);
+											}
+										}
+									});
+								});
+
+						$.urlParam = function(name) {
+							var results = new RegExp('[\?&]' + name
+									+ '=([^&#]*)').exec(window.location.href);
+							if (results == null) {
+								return null;
+							} else {
+								return results[1] || 0;
 							}
 						}
-					});
-				});
 
-			});
+					});
 		</script>
 
 

@@ -12,6 +12,7 @@ import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
 import org.kiosk.dto.LoginDTO;
+import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +26,16 @@ public class UserController {
 
 	@Inject
 	private UserService service;
+	
+	@Inject
+	private Com_sectionService sectionService;
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String loginGET(@ModelAttribute("dto") LoginDTO dto) {
+	public String loginGET(@ModelAttribute("dto") LoginDTO dto, Model model) throws Exception {
+		model.addAttribute("service", sectionService.listAll());
 		System.out.println("UserController logins GET");
+
 		return "login";
 	}
 
@@ -41,7 +48,7 @@ public class UserController {
 		if (vo == null) {
 			return;
 		}
-
+		
 		model.addAttribute("userVO", vo);
 		model.addAttribute("cri", cri);
 
