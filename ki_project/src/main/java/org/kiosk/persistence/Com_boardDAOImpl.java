@@ -4,7 +4,6 @@ import java.util.List;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.domain.Com_boardVO;
-import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.springframework.stereotype.Repository;
@@ -30,7 +29,6 @@ public class Com_boardDAOImpl implements Com_boardDAO {
 	@Override
 	public void update(Com_boardVO vo) throws Exception {
 		session.update(namespace + ".update", vo);
-
 	}
 
 	@Override

@@ -13,11 +13,15 @@ public class Com_imageServiceImpl implements Com_imageService {
 
 	@Inject
 	private Com_imageDAO dao;
+	@Inject
+	private Vol_checkService volService;
+	
+	private static final String VERSION="image";
 
 	@Override
 	public void regist(Com_imageVO vo) throws Exception {
 		dao.create(vo);
-
+		volService.update(VERSION);
 	}
 
 	@Override
@@ -28,13 +32,13 @@ public class Com_imageServiceImpl implements Com_imageService {
 	@Override
 	public void modify(Com_imageVO vo) throws Exception {
 		dao.update(vo);
-
+		volService.update(VERSION);
 	}
 
 	@Override
 	public void remove(Integer img_no) throws Exception {
 		dao.delete(img_no);
-
+		volService.update(VERSION);
 	}
 
 	@Override

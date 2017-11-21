@@ -4,9 +4,9 @@ import java.util.List;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
 
-public interface MateService {
+public interface JsonMateService {
 
-//	  public void regist(MateDTO dto) throws Exception;
+	  public void regist(MateDTO dto) throws Exception;
 	  
 	  public MateDTO read(Integer no) throws Exception;
 

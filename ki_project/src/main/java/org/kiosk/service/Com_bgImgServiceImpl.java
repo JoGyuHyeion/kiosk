@@ -2,7 +2,6 @@ package org.kiosk.service;
 
 import java.util.List;
 import javax.inject.Inject;
-
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
@@ -14,11 +13,15 @@ public class Com_bgImgServiceImpl implements Com_bgImgService {
 
 	@Inject
 	private Com_bgImgDAO dao;
+	@Inject
+	private Vol_checkService volService;
+	
+	private static final String VERSION="bgImg";
 
 	@Override
 	public void regist(Com_bgImgVO dto) throws Exception {
 		dao.create(dto);
-
+		volService.update(VERSION);
 	}
 
 	@Override
@@ -29,13 +32,13 @@ public class Com_bgImgServiceImpl implements Com_bgImgService {
 	@Override
 	public void modify(Com_bgImgVO dto) throws Exception {
 		dao.update(dto);
-
+		volService.update(VERSION);
 	}
 
 	@Override
 	public void remove(Integer ic_no) throws Exception {
 		dao.delete(ic_no);
-
+		volService.update(VERSION);
 	}
 
 	@Override

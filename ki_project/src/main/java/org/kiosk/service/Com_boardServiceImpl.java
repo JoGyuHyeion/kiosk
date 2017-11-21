@@ -15,11 +15,15 @@ public class Com_boardServiceImpl implements Com_boardService {
 
 	@Inject
 	private Com_boardDAO dao;
-
+	@Inject
+	private Vol_checkService volService;
+	
+	private static final String VERSION="board";
+	
 	@Override
 	public void regist(Com_boardVO vo) throws Exception {
 		dao.create(vo);
-
+		volService.update(VERSION);
 	}
 
 	@Override
@@ -30,13 +34,13 @@ public class Com_boardServiceImpl implements Com_boardService {
 	@Override
 	public void modify(Com_boardVO vo) throws Exception {
 		dao.update(vo);
-
+		volService.update(VERSION);
 	}
 
 	@Override
 	public void remove(Integer bbs_no) throws Exception {
 		dao.delete(bbs_no);
-
+		volService.update(VERSION);
 	}
 
 	@Override

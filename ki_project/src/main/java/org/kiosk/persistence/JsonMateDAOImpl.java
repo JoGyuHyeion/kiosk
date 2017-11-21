@@ -7,16 +7,16 @@ import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
 import org.springframework.stereotype.Repository;
 @Repository
-public class MateDAOImpl implements MateDAO {
+public class JsonMateDAOImpl implements JsonMateDAO {
 	@Inject
 	private SqlSession session;
 	private static String namespace = "org.kiosk.mapper.MateMapper";
 
-//	@Override
-//	public void create(MateDTO dto) throws Exception {
-//		session.insert(namespace + ".create", dto);
-//
-//	}
+	@Override
+	public void create(MateDTO dto) throws Exception {
+		session.insert(namespace + ".create", dto);
+
+	}
 
 	@Override
 	public MateDTO read(Integer no) throws Exception {

@@ -1,9 +1,7 @@
 package org.kiosk.service;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
@@ -15,11 +13,15 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 
 	@Inject
 	private Com_staff2DAO dao;
+	@Inject
+	private Vol_checkService volService;
+
+	private static final String VERSION="staff";
 
 	@Override
 	public void regist(Com_staff2VO vo) throws Exception {
 		dao.create(vo);
-
+		volService.update(VERSION);
 	}
 
 	@Override
@@ -30,11 +32,13 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 	@Override
 	public void modify(Com_staff2VO vo) throws Exception {
 		dao.update(vo);
+		volService.update(VERSION);
 	}
 
 	@Override
 	public void remove(Integer st_no) throws Exception {
 		dao.delete(st_no);
+		volService.update(VERSION);
 	}
 
 	@Override

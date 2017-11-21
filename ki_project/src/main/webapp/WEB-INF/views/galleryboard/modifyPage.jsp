@@ -44,7 +44,8 @@
 										</div>
 									</div>
 									<!-- img_gallery  노출 여부   -->
-									<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
+									<div class="form-group">
+										<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
 										<label class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
@@ -53,9 +54,10 @@
 												data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
+
 									<!-- img_filenm -->
 									<div class="form-group">
-										<label class="col-md-3 control-label">이미지 파일</label> <input
+										<label class="col-md-2 control-label">이미지 파일</label> <input
 											id="imgName"
 											class="file_input_textbox form-control col-md-5 "
 											readonly="readonly" />
@@ -81,10 +83,11 @@
 					</div>
 				</div>
 			</div>
-			<!-- end col -->
 		</div>
-		<!-- end row -->
-		<script>
+		<!-- end col -->
+	</div>
+	<!-- end row -->
+	<script>
 			var input = $
 			{
 				com_imageVO.img_gallery
@@ -107,7 +110,6 @@
 
 							});
 		</script>
-	</div>
 	<!-- end container -->
 </section>
 <!-- end wrapper -->

@@ -33,7 +33,6 @@
 						<div class="col-md-7">
 							<form method="post" role="form" enctype="multipart/form-data"
 								onsubmit="return formCheck()">
-
 								<div class="form-horizontal" role="form">
 									<!-- vi_name-->
 									<div class="form-group">
@@ -66,18 +65,7 @@
 								</div>
 							</form>
 						</div>
-					</div>
-					<!--<div class="form-group" style="text-align: center">
-							<button type="submit"
-								class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
-							<button type="button"
-								class="btn btn-warning waves-effect w-md waves-light m-b-5"
-								id="back">돌아가기</button>
-						</div>
-						</form>
-					</div> 
-					-->
-					<script>
+						<script>
 						$(document)
 								.ready(
 										function() {
@@ -105,13 +93,13 @@
 
 						}
 					</script>
+					</div>
 				</div>
+				<!-- end col -->
 			</div>
-			<!-- end col -->
+			<!-- end row -->
 		</div>
-		<!-- end row -->
-	</div>
-	<!-- end container -->
+		<!-- end container -->
 </section>
 <!-- end wrapper -->
 <%@include file="../include/footer.jsp"%>
