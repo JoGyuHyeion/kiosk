@@ -39,8 +39,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 @RestController
 @RequestMapping("/json")
@@ -217,45 +215,6 @@ public class JsonController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/getTeams/{section_cd}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> getTeamsPOST(@PathVariable("section_cd") String section_cd) {
-		logger.info("json/getTeams/{section_cd}");
-		ResponseEntity<String> entity = null;
-
-		try {
-			Map<String, String> obj = new HashMap<String, String>();
-			for (TeamsDTO dto : jsonTeamsService.list(section_cd)) {
-				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
-			}
-			ObjectMapper om = new ObjectMapper();
-			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key로 정렬 설정
-			entity = new ResponseEntity<>(om.writeValueAsString(obj), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
-	@RequestMapping(value = "/getTeams/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> getTeamsGET(@PathVariable("section_cd") String section_cd) {
-		logger.info("json/getTeams/{section_cd}");
-		ResponseEntity<String> entity = null;
-
-		try {
-			Map<String, String> obj = new HashMap<String, String>();
-			for (TeamsDTO dto : jsonTeamsService.list(section_cd)) {
-				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
-			}
-			ObjectMapper om = new ObjectMapper();
-			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key로 정렬 설정
-			entity = new ResponseEntity<>(om.writeValueAsString(obj), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
 
 	@RequestMapping("/getErrorAuth")
 	public ResponseEntity<Void> getListAuth() {
