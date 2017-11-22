@@ -131,9 +131,9 @@
 			</div>
 		</div>
 		<script>
+			
 			$(document).ready(
 					function() {
-
 						$("#search_bcd").change(function() {
 							var bcd = $("#search_bcd option:selected").val();
 							var url = "/myinfoboard/section?bcd=" + bcd;
@@ -189,15 +189,7 @@
 									});
 								});
 
-						$.urlParam = function(name) {
-							var results = new RegExp('[\?&]' + name
-									+ '=([^&#]*)').exec(window.location.href);
-							if (results == null) {
-								return null;
-							} else {
-								return results[1] || 0;
-							}
-						}
+
 
 					});
 		</script>

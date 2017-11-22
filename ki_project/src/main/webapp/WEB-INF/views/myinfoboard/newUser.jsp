@@ -47,7 +47,7 @@
 										<div class="col-md-5">
 											<select class="form-control">
 												<c:forEach items="${sectionList}" var="com_sectionVO">
-													<option value ="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+													<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -74,6 +74,20 @@
 										</div>
 										<div class="col-md-4">
 											<p>숫자만 가능합니다.</p>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-md-2 control-label">권한</label>
+										<div class="col-md-5">
+											<div class="radio radio-warning">
+												<input type="radio" name="auth" id="auth_1" value="1">
+												<label for="auth_1">Super </label>
+											</div>
+
+											<div class="radio radio-success">
+												<input type="radio" name="auth" id="auth_2" value="2">
+												<label for="auth_2"> 일반 </label>
+											</div>
 										</div>
 									</div>
 
