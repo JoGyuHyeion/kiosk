@@ -34,7 +34,7 @@
 				<div class="card-box">
 					<div class="row">
 						<div class="col-md-7">
-							<form method="post" role="form">
+							<form method="post" role="form" enctype="multipart/form-data">
 								<input type='hidden' name='brd_cd' value="${com_boardVO.brd_cd}">
 								<div class="form-horizontal" role="form">
 									<!-- bbs_title -->
@@ -56,13 +56,28 @@
 									</div>
 									<!-- bbs_file -->
 									<div class="form-group">
+										<label class="col-md-2 control-label">이미지 파일</label> <input
+											id="imgName" name="imgName"
+											class="file_input_textbox form-control col-md-5 "
+											readonly="readonly" value="${com_boardVO.bbs_file}" />
+										<div class="file_input_div">
+											<input type="button" value="파일"
+												class="file_input_button btn btn-primary" /> <input
+												type="file" class="file_input_hidden" data-icon='false'
+												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												name="imgFile" id="img_file" />
+										</div>
+										<input type="hidden" name="bbs_file" id="bbs_file"
+											value="${com_boardVO.bbs_file}">
+									</div>
+									<!-- <div class="form-group">
 										<label for="bbs_file" class="col-md-2 control-label">첨부
 											파일</label>
 										<div class="col-md-10">
 											<input type="file" class="form-control" id="bbs_file"
 												name="bbs_file">
 										</div>
-									</div>
+									</div> -->
 									<!-- bbs_exp_sdt, bbs_exp_edt -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">공지기간</label>
@@ -128,9 +143,9 @@
 			</div>
 			<!-- end col -->
 		</div>
-<<<<<<< HEAD
+
 		<!-- end row -->
-=======
+
 		<script>
 			
 			
@@ -156,7 +171,7 @@
 								
 							});
 		</script>
->>>>>>> b9b46668f4c13b891ee0e26ef2279e7d9987c3bb
+
 	</div>
 	<!-- end container -->
 </section>

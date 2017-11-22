@@ -37,7 +37,7 @@
 
 
 					<div class="row">
-						<form method="post" role="form">
+						<form method="post" role="form" enctype="multipart/form-data">
 
 							<input type='hidden' name='page' value="${cri.page}"> <input
 								type='hidden' name='perPageNum' value="${cri.perPageNum}">
@@ -96,13 +96,28 @@
 									</div>
 									<!-- img_filenm -->
 									<div class="form-group">
+										<label class="col-md-2 control-label">이미지 파일</label> <input
+											id="imgName" name="imgName"
+											class="file_input_textbox form-control col-md-5 "
+											readonly="readonly" value="${com_staff2VO.img_filenm}" />
+										<div class="file_input_div">
+											<input type="button" value="파일"
+												class="file_input_button btn btn-primary" /> <input
+												type="file" class="file_input_hidden" data-icon='false'
+												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												accept="image/*" name="imgFile" id="img_file" />
+										</div>
+										<input type="hidden" name="img_filenm" id="img_filenm"
+											value="${com_staff2VO.img_filenm}">
+									</div>
+									<!-- <div class="form-group">
 										<label class="col-md-2 control-label">사진</label>
 										<div class="col-md-10">
 											<input type="file" class="form-control" id="img_filenm"
 												name="img_filenm"> <small>사진 최소 사이즈는 가로320px
 												세로400px입니다.</small>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 

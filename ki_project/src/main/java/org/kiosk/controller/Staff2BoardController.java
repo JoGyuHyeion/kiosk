@@ -95,9 +95,25 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr,
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
+			@RequestParam("imgName") String imgName) throws Exception {
 		logger.info("staff2board/modifyPage - POST");
 		logger.info(cri.toString());
+
+		String img_filenm;
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println("경로 : " + root_path + uploadPath);
+		if (imgName.equals(board.getImg_filenm())) {
+			img_filenm = imgName;
+		} else {
+			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getSt_no()).getImg_filenm());
+
+			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+					imgFile.getBytes(), img_fileName + board.getSt_no(), dirPath);
+		}
+		board.setImg_filenm(img_filenm);
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());
