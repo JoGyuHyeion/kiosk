@@ -181,7 +181,7 @@
 										<li><a href="/iconboard/list">Icon</a></li>
 										<li><a href="/backGroundboard/list">바탕화면</a></li>
 										<li><a href="/buildingboard/list">Building</a></li>
-										<li><a href="/backGroundboard/list">USB</a></li>
+										<li><a href="/myinfoboard/usb">USB</a></li>
 
 									</ul>
 								</li>

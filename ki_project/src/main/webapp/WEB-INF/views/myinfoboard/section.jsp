@@ -22,7 +22,8 @@
 								<label class=" col-md-2 control-label" for="search_bcd">국코드</label>
 								<select id="search_bcd" name="search_bcd" class="form-control">
 									<c:forEach items="${bureauService}" var="com_bureauVO">
-										<option value="${com_bureauVO.bureau_cd}">${com_bureauVO.bureau_name}</option>
+										<option value="${com_bureauVO.bureau_cd}"  										
+										>${com_bureauVO.bureau_name}</option>
 
 									</c:forEach>
 
@@ -131,15 +132,18 @@
 			</div>
 		</div>
 		<script>
-			
+			function myFunction(){
+				alert(param.bcd);
+			}
 			$(document).ready(
 					function() {
+						
 						$("#search_bcd").change(function() {
 							var bcd = $("#search_bcd option:selected").val();
 							var url = "/myinfoboard/section?bcd=" + bcd;
 							alert(url);
 							location.href = url;
-
+							myFunction();
 						});
 
 						$('#sectionAdd').on('show.bs.modal', function(event) {
