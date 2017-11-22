@@ -33,13 +33,12 @@
 
 
 					<div class="row">
-						<c:forEach items="${list}" var="com_iconVO">						
-						<input type="hidden" id="ic_no" name="ic_no" value="${com_iconVO.ic_no}">
+						<c:forEach items="${list}" var="com_iconVO">
 							<div class="col-md-2">
 								<div class="text-center card-box">
 									<h4 class="m-b-5">${com_iconVO.ic_name}</h4>
 									<div class="text-center">
-										<img src="/resources/upload/icon/${com_iconVO.ic_icon}" alt=""
+										<img src="/resources/upload/${com_iconVO.ic_icon}" alt=""
 											width="150" height="150">
 									</div>
 									<p class="text-muted font-13">마지막 수정 날짜 :
@@ -47,8 +46,11 @@
 
 									<div class="row">
 										<button
-											class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
-											data-toggle="modal" data-target="#imageModal" data-icNo="${com_iconVO.ic_no}">수정</button>
+											class="btn btn-info btn-rounded waves-effect m-t-10 waves-light change_btn"
+											data-toggle="modal" data-target="#imageModal"
+											id="change_btn${com_iconVO.ic_no}"
+											value="${com_iconVO.ic_no}">수정</button>
+
 									</div>
 
 								</div>
@@ -79,8 +81,8 @@
 				<div class="modal-body">
 					<form action="/iconboard/modifyPage" method="post"
 						enctype="multipart/form-data">
-						<input type="text" id="ic_no" name="ic_no">
-							
+						<input type="hidden" id="ic_no" name="ic_no">
+
 						<div class="form-group">
 							<p class="text-muted font-13 m-b-15 ">Default / Custom 여부</p>
 							<div class="radio radio-info radio-inline">
@@ -93,14 +95,26 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-md-2 control-label">파일 등록</label> <input
+								id="iconName" class="file_input_textbox form-control col-md-5 "
+								readonly="readonly" />
+							<div class="file_input_div">
+								<input type="button" value="파일 선택" id="file_upload_btn"
+									class="file_input_button btn btn-primary" /> <input
+									type="file" class="file_input_hidden" data-icon='false'
+									onchange="javascript:var path = document.getElementById('iconName').value = this.value.split('\\').pop().split('/').pop()"
+									accept="image/*" name="iconFile" id="img_filenm" />
+							</div>
+						</div>
+						<!--<div class="form-group">
 							<label for="image" class="control-label">파일 등록</label> <input
 								type="file" id="file_upload" class="form-control"
 								name="iconFile">
-						</div>
+						</div> -->
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary" >수정하기</button>
+							<button type="submit" class="btn btn-primary">수정하기</button>
 						</div>
 
 					</form>
@@ -113,16 +127,22 @@
 	<script>
 		$(document).ready(
 				function() {
-					$('#imageModal').on('show.bs.modal', function(event) {
+					/* $('#imageModal').on('show.bs.modal', function(event) {
 						var button = $(event.relatedTarget);
 						var ic_no = button.data('icNo');
 						//alert(ic_no);
 						var modal = $(this);
 						modal.find('.modal-body input').val(ic_no);
 					});
+					 */
+					$('.change_btn').click(function() {
+						var ic_no = $(this).val();
+						$('#imageModal').find('#ic_no').val(ic_no);
+					});
 
 					$('#file_upload').attr('disabled', true);
-
+					$('#img_filenm').attr('style', 'display:none');
+					
 					$("input[type='radio']").change(
 							function() {
 								var radioValue = $(
@@ -130,13 +150,14 @@
 										'id');
 								//alert(radioValue);
 								if (radioValue == "Custom") {
-									$('#file_upload').attr('disabled', false);
+									$('#file_upload_btn').attr('disabled', false);
+									$('#img_filenm').attr('style', 'display:');
 								} else if (radioValue == "Default") {
-									$('#file_upload').attr('disabled', true);
+									$('#file_upload_btn').attr('disabled', true);
+									$('#img_filenm').attr('style', 'display:none');
 								}
 							});
 				});
-
 	</script>
 
 	<!-- /.content -->
