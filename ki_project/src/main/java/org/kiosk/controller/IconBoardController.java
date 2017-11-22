@@ -82,16 +82,17 @@ public class IconBoardController {
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr,
-			MultipartFile iconFile) throws Exception {
+			@RequestParam("iconFile") MultipartFile iconFile, HttpServletRequest request) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
-		logger.info("test1" + cri.toString());
+		logger.info(cri.toString());
+		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String icon_filenm;
 
 		if (board.isIc_default() == 0) {
-			icon_filenm = uploadFileUtils.uploadImageFile(uploadPath, iconFile.getOriginalFilename(),
-					iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
+			icon_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, iconFile.getOriginalFilename(),
+					iconFile.getBytes(), img_fileName + board.getIc_no(), dirPath);
 		} else {
-			icon_filenm = "icon" + board.getIc_no() + ".png";
+			icon_filenm = "/icon/icon" + board.getIc_no() + ".png";
 		}
 		logger.info("test" + icon_filenm + " " + board.isIc_default());
 

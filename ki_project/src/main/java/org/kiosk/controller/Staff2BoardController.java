@@ -3,10 +3,12 @@ package org.kiosk.controller;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
+import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_staff2Service;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -40,13 +42,17 @@ public class Staff2BoardController {
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("staff2board/list - GET");
 		logger.info("test-" + cri.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
 		logger.info("test2" + cri.toString());
 
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		System.out.println("규현쓰 테스트 : " + userVO.getName());
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 
@@ -95,9 +101,25 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr,
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
+			@RequestParam("imgName") String imgName) throws Exception {
 		logger.info("staff2board/modifyPage - POST");
 		logger.info(cri.toString());
+
+		String img_filenm;
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println("경로 : " + root_path + uploadPath);
+		if (imgName.equals(board.getImg_filenm())) {
+			img_filenm = imgName;
+		} else {
+			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getSt_no()).getImg_filenm());
+
+			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+					imgFile.getBytes(), img_fileName + board.getSt_no(), dirPath);
+		}
+		board.setImg_filenm(img_filenm);
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());

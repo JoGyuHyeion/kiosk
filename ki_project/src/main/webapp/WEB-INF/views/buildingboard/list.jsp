@@ -38,19 +38,13 @@
 								<option value="none">본관</option>
 								<option value="none">동관</option>
 								<option value="none">서관</option>
-
 							</select>
 						</form>
 					</div>
-
 				</div>
-
 				<div class="row">
 					<div class="text-center">
-
 						<h3>본관 정보</h3>
-
-
 						<div class="text-align">
 							<div class="col-lg-8 col-centered">
 
@@ -119,62 +113,36 @@
 
 									<div class="tabs-vertical-env">
 										<ul class="nav tabs-vertical">
-											<li class="active"><a href="#v-home" data-toggle="tab"
-												aria-expanded="false">1층</a></li>
-											<li class=""><a href="#v-profile" data-toggle="tab"
-												aria-expanded="true">2층</a></li>
-											<li class=""><a href="#v-messages" data-toggle="tab"
-												aria-expanded="false">3층</a></li>
-											<li class=""><a href="#v-settings" data-toggle="tab"
-												aria-expanded="false">4 층</a></li>
+											<c:forEach items="${list}" var="com_buildingVO">
+												<c:choose>
+													<c:when test="${com_buildingVO.bu_no==1}">
+														<li class="active"><a
+															href="#bu_no1" data-toggle="tab"
+															aria-expanded="true">1층</a></li>
+													</c:when>
+													<c:otherwise>
+														<li class=""><a href="#bu_no${com_buildingVO.bu_no}"
+															data-toggle="tab" aria-expanded="false">${com_buildingVO.bu_no}층</a></li>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
 										</ul>
 
 										<div class="tab-content">
-											<div class="tab-pane active" id="v-home">
-
-												<img src="/resources/upload/building/b-1F.jpg"
-													alt="First slide image" class="img-responsive" />
-												<div class="form-group" style="text-align: center">
-													<button
-														class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
-														data-toggle="modal" data-target="#buildingModal">수정</button>
-													<label class="col-md-5 control-label">마지막 수정 날짜:
-														17.10.29</label>
+											<c:forEach items="${list}" var="com_buildingVO">
+												<div class="tab-pane active"
+													id="bu_no${com_buildingVO.bu_no}">
+													<img src="/resources/upload/building/b-1F.jpg"
+														alt="First slide image" class="img-responsive" />
+													<div class="form-group" style="text-align: center">
+														<button
+															class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
+															data-toggle="modal" data-target="#buildingModal">수정</button>
+														<label class="col-md-5 control-label">마지막 수정 날짜:
+															${com_buildingVO.bu_ndt}</label>
+													</div>
 												</div>
-											</div>
-											<div class="tab-pane" id="v-profile">
-												<img src="/resources/upload/building/b-2F.jpg"
-													alt="First slide image" class="img-responsive" />
-												<div class="form-group" style="text-align: center">
-													<button
-														class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
-														data-toggle="modal" data-target="#buildingModal">수정</button>
-													<label class="col-md-5 control-label">마지막 수정 날짜:
-														17.10.29</label>
-												</div>
-											</div>
-											<div class="tab-pane" id="v-messages">
-												<img src="/resources/upload/building/b-3F.jpg"
-													alt="First slide image" class="img-responsive" />
-												<div class="form-group" style="text-align: center">
-													<button
-														class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
-														data-toggle="modal" data-target="#buildingModal">수정</button>
-													<label class="col-md-5 control-label">마지막 수정 날짜:
-														17.10.29</label>
-												</div>
-											</div>
-											<div class="tab-pane" id="v-settings">
-												<img src="/resources/upload/building/b-4F.jpg"
-													alt="First slide image" class="img-responsive" />
-												<div class="form-group" style="text-align: center">
-													<button
-														class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
-														data-toggle="modal" data-target="#buildingModal">수정</button>
-													<label class="col-md-5 control-label">마지막 수정 날짜:
-														17.10.29</label>
-												</div>
-											</div>
+											</c:forEach>
 										</div>
 									</div>
 								</div>
@@ -229,7 +197,6 @@
 					var modal = $(this);
 					modal.find('.modal-body input').val(ic_no);
 				});
-
 
 			});
 		</script>

@@ -1,7 +1,5 @@
 package org.kiosk.domain;
 
-import java.sql.Timestamp;
-
 public class UserVO {
 
 	private String id;
@@ -10,6 +8,7 @@ public class UserVO {
 	private int auth;
 	private String sessionkey;
 	private String sessionlimit;
+	private String section_fullcode;
 
 	public String getId() {
 		return id;
@@ -59,10 +58,18 @@ public class UserVO {
 		this.sessionlimit = sessionlimit;
 	}
 
+	public String getSection_fullcode() {
+		return section_fullcode;
+	}
+
+	public void setSection_fullcode(String section_fullcode) {
+		this.section_fullcode = section_fullcode;
+	}
+
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", name=" + name + ", password=" + password + ", auth=" + auth + ", sessionkey="
-				+ sessionkey + ", sessionlimit=" + sessionlimit + "]";
+				+ sessionkey + ", sessionlimit=" + sessionlimit + ", section_fullcode=" + section_fullcode + "]";
 	}
 
 }

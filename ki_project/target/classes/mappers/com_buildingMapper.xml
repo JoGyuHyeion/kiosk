@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bu_no,bu_name,bu_img,bu_ndt,bu_edt
 		from com_building 
 		where bu_no > 0 
-		order by bu_no desc
+		order by bu_no asc
 		limit #{page}, 10
  		]]>
 	</select>
@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 select * 
 		 from com_building
 		 where bu_no > 0   
-		 order by bu_no desc
+		 order by bu_no asc
 		 limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>

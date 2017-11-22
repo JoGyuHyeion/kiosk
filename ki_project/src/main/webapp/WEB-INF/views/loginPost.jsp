@@ -11,7 +11,7 @@
 
 	<script type="text/javascript">
 		alert("id 혹은 password가 일치 하지 않습니다.");
-		self.location = "./login?&id_num=${param.id_num}&page=${param.page}&perPageNum=${param.perPageNum}";
+		self.location = "/";
 		//해당 경로로 이동하는 것은 LoginInterceptor에서 처리해준다
 	</script>
 </body>

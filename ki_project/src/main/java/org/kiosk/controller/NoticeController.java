@@ -61,7 +61,7 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET() throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
 		logger.info("noticeboard/register - GET");
 		logger.info("regist get ...........");
 	}
@@ -93,9 +93,25 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_boardVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_boardVO board, SearchCriteria cri, RedirectAttributes rttr,
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
+			@RequestParam("imgName") String imgName) throws Exception {
 		logger.info("noticeboard/modifyPage - POST");
 		logger.info(cri.toString());
+		String img_filenm;
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println("경로 : " + root_path + uploadPath);
+		if (imgName.equals(board.getBbs_file())) {
+			img_filenm = imgName;
+		} else {
+			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getBbs_no()).getBbs_file());
+
+			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+					imgFile.getBytes(), img_fileName + board.getBbs_no(), dirPath);
+		}
+		board.setBbs_file(img_filenm);
+
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());

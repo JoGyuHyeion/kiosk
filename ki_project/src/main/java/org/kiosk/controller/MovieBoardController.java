@@ -96,9 +96,25 @@ public class MovieBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_videoVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_videoVO board, SearchCriteria cri, RedirectAttributes rttr,
+			@RequestParam("videoFile") MultipartFile videoFile, HttpServletRequest request,
+			@RequestParam("videoName") String videoName) throws Exception {
 		logger.info("movieboard/modifyPage - POST");
 		logger.info(cri.toString());
+		String video_filenm;
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println("경로 : " + root_path + uploadPath);
+		if (videoName.equals(board.getVi_video())) {
+			video_filenm = videoName;
+		} else {
+			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getVi_no()).getVi_video());
+
+			video_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, videoFile.getOriginalFilename(),
+					videoFile.getBytes(), video_fileName + board.getVi_no(), dirPath);
+		}
+		board.setVi_video(video_filenm);
+
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());

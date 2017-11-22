@@ -45,7 +45,7 @@
 									</div>
 									<!-- img_gallery  노출 여부   -->
 									<div class="form-group">
-										<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
+										<%-- <c:set value="${com_image.img_gallery}" var="img_gallery" /> --%>
 										<label class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
@@ -58,16 +58,18 @@
 									<!-- img_filenm -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">이미지 파일</label> <input
-											id="imgName"
+											id="imgName" name="imgName"
 											class="file_input_textbox form-control col-md-5 "
-											readonly="readonly" />
+											readonly="readonly" value="${com_imageVO.img_filenm}" />
 										<div class="file_input_div">
 											<input type="button" value="파일"
 												class="file_input_button btn btn-primary" /> <input
 												type="file" class="file_input_hidden" data-icon='false'
 												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
-												accept="image/*" name="imgFile" id="img_filenm" />
+												accept="image/*" name="imgFile" id="img_file" />
 										</div>
+										<input type="hidden" name="img_filenm" id="img_filenm"
+											value="${com_imageVO.img_filenm}">
 									</div>
 								</div>
 								<div class="form-group" style="text-align: center">
@@ -88,6 +90,19 @@
 	</div>
 	<!-- end row -->
 	<script>
+	$(document)
+	.ready(
+			function() {
+				var formObj = $("form[role='form']");
+				console.log(formObj);
+				$("#back")
+						.on(
+								"click",
+								function() {
+									self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+								});
+
+			});
 			var input = $
 			{
 				com_imageVO.img_gallery
@@ -96,19 +111,7 @@
 				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
 			}
 
-			$(document)
-					.ready(
-							function() {
-								var formObj = $("form[role='form']");
-								console.log(formObj);
-								$("#back")
-										.on(
-												"click",
-												function() {
-													self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-												});
 
-							});
 		</script>
 	<!-- end container -->
 </section>

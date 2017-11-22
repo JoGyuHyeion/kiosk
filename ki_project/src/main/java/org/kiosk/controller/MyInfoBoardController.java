@@ -2,9 +2,11 @@ package org.kiosk.controller;
 
 import javax.inject.Inject;
 import org.kiosk.domain.SearchCriteria;
+import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
+import org.kiosk.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,19 +23,33 @@ public class MyInfoBoardController {
 	private static final Logger logger = LoggerFactory.getLogger(MyInfoBoardController.class);
 
 	@Inject
-	private Com_sectionService service;
+	private Com_sectionService sectionService;
 	@Inject
 	private Com_teamService teamService;
 	@Inject
 	private Com_bureauService bureauService;
-	
-	
-	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
-	public void newUserGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-		
-		logger.info("myinfoboard/passwd - GET");
-		model.addAttribute("sectionList",service.listAll());
+	@Inject
+	private UserService userService;
 
+	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
+	public void newUserGET(Model model) throws Exception {
+
+		logger.info("myinfoboard/passwd - GET");
+		model.addAttribute("sectionList", sectionService.listAll());
+
+	}
+
+	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
+	public String newUserPOST(UserVO vo, RedirectAttributes rttr) throws Exception {
+		logger.info("/myinfoboard/newUser - POST");
+		logger.info("newUser post ...........");
+		logger.info(vo.toString());
+
+		userService.newUser(vo);
+
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		return "redirect:/myinfoboard/newUser";
 	}
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
@@ -61,11 +77,12 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/section", method = RequestMethod.GET)
-	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model,@ModelAttribute("bcd") String bcd) throws Exception {
+	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model, @ModelAttribute("bcd") String bcd)
+			throws Exception {
 
 		logger.info("myinfoboard/section - GET ");
-		model.addAttribute("bureauService",bureauService.listAll());
-		model.addAttribute("bcd",service.bureauList(bcd));
+		model.addAttribute("bureauService", bureauService.listAll());
+		model.addAttribute("bcd", sectionService.bureauList(bcd));
 
 	}
 
@@ -81,7 +98,7 @@ public class MyInfoBoardController {
 		rttr.addAttribute("keyword", cri.getKeyword());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		
+
 		logger.info(rttr.toString());
 
 		return "redirect:/myinfoboard/section";
@@ -91,7 +108,7 @@ public class MyInfoBoardController {
 	public void teamGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
 		logger.info("myinfoboard/team - GET ");
-		model.addAttribute("list",teamService.listAll());
+		model.addAttribute("list", teamService.listAll());
 	}
 
 	@RequestMapping(value = "/team", method = RequestMethod.POST)
@@ -112,6 +129,13 @@ public class MyInfoBoardController {
 		logger.info(rttr.toString());
 
 		return "redirect:/myinfoboard/team";
+	}
+
+	@RequestMapping(value = "/usb", method = RequestMethod.GET)
+	public void usbGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+
+		logger.info("myinfoboard/usb - GET ");
+		model.addAttribute("sectionService", sectionService.listAll());
 	}
 
 }
