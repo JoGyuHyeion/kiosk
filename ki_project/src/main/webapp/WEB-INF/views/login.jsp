@@ -77,7 +77,7 @@
 
 									<div class="form-group ">
 										<div class="col-xs-12">
-											<select class="form-control">
+											<select class="form-control" name="section_fullcode">
 												<c:forEach items="${service}" var="com_sectionVO">
 													<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
 												</c:forEach>

@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select id, name, password from user 
 		where id = #{id} 
 		and password = #{password}
+		and section_fullcode = #{section_fullcode}
 	</select>
 
 	<update id="keepLogin">
@@ -21,7 +22,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where sessionKey = #{value} 
 		and sessionlimit > now()
 	</select>
-
+	
+	<insert id="newUser">
+		insert into user
+		(id, password, name, auth, section_fullcode)
+		values
+		(#{id},#{password},#{name},#{auth},#{section_fullcode})
+	</insert>
+	
+	<update id="changePassword">
+		update user set password = #{password}
+		where id = #{id} 
+		and password = #{oldPassword}
+		and section_fullcode = #{section_fullcode}
+	</update>
+	
 </mapper>
 
 

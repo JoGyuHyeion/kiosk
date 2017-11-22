@@ -2,9 +2,10 @@ package org.kiosk.dto;
 
 public class LoginDTO {
 
-	private String
-			id;
+	private String id;
 	private String password;
+	private String oldPassword;
+	private String section_fullcode;
 	private boolean useCookie;
 
 	public String getId() {
@@ -23,6 +24,22 @@ public class LoginDTO {
 		this.password = password;
 	}
 
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+
+	public String getSection_fullcode() {
+		return section_fullcode;
+	}
+
+	public void setSection_fullcode(String section_fullcode) {
+		this.section_fullcode = section_fullcode;
+	}
+
 	public boolean isUseCookie() {
 		return useCookie;
 	}
@@ -33,7 +50,8 @@ public class LoginDTO {
 
 	@Override
 	public String toString() {
-		return "LoginDTO [id=" + id + ", password=" + password + ", useCookie=" + useCookie + "]";
+		return "LoginDTO [id=" + id + ", password=" + password + ", oldPassword=" + oldPassword + ", section_fullcode="
+				+ section_fullcode + ", useCookie=" + useCookie + "]";
 	}
 
 }
