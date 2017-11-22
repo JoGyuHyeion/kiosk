@@ -38,19 +38,13 @@
 								<option value="none">본관</option>
 								<option value="none">동관</option>
 								<option value="none">서관</option>
-
 							</select>
 						</form>
 					</div>
-
 				</div>
-
 				<div class="row">
 					<div class="text-center">
-
 						<h3>본관 정보</h3>
-
-
 						<div class="text-align">
 							<div class="col-lg-8 col-centered">
 

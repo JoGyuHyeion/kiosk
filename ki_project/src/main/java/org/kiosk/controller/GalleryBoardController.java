@@ -96,17 +96,22 @@ public class GalleryBoardController {
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_imageVO board, SearchCriteria cri, RedirectAttributes rttr,
-			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request) throws Exception {
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
+			@RequestParam("imgName") String imgName) throws Exception {
 		logger.info("galleryboard/modifyPage - POST");
 		logger.info(cri.toString());
+		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
 		System.out.println("경로 : " + root_path + uploadPath);
-		
-		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getImg_no()).getImg_filenm());
+		if (imgName.equals(board.getImg_filenm())) {
+			img_filenm = imgName;
+		} else {
+			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getImg_no()).getImg_filenm());
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
-				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
+			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+					imgFile.getBytes(), img_fileName + board.getImg_no(), dirPath);
+		}
 		board.setImg_filenm(img_filenm);
 
 		service.modify(board);

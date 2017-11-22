@@ -58,16 +58,17 @@
 									<!-- img_filenm -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">이미지 파일</label> <input
-											id="imgName"
+											id="imgName" name="imgName"
 											class="file_input_textbox form-control col-md-5 "
-											readonly="readonly" />
+											readonly="readonly" value="${com_imageVO.img_filenm}" />
 										<div class="file_input_div">
 											<input type="button" value="파일"
 												class="file_input_button btn btn-primary" /> <input
 												type="file" class="file_input_hidden" data-icon='false'
 												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
-												accept="image/*" name="imgFile" id="img_filenm" />
+												accept="image/*" name="imgFile" id="img_file" />
 										</div>
+										<input type="hidden" name="img_filenm" id="img_filenm" value="${com_imageVO.img_filenm}">
 									</div>
 								</div>
 								<div class="form-group" style="text-align: center">
