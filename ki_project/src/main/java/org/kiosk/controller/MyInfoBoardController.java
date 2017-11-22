@@ -113,5 +113,15 @@ public class MyInfoBoardController {
 
 		return "redirect:/myinfoboard/team";
 	}
+	
+	
+	@RequestMapping(value = "/usb", method = RequestMethod.GET)
+	public void usbGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+
+		logger.info("myinfoboard/usb - GET ");
+		model.addAttribute("service", service.listAll());
+	}
+
+	
 
 }

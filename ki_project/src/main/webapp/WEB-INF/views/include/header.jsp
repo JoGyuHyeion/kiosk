@@ -180,8 +180,13 @@
 									<ul>
 										<li><a href="/iconboard/list">Icon</a></li>
 										<li><a href="/backGroundboard/list">바탕화면</a></li>
+<<<<<<< HEAD
+										<li><a href="/buildingboard/list">Building</a></li>
+										<li><a href="/myinfoboard/usb">USB</a></li>
+=======
 										<li><a href="/buildingboard/list?page=1&perPageNum=10">Building</a></li>
 										<li><a href="/backGroundboard/list">USB</a></li>
+>>>>>>> f4bc855c6228d6d1086a668f0e49e62f1af61d74
 
 									</ul>
 								</li>
