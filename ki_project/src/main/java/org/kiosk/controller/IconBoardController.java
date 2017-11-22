@@ -84,7 +84,7 @@ public class IconBoardController {
 	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr,
 			@RequestParam("iconFile") MultipartFile iconFile, HttpServletRequest request) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
-		logger.info("test1" + cri.toString());
+		logger.info(cri.toString());
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String icon_filenm;
 

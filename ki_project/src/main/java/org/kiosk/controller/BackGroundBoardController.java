@@ -43,7 +43,7 @@ public class BackGroundBoardController {
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 		logger.info("backGroundboard/list - GET");
 		logger.info(cri.toString());
-
+		cri.setPerPageNum(6);
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
 		PageMaker pageMaker = new PageMaker();
@@ -53,6 +53,14 @@ public class BackGroundBoardController {
 
 		model.addAttribute("pageMaker", pageMaker);
 	}
+	
+/*	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
+	public void read(@RequestParam("bi_no") int bi_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
+			throws Exception {
+		logger.info("backGroundboard/readPage - GET");
+		model.addAttribute(service.read(bi_no));
+
+	}*/
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
@@ -61,17 +69,17 @@ public class BackGroundBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_bgImgVO board, RedirectAttributes rttr,
-			@RequestParam("iconFile") MultipartFile iconFile, HttpServletRequest request) throws Exception {
+	public String registPOST(Com_bgImgVO board, RedirectAttributes rttr, @RequestParam("imgFile") MultipartFile imgFile,
+			HttpServletRequest request) throws Exception {
 		logger.info("backGroundboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String icon_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, iconFile.getOriginalFilename(),
-				iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
-		board.setBi_img(icon_filenm);
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
+		board.setBi_img(img_filenm);
 		service.regist(board);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -87,15 +95,29 @@ public class BackGroundBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_bgImgVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String modifyPagingPOST(Com_bgImgVO board, SearchCriteria cri, RedirectAttributes rttr,
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
+			@RequestParam("imgName") String imgName) throws Exception {
 		logger.info("backGroundboard/modifyPage - POST");
 		logger.info(cri.toString());
+		String img_filenm;
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println("경로 : " + root_path + uploadPath);
+		if (imgName.equals(board.getBi_img())) {
+			img_filenm = imgName;
+		} else {
+			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getBi_no()).getBi_img());
+
+			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+					imgFile.getBytes(), img_fileName + board.getBi_no(), dirPath);
+		}
+		board.setBi_img(img_filenm);
+
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-		rttr.addAttribute("searchType", cri.getSearchType());
-		rttr.addAttribute("keyword", cri.getKeyword());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
@@ -104,4 +126,22 @@ public class BackGroundBoardController {
 		return "redirect:/backGroundboard/list";
 	}
 
+	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
+	public String remove(@RequestParam("bi_no") int bi_no, SearchCriteria cri, RedirectAttributes rttr,
+			HttpServletRequest request) throws Exception {
+		logger.info("galleryboard/removePage - POST");
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		System.out.println("경로 : " + root_path + uploadPath);
+		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(bi_no).getBi_img());
+		service.remove(bi_no);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		return "redirect:/backGroundboard/list?page=1";
+	}
 }

@@ -29,24 +29,22 @@
 
 				<div class="col-sm-6 col-md-4">
 					<div class="thumb">
-						<!-- <a href="/resources/upload${com_imageVO.img_filenm}" class="image-popup"
-							title="Screenshot-1"> <img
-							src="/resources/upload${com_imageVO.img_filenm}" class="thumb-img"
-							alt="work-thumbnail">
-						</a>-->
 						<a href="/resources/assets/images/1.jpg" class="image-popup"
 							title="Screenshot-1"> <img
 							src="/resources/assets/images/properties/1.jpg" class="thumb-img"
-							alt="work-thumbnail">
+							alt="work-thumbnail"
+							src="${pageContext.request.contextPath}/resources/upload/${com_bgImgVO.bi_img}"
+							class="thumb-img"
+							onerror="javascript:src={/resources/assets/images/properties/1.jpg}">
 						</a>
 						<div class="gal-detail">
-							<h4>${com_bgImgVO.img_title}</h4>
+							<h4>${com_bgImgVO.bi_name}</h4>
 							<form
-								action="/galleryboard/removePage?img_no=${com_bgImgVO.img_no }"
+								action="/backGroundboard/removePage?bi_no=${com_bgImgVO.bi_no }"
 								method="post">
 								<button type="button"
 									class="btn btn-custom btn-inline waves-effect waves-light"
-									onclick="location.href='/galleryboard/modifyPage${pageMaker.makeSearch(param.page)}&img_no=${com_imageVO.img_no}'">정보수정</button>
+									onclick="location.href='/backGroundboard/modifyPage${pageMaker.makeSearch(param.page)}&bi_no=${com_bgImgVO.bi_no}'">정보수정</button>
 								<button type="submit"
 									class="btn btn-danger btn-inline waves-effect waves-light">
 									<i class="glyphicon glyphicon-trash"></i>삭제
