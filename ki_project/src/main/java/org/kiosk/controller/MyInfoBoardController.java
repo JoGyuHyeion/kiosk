@@ -224,17 +224,28 @@ public class MyInfoBoardController {
 		logger.info("newUser post ...........");
 		System.out.println(section_fullcode);
 		rttr.addFlashAttribute("msg", "SUCCESS");
+		
+		String path = root_path + uploadPath;
+		String toPath = path.substring(0, path.lastIndexOf("\\") + 1);
+		String fileName = path.substring(path.lastIndexOf("\\") + 1);
+		
+		System.out.println("path : "+path);
+		System.out.println("toPath : "+toPath);
+		System.out.println("fileName : "+fileName);
 
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "vol_check", usbUtils.makeJsonString(vol_checkService.read(1)));
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "staff", usbUtils.makeJsonString(getJsonStaff(section_fullcode)));
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "gallery", usbUtils.makeJsonString(jsonGelleryService.listAll(section_fullcode)));
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "notice", usbUtils.makeJsonString(jsonNoticeService.listAll(section_fullcode)));
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "building",usbUtils.makeJsonString(vol_checkService.read(1)));
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "teams", usbUtils.makeJsonString(getJsonTeams()));
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "icon", usbUtils.makeJsonString(iconService.listAll()));
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "video", usbUtils.makeJsonString(videoService.listAll()));
-		usbUtils.makeJsonTextFile(root_path + uploadPath, "background",usbUtils.makeJsonString(bgImgService.jsonList()));
-
+		usbUtils.makeJsonTextFile(path, "vol_check", usbUtils.makeJsonString(vol_checkService.read(1)));
+		usbUtils.makeJsonTextFile(path, "staff", usbUtils.makeJsonString(getJsonStaff(section_fullcode)));
+		usbUtils.makeJsonTextFile(path, "gallery", usbUtils.makeJsonString(jsonGelleryService.listAll(section_fullcode)));
+		usbUtils.makeJsonTextFile(path, "notice", usbUtils.makeJsonString(jsonNoticeService.listAll(section_fullcode)));
+		usbUtils.makeJsonTextFile(path, "building",usbUtils.makeJsonString(vol_checkService.read(1)));
+		usbUtils.makeJsonTextFile(path, "teams", usbUtils.makeJsonString(getJsonTeams()));
+		usbUtils.makeJsonTextFile(path, "icon", usbUtils.makeJsonString(iconService.listAll()));
+		usbUtils.makeJsonTextFile(path, "video", usbUtils.makeJsonString(videoService.listAll()));
+		usbUtils.makeJsonTextFile(path, "background",usbUtils.makeJsonString(bgImgService.jsonList()));
+		
+		usbUtils.createZipFile(path, toPath, fileName);
+		
+		
 		return "redirect:/myinfoboard/usb";
 	}
 

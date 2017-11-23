@@ -24,7 +24,7 @@ public class UsbUtilsTest {
 	private String fileName = "resources";
 	private String fileName2 = path.substring(path.lastIndexOf("\\") + 1);
 
-	@Test
+	// @Test
 	public void name() throws Exception {
 		System.out.println(fileName2);
 	}
@@ -37,5 +37,11 @@ public class UsbUtilsTest {
 	// @Test
 	public void testZip() throws Exception {
 		usbUtils.createZipFile(path, toPath, fileName2);
+	}
+
+	@Test
+	public void rr() throws Exception {
+
+		System.out.println(path.substring(0, path.lastIndexOf("\\") + 1));
 	}
 }
