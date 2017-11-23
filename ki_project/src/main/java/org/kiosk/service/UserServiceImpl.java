@@ -32,4 +32,16 @@ public class UserServiceImpl implements UserService {
 
 		return dao.checkUserWithSessionKey(value);
 	}
+
+	@Override
+	public void newUser(UserVO vo) throws Exception {
+		dao.newUser(vo);
+		
+	}
+
+	@Override
+	public void changePassword(LoginDTO dto) throws Exception {
+		dao.changePassword(dto);
+		
+	}
 }

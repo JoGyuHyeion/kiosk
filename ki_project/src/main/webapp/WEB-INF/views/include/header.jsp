@@ -181,11 +181,9 @@
 								<li>
 									<ul>
 										<li><a href="/iconboard/list">Icon</a></li>
-										<li><a href="/backGroundboard/list">바탕화면</a></li>
-										<li><a href="/buildingboard/list">Building</a></li>
-										<li><a href="/myinfoboard/usb">USB</a></li>
-
-
+										<li><a href="/backGroundboard/list?page=1&perPageNum=10">바탕화면</a></li>
+										<li><a href="/buildingboard/list?page=1&perPageNum=10">Building</a></li>
+										<li><a href="/backGroundboard/list">USB</a></li>
 									</ul>
 								</li>
 							</ul></li>

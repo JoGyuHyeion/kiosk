@@ -34,14 +34,13 @@
 							src="/resources/upload${com_imageVO.img_filenm}" class="thumb-img"
 							alt="work-thumbnail">
 						</a>-->
-						<a href="/resources/assets/images/properties/1.jpg" class="image-popup"
-							title="Screenshot-1"> 
-							<img
+						<a href="/resources/assets/images/properties/1.jpg"
+							class="image-popup" title="Screenshot-1"> <img
 							src="/resources/assets/images/properties/1.jpg" class="thumb-img"
-							alt="work-thumbnail">
-							
-							
-							<img src="${pageContext.request.contextPath}/resources/upload/${com_imageVO.img_filenm}" class="thumb-img"  onerror="javascript:src={/resources/assets/images/properties/1.jpg}">
+							alt="work-thumbnail"> <img
+							src="${pageContext.request.contextPath}/resources/upload/${com_imageVO.img_filenm}"
+							class="thumb-img"
+							onerror="javascript:src={/resources/assets/images/properties/1.jpg}">
 						</a>
 						<div class="gal-detail">
 							<h4>${com_imageVO.img_title}</h4>
