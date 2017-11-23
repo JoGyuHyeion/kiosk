@@ -191,7 +191,7 @@
 										<li><a href="/backGroundboard/list?page=1&perPageNum=10">바탕화면(Super)</a></li>
 										<li><a href="/buildingboard/list?page=1&perPageNum=10">Building(Super)</a></li>
 									</c:if>
-										<li><a href="/myinfoboard/usb">USB</a></li>
+										<li><a href="/usbboard/usb">USB</a></li>
 									</ul>
 								</li>
 							</ul></li>

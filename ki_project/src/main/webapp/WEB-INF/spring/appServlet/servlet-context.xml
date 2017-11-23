@@ -57,6 +57,8 @@
 			<mapping path="/*/passwd" />
 			<mapping path="/*/section" />
 			<mapping path="/*/team" />
+			<mapping path="/*/newUser" />
+			<mapping path="/*/usb" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 	</interceptors>

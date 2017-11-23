@@ -38,7 +38,7 @@
 
 
 					<div class="row">
-						<form action="/myinfoboard/usb" method="post">
+						<form action="/backupboard/usb" method="post">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- section Select -->
