@@ -13,8 +13,8 @@ public class Com_teamServiceImpl implements Com_teamService {
 	private Com_teamDAO dao;
 	@Inject
 	private Vol_checkService volService;
-	
-	private static final String VERSION="team";
+
+	private static final String VERSION = "team";
 
 	@Override
 	public void regist(Com_teamVO vo) throws Exception {
@@ -40,8 +40,13 @@ public class Com_teamServiceImpl implements Com_teamService {
 	}
 
 	@Override
-	public List<Com_teamVO> listAll() throws Exception {
-		return dao.listAll();
+	public List<Com_teamVO> listAll(String section_cd) throws Exception {
+		return dao.listAll(section_cd);
+	}
+
+	@Override
+	public List<Com_teamVO> superListAll() throws Exception {
+		return dao.superListAll();
 	}
 
 	@Override

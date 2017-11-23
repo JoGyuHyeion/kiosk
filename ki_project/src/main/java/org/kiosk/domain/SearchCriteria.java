@@ -4,6 +4,7 @@ public class SearchCriteria extends Criteria{
 
 	private String searchType;
 	private String keyword;
+	private String section_cd;
 	
 	public String getSearchType() {
 		return searchType;
@@ -17,12 +18,17 @@ public class SearchCriteria extends Criteria{
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+	public String getSection_cd() {
+		return section_cd;
+	}
+	public void setSection_cd(String section_cd) {
+		this.section_cd = section_cd;
+	}
 	@Override
 	public String toString() {
-		return super.toString() + " SearchCriteria "
-				+ "[searchType=" + searchType + ", keyword="
-				+ keyword + "]";
+		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + ", section_cd=" + section_cd + "]";
 	}
+	
 }
 
 

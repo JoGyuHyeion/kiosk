@@ -52,12 +52,18 @@ public class Staff2BoardController {
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		logger.info("Login : " + userVO.toString());
 
-		model.addAttribute("list", service.listSearchCriteria(cri));
-
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 
-		pageMaker.setTotalCount(service.listSearchCount(cri));
+		if (userVO.getAuth() == 0) {
+			model.addAttribute("list", service.superListSearchCriteria(cri));
+			pageMaker.setTotalCount(service.superListSearchCount(cri));
+		} else if (userVO.getAuth() == 1) {
+			cri.setSection_cd(userVO.getSection_fullcode());
+			model.addAttribute("list", service.listSearchCriteria(cri));
+			pageMaker.setTotalCount(service.listSearchCount(cri));
+		}
+
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("pageMaker", pageMaker);
 	}

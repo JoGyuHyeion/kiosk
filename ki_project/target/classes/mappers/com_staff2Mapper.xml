@@ -87,6 +87,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[  
 		 select * 
 		 from com_staff2 
+		 where section_cd = #{section_cd}  
+		 and st_no > 0 
+		]]>
+		<include refid="search"></include>
+  
+		<![CDATA[    
+		order by st_no desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<select id="superListSearch" resultType="Com_staff2VO">
+		<![CDATA[  
+		 select * 
+		 from com_staff2 
 		 where st_no > 0 
 		]]>
 		<include refid="search"></include>
@@ -98,6 +113,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="listSearchCount" resultType="int">
+		<![CDATA[  
+		  select count(st_no) 
+		  from com_staff2 
+		  where section_cd = #{section_cd}  
+		  and st_no > 0 
+		]]>
+		<include refid="search"></include>
+
+	</select>
+
+	<select id="superListSearchCount" resultType="int">
 		<![CDATA[  
 		  select count(st_no) 
 		  from com_staff2 

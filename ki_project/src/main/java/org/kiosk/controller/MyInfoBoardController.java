@@ -128,15 +128,18 @@ public class MyInfoBoardController {
 		model.addAttribute("userVO", userVO);
 		logger.info("Login : " + userVO.toString());
 		logger.info("myinfoboard/team - GET ");
-		model.addAttribute("list", teamService.listAll());
+		if(userVO.getAuth()==0) {
+			model.addAttribute("list", teamService.superListAll());
+		}else if(userVO.getAuth()==1) {
+			model.addAttribute("list", teamService.listAll(userVO.getSection_fullcode()));
+		}
+		
 	}
 
 	@RequestMapping(value = "/team", method = RequestMethod.POST)
 	public String teamPOST(SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 
 		logger.info("myinfoboard/team - POST ");
-
-		teamService.listAll();
 		logger.info(cri.toString());
 
 		rttr.addAttribute("page", cri.getPage());

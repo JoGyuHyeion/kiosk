@@ -64,10 +64,17 @@ public class Com_teamTest {
 		dao.delete(vo);
 	}
 
-	@Test
+	// @Test
 	public void testListAll() throws Exception {
 
-		logger.info(dao.listAll().toString());
+		logger.info(dao.listAll("K010-S010").toString());
+
+	}
+
+	@Test
+	public void testSupperListAll() throws Exception {
+
+		logger.info(dao.superListAll().toString());
 
 	}
 

@@ -28,6 +28,10 @@ public interface Com_staff2DAO {
 	// use for dynamic sql
 
 	public List<Com_staff2VO> listSearch(SearchCriteria cri) throws Exception;
+	
+	public List<Com_staff2VO> superListSearch(SearchCriteria cri) throws Exception;
 
 	public int listSearchCount(SearchCriteria cri) throws Exception;
+	
+	public int superListSearchCount(SearchCriteria cri) throws Exception;
 }
