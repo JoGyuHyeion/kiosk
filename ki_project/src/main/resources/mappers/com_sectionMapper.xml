@@ -35,12 +35,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		section_fullpath = #{section_fullpath},
 		section_use = #{section_use}
 		where
-		section_cd = #{section_cd}
+		section_fullcode = #{section_fullcode}
 	</update>
 
 	<delete id="delete">
-		delete from com_section where section_cd =
-		#{section_cd}
+		delete from com_section 
+		where section_fullcode = #{section_fullcode}
 	</delete>
 
 	<select id="listAll" resultType="Com_sectionVO">

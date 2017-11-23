@@ -49,13 +49,13 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/section/update", method = { RequestMethod.PUT, RequestMethod.PATCH })
-	public ResponseEntity<String> sectionUpdate(@PathVariable("section_cd") String section_cd,
+	@RequestMapping(value = "/section/update/{section_fullcode}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+	public ResponseEntity<String> sectionUpdate(@PathVariable("section_fullcode") String section_fullcode,
 			@RequestBody Com_sectionVO vo) {
-		logger.info("/section/update/");
+		logger.info("/section/update/{section_fullcode}");
 		ResponseEntity<String> entity = null;
 		try {
-			vo.setSection_cd(section_cd);
+			vo.setSection_fullcode(section_fullcode);
 			sectionService.modify(vo);
 			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
@@ -65,12 +65,12 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/section/del", method = RequestMethod.DELETE)
-	public ResponseEntity<String> sectionRemove(@PathVariable("section_cd") String section_cd) {
-		logger.info("/section/del/");
+	@RequestMapping(value = "/section/del/{section_fullcode}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> sectionRemove(@PathVariable("section_fullcode") String section_fullcode) {
+		logger.info("/section/del/{section_fullcode}");
 		ResponseEntity<String> entity = null;
 		try {
-			sectionService.remove(section_cd);
+			sectionService.remove(section_fullcode);
 			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,10 +93,10 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/team/update", method = { RequestMethod.PUT, RequestMethod.PATCH })
+	@RequestMapping(value = "/team/update/{section_cd}/{team_cd}", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> teamUpdate(@PathVariable("section_cd") String section_cd,
 			@PathVariable("team_cd") String team_cd, @RequestBody Com_teamVO vo) {
-		logger.info("/team/update/");
+		logger.info("/team/update/{section_cd}/{team_cd}");
 		ResponseEntity<String> entity = null;
 		try {
 			vo.setSection_cd(section_cd);
@@ -110,10 +110,10 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/team/del", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/team/del/{section_cd}/{team_cd}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> teamRemove(@PathVariable("section_cd") String section_cd,
 			@PathVariable("team_cd") String team_cd) {
-		logger.info("/team/update/");
+		logger.info("/team/del/{section_cd}/{team_cd}");
 		ResponseEntity<String> entity = null;
 		Com_teamVO vo = null;
 		try {
