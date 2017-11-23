@@ -52,7 +52,7 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/section/update/{section_cd}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+	@RequestMapping(value = "/section/update", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> sectionUpdate(@PathVariable("section_cd") String section_cd,
 			@RequestBody Com_sectionVO vo) {
 		logger.info("/section/update/{section_cd}");
@@ -68,7 +68,7 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/section/del/{section_cd}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/section/del", method = RequestMethod.DELETE)
 	public ResponseEntity<String> sectionRemove(@PathVariable("section_cd") String section_cd) {
 		logger.info("/section/del/{section_cd}");
 		ResponseEntity<String> entity = null;
@@ -96,7 +96,7 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/team/update/{section_cd}/{team_cd}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+	@RequestMapping(value = "/team/update", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> teamUpdate(@PathVariable("section_cd") String section_cd,
 			@PathVariable("team_cd") String team_cd, @RequestBody Com_teamVO vo) {
 		logger.info("/team/update/{section_cd}/{team_cd}");
@@ -113,7 +113,7 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/team/del/{section_cd}/{team_cd}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/team/del", method = RequestMethod.DELETE)
 	public ResponseEntity<String> teamRemove(@PathVariable("section_cd") String section_cd,
 			@PathVariable("team_cd") String team_cd) {
 		logger.info("/team/update/{section_cd}/{team_cd}");
@@ -143,7 +143,7 @@ public class AjaxController {
 				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
 			}
 			ObjectMapper om = new ObjectMapper();
-			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key로 정렬 설정
+			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key濡� �젙�젹 �꽕�젙
 			entity = new ResponseEntity<String>(om.writeValueAsString(obj), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,7 +163,7 @@ public class AjaxController {
 				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
 			}
 			ObjectMapper om = new ObjectMapper();
-			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key로 정렬 설정
+			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key濡� �젙�젹 �꽕�젙
 			entity = new ResponseEntity<String>(om.writeValueAsString(obj), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

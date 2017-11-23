@@ -51,7 +51,7 @@
 												</c:forEach>
 											</select>
 										</div>
-											<div class="col-md-4">
+										<div class="col-md-4">
 											<p>(Super권한만 표시)</p>
 										</div>
 									</div>
@@ -59,13 +59,13 @@
 
 									<!-- section_pass_ok -->
 									<div class="form-group">
-										<label class="col-md-2 control-label">USB 파일생성</label>
+										<label class="col-md-4 control-label">USB 파일생성</label>
 										<div class="col-md-5">
 											<button class="btn btn-primary" id="download">DownLoad</button>
 										</div>
-									
+
 									</div>
-								
+
 
 								</div>
 							</div>

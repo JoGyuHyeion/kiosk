@@ -18,12 +18,10 @@
 					<div class="row">
 						<div class="col-sm-8">
 							<form role="form">
-
 								<label class=" col-md-2 control-label" for="search_bcd">국코드</label>
 								<select id="search_bcd" name="search_bcd" class="form-control">
 									<c:forEach items="${bureauService}" var="com_bureauVO">
-										<option value="${com_bureauVO.bureau_cd}"  										
-										>${com_bureauVO.bureau_name}</option>
+										<option value="${com_bureauVO.bureau_cd}">${com_bureauVO.bureau_name}</option>
 
 									</c:forEach>
 
@@ -57,8 +55,6 @@
 														for="section_use" data-on-label="On" data-off-label="Off"></label>
 												</div>
 											</td>
-
-											<td>${com_sectionVO.section_use}</td>
 											<td><a href="#" class="table-action-btn h2"><i
 													class="mdi mdi-close-box-outline text-danger"></i></a></td>
 										</tr>
@@ -111,11 +107,7 @@
 					</div>
 					<div></div>
 					<div class="modal-body">
-						<form action="modifypage" method="post">
-							<!--<input type='hidden' name='page' value="${cri.page}"> <input
-								type='hidden' name='perPageNum' value="${cri.perPageNum}">
-							<input type='hidden' name='searchType' value="${cri.searchType}">
-							<input type='hidden' name='keyword' value="${cri.keyword}">-->
+						<form action="/section/insert" method="post">
 
 							<div class="form-group">
 								<label for="image" class="control-label">과명칭</label> <input
@@ -126,76 +118,142 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">과추가</button>
+						<button type="button" class="btn btn-primary" id="btnAdd">과추가</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script>
-			function myFunction(){
-				alert(param.bcd);
-			}
-			$(document).ready(
-					function() {
-						
-						$("#search_bcd").change(function() {
-							var bcd = $("#search_bcd option:selected").val();
-							var url = "/myinfoboard/section?bcd=" + bcd;
-							alert(url);
-							location.href = url;
-							myFunction();
-						});
+			$(document)
+					.ready(
+							function() {
+								$("#search_bcd")
+										.change(
+												function() {
+													var bcd = $(
+															"#search_bcd option:selected")
+															.val();
+													var url = "/myinfoboard/section?bcd="
+															+ bcd;
+													alert(url);
+													location.href = url;
+												});
 
-						$('#sectionAdd').on('show.bs.modal', function(event) {
-							$("#section_name").val("");
+								var value = "${param.bcd}";
 
-							$("#section_name").focus();
+								$("#search_bcd > option[value=" + value + "]")
+										.attr("selected", true);
 
-							var button = $(event.relatedTarget)
-							var recipient = button.data('whatever')
-							var modal = $(this)
-							modal.find('.modal-body input').val(recipient)
+								$('#sectionAdd')
+										.on(
+												'show.bs.modal',
+												function(event) {
+													$("#section_name").val("");
 
-							$.ajax({
-								url : '/section/insert',
-								type : 'post',
-								data : {
-									"bureau_cd" : bureau_cd,
-									"section_name" : section_name
-								},
-								success : function(data) {
+													$("#section_name").focus();
 
-									//location.reload();
+													var button = $(event.relatedTarget)
+													var recipient = button
+															.data('whatever')
+													var modal = $(this)
+													modal
+															.find(
+																	'.modal-body input')
+															.val(recipient)
+
+													$
+															.ajax({
+																url : '/section/insert',
+																type : 'post',
+																data : {
+																	"bureau_cd" : bureau_cd,
+																	"section_name" : section_name
+																},
+																success : function(
+																		data) {
+
+																	//location.reload();
+																}
+															});
+												});
+
+								$("#btnAdd")
+										.click(
+												function() {
+													var bureau_cd = $(
+															"#search_bcd option:selected")
+															.val();
+													var section_name = $(
+															"#section_name")
+															.val();
+
+													alert(bureau_cd
+															+ section_name);
+
+													if (bureau_cd.length == 0)
+														return;
+													if (section_name.length == 0)
+														return;
+
+													$
+															.ajax({
+																url : '/section/insert',
+																type : 'post',
+																headers : {
+																	"Content-Type" : "application/json",
+																	"X-HTTP-Method-Override" : "POST"
+																},
+																data : {
+																	"bureau_cd" : bureau_cd,
+																	"section_name" : section_name
+																},
+																success : function(
+																		data) {
+																	if (data == 'SUCCESS') {
+																		alert("추가 되었습니다.");
+																		location
+																				.reload();
+																	}
+																}
+															});
+
+												});
+								$(".section-del")
+										.click(
+												function() {
+													var bureau_cd = $(
+															"#search_bcd option:selected")
+															.val();
+													var section_cd = $(this)
+															.data("sectioncd");
+													$
+															.ajax({
+																url : '/section/del',
+																type : 'post',
+																dataType : 'json',
+																data : {
+																	"bureau_cd" : bureau_cd,
+																	"section_cd" : section_cd
+																},
+																success : function(
+																		data) {
+																	if (data.row == 1) {
+																		location
+																				.reload();
+																	} else if (data.row == 0) {
+																		alert(data.msg);
+																	}
+																}
+															});
+												});
+								$.urlParam = function(name) {
+									var results = new RegExp('[\?&amp;]' + name
+											+ '=([^&amp;#]*)')
+											.exec(window.location.href);
+									return results[1] || 0;
 								}
+
 							});
-						});
-						$(".section-del").click(
-								function() {
-									var bureau_cd = $(
-											"#search_bcd option:selected")
-											.val();
-									var section_cd = $(this).data("sectioncd");
-									$.ajax({
-										url : '/section/del',
-										type : 'post',
-										dataType : 'json',
-										data : {
-											"bureau_cd" : bureau_cd,
-											"section_cd" : section_cd
-										},
-										success : function(data) {
-											if (data.row == 1) {
-												location.reload();
-											} else if (data.row == 0) {
-												alert(data.msg);
-											}
-										}
-									});
-								});
-
-
-
-					});
 		</script>
 
 
