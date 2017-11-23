@@ -1,5 +1,6 @@
 package org.kiosk.controller;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
 import org.kiosk.service.UserService;
+import org.kiosk.util.UsbUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -33,6 +35,9 @@ public class MyInfoBoardController {
 	private Com_bureauService bureauService;
 	@Inject
 	private UserService userService;
+
+	@Resource(name = "UsbUtils")
+	private UsbUtils usbUtils;
 
 	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
 	public void newUserGET(Model model, HttpServletRequest request) throws Exception {
@@ -128,12 +133,12 @@ public class MyInfoBoardController {
 		model.addAttribute("userVO", userVO);
 		logger.info("Login : " + userVO.toString());
 		logger.info("myinfoboard/team - GET ");
-		if(userVO.getAuth()==0) {
+		if (userVO.getAuth() == 0) {
 			model.addAttribute("list", teamService.superListAll());
-		}else if(userVO.getAuth()==1) {
+		} else if (userVO.getAuth() == 1) {
 			model.addAttribute("list", teamService.listAll(userVO.getSection_fullcode()));
 		}
-		
+
 	}
 
 	@RequestMapping(value = "/team", method = RequestMethod.POST)
@@ -166,8 +171,10 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/usb", method = RequestMethod.POST)
-	public String usbPOST(RedirectAttributes rttr, @ModelAttribute("section_fullcode") String section_fullcode)
-			throws Exception {
+	public String usbPOST(RedirectAttributes rttr, @ModelAttribute("section_fullcode") String section_fullcode,
+			HttpServletRequest request) throws Exception {
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		
 		logger.info("/myinfoboard/usb - POST");
 		logger.info("newUser post ...........");
 		System.out.println(section_fullcode);

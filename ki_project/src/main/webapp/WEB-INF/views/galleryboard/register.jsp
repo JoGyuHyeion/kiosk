@@ -35,6 +35,12 @@
 							<form method="post" role="form" enctype="multipart/form-data"
 								onsubmit="return formCheck()")>
 								<div class="form-horizontal" role="form">
+								<c:if test="${0 eq userVO.auth}">
+								  <input type="hidden" name="section_cd" value="none">
+								 </c:if>
+								 <c:if test="${1 eq userVO.auth}">
+								  <input type="hidden" name="section_cd" value="${userVO.section_fullcode}">
+								 </c:if>
 									<!-- img_title -->
 									<div class="form-group">
 										<label class="col-md-3 control-label">제목</label>
