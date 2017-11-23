@@ -9,6 +9,7 @@ import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Com_iconVO;
+import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.SampleVO;
@@ -25,6 +26,7 @@ import org.kiosk.service.JsonStaffService;
 import org.kiosk.service.Com_buildingService;
 import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_iconService;
+import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.service.JsonMateService;
@@ -59,9 +61,9 @@ public class JsonController {
 	@Inject
 	private Com_bureauService bureauService;
 	@Inject
-	private Com_buildingService buildingService;
+	private Com_sectionService sectionService;
 	@Inject
-	private Com_teamService teamService;
+	private Com_buildingService buildingService;
 	@Inject
 	private Com_iconService iconService;
 	@Inject
@@ -70,7 +72,7 @@ public class JsonController {
 	private Com_bgImgService bgImgService;
 	@Inject
 	private Vol_checkService vol_checkService;
-	
+
 	@RequestMapping(value = "/getVersion", method = RequestMethod.GET)
 	public ResponseEntity<Vol_checkVO> getVersion() {
 		logger.info("json/getVersion");
@@ -159,16 +161,16 @@ public class JsonController {
 	}
 
 	@RequestMapping(value = "/getTeams", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, List<Com_teamVO>>> getTeams() {
+	public ResponseEntity<Map<String, List<Com_sectionVO>>> getTeams() {
 		logger.info("json/getTeams");
-		ResponseEntity<Map<String, List<Com_teamVO>>> entity = null;
-		Map<String, List<Com_teamVO>> temaList = null;
+		ResponseEntity<Map<String, List<Com_sectionVO>>> entity = null;
+		Map<String, List<Com_sectionVO>> sectionList = null;
 		try {
-			temaList = new HashMap<String, List<Com_teamVO>>();
+			sectionList = new HashMap<String, List<Com_sectionVO>>();
 			for (Com_bureauVO vo : bureauService.listAll()) {
-				temaList.put(vo.getBureau_name(), teamService.jsonList(vo.getBureau_cd()));
+				sectionList.put(vo.getBureau_name(), sectionService.listAll());
 			}
-			entity = new ResponseEntity<>(temaList, HttpStatus.OK);
+			entity = new ResponseEntity<>(sectionList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -214,7 +216,6 @@ public class JsonController {
 		}
 		return entity;
 	}
-
 
 	@RequestMapping("/getErrorAuth")
 	public ResponseEntity<Void> getListAuth() {

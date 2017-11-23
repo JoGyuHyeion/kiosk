@@ -49,10 +49,9 @@ pageEncoding="UTF-8"%>
                                                    value="${com_sectionVO.section_name}"></td>
                                         <td>
                                             <div style="padding: 5px">
-                                                <input type="checkbox" name="team_use" switch="none"
-                                                       id="section_use"
-                                                       <c:if test = "${com_sectionVO.section_use eq '1'}">checked</c:if> /><label
-                                                    for="section_use" data-on-label="On" data-off-label="Off"></label>
+                                                <input type="checkbox" name="team_use" switch="none" id="section_use"
+                                                       <c:if test = "${com_sectionVO.section_use eq '1'}">checked</c:if> />
+                                                       <label for="section_use" data-on-label="On" data-off-label="Off"></label>
                                             </div>
                                         </td>
                                         <td><a href="#" class="table-action-btn h2"><i
