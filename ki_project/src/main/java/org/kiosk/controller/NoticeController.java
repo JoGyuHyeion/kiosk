@@ -3,10 +3,12 @@ package org.kiosk.controller;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.kiosk.domain.Com_boardVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
+import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_boardService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -38,9 +40,14 @@ public class NoticeController {
 	private String[] dirPath = { "notice" };
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) throws Exception {
+		
 		logger.info("noticeboard/list - GET");
 		logger.info("test-" + cri.toString());
+		
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
 

@@ -6,9 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.Com_bureauMapper">
 
 	<select id="read" resultType="Com_bureauVO">
-		select bureau_cd,bureau_name,bureau_use 
+		select
+		bureau_cd,bureau_name,bureau_use
 		from com_bureau
-		where 
+		where
 		bureau_cd = #{bureau_cd}
 	</select>
 
@@ -20,7 +21,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="update">
 		update com_bureau set
-		bureau_name = #{bureau_name}, bureau_use = #{bureau_use} 
+		bureau_name = #{bureau_name},
+		bureau_use = #{bureau_use}
 		where
 		bureau_cd = #{bureau_cd}
 	</update>
@@ -30,7 +32,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="listAll" resultType="Com_bureauVO">
- 		<![CDATA[ select * from com_bureau]]>
+ 		<![CDATA[ 
+ 		select * 
+ 		from com_bureau
+ 		order by bureau_cd asc
+ 		]]>
 	</select>
+
+
 
 </mapper>

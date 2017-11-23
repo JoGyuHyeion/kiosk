@@ -1,6 +1,9 @@
 package org.kiosk.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_bureauService;
@@ -32,7 +35,7 @@ public class MyInfoBoardController {
 	private UserService userService;
 
 	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
-	public void newUserGET(Model model) throws Exception {
+	public void newUserGET(Model model, HttpServletRequest request) throws Exception {
 
 		logger.info("myinfoboard/passwd - GET");
 		model.addAttribute("sectionList", sectionService.listAll());
@@ -53,8 +56,11 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
-	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-
+	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		System.out.println("Login : " + userVO.toString());
 		logger.info("myinfoboard/passwd - GET");
 	}
 
@@ -77,12 +83,16 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/section", method = RequestMethod.GET)
-	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model, @ModelAttribute("bcd") String bcd)
+	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model, @ModelAttribute("bcd") String bcd, HttpServletRequest request)
 			throws Exception {
 
 		logger.info("myinfoboard/section - GET ");
 		model.addAttribute("bureauService", bureauService.listAll());
 		model.addAttribute("bcd", sectionService.bureauList(bcd));
+		
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
 
 	}
 
@@ -105,7 +115,7 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/team", method = RequestMethod.GET)
-	public void teamGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void teamGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) throws Exception {
 
 		logger.info("myinfoboard/team - GET ");
 		model.addAttribute("list", teamService.listAll());
@@ -132,10 +142,21 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/usb", method = RequestMethod.GET)
-	public void usbGET(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-
+	public void usbGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("myinfoboard/usb - GET ");
 		model.addAttribute("sectionService", sectionService.listAll());
+	}
+
+	@RequestMapping(value = "/usb", method = RequestMethod.POST)
+	public String usbPOST(RedirectAttributes rttr, @ModelAttribute("section_fullcode") String section_fullcode)
+			throws Exception {
+		logger.info("/myinfoboard/usb - POST");
+		logger.info("newUser post ...........");
+		System.out.println(section_fullcode);
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		return "redirect:/myinfoboard/usb";
 	}
 
 }

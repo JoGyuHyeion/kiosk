@@ -5,47 +5,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.kiosk.mapper.com_iconMapper">
 
-	<select id="read" resultType="Com_iconDTO">
+	<select id="read" resultType="Com_iconVO">
 		select
-		ic_no,ic_name,ic_icon,ic_able,ic_ndt
+		ic_no,ic_name,ic_icon,ic_default,ic_ndt
 		from com_icon
 		where
-		ic_no = #{ic_no}
+		ic_no =
+		#{ic_no}
 	</select>
 
 	<insert id="create">
 		insert into com_icon
-		(ic_no,ic_name,ic_icon,ic_able,ic_ndt)
+		(ic_name,ic_icon,ic_default,ic_ndt)
 		values
-		(#{ic_no},#{ic_name},#{ic_icon},#{ic_able},#{ic_ndt})
+		(#{ic_name},#{ic_icon},#{ic_default},now())
 	</insert>
 
 	<update id="update">
 		update com_icon set
-		ic_name = #{ic_name},
-		ic_icon = #{ic_icon},
-		ic_able = #{ic_able},
-		ic_ndt = #{ic_ndt}
+		ic_icon =
+		#{ic_icon},
+		ic_default = #{ic_default},
+		ic_ndt = now()
 		where
-		ic_no = #{ic_no}
+		ic_no =
+		#{ic_no}
 	</update>
 
 	<delete id="delete">
 		delete from com_icon where ic_no = #{ic_no}
 	</delete>
 
-	<select id="listAll" resultType="Com_iconDTO">
+	<select id="listAll" resultType="Com_iconVO">
  		<![CDATA[ select * from com_icon]]>
 	</select>
-	
+
 	<select id="lastInsertID" resultType="int">
-		 SELECT LAST_INSERT_ID(ic_no) from com_icon order by ic_no desc limit 1;
+		SELECT LAST_INSERT_ID(ic_no) from com_icon order by ic_no desc limit 1;
 	</select>
 
-	<select id="listPage" resultType="Com_iconDTO">
+	<select id="listPage" resultType="Com_iconVO">
  		<![CDATA[
 		select 
-		ic_no,ic_name,ic_icon,ic_able,ic_ndt
+		ic_no,ic_name,ic_icon,ic_default,ic_ndt
 		from com_icon 
 		where ic_no > 0 
 		order by ic_no desc
@@ -53,10 +55,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		]]>
 	</select>
 
-	<select id="listCriteria" resultType="Com_iconDTO">
+	<select id="listCriteria" resultType="Com_iconVO">
  		<![CDATA[
 		select 
-		ic_no,ic_name,ic_icon,ic_able,ic_ndt
+		ic_no,ic_name,ic_icon,ic_default,ic_ndt
 		from com_icon 
 		where ic_no > 0 
 		order by ic_no desc
@@ -73,51 +75,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ic_no > 0 
  		]]>
 	</select>
-	
-	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				and title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'c'.toString()">
-				and content like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'w'.toString()">
-				and writer like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'tc'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%') OR content
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'cw'.toString()">
-				and ( content like CONCAT('%', #{keyword}, '%') OR writer
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'tcw'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%')
-				OR
-				content
-				like CONCAT('%', #{keyword}, '%')
-				OR
-				writer like CONCAT('%',
-				#{keyword}, '%'))
-			</if>
-		</if>
-	</sql>
 
-	<select id="listSearch" resultType="Com_iconDTO">
+	<select id="listSearch" resultType="Com_iconVO">
 		<![CDATA[  
 		 select * 
 		 from com_icon 
-		 where ic_no > 0 
-		]]>
-		<include refid="search"></include>
-  
-		<![CDATA[    
-		order by ic_no desc
-		limit #{pageStart}, #{perPageNum}
+		 where ic_no > 0    
+		 order by ic_no desc
+		 limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>
 
@@ -127,8 +92,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  from com_icon 
 		  where ic_no > 0 
 		]]>
-		<include refid="search"></include>
-
 	</select>
-	
 </mapper>

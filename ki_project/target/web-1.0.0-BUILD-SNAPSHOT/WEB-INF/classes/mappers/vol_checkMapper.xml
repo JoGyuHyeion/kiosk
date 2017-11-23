@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.kiosk.mapper.Vol_checkMapper">
+
+	<select id="read" resultType="Vol_checkVO">
+		select
+		vol_no,session,bgImg,board,bureau,icon,image,menu,section,staff,team,video,log,building
+		from vol_check
+		where
+		vol_no = #{vol_no}
+	</select>
+	
+	<update id="update">
+		update vol_check set
+		${col_name} = now()
+		where
+		vol_no = 1
+	</update>
+
+</mapper>

@@ -93,7 +93,7 @@
 
 									<tr class="active">
 										<td><a
-											href="/sboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
+											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
 											class="table-action-btn h2"><i
 												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
 
@@ -107,7 +107,7 @@
 
 										<td>${com_staffVO.st_job}</td>
 
-										<td>${com_staffVO.st_nm}</td>
+										<td><a href="/staffboard/readPage?st_no=${com_staffVO.st_no}">${com_staffVO.st_nm}</a></td>
 
 										<td>${com_staffVO.st_tel}</td>
 
@@ -129,11 +129,11 @@
 								class="fa fa-angle-left"></i></a></li>
 						<c:if test="${pageMaker.prev}">
 							<li><a
-								href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
+								href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
 						</c:if>
 
-						<c:forEach begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }" var="idx">
+						<c:forEach begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}" var="idx">
 							<li
 								<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
 								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>

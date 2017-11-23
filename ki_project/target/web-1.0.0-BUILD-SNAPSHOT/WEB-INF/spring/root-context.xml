@@ -19,8 +19,8 @@
 		<property name="username" value="kipro"></property>
 		<property name="password" value="ki12345!"></property>
 	</bean>
-<!-- 127.0.0.1 -->
-<!-- 211.249.63.18 -->
+	<!-- 127.0.0.1 -->
+	<!-- 211.249.63.18 -->
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 
@@ -36,5 +36,6 @@
 	</bean>
 	<context:component-scan base-package="org.kiosk.persistence"></context:component-scan>
 	<context:component-scan base-package="org.kiosk.service"></context:component-scan>
+	<context:component-scan base-package="org.kiosk.util"></context:component-scan>
 
 </beans>

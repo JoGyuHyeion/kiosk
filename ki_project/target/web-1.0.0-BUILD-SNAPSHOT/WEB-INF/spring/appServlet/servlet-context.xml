@@ -30,46 +30,79 @@
 
 	<interceptors>
 		<interceptor>
-			<mapping path="/doA" />
-			<mapping path="/doB" />
+			<mapping path="/home/doA" />
+			<mapping path="/home/doB" />
 			<beans:ref bean="SampleInterceptor" />
 		</interceptor>
 	</interceptors>
 
 	<beans:bean id="loginInterceptor" class="org.kiosk.interceptor.LoginInterceptor"></beans:bean>
 
-	<beans:bean id="authInterceptor" class="org.kiosk.interceptor.AuthInterceptor"></beans:bean>
-<!-- 
 	<interceptors>
 		<interceptor>
-			<mapping path="/user/loginPost" />
+			<mapping path="/loginPost" />
 			<beans:ref bean="loginInterceptor" />
 		</interceptor>
+	</interceptors>
 
+
+	<beans:bean id="authInterceptor" class="org.kiosk.interceptor.AuthInterceptor"></beans:bean>
+	<interceptors>
 		<interceptor>
-			<mapping path="/*/register" />
+			<mapping path="/home/" />
+			<mapping path="/*/list" />
 			<mapping path="/*/modifyPage" />
-
+			<mapping path="/*/readPage" />
+			<mapping path="/*/register" />
+			<mapping path="/*/passwd" />
+			<mapping path="/*/section" />
+			<mapping path="/*/team" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 	</interceptors>
- -->
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
 
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="/var/webapps/upload"></beans:constructor-arg>
+		<beans:constructor-arg value="resources\upload"></beans:constructor-arg>
 	</beans:bean>
-	
-	<!-- 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="D:/resources"></beans:constructor-arg>
-	</beans:bean> -->
-	
-<!-- 
-	<beans:bean id="ipPath" class="java.lang.String">
-		<beans:constructor-arg value="http://ar.roboprint.co.kr:8080/"></beans:constructor-arg>
+
+	<beans:bean id="sessionVersion" class="java.lang.String">
+		<beans:constructor-arg value="session"></beans:constructor-arg>
 	</beans:bean>
- -->
+	<beans:bean id="bgImgVersion" class="java.lang.String">
+		<beans:constructor-arg value="bgImg"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="boardVersion" class="java.lang.String">
+		<beans:constructor-arg value="board"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="bureauVersion" class="java.lang.String">
+		<beans:constructor-arg value="bureau"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="iconVersion" class="java.lang.String">
+		<beans:constructor-arg value="icon"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="imageVersion" class="java.lang.String">
+		<beans:constructor-arg value="image"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="menuVersion" class="java.lang.String">
+		<beans:constructor-arg value="menu"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="sectionVersion" class="java.lang.String">
+		<beans:constructor-arg value="section"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="teamVersion" class="java.lang.String">
+		<beans:constructor-arg value="team"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="videoVersion" class="java.lang.String">
+		<beans:constructor-arg value="video"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="logVersion" class="java.lang.String">
+		<beans:constructor-arg value="log"></beans:constructor-arg>
+	</beans:bean>
+	<beans:bean id="buildingVersion" class="java.lang.String">
+		<beans:constructor-arg value="building"></beans:constructor-arg>
+	</beans:bean>
 </beans:beans>

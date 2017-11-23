@@ -72,7 +72,7 @@ public class Com_staff2Test {
 		dao.delete(1);
 	}
 
-	//@Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());

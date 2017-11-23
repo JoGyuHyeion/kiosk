@@ -44,20 +44,21 @@ public class Staff2BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
 			throws Exception {
+		
 		logger.info("staff2board/list - GET");
 		logger.info("test-" + cri.toString());
 
-		model.addAttribute("list", service.listSearchCriteria(cri));
-		logger.info("test2" + cri.toString());
-
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		System.out.println("규현쓰 테스트 : " + userVO.getName());
+		System.out.println("Login : " + userVO.toString());
+		
+		model.addAttribute("list", service.listSearchCriteria(cri));
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 
 		pageMaker.setTotalCount(service.listSearchCount(cri));
-
+		model.addAttribute("userVO", userVO);
 		model.addAttribute("pageMaker", pageMaker);
 	}
 

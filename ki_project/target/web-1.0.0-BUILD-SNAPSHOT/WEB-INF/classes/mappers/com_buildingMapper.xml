@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.kiosk.mapper.com_buildingMapper">
 
-	<select id="read" resultType="Com_buildingDTO">
+	<select id="read" resultType="Com_buildingVO">
 		select
 		bu_no,bu_name,bu_img,bu_ndt
 		from com_building
@@ -17,14 +17,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into com_building
 		(bu_name,bu_img,bu_ndt)
 		values
-		(#{bu_name},#{bu_img},#{bu_ndt})
+		(#{bu_name},#{bu_img},now())
 	</insert>
 
 	<update id="update">
 		update com_building set
 		bu_name = #{bu_name},
-		bu_img = #{bu_img},
-		bu_ndt = #{bu_ndt}
+		bu_img =
+		#{bu_img},
+		bu_ndt = now()
 		where
 		bu_no = #{bu_no}
 	</update>
@@ -33,22 +34,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_building where bu_no = #{bu_no}
 	</delete>
 
-	<select id="listAll" resultType="Com_buildingDTO">
+	<select id="listAll" resultType="Com_buildingVO">
  		<![CDATA[ select * from com_building]]>
 	</select>
 
-	<select id="listPage" resultType="Com_buildingDTO">
+	<select id="lastInsertID" resultType="int">
+		SELECT
+		LAST_INSERT_ID(bu_no) from com_building order by bbs_no desc limit 1;
+	</select>
+
+	<select id="listPage" resultType="Com_buildingVO">
  		<![CDATA[
 		select 
 		bu_no,bu_name,bu_img,bu_ndt,bu_edt
 		from com_building 
 		where bu_no > 0 
-		order by bu_no desc
+		order by bu_no asc
 		limit #{page}, 10
  		]]>
 	</select>
 
-	<select id="listCriteria" resultType="Com_buildingDTO">
+	<select id="listCriteria" resultType="Com_buildingVO">
  		<![CDATA[
 		select 
 		bu_no,bu_name,bu_img,bu_ndt,bu_edt
@@ -68,5 +74,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bu_no > 0 
  		]]>
 	</select>
-	
+	<select id="listSearch" resultType="Com_buildingVO">
+		<![CDATA[  
+		 select * 
+		 from com_building
+		 where bu_no > 0   
+		 order by bu_no asc
+		 limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[  
+		  select count(bu_no) 
+		  from com_building 
+		  where bu_no > 0 
+		]]>
+
+	</select>
 </mapper>
