@@ -19,7 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
 
 @Controller
@@ -35,15 +34,16 @@ public class UserController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String loginGET(@ModelAttribute("dto") LoginDTO dto, Model model) throws Exception {
+
+		logger.info("/ - GET");
 		model.addAttribute("service", sectionService.listAll());
 		System.out.println("UserController logins GET");
-
 		return "login";
 	}
 
 	@RequestMapping(value = "/loginPost", method = RequestMethod.POST)
 	public void loginPOST(LoginDTO dto, HttpSession session, Model model, Criteria cri) throws Exception {
-
+		logger.info("/loginPost - POST");
 		System.out.println("UserController loginPost POST");
 		System.out.println("user check : " + dto.toString());
 		UserVO vo = service.login(dto);
@@ -68,6 +68,7 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutGET(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
+		logger.info("/loginPost - GET");
 		System.out.println("UserController logout GET");
 		Object obj = session.getAttribute("login");
 

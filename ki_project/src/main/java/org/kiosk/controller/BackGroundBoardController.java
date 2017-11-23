@@ -42,37 +42,46 @@ public class BackGroundBoardController {
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) throws Exception {
-		
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
+
 		logger.info("backGroundboard/list - GET");
 		logger.info(cri.toString());
-		
+
 		cri.setPerPageNum(6);
 		model.addAttribute("list", service.listSearchCriteria(cri));
-		
+
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
-		
+		logger.info("Login : " + userVO.toString());
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
 	}
-	
-/*	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("bi_no") int bi_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
-		logger.info("backGroundboard/readPage - GET");
-		model.addAttribute(service.read(bi_no));
 
-	}*/
+	/*
+	 * @RequestMapping(value = "/readPage", method = RequestMethod.GET) public void
+	 * read(@RequestParam("bi_no") int bi_no, @ModelAttribute("cri") SearchCriteria
+	 * cri, Model model) throws Exception {
+	 * logger.info("backGroundboard/readPage - GET");
+	 * model.addAttribute(service.read(bi_no));
+	 * 
+	 * }
+	 */
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("backGroundboard/register - GET");
 		logger.info("regist get ...........");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -95,10 +104,15 @@ public class BackGroundBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-	public void modifyPagingGET(int bi_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void modifyPagingGET(int bi_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("backGroundboard/modifyPage - GET");
 		model.addAttribute(service.read(bi_no));
 		logger.info(service.read(bi_no).toString());
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)

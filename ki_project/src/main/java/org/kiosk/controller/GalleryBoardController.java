@@ -50,7 +50,8 @@ public class GalleryBoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
-		
+		logger.info("Login : " + userVO.toString());
+
 		cri.setPerPageNum(6);
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
@@ -62,17 +63,26 @@ public class GalleryBoardController {
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("img_no") int img_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
+	public void read(@RequestParam("img_no") int img_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("galleryboard/readPage - GET");
 		model.addAttribute(service.read(img_no));
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("galleryboard/register - GET");
 		logger.info("regist get ...........");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -95,10 +105,15 @@ public class GalleryBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-	public void modifyPagingGET(int img_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void modifyPagingGET(int img_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("galleryboard/modifyPage - GET");
 		model.addAttribute(service.read(img_no));
 		logger.info(service.read(img_no).toString());
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)

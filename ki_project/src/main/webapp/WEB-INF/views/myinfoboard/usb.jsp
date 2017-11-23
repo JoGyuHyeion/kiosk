@@ -58,7 +58,6 @@
 										</div>
 									</c:if>
 									<c:if test="${1 eq userVO.auth}">
-									<c:out value="${userVO.auth}"></c:out>
 										<input id="section_fullcode" name="section_fullcode" type="hidden" value="${userVO.section_fullcode}">
 									</c:if>
 

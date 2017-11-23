@@ -44,16 +44,16 @@ public class Staff2BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
 			throws Exception {
-		
+
 		logger.info("staff2board/list - GET");
 		logger.info("test-" + cri.toString());
 
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		System.out.println("Login : " + userVO.toString());
-		
+		logger.info("Login : " + userVO.toString());
+
 		model.addAttribute("list", service.listSearchCriteria(cri));
-		
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 
@@ -63,16 +63,27 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
+	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("staff2board/readPage - GET");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
+
 		model.addAttribute(service.read(st_no));
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("staff2board/register - GET");
 		logger.info("regist get ...........");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
+
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -95,10 +106,15 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-	public void modifyPagingGET(int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void modifyPagingGET(int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("staff2board/modifyPage - GET");
 		model.addAttribute(service.read(st_no));
 		logger.info(service.read(st_no).toString());
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)

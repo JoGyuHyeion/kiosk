@@ -50,9 +50,10 @@ public class BuildingBoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
-		
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.listSearchCount(cri));
@@ -62,16 +63,25 @@ public class BuildingBoardController {
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("bu_no") int bu_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
+	public void read(@RequestParam("bu_no") int bu_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("buildingboard/readPage - GET");
 		model.addAttribute(service.read(bu_no));
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("buildingboard/register - GET");
 		logger.info("regist get ...........");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

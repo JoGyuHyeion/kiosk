@@ -39,6 +39,10 @@ public class MyInfoBoardController {
 
 		logger.info("myinfoboard/passwd - GET");
 		model.addAttribute("sectionList", sectionService.listAll());
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 
 	}
 
@@ -56,11 +60,12 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
-	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) throws Exception {
+	public void passwdGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
-		System.out.println("Login : " + userVO.toString());
+		logger.info("Login : " + userVO.toString());
 		logger.info("myinfoboard/passwd - GET");
 	}
 
@@ -83,16 +88,17 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/section", method = RequestMethod.GET)
-	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model, @ModelAttribute("bcd") String bcd, HttpServletRequest request)
-			throws Exception {
+	public void sectionGET(@ModelAttribute("cri") SearchCriteria cri, Model model, @ModelAttribute("bcd") String bcd,
+			HttpServletRequest request) throws Exception {
 
 		logger.info("myinfoboard/section - GET ");
 		model.addAttribute("bureauService", bureauService.listAll());
 		model.addAttribute("bcd", sectionService.bureauList(bcd));
-		
+
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 
 	}
 
@@ -115,8 +121,12 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/team", method = RequestMethod.GET)
-	public void teamGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) throws Exception {
-
+	public void teamGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 		logger.info("myinfoboard/team - GET ");
 		model.addAttribute("list", teamService.listAll());
 	}
@@ -146,6 +156,10 @@ public class MyInfoBoardController {
 			throws Exception {
 		logger.info("myinfoboard/usb - GET ");
 		model.addAttribute("sectionService", sectionService.listAll());
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/usb", method = RequestMethod.POST)

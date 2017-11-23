@@ -42,14 +42,16 @@ public class IconBoardController {
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) throws Exception {
-		
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
+
 		logger.info("iconboard/list - GET");
 		logger.info(cri.toString());
-		
+
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
@@ -61,9 +63,14 @@ public class IconBoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("iconboard/register - GET");
 		logger.info("regist get ...........");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
