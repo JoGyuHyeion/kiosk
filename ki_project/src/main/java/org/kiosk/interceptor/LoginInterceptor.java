@@ -25,12 +25,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object userVO = modelMap.get("userVO");
-		UserVO filterCode = (UserVO) userVO;
 
 		if (userVO != null) {
-			logger.info("login filterCode success");
-			Cookie filterCookie = new Cookie("filterCode", filterCode.getSection_fullcode());
-			response.addCookie(filterCookie);
 
 			logger.info("new login success");
 			session.setAttribute(LOGIN, userVO);
@@ -60,11 +56,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (session.getAttribute(LOGIN) != null) {
 			logger.info("clear login data before");
 			session.removeAttribute(LOGIN);
-
-			Cookie filterCookie = new Cookie("filterCode", null);
-			filterCookie.setMaxAge(0);
-			response.addCookie(filterCookie);
-
 		}
 		return true;
 	}

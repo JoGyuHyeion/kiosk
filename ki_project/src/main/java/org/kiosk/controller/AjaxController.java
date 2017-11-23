@@ -55,7 +55,7 @@ public class AjaxController {
 	@RequestMapping(value = "/section/update", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> sectionUpdate(@PathVariable("section_cd") String section_cd,
 			@RequestBody Com_sectionVO vo) {
-		logger.info("/section/update/{section_cd}");
+		logger.info("/section/update/");
 		ResponseEntity<String> entity = null;
 		try {
 			vo.setSection_cd(section_cd);
@@ -70,7 +70,7 @@ public class AjaxController {
 
 	@RequestMapping(value = "/section/del", method = RequestMethod.DELETE)
 	public ResponseEntity<String> sectionRemove(@PathVariable("section_cd") String section_cd) {
-		logger.info("/section/del/{section_cd}");
+		logger.info("/section/del/");
 		ResponseEntity<String> entity = null;
 		try {
 			sectionService.remove(section_cd);
@@ -99,7 +99,7 @@ public class AjaxController {
 	@RequestMapping(value = "/team/update", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> teamUpdate(@PathVariable("section_cd") String section_cd,
 			@PathVariable("team_cd") String team_cd, @RequestBody Com_teamVO vo) {
-		logger.info("/team/update/{section_cd}/{team_cd}");
+		logger.info("/team/update/");
 		ResponseEntity<String> entity = null;
 		try {
 			vo.setSection_cd(section_cd);
@@ -116,7 +116,7 @@ public class AjaxController {
 	@RequestMapping(value = "/team/del", method = RequestMethod.DELETE)
 	public ResponseEntity<String> teamRemove(@PathVariable("section_cd") String section_cd,
 			@PathVariable("team_cd") String team_cd) {
-		logger.info("/team/update/{section_cd}/{team_cd}");
+		logger.info("/team/update/");
 		ResponseEntity<String> entity = null;
 		Com_teamVO vo = null;
 		try {
