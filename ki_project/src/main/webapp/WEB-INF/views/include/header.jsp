@@ -130,7 +130,9 @@
 										<li><a href="/myinfoboard/section?bcd=k000">국관리(Super)</a></li>
 									</c:if>
 										<li><a href="/myinfoboard/passwd">비밀번호변경</a></li>
+									<c:if test="${1 eq userVO.auth}">
 										<li><a href="/myinfoboard/team">팀관리</a></li>
+									</c:if>
 									</ul>
 								</li>
 							</ul></li>
