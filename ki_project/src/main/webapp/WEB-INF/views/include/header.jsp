@@ -72,7 +72,7 @@
 					<!--Zircos-->
 					<!--</a>-->
 					<!-- Image Logo -->
-					<a href="index.html" class="logo"> <img
+					<a href="list" class="logo"> <img
 						src="/resources/assets/logo(clean).png" alt="" height="30">
 					</a>
 
@@ -86,7 +86,9 @@
 
 
 
-						<button type="button" class="btn btn-danger waves-effect w-md waves-light m-b-5" onclick="
+						<button type="button"
+							class="btn btn-danger waves-effect w-md waves-light m-b-5"
+							onclick="
 						location.href='/logout'">
 							<i class="ti-power-off m-r-5"></i> Logout
 						</button>
