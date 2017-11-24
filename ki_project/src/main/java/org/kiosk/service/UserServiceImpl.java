@@ -36,12 +36,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void newUser(UserVO vo) throws Exception {
 		dao.newUser(vo);
-		
+
 	}
 
 	@Override
 	public void changePassword(LoginDTO dto) throws Exception {
 		dao.changePassword(dto);
-		
+
+	}
+
+	@Override
+	public UserVO dupCheck(LoginDTO dto) throws Exception {
+		return dao.dupCheck(dto);
 	}
 }

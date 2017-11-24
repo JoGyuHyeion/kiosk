@@ -44,14 +44,12 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<select name="" id="" class="form-control">
-								<option value="">전체관리자</option>
+								<c:forEach items="${sectionService}" var="com_sectionVO">
+									<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+								</c:forEach>
 							</select>
 						</div>
-						<div class="col-sm-3">
-							<select name="" id="" class="form-control">
-								<option value="">임원</option>
-							</select>
-						</div>
+
 						<div class="col-sm-4">
 							<form role="form">
 								<div class="form-group">
@@ -136,7 +134,8 @@
 					<ul class="pagination pagination-split m-t-0">
 
 						<c:if test="${pageMaker.prev}">
-							<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
+							<li><a
+								href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
 						</c:if>
 
 						<c:forEach begin="${pageMaker.startPage }"
@@ -148,7 +147,8 @@
 						</c:forEach>
 
 						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-							<li><a href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
+							<li><a
+								href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 						</c:if>
 
 					</ul>

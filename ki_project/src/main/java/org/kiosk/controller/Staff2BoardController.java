@@ -9,6 +9,7 @@ import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
+import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_staff2Service;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -30,6 +31,9 @@ public class Staff2BoardController {
 
 	@Inject
 	private Com_staff2Service service;
+	
+	@Inject
+	private Com_sectionService sectionService;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -66,6 +70,7 @@ public class Staff2BoardController {
 
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("sectionService",sectionService.listAll());
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
@@ -88,6 +93,7 @@ public class Staff2BoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
+		model.addAttribute("sectionService",sectionService.listAll());
 		logger.info("Login : " + userVO.toString());
 
 	}
@@ -120,6 +126,7 @@ public class Staff2BoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
+		model.addAttribute("sectionService",sectionService.listAll());
 		logger.info("Login : " + userVO.toString());
 	}
 

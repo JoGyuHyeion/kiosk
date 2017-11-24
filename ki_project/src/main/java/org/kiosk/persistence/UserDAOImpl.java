@@ -55,4 +55,9 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
+	@Override
+	public UserVO dupCheck(LoginDTO dto) throws Exception {
+		return session.selectOne(namespace + ".dupCheck", dto);
+	}
+
 }

@@ -39,6 +39,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and section_fullcode = #{section_fullcode}
 	</update>
 	
+	<select id="dupCheck" resultType="UserVO">
+		select id, name, password, auth, sessionkey, sessionlimit, section_fullcode 
+		from user 
+		where id = #{id} 
+	</select>
+	
 </mapper>
 
 

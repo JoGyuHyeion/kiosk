@@ -5,14 +5,18 @@ import java.util.Map;
 import javax.inject.Inject;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
+import org.kiosk.domain.UserVO;
+import org.kiosk.dto.LoginDTO;
 import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
 import org.kiosk.service.JsonTeamsService;
+import org.kiosk.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +36,8 @@ public class AjaxController {
 	private Com_teamService teamService;
 	@Inject
 	private Com_sectionService sectionService;
+	@Inject
+	private UserService userService;
 
 	private static final String SUCCESS = "SUCCESS";
 
@@ -162,6 +168,32 @@ public class AjaxController {
 			ObjectMapper om = new ObjectMapper();
 			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key濡� �젙�젹 �꽕�젙
 			entity = new ResponseEntity<String>(om.writeValueAsString(obj), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	@RequestMapping(value = "/user/duplCheck/{id}", method = RequestMethod.GET)
+	public ResponseEntity<String> getDuplCheck(@PathVariable("id") String id) {
+		logger.info("/user/duplCheck");
+
+		ResponseEntity<String> entity = null;
+		LoginDTO dto = null;
+		String msg = "";
+
+		try {
+			dto = new LoginDTO();
+			dto.setId(id);
+
+			if (userService.dupCheck(dto) == null) {
+				msg = SUCCESS;
+			} else {
+				msg="FASLE";
+			}
+
+			entity = new ResponseEntity<String>(msg, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
