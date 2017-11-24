@@ -117,7 +117,7 @@ public class JsonController {
 		logger.info("json/getGallery/{section_cd}");
 		ResponseEntity<List<JsonGelleryDTO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonGelleryService.listAll(section_cd), HttpStatus.OK);
+			entity = new ResponseEntity<>(jsonGelleryService.list(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -130,7 +130,7 @@ public class JsonController {
 		logger.info("json/getNotice/{section_cd}");
 		ResponseEntity<List<JsonNoticeDTO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonNoticeService.listAll(section_cd), HttpStatus.OK);
+			entity = new ResponseEntity<>(jsonNoticeService.list(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

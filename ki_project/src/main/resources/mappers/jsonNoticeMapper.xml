@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_board where bbs_no = #{bbs_no}
 	</delete>
 
-	<select id="listAll" resultType="JsonNoticeDTO">
+	<select id="list" resultType="JsonNoticeDTO">
  		<![CDATA[ 	
  		select bbs_no, bbs_title, bbs_content, bbs_file 
 		from com_board 	where bbs_state = 1 
@@ -43,6 +43,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and	bbs_exp_sdt <= now() 
 		and bbs_exp_edt > now() 
 		and section_cd in('none',#{section_cd}) 
+		ORDER BY bbs_ndt DESC
+		]]>
+	</select>
+	
+		<select id="listAll" resultType="JsonNoticeDTO">
+ 		<![CDATA[ 	
+ 		select bbs_no, bbs_title, bbs_content, bbs_file 
+		from com_board 	where bbs_state = 1 
+		and brd_cd = 'notice' 
+		and	bbs_exp_sdt <= now() 
+		and bbs_exp_edt > now()
 		ORDER BY bbs_ndt DESC
 		]]>
 	</select>

@@ -180,7 +180,7 @@ public class AjaxController {
 		
 		ResponseEntity<List<Com_teamVO>> entity = null;
 		try {
-			entity = new ResponseEntity<List<Com_teamVO>>(teamService.listAll(section_cd), HttpStatus.OK);
+			entity = new ResponseEntity<List<Com_teamVO>>(teamService.list(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

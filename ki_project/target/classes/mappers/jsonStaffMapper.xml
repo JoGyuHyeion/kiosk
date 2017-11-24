@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_section where section_cd = #{section_cd}
 	</delete>
 
-	<select id="listAll" resultType="JsonStaffDTO">
+	<select id="list" resultType="JsonStaffDTO">
  		<![CDATA[
  		SELECT section_fullcode, section_pass  
  		FROM com_section 

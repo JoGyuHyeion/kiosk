@@ -40,13 +40,13 @@ public class Com_teamDAOImpl implements Com_teamDAO {
 	}
 
 	@Override
-	public List<Com_teamVO> listAll(String section_cd) throws Exception {
-		return session.selectList(namespace + ".listAll",section_cd);
+	public List<Com_teamVO> list(String section_cd) throws Exception {
+		return session.selectList(namespace + ".list",section_cd);
 	}
 	
 	@Override
-	public List<Com_teamVO> superListAll() throws Exception {
-		return session.selectList(namespace + ".superListAll");
+	public List<Com_teamVO> listAll() throws Exception {
+		return session.selectList(namespace + ".listAll");
 	}
 
 	@Override

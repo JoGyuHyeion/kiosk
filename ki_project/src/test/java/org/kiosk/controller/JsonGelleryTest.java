@@ -58,7 +58,7 @@ public class JsonGelleryTest {
 	@Test
 	public void testListAll() throws Exception {
 
-		logger.info(dao.listAll("").toString());
+		logger.info(dao.list("").toString());
 
 	}
 

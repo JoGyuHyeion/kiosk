@@ -40,4 +40,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		 ]]>
 	</select>
 
+	<select id="listAll" resultType="JsonGelleryDTO">
+ 		<![CDATA[
+ 		 select img_no, img_title, img_caption, img_filenm
+		from com_image
+		WHERE img_gallery = 1
+ 		 ]]>
+	</select>
 </mapper>

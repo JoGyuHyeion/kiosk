@@ -14,5 +14,7 @@ public interface JsonNoticeDAO {
 
 	public void delete(Integer no) throws Exception;
 
-	public List<JsonNoticeDTO> listAll(String section_cd) throws Exception;
+	public List<JsonNoticeDTO> list(String section_cd) throws Exception;
+	
+	public List<JsonNoticeDTO> listAll() throws Exception;
 }

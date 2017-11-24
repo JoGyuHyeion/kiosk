@@ -1,6 +1,7 @@
 package org.kiosk.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Com_sectionVO;
+import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
 import org.kiosk.dto.JsonStaffDTO;
@@ -19,6 +21,7 @@ import org.kiosk.service.Com_bgImgService;
 import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_iconService;
 import org.kiosk.service.Com_sectionService;
+import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.service.JsonGelleryService;
 import org.kiosk.service.JsonMateService;
@@ -40,10 +43,10 @@ import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/backupboard/*")
-public class BackUpController {
+@RequestMapping("/usbFileboard/*")
+public class UsbFileController {
 
-	private static final Logger logger = LoggerFactory.getLogger(BackUpController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UsbFileController.class);
 
 	@Inject
 	private Com_sectionService sectionService;
@@ -64,6 +67,8 @@ public class BackUpController {
 	@Inject
 	private Com_iconService iconService;
 	@Inject
+	private Com_teamService teamService;
+	@Inject
 	private Com_videoService videoService;
 	@Inject
 	private Com_bgImgService bgImgService;
@@ -81,7 +86,7 @@ public class BackUpController {
 
 	@RequestMapping(value = "/usb", method = RequestMethod.GET)
 	public void usbGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) {
-		logger.info("backupboard/usb - GET ");
+		logger.info("usbFileboard/usb - GET ");
 
 		try {
 			model.addAttribute("sectionService", sectionService.listAll());
@@ -99,10 +104,10 @@ public class BackUpController {
 			HttpServletRequest request) throws Exception {
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		logger.info("/backupboard/usb - POST");
+		logger.info("/usbFileboard/usb - POST");
 		logger.info("newUser post ...........");
 		System.out.println(section_fullcode);
-		rttr.addFlashAttribute("msg", "SUCCESS");
+		
 
 		String path = root_path + uploadPath;
 		String toPath = path.substring(0, path.lastIndexOf("\\") + 1);
@@ -112,20 +117,12 @@ public class BackUpController {
 		System.out.println("toPath : " + toPath);
 		System.out.println("fileName : " + fileName);
 
-		usbUtils.makeJsonTextFile(path, "vol_check", usbUtils.makeJsonString(vol_checkService.read(1)));
-		usbUtils.makeJsonTextFile(path, "staff", usbUtils.makeJsonString(getJsonStaff(section_fullcode)));
-		usbUtils.makeJsonTextFile(path, "gallery",
-				usbUtils.makeJsonString(jsonGelleryService.listAll(section_fullcode)));
-		usbUtils.makeJsonTextFile(path, "notice", usbUtils.makeJsonString(jsonNoticeService.listAll(section_fullcode)));
-		usbUtils.makeJsonTextFile(path, "building", usbUtils.makeJsonString(vol_checkService.read(1)));
-		usbUtils.makeJsonTextFile(path, "teams", usbUtils.makeJsonString(getJsonTeams()));
-		usbUtils.makeJsonTextFile(path, "icon", usbUtils.makeJsonString(iconService.listAll()));
-		usbUtils.makeJsonTextFile(path, "video", usbUtils.makeJsonString(videoService.listAll()));
-		usbUtils.makeJsonTextFile(path, "background", usbUtils.makeJsonString(bgImgService.jsonList()));
+		makeJsonTextFile(path,section_fullcode);
 
 		usbUtils.createZipFile(path, toPath, fileName);
+		rttr.addFlashAttribute("msg", "SUCCESS");
 		rttr.addAttribute("zipFile", toPath + fileName + ".zip");
-		return "redirect:/backupboard/download";
+		return "redirect:/usbFileboard/download";
 	}
 
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
@@ -137,8 +134,33 @@ public class BackUpController {
 
 		return mav;
 	}
+	
+	private void makeJsonTextFile(String path, String section_fullcode) throws Exception {
+		
+		if(section_fullcode.equals("none")) {
+			List<JsonStaffDTO> jsonStaffList = new ArrayList<JsonStaffDTO>();
+			for(Com_teamVO vo :teamService.listAll()) {
+				JsonStaffDTO staffDTO = getJsonStaff(vo.getSection_cd());
+				jsonStaffList.add(staffDTO);
+			}
+			
+			usbUtils.makeJsonTextFile(path, "staff", usbUtils.makeJsonString(getJsonStaff(section_fullcode)));
+			usbUtils.makeJsonTextFile(path, "gallery",usbUtils.makeJsonString(jsonGelleryService.listAll()));
+			usbUtils.makeJsonTextFile(path, "notice", usbUtils.makeJsonString(jsonNoticeService.listAll()));
+		}else {
+			usbUtils.makeJsonTextFile(path, "staff", usbUtils.makeJsonString(getJsonStaff(section_fullcode)));
+			usbUtils.makeJsonTextFile(path, "gallery",usbUtils.makeJsonString(jsonGelleryService.list(section_fullcode)));
+			usbUtils.makeJsonTextFile(path, "notice", usbUtils.makeJsonString(jsonNoticeService.list(section_fullcode)));
+		}
+		usbUtils.makeJsonTextFile(path, "vol_check", usbUtils.makeJsonString(vol_checkService.read(1)));
+		usbUtils.makeJsonTextFile(path, "building", usbUtils.makeJsonString(vol_checkService.read(1)));
+		usbUtils.makeJsonTextFile(path, "teams", usbUtils.makeJsonString(getJsonTeams()));
+		usbUtils.makeJsonTextFile(path, "icon", usbUtils.makeJsonString(iconService.listAll()));
+		usbUtils.makeJsonTextFile(path, "video", usbUtils.makeJsonString(videoService.listAll()));
+		usbUtils.makeJsonTextFile(path, "background", usbUtils.makeJsonString(bgImgService.jsonList()));
+	}
 
-	public JsonStaffDTO getJsonStaff(String section_cd) {
+	private JsonStaffDTO getJsonStaff(String section_cd) {
 		int mapIndex = 0;
 		JsonStaffDTO jsonStaffDTO = null;
 		try {
@@ -164,7 +186,7 @@ public class BackUpController {
 		return jsonStaffDTO;
 	}
 
-	public Map<String, List<Com_sectionVO>> getJsonTeams() {
+	private Map<String, List<Com_sectionVO>> getJsonTeams() {
 
 		Map<String, List<Com_sectionVO>> sectionList = null;
 		try {

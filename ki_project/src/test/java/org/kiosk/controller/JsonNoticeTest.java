@@ -57,7 +57,7 @@ public class JsonNoticeTest {
 	@Test
 	public void testListAll() throws Exception {
 
-		logger.info(dao.listAll("K040-S200").toString());
+		logger.info(dao.list("K040-S200").toString());
 
 	}
 

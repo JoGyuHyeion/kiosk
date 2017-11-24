@@ -126,9 +126,9 @@ public class MyInfoBoardController {
 		logger.info("Login : " + userVO.toString());
 		logger.info("myinfoboard/team - GET ");
 		if (userVO.getAuth() == 0) {
-			model.addAttribute("list", teamService.superListAll());
+			model.addAttribute("list", teamService.listAll());
 		} else if (userVO.getAuth() == 1) {
-			model.addAttribute("list", teamService.listAll(userVO.getSection_fullcode()));
+			model.addAttribute("list", teamService.list(userVO.getSection_fullcode()));
 		}
 
 	}

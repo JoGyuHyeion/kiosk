@@ -42,6 +42,8 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
+					
+					<c:if test="${0 eq userVO.auth}">
 						<div class="col-sm-3">
 							<select name="section_cd" id="section_cd" class="form-control">
 								<c:forEach items="${sectionService}" var="com_sectionVO">
@@ -49,7 +51,8 @@
 								</c:forEach>
 							</select>
 						</div>
-
+					</c:if>
+					
 						<div class="col-sm-4">
 							<form role="form">
 								<div class="form-group">

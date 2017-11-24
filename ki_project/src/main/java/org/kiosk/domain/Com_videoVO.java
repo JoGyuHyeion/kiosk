@@ -10,6 +10,7 @@ public class Com_videoVO {
 	private String vi_name;
 	private String vi_video;
 	private Date vi_ndt;
+	private String section_cd;
 
 	public int getVi_no() {
 		return vi_no;
@@ -43,10 +44,18 @@ public class Com_videoVO {
 		this.vi_ndt = vi_ndt;
 	}
 
+	public String getSection_cd() {
+		return section_cd;
+	}
+
+	public void setSection_cd(String section_cd) {
+		this.section_cd = section_cd;
+	}
+
 	@Override
 	public String toString() {
 		return "Com_videoVO [vi_no=" + vi_no + ", vi_name=" + vi_name + ", vi_video=" + vi_video + ", vi_ndt=" + vi_ndt
-				+ "]";
+				+ ", section_cd=" + section_cd + "]";
 	}
 
 }

@@ -33,7 +33,8 @@
 					<div class="row">
 						<div class="col-md-7">
 							<form method="post" role="form" enctype="multipart/form-data"
-								onsubmit="return formCheck()")>
+								onsubmit="return formCheck()">
+								<input type='hidden' name='section_cd' value="${userVO.section_fullcode}"> 
 								<div class="form-horizontal" role="form">
 								<c:if test="${0 eq userVO.auth}">
 								  <input type="hidden" name="section_cd" value="none">
