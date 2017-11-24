@@ -3,7 +3,7 @@ package org.kiosk.domain;
 public class SearchCriteria extends Criteria {
 
 	private String section_cd;
-	private String keyword;
+	private String keyword="";
 
 	public String getSection_cd() {
 		return section_cd;

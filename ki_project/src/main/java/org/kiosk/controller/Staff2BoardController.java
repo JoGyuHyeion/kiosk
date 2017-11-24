@@ -60,9 +60,11 @@ public class Staff2BoardController {
 		pageMaker.setCri(cri);
 
 		if (userVO.getAuth() == 0) {
+			System.out.println("supper");
 			model.addAttribute("list", service.superListSearchCriteria(cri));
 			pageMaker.setTotalCount(service.superListSearchCount(cri));
 		} else if (userVO.getAuth() == 1) {
+			System.out.println("일반"+service.listSearchCount(cri));
 			cri.setSection_cd(userVO.getSection_fullcode());
 			model.addAttribute("list", service.listSearchCriteria(cri));
 			pageMaker.setTotalCount(service.listSearchCount(cri));

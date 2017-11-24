@@ -79,7 +79,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<sql id="search">
 		<if test="section_cd != null">
-			and section_cd = #{section_cd}
 			and usr_nm like CONCAT('%',#{keyword},'%')
 		</if>
 	</sql>

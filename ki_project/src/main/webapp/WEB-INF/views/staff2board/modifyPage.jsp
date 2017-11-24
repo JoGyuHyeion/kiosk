@@ -230,19 +230,34 @@
 			<!-- end col -->
 
 			<script>
-				$(document)
-						.ready(
-								function() {
-									var formObj = $("form[role='form']");
-									console.log(formObj);
+				$(document).ready(function() {
+					
+					var formObj = $("form[role='form']");
+					console.log(formObj);
+					
+				     $("#section_cd").change( function () {
+				    	 
+				    	 var section_cd = $("#section_cd option:selected").val();
+				    	 
+				    	 $.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
+				    		 var str="";
+				    		 console.log(data.length);
+				    		 
+				    		 $(data).each(
+				    				 function(){
+				    					 str+="<option value='"+this.section_cd+"'>"+this.team_nm+"</option>"
+				    					 				    				 				    				 
+				    				 });
+				    		 $("#team_cd").html(str);
+				    	 });
+				    	 
+				     });
 
-									$("#back")
-											.on(
-													"click",
-													function() {
-														self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-													});
-								});
+					$("#back").on("click",function() {
+					self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+					});
+					
+				});
 			</script>
 
 		</div>

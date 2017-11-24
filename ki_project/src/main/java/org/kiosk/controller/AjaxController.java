@@ -1,11 +1,11 @@
 package org.kiosk.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
-import org.kiosk.domain.UserVO;
 import org.kiosk.dto.LoginDTO;
 import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.Com_sectionService;
@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -137,7 +136,7 @@ public class AjaxController {
 
 	@RequestMapping(value = "/staff/getTeams/{section_cd}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<String> getTeamsPOST(@PathVariable("section_cd") String section_cd) {
-		logger.info("json/getTeams/{section_cd}");
+		logger.info("staff/getTeams/{section_cd}");
 		ResponseEntity<String> entity = null;
 
 		try {
@@ -157,7 +156,7 @@ public class AjaxController {
 
 	@RequestMapping(value = "/staff/getTeams/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<String> getTeamsGET(@PathVariable("section_cd") String section_cd) {
-		logger.info("json/getTeams/{section_cd}");
+		logger.info("staff/getTeams/{section_cd}");
 		ResponseEntity<String> entity = null;
 
 		try {
@@ -171,6 +170,20 @@ public class AjaxController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	@RequestMapping(value = "/staffModify/getTeams/{section_cd}", method = RequestMethod.GET)
+	public ResponseEntity<List<Com_teamVO>> getStaffTeamsGET(@PathVariable("section_cd") String section_cd) {
+		logger.info("staff/getTeams/{section_cd}");
+		
+		ResponseEntity<List<Com_teamVO>> entity = null;
+		try {
+			entity = new ResponseEntity<List<Com_teamVO>>(teamService.listAll(section_cd), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
@@ -190,7 +203,7 @@ public class AjaxController {
 			if (userService.dupCheck(dto) == null) {
 				msg = SUCCESS;
 			} else {
-				msg="FASLE";
+				msg = "FASLE";
 			}
 
 			entity = new ResponseEntity<String>(msg, HttpStatus.OK);
