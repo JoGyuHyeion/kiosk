@@ -107,7 +107,6 @@ public class UsbFileController {
 		logger.info("/usbFileboard/usb - POST");
 		logger.info("newUser post ...........");
 		System.out.println(section_fullcode);
-		
 
 		String path = root_path + uploadPath;
 		String toPath = path.substring(0, path.lastIndexOf("\\") + 1);
@@ -117,7 +116,7 @@ public class UsbFileController {
 		System.out.println("toPath : " + toPath);
 		System.out.println("fileName : " + fileName);
 
-		makeJsonTextFile(path,section_fullcode);
+		makeJsonTextFile(path, section_fullcode);
 
 		usbUtils.createZipFile(path, toPath, fileName);
 		rttr.addFlashAttribute("msg", "SUCCESS");
@@ -134,23 +133,21 @@ public class UsbFileController {
 
 		return mav;
 	}
-	
+
 	private void makeJsonTextFile(String path, String section_fullcode) throws Exception {
-		
-		if(section_fullcode.equals("none")) {
-			List<JsonStaffDTO> jsonStaffList = new ArrayList<JsonStaffDTO>();
-			for(Com_teamVO vo :teamService.listAll()) {
-				JsonStaffDTO staffDTO = getJsonStaff(vo.getSection_cd());
-				jsonStaffList.add(staffDTO);
-			}
-			
-			usbUtils.makeJsonTextFile(path, "staff", usbUtils.makeJsonString(getJsonStaff(section_fullcode)));
-			usbUtils.makeJsonTextFile(path, "gallery",usbUtils.makeJsonString(jsonGelleryService.listAll()));
+
+		if (section_fullcode.equals("none")) {
+
+			 usbUtils.makeJsonTextFile(path, "staff",usbUtils.makeJsonString(getAllJsonStaff()));
+
+			usbUtils.makeJsonTextFile(path, "gallery", usbUtils.makeJsonString(jsonGelleryService.listAll()));
 			usbUtils.makeJsonTextFile(path, "notice", usbUtils.makeJsonString(jsonNoticeService.listAll()));
-		}else {
+		} else {
 			usbUtils.makeJsonTextFile(path, "staff", usbUtils.makeJsonString(getJsonStaff(section_fullcode)));
-			usbUtils.makeJsonTextFile(path, "gallery",usbUtils.makeJsonString(jsonGelleryService.list(section_fullcode)));
-			usbUtils.makeJsonTextFile(path, "notice", usbUtils.makeJsonString(jsonNoticeService.list(section_fullcode)));
+			usbUtils.makeJsonTextFile(path, "gallery",
+					usbUtils.makeJsonString(jsonGelleryService.list(section_fullcode)));
+			usbUtils.makeJsonTextFile(path, "notice",
+					usbUtils.makeJsonString(jsonNoticeService.list(section_fullcode)));
 		}
 		usbUtils.makeJsonTextFile(path, "vol_check", usbUtils.makeJsonString(vol_checkService.read(1)));
 		usbUtils.makeJsonTextFile(path, "building", usbUtils.makeJsonString(vol_checkService.read(1)));
@@ -184,6 +181,19 @@ public class UsbFileController {
 			e.printStackTrace();
 		}
 		return jsonStaffDTO;
+	}
+
+	private Map<String, JsonStaffDTO> getAllJsonStaff() {
+		Map<String, JsonStaffDTO> staffList = null;
+		try {
+			staffList = new HashMap<String, JsonStaffDTO>();
+			for (Com_teamVO vo : teamService.listAll()) {
+				staffList.put(vo.getSection_cd(), getJsonStaff(vo.getSection_cd()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	private Map<String, List<Com_sectionVO>> getJsonTeams() {

@@ -140,12 +140,12 @@ public class Com_staff2Test {
 
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
-		cri.setKeyword("");
-		cri.setSection_cd("K010-S010");
+		//cri.setKeyword("");
+		cri.setSection_cd("K020-S170");
 
 		logger.info("=====================================");
 
-		List<Com_staff2VO> list = dao.listSearch(cri);
+		List<Com_staff2VO> list = dao.superListSearch(cri);
 
 		for (Com_staff2VO Com_staff2VO : list) {
 			logger.info(Com_staff2VO.getSt_no() + ":" + Com_staff2VO.getReal_use_dep_nm());

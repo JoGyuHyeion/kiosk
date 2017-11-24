@@ -31,7 +31,7 @@ public class Staff2BoardController {
 
 	@Inject
 	private Com_staff2Service service;
-	
+
 	@Inject
 	private Com_sectionService sectionService;
 
@@ -59,20 +59,21 @@ public class Staff2BoardController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 
-		if (userVO.getAuth() == 0) {
-			System.out.println("supper");
+		if (userVO.getAuth() == 0 && cri == null || userVO.getAuth() == 0 && cri.getSection_cd().equals("none")) {
 			model.addAttribute("list", service.superListSearchCriteria(cri));
 			pageMaker.setTotalCount(service.superListSearchCount(cri));
 		} else if (userVO.getAuth() == 1) {
-			System.out.println("일반"+service.listSearchCount(cri));
 			cri.setSection_cd(userVO.getSection_fullcode());
+			model.addAttribute("list", service.listSearchCriteria(cri));
+			pageMaker.setTotalCount(service.listSearchCount(cri));
+		} else if (userVO.getAuth() == 0 && !cri.getSection_cd().equals("none")) {
 			model.addAttribute("list", service.listSearchCriteria(cri));
 			pageMaker.setTotalCount(service.listSearchCount(cri));
 		}
 
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("sectionService",sectionService.listAll());
+		model.addAttribute("sectionService", sectionService.listAll());
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
@@ -95,7 +96,7 @@ public class Staff2BoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
-		model.addAttribute("sectionService",sectionService.listAll());
+		model.addAttribute("sectionService", sectionService.listAll());
 		logger.info("Login : " + userVO.toString());
 
 	}
@@ -128,7 +129,7 @@ public class Staff2BoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
-		model.addAttribute("sectionService",sectionService.listAll());
+		model.addAttribute("sectionService", sectionService.listAll());
 		logger.info("Login : " + userVO.toString());
 	}
 

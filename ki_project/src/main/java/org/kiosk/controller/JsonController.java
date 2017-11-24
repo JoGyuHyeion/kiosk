@@ -10,6 +10,7 @@ import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Com_iconVO;
 import org.kiosk.domain.Com_sectionVO;
+import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.SampleVO;
 import org.kiosk.domain.Vol_checkVO;
@@ -26,6 +27,7 @@ import org.kiosk.service.Com_buildingService;
 import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_iconService;
 import org.kiosk.service.Com_sectionService;
+import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.service.JsonMateService;
 import org.kiosk.service.JsonTeamsService;
@@ -70,6 +72,8 @@ public class JsonController {
 	private Com_bgImgService bgImgService;
 	@Inject
 	private Vol_checkService vol_checkService;
+	@Inject
+	private Com_teamService teamService;
 
 	@RequestMapping(value = "/getVersion", method = RequestMethod.GET)
 	public ResponseEntity<Vol_checkVO> getVersion() {
@@ -77,6 +81,51 @@ public class JsonController {
 		ResponseEntity<Vol_checkVO> entity = null;
 		try {
 			entity = new ResponseEntity<>(vol_checkService.read(1), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	private JsonStaffDTO getJsonStaff(String section_cd) {
+		int mapIndex = 0;
+		JsonStaffDTO jsonStaffDTO = null;
+		try {
+			jsonStaffDTO = jsonStaffService.read(section_cd);
+			List<TeamsDTO> teamList = jsonTeamsService.list(section_cd);
+
+			for (int index = 0; index < teamList.size(); index++) {
+				List<MateDTO> mateList = jsonMateService.list(teamList.get(index));
+				Map<Integer, MateDTO> mateMap = new HashMap<Integer, MateDTO>();
+				mapIndex = 0;
+				for (MateDTO mateDTO : mateList) {
+					mateMap.put(mapIndex, mateDTO);
+					mapIndex++;
+				}
+				teamList.get(index).setMate(mateMap);
+			}
+			jsonStaffDTO.setTeams(teamList);
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jsonStaffDTO;
+	}
+	
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, JsonStaffDTO>> gettest() {
+		logger.info("json/test");
+		ResponseEntity<Map<String, JsonStaffDTO>> entity = null;
+		Map<String, JsonStaffDTO> staffList = null;
+		try {
+			staffList = new HashMap<String, JsonStaffDTO>();
+			for (Com_sectionVO vo : sectionService.listAll()) {
+				System.out.println(vo.getSection_fullcode());
+				staffList.put(vo.getSection_fullcode(), getJsonStaff(vo.getSection_fullcode()));
+			}
+			entity = new ResponseEntity<>(staffList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
