@@ -23,7 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update com_bgImg set
 		bi_name = #{bi_name},
-		bi_img = #{bi_img},
+		bi_img =
+		#{bi_img},
 		bi_able = #{bi_able},
 		bi_ndt = now()
 		where
@@ -37,13 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listAll" resultType="Com_bgImgVO">
  		<![CDATA[ select * from com_bgImg]]>
 	</select>
-	
+
 	<select id="jsonList" resultType="Com_bgImgVO">
  		<![CDATA[ select * from com_bgImg where bi_able = 1]]>
 	</select>
-	
+
 	<select id="lastInsertID" resultType="int">
-		 SELECT LAST_INSERT_ID(bi_no) from com_bgImg order by bi_no desc limit 1;
+		SELECT
+		LAST_INSERT_ID(bi_no) from com_bgImg order by bi_no desc limit 1;
 	</select>
 
 	<select id="listPage" resultType="Com_bgImgVO">
@@ -77,39 +79,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bi_no > 0 
  		]]>
 	</select>
-	
-	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				and title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'c'.toString()">
-				and content like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'w'.toString()">
-				and writer like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'tc'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%') OR content
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'cw'.toString()">
-				and ( content like CONCAT('%', #{keyword}, '%') OR writer
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'tcw'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%')
-				OR
-				content
-				like CONCAT('%', #{keyword}, '%')
-				OR
-				writer like CONCAT('%',
-				#{keyword}, '%'))
-			</if>
-		</if>
-	</sql>
+
+
 
 	<select id="listSearch" resultType="Com_bgImgVO">
 		<![CDATA[  
@@ -117,8 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 from com_bgImg 
 		 where bi_no > 0 
 		]]>
-		<include refid="search"></include>
-  
+		
 		<![CDATA[    
 		order by bi_no desc
 		limit #{pageStart}, #{perPageNum}
@@ -131,8 +101,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  from com_bgImg 
 		  where bi_no > 0 
 		]]>
-		<include refid="search"></include>
-
 	</select>
-	
+
 </mapper>

@@ -12,10 +12,10 @@
 
 	<form role="form" action="modifyPage" method="post">
 
-		<input type='hidden' name='page' value="${cri.page}"> <input
-			type='hidden' name='perPageNum' value="${cri.perPageNum}"> <input
-			type='hidden' name='searchType' value="${cri.searchType}"> <input
-			type='hidden' name='keyword' value="${cri.keyword}">
+		<input type='hidden' name='page' value="${cri.page}"> 
+		<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+		<input type='hidden' name='section_cd' value="${cri.section_cd}"> 
+		<input type='hidden' name='keyword' value="${cri.keyword}">
 
 	</form>
 	<div class="container">
@@ -43,7 +43,7 @@
 				<div class="card-box">
 					<div class="row">
 						<div class="col-sm-3">
-							<select name="" id="" class="form-control">
+							<select name="section_cd" id="section_cd" class="form-control">
 								<c:forEach items="${sectionService}" var="com_sectionVO">
 									<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
 								</c:forEach>
@@ -53,7 +53,7 @@
 						<div class="col-sm-4">
 							<form role="form">
 								<div class="form-group">
-									<input type="text" id="search-input" class="form-control"
+									<input type="text" id="search-input" class="form-control" name="keyword"
 										placeholder="Please Name">
 
 								</div>
@@ -179,10 +179,10 @@
 
 									self.location = "list"
 											+ '${pageMaker.makeQuery(1)}'
-											+ "&searchType="
+											+ "&section_cd="
 											+ $("select option:selected").val()
 											+ "&keyword="
-											+ $('#keywordInput').val();
+											+ $('#search-input').val();
 
 								});
 
