@@ -9,7 +9,7 @@ import org.kiosk.dto.JsonNoticeDTO;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class JsonNoticeDAOImpl implements JsonNoticeDAO{
+public class JsonNoticeDAOImpl implements JsonNoticeDAO {
 	@Inject
 	private SqlSession session;
 	private static String namespace = "org.kiosk.mapper.jsonNoticeMapper";
@@ -19,23 +19,32 @@ public class JsonNoticeDAOImpl implements JsonNoticeDAO{
 		session.insert(namespace + ".create", dto);
 
 	}
+
 	@Override
 	public JsonNoticeDTO read(Integer no) throws Exception {
 		return session.selectOne(namespace + ".read", no);
 	}
+
 	@Override
 	public void update(JsonNoticeDTO dto) throws Exception {
 		session.update(namespace + ".update", dto);
-		
-		
+
 	}
+
 	@Override
 	public void delete(Integer no) throws Exception {
 		session.delete(namespace + ".delete", no);
-		
+
 	}
+
 	@Override
-	public List<JsonNoticeDTO> listAll(String section_cd) throws Exception {
-		return session.selectList(namespace + ".listAll",section_cd);
+	public List<JsonNoticeDTO> list(String section_cd) throws Exception {
+		return session.selectList(namespace + ".list", section_cd);
 	}
+
+	@Override
+	public List<JsonNoticeDTO> listAll() throws Exception {
+		return session.selectList(namespace + ".listAll");
+	}
+
 }

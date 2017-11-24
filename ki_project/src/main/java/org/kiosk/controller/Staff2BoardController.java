@@ -9,6 +9,7 @@ import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
+import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_staff2Service;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -31,6 +32,9 @@ public class Staff2BoardController {
 	@Inject
 	private Com_staff2Service service;
 
+	@Inject
+	private Com_sectionService sectionService;
+
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
@@ -44,34 +48,57 @@ public class Staff2BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
 			throws Exception {
+
 		logger.info("staff2board/list - GET");
 		logger.info("test-" + cri.toString());
 
-		model.addAttribute("list", service.listSearchCriteria(cri));
-		logger.info("test2" + cri.toString());
-
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		System.out.println("규현쓰 테스트 : " + userVO.getName());
+		logger.info("Login : " + userVO.toString());
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 
-		pageMaker.setTotalCount(service.listSearchCount(cri));
+		if (userVO.getAuth() == 0 && cri == null || userVO.getAuth() == 0 && cri.getSection_cd().equals("none")) {
+			model.addAttribute("list", service.superListSearchCriteria(cri));
+			pageMaker.setTotalCount(service.superListSearchCount(cri));
+		} else if (userVO.getAuth() == 1) {
+			cri.setSection_cd(userVO.getSection_fullcode());
+			model.addAttribute("list", service.listSearchCriteria(cri));
+			pageMaker.setTotalCount(service.listSearchCount(cri));
+		} else if (userVO.getAuth() == 0 && !cri.getSection_cd().equals("none")) {
+			model.addAttribute("list", service.listSearchCriteria(cri));
+			pageMaker.setTotalCount(service.listSearchCount(cri));
+		}
 
+		model.addAttribute("userVO", userVO);
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("sectionService", sectionService.listAll());
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
+	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("staff2board/readPage - GET");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
+
 		model.addAttribute(service.read(st_no));
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("staff2board/register - GET");
 		logger.info("regist get ...........");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		model.addAttribute("sectionService", sectionService.listAll());
+		logger.info("Login : " + userVO.toString());
+
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -94,10 +121,16 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-	public void modifyPagingGET(int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void modifyPagingGET(int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("staff2board/modifyPage - GET");
 		model.addAttribute(service.read(st_no));
 		logger.info(service.read(st_no).toString());
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		model.addAttribute("sectionService", sectionService.listAll());
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)

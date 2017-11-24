@@ -3,10 +3,12 @@ package org.kiosk.controller;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.kiosk.domain.Com_boardVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
+import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_boardService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -38,9 +40,16 @@ public class NoticeController {
 	private String[] dirPath = { "notice" };
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
+
 		logger.info("noticeboard/list - GET");
 		logger.info("test-" + cri.toString());
+
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
@@ -53,17 +62,25 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("bbs_no") int bbs_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
+	public void read(@RequestParam("bbs_no") int bbs_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("noticeboard/readPage - GET");
 		model.addAttribute(service.read(bbs_no));
-
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("noticeboard/register - GET");
 		logger.info("regist get ...........");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -87,9 +104,14 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-	public void modifyPagingGET(int bbs_no, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void modifyPagingGET(int bbs_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("noticeboard/modifyPage - GET");
 		model.addAttribute(service.read(bbs_no));
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)

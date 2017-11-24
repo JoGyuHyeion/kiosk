@@ -9,6 +9,7 @@ import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Com_iconVO;
+import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.SampleVO;
@@ -25,6 +26,7 @@ import org.kiosk.service.JsonStaffService;
 import org.kiosk.service.Com_buildingService;
 import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_iconService;
+import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.service.JsonMateService;
@@ -59,9 +61,9 @@ public class JsonController {
 	@Inject
 	private Com_bureauService bureauService;
 	@Inject
-	private Com_buildingService buildingService;
+	private Com_sectionService sectionService;
 	@Inject
-	private Com_teamService teamService;
+	private Com_buildingService buildingService;
 	@Inject
 	private Com_iconService iconService;
 	@Inject
@@ -70,13 +72,60 @@ public class JsonController {
 	private Com_bgImgService bgImgService;
 	@Inject
 	private Vol_checkService vol_checkService;
-	
+	@Inject
+	private Com_teamService teamService;
+
 	@RequestMapping(value = "/getVersion", method = RequestMethod.GET)
 	public ResponseEntity<Vol_checkVO> getVersion() {
 		logger.info("json/getVersion");
 		ResponseEntity<Vol_checkVO> entity = null;
 		try {
 			entity = new ResponseEntity<>(vol_checkService.read(1), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	private JsonStaffDTO getJsonStaff(String section_cd) {
+		int mapIndex = 0;
+		JsonStaffDTO jsonStaffDTO = null;
+		try {
+			jsonStaffDTO = jsonStaffService.read(section_cd);
+			List<TeamsDTO> teamList = jsonTeamsService.list(section_cd);
+
+			for (int index = 0; index < teamList.size(); index++) {
+				List<MateDTO> mateList = jsonMateService.list(teamList.get(index));
+				Map<Integer, MateDTO> mateMap = new HashMap<Integer, MateDTO>();
+				mapIndex = 0;
+				for (MateDTO mateDTO : mateList) {
+					mateMap.put(mapIndex, mateDTO);
+					mapIndex++;
+				}
+				teamList.get(index).setMate(mateMap);
+			}
+			jsonStaffDTO.setTeams(teamList);
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jsonStaffDTO;
+	}
+	
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, JsonStaffDTO>> gettest() {
+		logger.info("json/test");
+		ResponseEntity<Map<String, JsonStaffDTO>> entity = null;
+		Map<String, JsonStaffDTO> staffList = null;
+		try {
+			staffList = new HashMap<String, JsonStaffDTO>();
+			for (Com_sectionVO vo : sectionService.listAll()) {
+				System.out.println(vo.getSection_fullcode());
+				staffList.put(vo.getSection_fullcode(), getJsonStaff(vo.getSection_fullcode()));
+			}
+			entity = new ResponseEntity<>(staffList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -117,7 +166,7 @@ public class JsonController {
 		logger.info("json/getGallery/{section_cd}");
 		ResponseEntity<List<JsonGelleryDTO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonGelleryService.listAll(section_cd), HttpStatus.OK);
+			entity = new ResponseEntity<>(jsonGelleryService.list(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -130,7 +179,7 @@ public class JsonController {
 		logger.info("json/getNotice/{section_cd}");
 		ResponseEntity<List<JsonNoticeDTO>> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonNoticeService.listAll(section_cd), HttpStatus.OK);
+			entity = new ResponseEntity<>(jsonNoticeService.list(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -159,16 +208,16 @@ public class JsonController {
 	}
 
 	@RequestMapping(value = "/getTeams", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, List<Com_teamVO>>> getTeams() {
+	public ResponseEntity<Map<String, List<Com_sectionVO>>> getTeams() {
 		logger.info("json/getTeams");
-		ResponseEntity<Map<String, List<Com_teamVO>>> entity = null;
-		Map<String, List<Com_teamVO>> temaList = null;
+		ResponseEntity<Map<String, List<Com_sectionVO>>> entity = null;
+		Map<String, List<Com_sectionVO>> sectionList = null;
 		try {
-			temaList = new HashMap<String, List<Com_teamVO>>();
+			sectionList = new HashMap<String, List<Com_sectionVO>>();
 			for (Com_bureauVO vo : bureauService.listAll()) {
-				temaList.put(vo.getBureau_name(), teamService.jsonList(vo.getBureau_cd()));
+				sectionList.put(vo.getBureau_name(), sectionService.listAll());
 			}
-			entity = new ResponseEntity<>(temaList, HttpStatus.OK);
+			entity = new ResponseEntity<>(sectionList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -214,7 +263,6 @@ public class JsonController {
 		}
 		return entity;
 	}
-
 
 	@RequestMapping("/getErrorAuth")
 	public ResponseEntity<Void> getListAuth() {

@@ -13,8 +13,8 @@ public class Com_teamServiceImpl implements Com_teamService {
 	private Com_teamDAO dao;
 	@Inject
 	private Vol_checkService volService;
-	
-	private static final String VERSION="team";
+
+	private static final String VERSION = "team";
 
 	@Override
 	public void regist(Com_teamVO vo) throws Exception {
@@ -37,6 +37,11 @@ public class Com_teamServiceImpl implements Com_teamService {
 	public void remove(Com_teamVO vo) throws Exception {
 		dao.delete(vo);
 		volService.update(VERSION);
+	}
+
+	@Override
+	public List<Com_teamVO> list(String section_cd) throws Exception {
+		return dao.list(section_cd);
 	}
 
 	@Override

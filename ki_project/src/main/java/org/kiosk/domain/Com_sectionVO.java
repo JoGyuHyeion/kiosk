@@ -1,16 +1,27 @@
 package org.kiosk.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Com_sectionVO {
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String bureau_cd;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String section_cd;
 	private String section_name;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String section_type;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int section_sort;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String section_ip;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String section_id;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String section_pass;
 	private String section_fullcode;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String section_fullpath;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String section_use;
 
 	public String getBureau_cd() {

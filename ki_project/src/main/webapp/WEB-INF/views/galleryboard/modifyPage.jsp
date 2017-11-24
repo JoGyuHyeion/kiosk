@@ -65,7 +65,7 @@
 											<input type="button" value="파일"
 												class="file_input_button btn btn-primary" /> <input
 												type="file" class="file_input_hidden" data-icon='false'
-												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												onchange="javascript: var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
 												accept="image/*" name="imgFile" id="img_file" />
 										</div>
 										<input type="hidden" name="img_filenm" id="img_filenm"
@@ -103,10 +103,8 @@
 								});
 
 			});
-			var input = $
-			{
-				com_imageVO.img_gallery
-			};
+	alert("${com_imageVO.img_gallery}");
+			var input = ${com_imageVO.img_gallery};
 			if (input == 1) { //값 비교
 				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
 			}

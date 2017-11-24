@@ -13,6 +13,8 @@ public interface Com_teamDAO {
 
 	public void delete(Com_teamVO vo) throws Exception;
 
+	public List<Com_teamVO> list(String section_cd) throws Exception;
+	
 	public List<Com_teamVO> listAll() throws Exception;
 	
 	public List<Com_teamVO> jsonList(String bureau_cd) throws Exception;

@@ -37,8 +37,12 @@ public class JsonGelleryDAOImpl implements JsonGelleryDAO {
 		
 	}
 	@Override
-	public List<JsonGelleryDTO> listAll(String section_cd) throws Exception {
+	public List<JsonGelleryDTO> list(String section_cd) throws Exception {
 		return session.selectList(namespace + ".list",section_cd);
+	}
+	@Override
+	public List<JsonGelleryDTO> listAll() throws Exception {
+		return session.selectList(namespace + ".listAll");
 	}
 
 }

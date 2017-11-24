@@ -119,7 +119,9 @@
 										<div class="col-md-7">
 											<select name="section_cd" id="section_cd"
 												class="form-control">
-												<option value="">전체관리자</option>
+												<c:forEach items="${sectionService}" var="com_sectionVO">
+													<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>

@@ -16,4 +16,6 @@ public interface UserDAO {
 	public void newUser(UserVO vo) throws Exception;
 
 	public void changePassword(LoginDTO dto) throws Exception;
+	
+	public UserVO dupCheck(LoginDTO dto) throws Exception;
 }

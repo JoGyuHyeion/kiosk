@@ -62,12 +62,13 @@
 														<c:set var="team_use" value="${com_teamVO.team_use}" />
 														<td><div style="padding: 5px">
 																<input type="checkbox" name="team_use" switch="none"
-																	id="team_use" value="${com_teamVO.team_use}" /><label
+																	id="team_use" value="${com_teamVO.team_use}" 
+																	<c:if test = "${com_teamVO.team_use eq '1'}">checked</c:if>
+																	/><label
 																	for="team_use" data-on-label="On" data-off-label="Off"></label>
 															</div></td>
 														<td><a href="#" class="table-action-btn h2"><i
 																class="mdi mdi-close-box-outline text-danger"></i></a></td>
-														<td>${com_teamVO.team_use}</td>
 													</tr>
 
 												</c:forEach>

@@ -126,8 +126,8 @@ public class Com_iconTest {
 
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
-		cri.setKeyword("�?");
-		cri.setSearchType("t");
+		cri.setKeyword(" ");
+		cri.setSection_cd("K010-S010");
 
 		logger.info("=====================================");
 

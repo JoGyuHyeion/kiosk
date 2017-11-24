@@ -129,7 +129,9 @@
 										<div class="col-md-7">
 											<select name="section_cd" id="section_cd"
 												class="form-control" value="${com_staff2VO.section_cd}">
-												<option value="">전체관리자</option>
+												<c:forEach items="${sectionService}" var="com_sectionVO">
+													<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>
@@ -228,19 +230,34 @@
 			<!-- end col -->
 
 			<script>
-				$(document)
-						.ready(
-								function() {
-									var formObj = $("form[role='form']");
-									console.log(formObj);
+				$(document).ready(function() {
+					
+					var formObj = $("form[role='form']");
+					console.log(formObj);
+					
+				     $("#section_cd").change( function () {
+				    	 
+				    	 var section_cd = $("#section_cd option:selected").val();
+				    	 
+				    	 $.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
+				    		 var str="";
+				    		 console.log(data.length);
+				    		 
+				    		 $(data).each(
+				    				 function(){
+				    					 str+="<option value='"+this.section_cd+"'>"+this.team_nm+"</option>"
+				    					 				    				 				    				 
+				    				 });
+				    		 $("#team_cd").html(str);
+				    	 });
+				    	 
+				     });
 
-									$("#back")
-											.on(
-													"click",
-													function() {
-														self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-													});
-								});
+					$("#back").on("click",function() {
+					self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+					});
+					
+				});
 			</script>
 
 		</div>

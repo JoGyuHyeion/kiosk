@@ -12,10 +12,10 @@
 
 	<form role="form" action="modifyPage" method="post">
 
-		<input type='hidden' name='page' value="${cri.page}"> <input
-			type='hidden' name='perPageNum' value="${cri.perPageNum}"> <input
-			type='hidden' name='searchType' value="${cri.searchType}"> <input
-			type='hidden' name='keyword' value="${cri.keyword}">
+		<input type='hidden' name='page' value="${cri.page}"> 
+		<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+		<input type='hidden' name='section_cd' value="${cri.section_cd}"> 
+		<input type='hidden' name='keyword' value="${cri.keyword}">
 
 	</form>
 	<div class="container">
@@ -42,20 +42,21 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
+					
+					<c:if test="${0 eq userVO.auth}">
 						<div class="col-sm-3">
-							<select name="" id="" class="form-control">
-								<option value="">전체관리자</option>
+							<select name="section_cd" id="section_cd" class="form-control">
+								<c:forEach items="${sectionService}" var="com_sectionVO">
+									<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+								</c:forEach>
 							</select>
 						</div>
-						<div class="col-sm-3">
-							<select name="" id="" class="form-control">
-								<option value="">임원</option>
-							</select>
-						</div>
+					</c:if>
+					
 						<div class="col-sm-4">
 							<form role="form">
 								<div class="form-group">
-									<input type="text" id="search-input" class="form-control"
+									<input type="text" id="search-input" class="form-control" name="keyword"
 										placeholder="Please Name">
 
 								</div>
@@ -135,8 +136,6 @@
 				<div class="text-right">
 					<ul class="pagination pagination-split m-t-0">
 
-						<li class="disabled"><a href="#"><i
-								class="fa fa-angle-left"></i></a></li>
 						<c:if test="${pageMaker.prev}">
 							<li><a
 								href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
@@ -154,7 +153,6 @@
 							<li><a
 								href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 						</c:if>
-						<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 
 					</ul>
 				</div>
@@ -184,10 +182,10 @@
 
 									self.location = "list"
 											+ '${pageMaker.makeQuery(1)}'
-											+ "&searchType="
+											+ "&section_cd="
 											+ $("select option:selected").val()
 											+ "&keyword="
-											+ $('#keywordInput').val();
+											+ $('#search-input').val();
 
 								});
 

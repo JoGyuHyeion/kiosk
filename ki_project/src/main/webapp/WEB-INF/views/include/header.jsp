@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -72,7 +74,7 @@
 					<!--Zircos-->
 					<!--</a>-->
 					<!-- Image Logo -->
-					<a href="index.html" class="logo"> <img
+					<a href="list" class="logo"> <img
 						src="/resources/assets/logo(clean).png" alt="" height="30">
 					</a>
 
@@ -86,7 +88,9 @@
 
 
 
-						<button type="button" class="btn btn-danger waves-effect w-md waves-light m-b-5" onclick="
+						<button type="button"
+							class="btn btn-danger waves-effect w-md waves-light m-b-5"
+							onclick="
 						location.href='/logout'">
 							<i class="ti-power-off m-r-5"></i> Logout
 						</button>
@@ -121,10 +125,14 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
+									<c:if test="${0 eq userVO.auth}">
 										<li><a href="/myinfoboard/newUser">계정생성(Super)</a></li>
-										<li><a href="/myinfoboard/passwd">비밀번호변경</a></li>
 										<li><a href="/myinfoboard/section?bcd=k000">국관리(Super)</a></li>
-										<li><a href="/myinfoboard/team">과관리</a></li>
+									</c:if>
+										<li><a href="/myinfoboard/passwd">비밀번호변경</a></li>
+									<c:if test="${1 eq userVO.auth}">
+										<li><a href="/myinfoboard/team">팀관리</a></li>
+									</c:if>
 									</ul>
 								</li>
 							</ul></li>
@@ -178,10 +186,12 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-										<li><a href="/iconboard/list">Icon</a></li>
-										<li><a href="/backGroundboard/list?page=1&perPageNum=10">바탕화면</a></li>
-										<li><a href="/buildingboard/list?page=1&perPageNum=10">Building</a></li>
-										<li><a href="/backGroundboard/list">USB</a></li>
+									<c:if test="${0 eq userVO.auth}">
+										<li><a href="/iconboard/list">Icon(Super)</a></li>
+										<li><a href="/backGroundboard/list?page=1&perPageNum=10">바탕화면(Super)</a></li>
+										<li><a href="/buildingboard/list?page=1&perPageNum=10">Building(Super)</a></li>
+									</c:if>
+										<li><a href="/usbFileboard/usb">USB</a></li>
 									</ul>
 								</li>
 							</ul></li>

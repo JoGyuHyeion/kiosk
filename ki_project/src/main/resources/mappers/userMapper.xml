@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.UserMapper">
 
 	<select id="login" resultType="UserVO">
-		select id, name, password from user 
+		select id, name, password, auth, sessionkey, sessionlimit, section_fullcode 
+		from user 
 		where id = #{id} 
 		and password = #{password}
 		and section_fullcode = #{section_fullcode}
@@ -18,7 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<select id="checkUserWithSessionKey" resultType="UserVO">
-		select * from user 
+		select id, name, password, auth, sessionkey, sessionlimit, section_fullcode  
+		from user 
 		where sessionKey = #{value} 
 		and sessionlimit > now()
 	</select>
@@ -36,6 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and password = #{oldPassword}
 		and section_fullcode = #{section_fullcode}
 	</update>
+	
+	<select id="dupCheck" resultType="UserVO">
+		select id, name, password, auth, sessionkey, sessionlimit, section_fullcode 
+		from user 
+		where id = #{id} 
+	</select>
 	
 </mapper>
 

@@ -37,7 +37,7 @@
 
 
 					<div class="row">
-						<form action="modifypage" method="post">
+						<form action="modifypage" method="post" role="form">
 							<input type='hidden' name='page' value="${cri.page}"> <input
 								type='hidden' name='perPageNum' value="${cri.perPageNum}">
 							<input type='hidden' name='searchType' value="${cri.searchType}">
@@ -196,17 +196,18 @@
 									</script>
 
 								</div>
+								<div class="form-group" style="text-align: center">
+									<button type="submit"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5"
+										id="change">수정</button>
+									<button type="submit"
+										class="btn btn-warning waves-effect w-md waves-light m-b-5"
+										id="back">돌아가기</button>
+								</div>
 							</div>
 						</form>
 					</div>
-					<div class="form-group" style="text-align: center">
-						<button type="submit"
-							class="btn btn-primary waves-effect w-md waves-light m-b-5"
-							id="change">수정</button>
-						<button type="submit"
-							class="btn btn-warning waves-effect w-md waves-light m-b-5"
-							id="back">돌아가기</button>
-					</div>
+
 
 				</div>
 			</div>
@@ -223,19 +224,22 @@
 											.on(
 													"click",
 													function() {
-														self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+														self.location = "/staffboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
 																+ "&searchType=${cri.searchType}&keyword=${cri.keyword}";
 													});
 
-									$("#back").on("click", function() {
-										formObj.submit();
-									});
+									$("#back")
+											.on(
+													"click",
+													function() {
+														self.location = "/staffboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+													});
 								});
 			</script>
 
 		</div>
+	</div>
 </section>
 <!-- /.content -->
-</div>
 <!-- /.content-wrapper -->
 <%@include file="../include/footer.jsp"%>

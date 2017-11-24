@@ -16,7 +16,7 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 	@Inject
 	private Vol_checkService volService;
 
-	private static final String VERSION="staff";
+	private static final String VERSION = "staff";
 
 	@Override
 	public void regist(Com_staff2VO vo) throws Exception {
@@ -67,8 +67,18 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 	}
 
 	@Override
+	public List<Com_staff2VO> superListSearchCriteria(SearchCriteria cri) throws Exception {
+		return dao.superListSearch(cri);
+	}
+
+	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return dao.listSearchCount(cri);
+	}
+
+	@Override
+	public int superListSearchCount(SearchCriteria cri) throws Exception {
+		return dao.superListSearchCount(cri);
 	}
 
 }

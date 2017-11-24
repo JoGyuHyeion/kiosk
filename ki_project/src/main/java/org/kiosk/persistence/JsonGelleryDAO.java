@@ -14,5 +14,7 @@ public interface JsonGelleryDAO {
 
 	  public void delete(Integer no) throws Exception;
 	  
-	  public List<JsonGelleryDTO> listAll(String section_cd) throws Exception;
+	  public List<JsonGelleryDTO> list(String section_cd) throws Exception;
+	  
+	  public List<JsonGelleryDTO> listAll() throws Exception;
 }

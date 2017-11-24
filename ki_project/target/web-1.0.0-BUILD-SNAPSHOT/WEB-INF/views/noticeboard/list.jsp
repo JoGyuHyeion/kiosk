@@ -14,15 +14,9 @@
 
 		<input type='hidden' name='page' value="${cri.page}"> <input
 			type='hidden' name='perPageNum' value="${cri.perPageNum}"> <input
-			type='hidden' name='searchType' value="${cri.searchType}"> <input
 			type='hidden' name='keyword' value="${cri.keyword}">
-
 	</form>
 	<div class="container">
-
-
-
-
 		<!-- Page-Title -->
 		<div class="row">
 			<div class="col-sm-12">
@@ -46,19 +40,21 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<div class="col-sm-4">
-							<form role="form">
+						<form role="form" method="get">
+							<div class="col-sm-4">
 								<div class="form-group">
 									<input type="text" id="search-input" class="form-control"
-										placeholder="Please Name">
-
+										name="keyword" placeholder="Please Name">
 								</div>
-							</form>
-						</div>
+							</div>
+							<div class="col-sm-1">
+								<button type="submit" class="btn btn-danger">
+									<i class="fa fa-search" id="serch"> 찾기</i>
+								</button>
+							</div>
+						</form>
 						<div class="col-sm-1">
-							<button type="submit" class="btn btn-danger">
-								<i class="fa fa-search"> 찾기</i>
-							</button>
+							<a href="/noticeboard/register" class="btn btn-primary ">작성</a>
 						</div>
 					</div>
 
@@ -72,28 +68,36 @@
 									<th>제목</th>
 									<th>노출기간</th>
 									<th>작성시간</th>
-
+									<th>삭제</th>
 								</tr>
 							</thead>
 
 							<tbody>
 								<c:forEach items="${list}" var="com_boardVO">
 
-									<tr class="active">
+									<tr class="">
 										<td><a
 											href="/noticeboard/modifyPage${pageMaker.makeSearch(param.page)}&bbs_no=${com_boardVO.bbs_no}"
-											class="table-action-btn h2"><i
-												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
+											class="btn btn-default"><i
+												class="glyphicon glyphicon-glass glyphicon-edit"></i></a></td>
 
 										<td>${com_boardVO.bbs_no}</td>
 
 										<td>${com_boardVO.section_cd}</td>
 
-										<td><a href="/noticeboard/readPage?bbs_no=${com_boardVO.bbs_no}">${com_boardVO.bbs_title}</a></td>
+										<td><a
+											href="/noticeboard/readPage?bbs_no=${com_boardVO.bbs_no}">${com_boardVO.bbs_title}</a></td>
 
 										<td>${com_boardVO.bbs_exp_sdt}~${com_boardVO.bbs_exp_edt}</td>
 
 										<td>${com_boardVO.bbs_ndt}</td>
+										<td><form action="/noticeboard/removePage" method="post">
+												<input type="hidden" name="bbs_no"
+													value="${com_boardVO.bbs_no}">
+												<button type="submit" class="btn btn-default">
+													<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
+												</button>
+											</form></td>
 
 									</tr>
 								</c:forEach>
@@ -156,18 +160,10 @@
 
 									self.location = "list"
 											+ '${pageMaker.makeQuery(1)}'
-											+ "&searchType="
-											+ $("select option:selected").val()
 											+ "&keyword="
 											+ $('#keywordInput').val();
 
 								});
-
-						$('#newBtn').on("click", function(evt) {
-
-							self.location = "register";
-
-						});
 
 					});
 		</script>

@@ -40,6 +40,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		]]>
 	</select>
 	
+	<select id="list" resultType="Com_teamVO">
+ 		<![CDATA[
+ 		select * 
+ 		from com_team
+ 		where section_cd =#{section_cd}
+ 		order by section_cd asc
+ 		]]>
+	</select>
+	
 	<select id="jsonList" resultType="Com_teamVO">
  		<![CDATA[
  		select * 

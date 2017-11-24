@@ -33,6 +33,7 @@
 						<div class="col-md-7">
 							<form method="post" role="form" enctype="multipart/form-data"
 								onsubmit="return formCheck()">
+								<input type='hidden' name='section_cd' value="${userVO.section_fullcode}"> 
 								<div class="form-horizontal" role="form">
 									<!-- vi_name-->
 									<div class="form-group">

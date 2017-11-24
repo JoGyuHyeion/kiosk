@@ -124,8 +124,8 @@ public class Com_videoTest {
 
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
-		cri.setKeyword("홍");
-		cri.setSearchType("t");
+		cri.setKeyword(" ");
+		cri.setSection_cd("K010-S010");
 
 		logger.info("=====================================");
 

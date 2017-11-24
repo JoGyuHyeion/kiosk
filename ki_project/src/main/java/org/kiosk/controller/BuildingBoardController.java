@@ -3,10 +3,12 @@ package org.kiosk.controller;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
+import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_buildingService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -40,15 +42,20 @@ public class BuildingBoardController {
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("buildingboard/list - GET");
 		logger.info(cri.toString());
+
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
@@ -56,16 +63,25 @@ public class BuildingBoardController {
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
-	public void read(@RequestParam("bu_no") int bu_no, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
+	public void read(@RequestParam("bu_no") int bu_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
 		logger.info("buildingboard/readPage - GET");
 		model.addAttribute(service.read(bu_no));
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri) throws Exception {
+	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 		logger.info("buildingboard/register - GET");
 		logger.info("regist get ...........");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -101,7 +117,6 @@ public class BuildingBoardController {
 		}
 		board.setBu_img(img_filenm);
 
-
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());
@@ -119,12 +134,11 @@ public class BuildingBoardController {
 			HttpServletRequest request) throws Exception {
 		logger.info("buildingboard/removePage - POST");
 
-		 String root_path = request.getSession().getServletContext().getRealPath("/");
+		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		 System.out.println("경로 : " + root_path + uploadPath);
-		 uploadFileUtils.deleteFile(root_path + uploadPath,
-		 service.read(bu_no).getBu_img());
-		 service.remove(bu_no);
+		System.out.println("경로 : " + root_path + uploadPath);
+		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(bu_no).getBu_img());
+		service.remove(bu_no);
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
