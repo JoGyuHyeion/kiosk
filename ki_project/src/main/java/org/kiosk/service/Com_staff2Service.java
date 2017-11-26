@@ -23,13 +23,9 @@ public interface Com_staff2Service {
 	public List<Com_staff2VO> listCriteria(Criteria cri) throws Exception;
 
 	public int listCountCriteria(Criteria cri) throws Exception;
-	
+
 	public List<Com_staff2VO> listSearchCriteria(SearchCriteria cri) throws Exception;
 
-	public List<Com_staff2VO> superListSearchCriteria(SearchCriteria cri) throws Exception;
-	
 	public int listSearchCount(SearchCriteria cri) throws Exception;
-	
-	public int superListSearchCount(SearchCriteria cri) throws Exception;
 
 }
