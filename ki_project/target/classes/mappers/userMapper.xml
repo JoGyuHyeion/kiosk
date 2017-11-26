@@ -36,7 +36,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update user set password = #{password}
 		where id = #{id} 
 		and password = #{oldPassword}
-		and section_fullcode = #{section_fullcode}
 	</update>
 	
 	<select id="dupCheck" resultType="UserVO">

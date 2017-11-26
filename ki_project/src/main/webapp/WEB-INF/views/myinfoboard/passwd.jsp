@@ -85,7 +85,10 @@
 				</div>
 			</div>
 			<!-- end col -->
-
+			
+			<script>
+			//cur_section_pass
+			</script>
 
 		</div>
 		<!-- end row -->
