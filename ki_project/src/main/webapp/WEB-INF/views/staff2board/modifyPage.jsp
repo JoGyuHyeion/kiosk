@@ -34,8 +34,6 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-
-
 					<div class="row">
 						<form method="post" role="form" enctype="multipart/form-data">
 
@@ -110,14 +108,6 @@
 										<input type="hidden" name="img_filenm" id="img_filenm"
 											value="${com_staff2VO.img_filenm}">
 									</div>
-									<!-- <div class="form-group">
-										<label class="col-md-2 control-label">사진</label>
-										<div class="col-md-10">
-											<input type="file" class="form-control" id="img_filenm"
-												name="img_filenm"> <small>사진 최소 사이즈는 가로320px
-												세로400px입니다.</small>
-										</div>
-									</div> -->
 								</div>
 							</div>
 
@@ -181,39 +171,7 @@
 										</div>
 										<!-- end col -->
 									</div>
-
-									<!--display, status javascript 코드 view 표시  -->
-									<script>
-										var display = '<c:out value="${com_staff2VO.usr_work_state_code_nm}"/>';
-										var status = '<c:out value="${com_staff2VO.st_status}"/>';
-										alert("Display, Status 확인 \n"
-												+ "표시여부: " + display
-												+ "\n근무 상태: " + status);
-										if (display == 1) {
-
-											document
-													.getElementById('st_display').checked = true;
-										} else {
-										}
-
-										if (status == 1) {
-											document
-													.getElementById('st_status1').checked = true;
-
-										} else if (status == 2) {
-											document
-													.getElementById('st_status2').checked = true;
-										} else if (status == 3) {
-											document
-													.getElementById('st_status3').checked = true;
-										} else if (status == 4) {
-											document
-													.getElementById('st_status4').checked = true;
-										}
-									</script>
-
 								</div>
-
 							</div>
 							<div class="form-group" style="text-align: center">
 								<button type="submit"
@@ -228,38 +186,47 @@
 				</div>
 			</div>
 			<!-- end col -->
-
 			<script>
-				$(document).ready(function() {
-					
-					var formObj = $("form[role='form']");
-					console.log(formObj);
-					
-				     $("#section_cd").change( function () {
+		$(document)
+				.ready(
+						function() {
+							var formObj = $("form[role='form']");
+							console.log(formObj);
+							$("#back")
+									.on(
+											"click",
+											function() {
+												self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+										});
+ 							
+							var status = ${com_staff2VO.st_status};
+							alert("Display, Status 확인 \n"
+									+ "표시여부: " + usr_work_state_code_nm
+									+ "\n근무 상태: " + status);
+							$('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
+							/* var usr_work_state_code_nm = ${com_staff2VO.usr_work_state_code_nm}; */
+							/* 							if(usr_work_state_code_nm==1){
+							$('input:checkbox[id="usr_work_state_code_nm"]').attr("checked",true);
+							} */
+							$("#section_cd").change( function () {
 				    	 
-				    	 var section_cd = $("#section_cd option:selected").val();
+				    			 var section_cd = $("#section_cd option:selected").val();
 				    	 
-				    	 $.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
-				    		 var str="";
-				    		 console.log(data.length);
+				    			 $.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
+				    			 var str="";
+				    			 console.log(data.length);
 				    		 
-				    		 $(data).each(
+				    			 $(data).each(
 				    				 function(){
 				    					 str+="<option value='"+this.section_cd+"'>"+this.team_nm+"</option>"
 				    					 				    				 				    				 
-				    				 });
-				    		 $("#team_cd").html(str);
-				    	 });
+				   					 });
+				    				 $("#team_cd").html(str);
+					    	 	});
 				    	 
-				     });
-
-					$("#back").on("click",function() {
-					self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+				   			});
 					});
-					
-				});
 			</script>
-
 		</div>
 	</div>
 </section>
