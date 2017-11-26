@@ -34,6 +34,9 @@ public class Staff2BoardController {
 
 	@Inject
 	private Com_sectionService sectionService;
+	
+	@Resource(name = "PageMaker")
+	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -56,7 +59,6 @@ public class Staff2BoardController {
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		logger.info("Login : " + userVO.toString());
 
-		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 
 		if (userVO.getAuth() == 1 || cri.getSection_cd()==null) {

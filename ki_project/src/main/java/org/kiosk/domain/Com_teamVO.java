@@ -1,7 +1,9 @@
 package org.kiosk.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+@Component("Com_teamVO")
 public class Com_teamVO {
 
 	private String section_cd;

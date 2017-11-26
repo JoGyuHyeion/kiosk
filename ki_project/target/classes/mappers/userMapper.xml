@@ -33,9 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="changePassword">
-		update user set password = #{password}
+		update user set password = #{newPassword}
 		where id = #{id} 
-		and password = #{oldPassword}
+		and password = #{password}
 	</update>
 	
 	<select id="dupCheck" resultType="UserVO">

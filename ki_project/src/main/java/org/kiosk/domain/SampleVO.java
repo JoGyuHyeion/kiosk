@@ -1,5 +1,8 @@
 package org.kiosk.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component("SampleVO")
 public class SampleVO {
 
 	private Integer mno;

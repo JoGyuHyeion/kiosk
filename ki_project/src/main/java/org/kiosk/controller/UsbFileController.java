@@ -1,33 +1,18 @@
 package org.kiosk.controller;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.kiosk.domain.Com_bureauVO;
-import org.kiosk.domain.Com_sectionVO;
-import org.kiosk.domain.Com_teamVO;
-import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
-import org.kiosk.dto.JsonStaffDTO;
-import org.kiosk.dto.MateDTO;
-import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.Com_bgImgService;
-import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_iconService;
 import org.kiosk.service.Com_sectionService;
-import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
 import org.kiosk.service.JsonGelleryService;
-import org.kiosk.service.JsonMateService;
 import org.kiosk.service.JsonNoticeService;
 import org.kiosk.service.JsonStaffService;
-import org.kiosk.service.JsonTeamsService;
 import org.kiosk.service.Vol_checkService;
 import org.kiosk.util.UsbUtils;
 import org.slf4j.Logger;
@@ -50,10 +35,6 @@ public class UsbFileController {
 
 	@Inject
 	private Com_sectionService sectionService;
-
-	@Inject
-	private Com_bureauService bureauService;
-
 	@Inject
 	private JsonGelleryService jsonGelleryService;
 	@Inject
@@ -61,13 +42,7 @@ public class UsbFileController {
 	@Inject
 	private JsonStaffService jsonStaffService;
 	@Inject
-	private JsonMateService jsonMateService;
-	@Inject
-	private JsonTeamsService jsonTeamsService;
-	@Inject
 	private Com_iconService iconService;
-	@Inject
-	private Com_teamService teamService;
 	@Inject
 	private Com_videoService videoService;
 	@Inject
@@ -85,7 +60,7 @@ public class UsbFileController {
 	private View downloadView;
 
 	@RequestMapping(value = "/usb", method = RequestMethod.GET)
-	public void usbGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request) {
+	public void usbGET(Model model, HttpServletRequest request) {
 		logger.info("usbFileboard/usb - GET ");
 
 		try {
@@ -138,12 +113,12 @@ public class UsbFileController {
 
 		if (section_fullcode.equals("none")) {
 
-			 usbUtils.makeJsonTextFile(path, "staff",usbUtils.makeJsonString(getAllJsonStaff()));
+			 usbUtils.makeJsonTextFile(path, "staff",usbUtils.makeJsonString(jsonStaffService.getAllJsonStaff()));
 
 			usbUtils.makeJsonTextFile(path, "gallery", usbUtils.makeJsonString(jsonGelleryService.listAll()));
 			usbUtils.makeJsonTextFile(path, "notice", usbUtils.makeJsonString(jsonNoticeService.listAll()));
 		} else {
-			usbUtils.makeJsonTextFile(path, "staff", usbUtils.makeJsonString(getJsonStaff(section_fullcode)));
+			usbUtils.makeJsonTextFile(path, "staff", usbUtils.makeJsonString(jsonStaffService.getJsonStaff(section_fullcode)));
 			usbUtils.makeJsonTextFile(path, "gallery",
 					usbUtils.makeJsonString(jsonGelleryService.list(section_fullcode)));
 			usbUtils.makeJsonTextFile(path, "notice",
@@ -151,63 +126,11 @@ public class UsbFileController {
 		}
 		usbUtils.makeJsonTextFile(path, "vol_check", usbUtils.makeJsonString(vol_checkService.read(1)));
 		usbUtils.makeJsonTextFile(path, "building", usbUtils.makeJsonString(vol_checkService.read(1)));
-		usbUtils.makeJsonTextFile(path, "teams", usbUtils.makeJsonString(getJsonTeams()));
+		usbUtils.makeJsonTextFile(path, "teams", usbUtils.makeJsonString(sectionService.getJsonSection()));
 		usbUtils.makeJsonTextFile(path, "icon", usbUtils.makeJsonString(iconService.listAll()));
 		usbUtils.makeJsonTextFile(path, "video", usbUtils.makeJsonString(videoService.listAll()));
 		usbUtils.makeJsonTextFile(path, "background", usbUtils.makeJsonString(bgImgService.jsonList()));
 	}
 
-	private JsonStaffDTO getJsonStaff(String section_cd) {
-		int mapIndex = 0;
-		JsonStaffDTO jsonStaffDTO = null;
-		try {
-			jsonStaffDTO = jsonStaffService.read(section_cd);
-			List<TeamsDTO> teamList = jsonTeamsService.list(section_cd);
-
-			for (int index = 0; index < teamList.size(); index++) {
-				List<MateDTO> mateList = jsonMateService.list(teamList.get(index));
-				Map<Integer, MateDTO> mateMap = new HashMap<Integer, MateDTO>();
-				mapIndex = 0;
-				for (MateDTO mateDTO : mateList) {
-					mateMap.put(mapIndex, mateDTO);
-					mapIndex++;
-				}
-				teamList.get(index).setMate(mateMap);
-			}
-			jsonStaffDTO.setTeams(teamList);
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return jsonStaffDTO;
-	}
-
-	private Map<String, JsonStaffDTO> getAllJsonStaff() {
-		Map<String, JsonStaffDTO> staffList = null;
-		try {
-			staffList = new HashMap<String, JsonStaffDTO>();
-			for (Com_teamVO vo : teamService.listAll()) {
-				staffList.put(vo.getSection_cd(), getJsonStaff(vo.getSection_cd()));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	private Map<String, List<Com_sectionVO>> getJsonTeams() {
-
-		Map<String, List<Com_sectionVO>> sectionList = null;
-		try {
-			sectionList = new HashMap<String, List<Com_sectionVO>>();
-			for (Com_bureauVO vo : bureauService.listAll()) {
-				sectionList.put(vo.getBureau_name(), sectionService.listAll());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return sectionList;
-	}
 
 }

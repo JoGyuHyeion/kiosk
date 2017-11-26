@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="Vol_checkVO">
 		select
-		vol_no,session,bgImg,board,bureau,icon,image,menu,section,staff,team,video,log,building
+		vol_no,bgImg,board,bureau,icon,image,section,staff,team,video,building
 		from vol_check
 		where
 		vol_no = #{vol_no}

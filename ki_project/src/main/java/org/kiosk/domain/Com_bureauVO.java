@@ -1,5 +1,8 @@
 package org.kiosk.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component("Com_bureauVO")
 public class Com_bureauVO {
 
 	private String bureau_cd;

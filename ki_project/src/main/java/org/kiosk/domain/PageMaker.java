@@ -3,9 +3,10 @@ package org.kiosk.domain;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
+@Component("PageMaker")
 public class PageMaker {
 
 	private int totalCount;

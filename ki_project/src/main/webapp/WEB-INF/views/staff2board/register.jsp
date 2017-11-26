@@ -96,7 +96,7 @@
 											<input type="button" value="파일"
 												class="file_input_button btn btn-primary" /> <input
 												type="file" class="file_input_hidden" data-icon='false'
-												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												onchange="javascript: var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
 												accept="image/*" name="imgFile" id="img_filenm" />
 										</div>
 									</div>

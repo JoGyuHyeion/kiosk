@@ -21,10 +21,13 @@ import org.springframework.web.servlet.View;
 @RestController
 @RequestMapping("/sample/*")
 public class SampleController {
-
+	
 	@Resource(name = "DownloadView")
 	private View downloadView;
 
+	@Resource(name = "SampleVO")
+	private SampleVO vo;
+	
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	public ModelAndView sample() {
 		ModelAndView mav = new ModelAndView();
@@ -63,7 +66,6 @@ public class SampleController {
 	@RequestMapping("/sendVO")
 	public SampleVO sendVO() {
 
-		SampleVO vo = new SampleVO();
 		vo.setFirstName("길동");
 		vo.setLastName("홍");
 		vo.setMno(123);
@@ -76,7 +78,6 @@ public class SampleController {
 
 		List<SampleVO> list = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
-			SampleVO vo = new SampleVO();
 			vo.setFirstName("길동");
 			vo.setLastName("홍");
 			vo.setMno(i);
@@ -91,7 +92,6 @@ public class SampleController {
 		Map<Integer, SampleVO> map = new HashMap<>();
 
 		for (int i = 0; i < 10; i++) {
-			SampleVO vo = new SampleVO();
 			vo.setFirstName("길동");
 			vo.setLastName("홍");
 			vo.setMno(i);
@@ -111,7 +111,6 @@ public class SampleController {
 
 		List<SampleVO> list = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
-			SampleVO vo = new SampleVO();
 			vo.setFirstName("길동");
 			vo.setLastName("홍");
 			vo.setMno(i);

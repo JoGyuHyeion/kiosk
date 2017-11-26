@@ -1,5 +1,8 @@
 package org.kiosk.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component("UserVO")
 public class UserVO {
 
 	private String id;

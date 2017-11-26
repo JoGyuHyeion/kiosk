@@ -2,6 +2,8 @@ package org.kiosk.dto;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+@Component("JsonStaffDTO")
 public class JsonStaffDTO {
 
 	private String section_fullcode;

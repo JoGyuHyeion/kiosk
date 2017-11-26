@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.inject.Inject;
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
-import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Com_iconVO;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_videoVO;
@@ -16,20 +15,14 @@ import org.kiosk.domain.Vol_checkVO;
 import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.dto.JsonStaffDTO;
-import org.kiosk.dto.MateDTO;
-import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.Com_bgImgService;
 import org.kiosk.service.JsonGelleryService;
 import org.kiosk.service.JsonNoticeService;
 import org.kiosk.service.JsonStaffService;
 import org.kiosk.service.Com_buildingService;
-import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_iconService;
 import org.kiosk.service.Com_sectionService;
-import org.kiosk.service.Com_teamService;
 import org.kiosk.service.Com_videoService;
-import org.kiosk.service.JsonMateService;
-import org.kiosk.service.JsonTeamsService;
 import org.kiosk.service.Vol_checkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,12 +47,6 @@ public class JsonController {
 	@Inject
 	private JsonStaffService jsonStaffService;
 	@Inject
-	private JsonMateService jsonMateService;
-	@Inject
-	private JsonTeamsService jsonTeamsService;
-	@Inject
-	private Com_bureauService bureauService;
-	@Inject
 	private Com_sectionService sectionService;
 	@Inject
 	private Com_buildingService buildingService;
@@ -71,8 +58,20 @@ public class JsonController {
 	private Com_bgImgService bgImgService;
 	@Inject
 	private Vol_checkService vol_checkService;
-	@Inject
-	private Com_teamService teamService;
+	
+	////테스트용
+	@RequestMapping(value = "/allgetStaff", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, JsonStaffDTO>> gettest() {
+		logger.info("json/test");
+		ResponseEntity<Map<String, JsonStaffDTO>> entity = null;
+		try {
+			entity = new ResponseEntity<>(jsonStaffService.getAllJsonStaff(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 
 	@RequestMapping(value = "/getVersion", method = RequestMethod.GET)
 	public ResponseEntity<Vol_checkVO> getVersion() {
@@ -86,73 +85,13 @@ public class JsonController {
 		}
 		return entity;
 	}
-	private JsonStaffDTO getJsonStaff(String section_cd) {
-		int mapIndex = 0;
-		JsonStaffDTO jsonStaffDTO = null;
-		try {
-			jsonStaffDTO = jsonStaffService.read(section_cd);
-			List<TeamsDTO> teamList = jsonTeamsService.list(section_cd);
-
-			for (int index = 0; index < teamList.size(); index++) {
-				List<MateDTO> mateList = jsonMateService.list(teamList.get(index));
-				Map<Integer, MateDTO> mateMap = new HashMap<Integer, MateDTO>();
-				mapIndex = 0;
-				for (MateDTO mateDTO : mateList) {
-					mateMap.put(mapIndex, mateDTO);
-					mapIndex++;
-				}
-				teamList.get(index).setMate(mateMap);
-			}
-			jsonStaffDTO.setTeams(teamList);
-		}
-
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return jsonStaffDTO;
-	}
-	
-
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, JsonStaffDTO>> gettest() {
-		logger.info("json/test");
-		ResponseEntity<Map<String, JsonStaffDTO>> entity = null;
-		Map<String, JsonStaffDTO> staffList = null;
-		try {
-			staffList = new HashMap<String, JsonStaffDTO>();
-			for (Com_sectionVO vo : sectionService.listAll()) {
-				System.out.println(vo.getSection_fullcode());
-				staffList.put(vo.getSection_fullcode(), getJsonStaff(vo.getSection_fullcode()));
-			}
-			entity = new ResponseEntity<>(staffList, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
 
 	@RequestMapping(value = "/getStaff/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> getStaff(@PathVariable("section_cd") String section_cd) {
 		ResponseEntity<JsonStaffDTO> entity = null;
 		logger.info("json/getStaff/{section_cd}");
 		try {
-			int mapIndex = 0;
-			JsonStaffDTO jsonStaffDTO = jsonStaffService.read(section_cd);
-			List<TeamsDTO> teamList = jsonTeamsService.list(section_cd);
-
-			for (int index = 0; index < teamList.size(); index++) {
-				List<MateDTO> mateList = jsonMateService.list(teamList.get(index));
-				Map<Integer, MateDTO> mateMap = new HashMap<Integer, MateDTO>();
-				mapIndex = 0;
-				for (MateDTO mateDTO : mateList) {
-					mateMap.put(mapIndex, mateDTO);
-					mapIndex++;
-				}
-				teamList.get(index).setMate(mateMap);
-			}
-			jsonStaffDTO.setTeams(teamList);
-			entity = new ResponseEntity<>(jsonStaffDTO, HttpStatus.OK);
+			entity = new ResponseEntity<>(jsonStaffService.getJsonStaff(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -210,13 +149,8 @@ public class JsonController {
 	public ResponseEntity<Map<String, List<Com_sectionVO>>> getTeams() {
 		logger.info("json/getTeams");
 		ResponseEntity<Map<String, List<Com_sectionVO>>> entity = null;
-		Map<String, List<Com_sectionVO>> sectionList = null;
 		try {
-			sectionList = new HashMap<String, List<Com_sectionVO>>();
-			for (Com_bureauVO vo : bureauService.listAll()) {
-				sectionList.put(vo.getBureau_name(), sectionService.listAll());
-			}
-			entity = new ResponseEntity<>(sectionList, HttpStatus.OK);
+			entity = new ResponseEntity<>(sectionService.getJsonSection(), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

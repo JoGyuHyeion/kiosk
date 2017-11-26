@@ -10,14 +10,6 @@
 
 <section class="wrapper">
 
-	<form role="form" action="modifyPage" method="post">
-
-		<input type='hidden' name='page' value="${cri.page}"> 
-		<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
-		<input type='hidden' name='section_cd' value="${cri.section_cd}"> 
-		<input type='hidden' name='keyword' value="${cri.keyword}">
-
-	</form>
 	<div class="container">
 		<!-- Page-Title -->
 		<div class="row">
@@ -56,8 +48,10 @@
 						<div class="col-sm-4">
 							<form role="form">
 								<div class="form-group">
-									<input type="text" id="search-input" class="form-control" name="keyword"
-										placeholder="Please Name">
+									<input type="text" id="search-input" class="form-control" name="keyword" placeholder="Please Name">
+									<input type='hidden' name='page' value="${cri.page}"> 
+									<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+									<input type='hidden' name='section_cd' value="${cri.section_cd}"> 	
 
 								</div>
 							</form>
@@ -118,8 +112,7 @@
 
 										<td>${com_staff2VO.st_edt}</td>
 										<td><form action="/staff2board/removePage" method="post">
-												<input type="hidden" name="st_no"
-													value="${com_staff2VO.st_no}">
+												<input type="hidden" name="st_no" value="${com_staff2VO.st_no}">
 												<button type="submit" class="btn btn-default">
 													<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
 												</button>

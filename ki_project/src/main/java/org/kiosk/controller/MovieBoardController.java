@@ -30,6 +30,9 @@ public class MovieBoardController {
 
 	@Inject
 	private Com_videoService service;
+	
+	@Resource(name = "PageMaker")
+	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -56,7 +59,6 @@ public class MovieBoardController {
 		cri.setPerPageNum(6);
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
-		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 

@@ -1,5 +1,8 @@
 package org.kiosk.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component("Criteria")
 public class Criteria {
 
 	private int page;

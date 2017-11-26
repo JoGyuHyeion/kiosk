@@ -2,8 +2,10 @@ package org.kiosk.domain;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+@Component("Com_iconVO")
 public class Com_iconVO {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int ic_no;

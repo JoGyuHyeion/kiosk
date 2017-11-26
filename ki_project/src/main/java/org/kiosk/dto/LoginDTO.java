@@ -1,10 +1,13 @@
 package org.kiosk.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component("LoginDTO")
 public class LoginDTO {
 
 	private String id;
 	private String password;
-	private String oldPassword;
+	private String newPassword;
 	private String section_fullcode;
 	private boolean useCookie;
 
@@ -24,12 +27,12 @@ public class LoginDTO {
 		this.password = password;
 	}
 
-	public String getOldPassword() {
-		return oldPassword;
+	public String getNewPassword() {
+		return newPassword;
 	}
 
-	public void setOldPassword(String oldPassword) {
-		this.oldPassword = oldPassword;
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
 	}
 
 	public String getSection_fullcode() {
@@ -50,7 +53,7 @@ public class LoginDTO {
 
 	@Override
 	public String toString() {
-		return "LoginDTO [id=" + id + ", password=" + password + ", oldPassword=" + oldPassword + ", section_fullcode="
+		return "LoginDTO [id=" + id + ", password=" + password + ", newPassword=" + newPassword + ", section_fullcode="
 				+ section_fullcode + ", useCookie=" + useCookie + "]";
 	}
 

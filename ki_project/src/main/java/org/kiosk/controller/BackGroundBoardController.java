@@ -31,6 +31,9 @@ public class BackGroundBoardController {
 	@Inject
 	private Com_bgImgService service;
 
+	@Resource(name = "PageMaker")
+	private PageMaker pageMaker;
+	
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
@@ -56,7 +59,6 @@ public class BackGroundBoardController {
 		model.addAttribute("userVO", userVO);
 		logger.info("Login : " + userVO.toString());
 
-		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 

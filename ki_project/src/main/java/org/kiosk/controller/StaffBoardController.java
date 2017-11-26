@@ -28,6 +28,9 @@ public class StaffBoardController {
 
 	@Inject
 	private Com_staffService service;
+	
+	@Resource(name = "PageMaker")
+	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -46,9 +49,7 @@ public class StaffBoardController {
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
-		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("pageMaker", pageMaker);

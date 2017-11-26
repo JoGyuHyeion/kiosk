@@ -1,5 +1,8 @@
 package org.kiosk.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component("SearchCriteria")
 public class SearchCriteria extends Criteria {
 
 	private String section_cd;

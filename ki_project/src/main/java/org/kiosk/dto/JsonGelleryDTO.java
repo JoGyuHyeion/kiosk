@@ -1,5 +1,8 @@
 package org.kiosk.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component("JsonGelleryDTO")
 public class JsonGelleryDTO {
 
 	private int img_no;

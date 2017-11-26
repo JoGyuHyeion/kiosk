@@ -4,10 +4,8 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.kiosk.domain.Com_iconVO;
 import org.kiosk.domain.PageMaker;
-import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_iconService;
 import org.kiosk.util.UploadFileUtils;
@@ -15,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +27,9 @@ public class IconBoardController {
 
 	@Inject
 	private Com_iconService service;
+	
+	@Resource(name = "PageMaker")
+	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -42,29 +42,21 @@ public class IconBoardController {
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
-			throws Exception {
+	public void listPage(Model model, HttpServletRequest request) throws Exception {
 
 		logger.info("iconboard/list - GET");
-		logger.info(cri.toString());
 
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
 		logger.info("Login : " + userVO.toString());
 
-		model.addAttribute("list", service.listSearchCriteria(cri));
-
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listSearchCount(cri));
-
+		model.addAttribute("list", service.listAll());
 		model.addAttribute("pageMaker", pageMaker);
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
-			throws Exception {
+	public void registGET(Model model, HttpServletRequest request) throws Exception {
 		logger.info("iconboard/register - GET");
 		logger.info("regist get ...........");
 		HttpSession session = request.getSession();
@@ -94,11 +86,10 @@ public class IconBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr,
+	public String modifyPagingPOST(Com_iconVO board, RedirectAttributes rttr,
 			@RequestParam("iconFile") MultipartFile iconFile, HttpServletRequest request,
 			@RequestParam("iconName") String iconName) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
-		logger.info(cri.toString());
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String icon_filenm;
 		String default_img_filenm = "/icon/icon" + board.getIc_no() + ".png";
@@ -116,9 +107,6 @@ public class IconBoardController {
 
 		board.setIc_icon(icon_filenm);
 		service.modify(board);
-
-		rttr.addAttribute("page", cri.getPage());
-		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 

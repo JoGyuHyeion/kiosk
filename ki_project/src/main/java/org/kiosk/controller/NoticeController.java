@@ -29,6 +29,9 @@ public class NoticeController {
 
 	@Inject
 	private Com_boardService service;
+	
+	@Resource(name = "PageMaker")
+	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -53,9 +56,7 @@ public class NoticeController {
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
-		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("pageMaker", pageMaker);

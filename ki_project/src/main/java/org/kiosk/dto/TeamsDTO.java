@@ -2,8 +2,10 @@ package org.kiosk.dto;
 
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+@Component("TeamsDTO")
 public class TeamsDTO {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String team_cd;

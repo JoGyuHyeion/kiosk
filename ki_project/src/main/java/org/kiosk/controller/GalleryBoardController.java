@@ -30,6 +30,9 @@ public class GalleryBoardController {
 
 	@Inject
 	private Com_imageService service;
+	
+	@Resource(name = "PageMaker")
+	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -55,7 +58,6 @@ public class GalleryBoardController {
 		cri.setPerPageNum(6);
 		model.addAttribute("list", service.listSearchCriteria(cri));
 
-		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 

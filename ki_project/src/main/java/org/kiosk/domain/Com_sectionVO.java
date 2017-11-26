@@ -1,7 +1,9 @@
 package org.kiosk.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+@Component("Com_sectionVO")
 public class Com_sectionVO {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String bureau_cd;

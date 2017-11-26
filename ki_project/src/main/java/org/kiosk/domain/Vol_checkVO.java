@@ -2,23 +2,23 @@ package org.kiosk.domain;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Component("Vol_checkVO")
 public class Vol_checkVO {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int vol_no;
-	private Date session;
 	private Date bgImg;
 	private Date board;
 	private Date bureau;
 	private Date icon;
 	private Date image;
-	private Date menu;
 	private Date section;
 	private Date staff;
 	private Date team;
 	private Date video;
-	private Date log;
 	private Date building;
 
 	public int getVol_no() {
@@ -27,14 +27,6 @@ public class Vol_checkVO {
 
 	public void setVol_no(int vol_no) {
 		this.vol_no = vol_no;
-	}
-
-	public Date getSession() {
-		return session;
-	}
-
-	public void setSession(Date session) {
-		this.session = session;
 	}
 
 	public Date getBgImg() {
@@ -77,14 +69,6 @@ public class Vol_checkVO {
 		this.image = image;
 	}
 
-	public Date getMenu() {
-		return menu;
-	}
-
-	public void setMenu(Date menu) {
-		this.menu = menu;
-	}
-
 	public Date getSection() {
 		return section;
 	}
@@ -117,14 +101,6 @@ public class Vol_checkVO {
 		this.video = video;
 	}
 
-	public Date getLog() {
-		return log;
-	}
-
-	public void setLog(Date log) {
-		this.log = log;
-	}
-
 	public Date getBuilding() {
 		return building;
 	}
@@ -135,10 +111,9 @@ public class Vol_checkVO {
 
 	@Override
 	public String toString() {
-		return "Vol_checkVO [vol_no=" + vol_no + ", session=" + session + ", bgImg=" + bgImg + ", board=" + board
-				+ ", bureau=" + bureau + ", icon=" + icon + ", image=" + image + ", menu=" + menu + ", section="
-				+ section + ", staff=" + staff + ", team=" + team + ", video=" + video + ", log=" + log + ", building="
-				+ building + "]";
+		return "Vol_checkVO [vol_no=" + vol_no + ", bgImg=" + bgImg + ", board=" + board + ", bureau=" + bureau
+				+ ", icon=" + icon + ", image=" + image + ", section=" + section + ", staff=" + staff + ", team=" + team
+				+ ", video=" + video + ", building=" + building + "]";
 	}
 
 }

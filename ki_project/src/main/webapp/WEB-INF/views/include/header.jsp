@@ -189,7 +189,7 @@
 									<c:if test="${0 eq userVO.auth}">
 										<li><a href="/iconboard/list">Icon(Super)</a></li>
 										<li><a href="/backGroundboard/list?page=1&perPageNum=10">바탕화면(Super)</a></li>
-										<li><a href="/buildingboard/list?page=1&perPageNum=10">Building(Super)</a></li>
+										<li><a href="/buildingboard/list">Building(Super)</a></li>
 									</c:if>
 										<li><a href="/usbFileboard/usb">USB</a></li>
 									</ul>

@@ -2,6 +2,8 @@ package org.kiosk.domain;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+@Component("Com_imageVO")
 public class Com_imageVO {
 	private int img_no;
 	private String img_title;

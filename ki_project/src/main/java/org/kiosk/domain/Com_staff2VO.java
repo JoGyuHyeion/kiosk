@@ -2,6 +2,8 @@ package org.kiosk.domain;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+@Component("Com_staff2VO")
 public class Com_staff2VO {
 
 	private int st_no;

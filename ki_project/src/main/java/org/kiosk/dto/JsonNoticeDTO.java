@@ -1,5 +1,8 @@
 package org.kiosk.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component("JsonNoticeDTO")
 public class JsonNoticeDTO {
 
 	private int bbs_no;

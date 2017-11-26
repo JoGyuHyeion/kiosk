@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.inject.Inject;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
-import org.kiosk.domain.UserVO;
 import org.kiosk.dto.LoginDTO;
 import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.Com_sectionService;
@@ -215,29 +214,4 @@ public class AjaxController {
 		return entity;
 	}
 	
-	@RequestMapping(value = "/user/changePssword/", method = RequestMethod.POST)
-	public ResponseEntity<String> changePssword(@RequestBody LoginDTO dto) {
-		logger.info("/user/changePssword");
-
-		ResponseEntity<String> entity = null;
-
-		String msg = "";
-
-		try {
-			dto = new LoginDTO();
-
-			if (userService.login(dto) == null) {
-				msg = "FASLE";
-			} else {
-				msg = SUCCESS;
-			}
-
-			entity = new ResponseEntity<String>(msg, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
 }

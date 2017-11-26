@@ -1,10 +1,14 @@
 package org.kiosk.domain;
 
 import java.sql.Date;
+
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 @JsonRootName("building")
+@Component("Com_buildingVO")
 public class Com_buildingVO {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int bu_no;
