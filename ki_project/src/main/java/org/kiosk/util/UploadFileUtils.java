@@ -37,8 +37,10 @@ public class UploadFileUtils {
 			System.out.println("=================makeThumbnail===================");
 			System.out.println(uploadedFileName);
 		} else {
-			// uploadedFileName = makeIcon(uploadPath, savedPath, savedName);
-			System.out.println("============makeIcon===================");
+			File target = new File(uploadPath + savedPath, savedName);
+			FileCopyUtils.copy(fileData, target);
+			 uploadedFileName = makeFile(uploadPath, savedPath, savedName);
+			System.out.println("============makeFile===================");
 			System.out.println(uploadedFileName);
 		}
 		return uploadedFileName;
@@ -57,7 +59,7 @@ public class UploadFileUtils {
 		return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 
-	private String makeIcon(String uploadPath, String path, String fileName) throws Exception {
+	private String makeFile(String uploadPath, String path, String fileName) throws Exception {
 
 		String iconName = uploadPath + path + File.separator + fileName;
 		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
