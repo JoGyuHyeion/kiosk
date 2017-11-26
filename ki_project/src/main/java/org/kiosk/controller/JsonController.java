@@ -10,7 +10,6 @@ import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Com_iconVO;
 import org.kiosk.domain.Com_sectionVO;
-import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Com_videoVO;
 import org.kiosk.domain.SampleVO;
 import org.kiosk.domain.Vol_checkVO;

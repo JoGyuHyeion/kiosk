@@ -73,10 +73,10 @@
 										<label class="col-md-2 control-label">계정ID</label>
 										<div class="col-md-5">
 											<input type="text" class="form-control" placeholder="ID"
-												id="section_pass" name="id">
+												id="section_id" name="id">
 										</div>
 										<div class="col-md-3">
-											<button class="btn btn-default  ">중복확인</button>
+											<button class="btn btn-default" id ="dulCheck">중복확인</button>
 										</div>
 									</div>
 
@@ -121,5 +121,29 @@
 
 
 		</div>
+		<script>
+		$("#dulCheck").click(function () {
+			
+			var id = $("#section_id").val();
+			
+			alert("id : "+id);
+			
+			$.ajax({
+				url: '/user/duplCheck/'+id,
+				type: 'get',
+				headers: {
+					"Content-Type": "application/json",
+					"X-HTTP-Method-Override": "GET"
+					},
+					
+					dataType:'text',
+					
+					success: function (data) {
+						alert(data);
+						location.reload();
+						}
+					});
+			});
+		</script>
 		<!-- end row -->
 		<%@include file="../include/footer.jsp"%>
