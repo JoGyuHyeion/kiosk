@@ -31,7 +31,8 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form" enctype="multipart/form-data">
+						<form method="post" role="form" enctype="multipart/form-data"
+							onsubmit="return formCheck()">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
@@ -45,7 +46,6 @@
 									</div>
 									<!-- img_gallery  노출 여부   -->
 									<div class="form-group">
-										<%-- <c:set value="${com_image.img_gallery}" var="img_gallery" /> --%>
 										<label class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
@@ -102,12 +102,26 @@
 									self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 								});
 
-			});
-	alert("${com_imageVO.img_gallery}");
+			
+			/* alert("${com_imageVO.img_gallery}"); */
 			var input = ${com_imageVO.img_gallery};
 			if (input == 1) { //값 비교
 				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
 			}
+		});
+	function formCheck() {
+		if ($.trim($("#img_title").val()) == "") {
+			alert("제목을 입력하세요");
+			$("#img_title").focus();
+			return false;
+		}else if ($.trim($("#img_filenm").val()) == "") {
+			alert("사진을 첨부하세요");
+			$("#img_filenm").focus();
+			return false;
+		}
+		return true;
+
+	}
 
 
 		</script>

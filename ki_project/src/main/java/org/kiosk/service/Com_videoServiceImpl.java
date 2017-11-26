@@ -49,7 +49,7 @@ public class Com_videoServiceImpl implements Com_videoService {
 
 	@Override
 	public int lastInsertID() throws Exception {
-		return dao.lastInsertID() + 1;
+		return dao.lastInsertID();
 	}
 
 	@Override

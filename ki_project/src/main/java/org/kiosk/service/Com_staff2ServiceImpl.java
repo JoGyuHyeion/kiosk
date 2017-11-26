@@ -48,7 +48,7 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 
 	@Override
 	public int lastInsertID() throws Exception {
-		return dao.lastInsertID() + 1;
+		return dao.lastInsertID();
 	}
 
 	@Override
@@ -67,18 +67,8 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 	}
 
 	@Override
-	public List<Com_staff2VO> superListSearchCriteria(SearchCriteria cri) throws Exception {
-		return dao.superListSearch(cri);
-	}
-
-	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return dao.listSearchCount(cri);
-	}
-
-	@Override
-	public int superListSearchCount(SearchCriteria cri) throws Exception {
-		return dao.superListSearchCount(cri);
 	}
 
 }

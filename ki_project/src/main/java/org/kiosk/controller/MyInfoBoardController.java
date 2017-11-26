@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
+import org.kiosk.dto.LoginDTO;
 import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
@@ -69,7 +70,7 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.POST)
-	public String passwdPOST(SearchCriteria cri, RedirectAttributes rttr) throws Exception {
+	public String passwdPOST(SearchCriteria cri, RedirectAttributes rttr, LoginDTO dto) throws Exception {
 
 		logger.info("myinfoboard/passwd - POST");
 		logger.info(cri.toString());
@@ -78,6 +79,7 @@ public class MyInfoBoardController {
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addAttribute("keyword", cri.getKeyword());
 
+		userService.changePassword(dto);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		logger.info(rttr.toString());

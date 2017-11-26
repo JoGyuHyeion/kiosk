@@ -48,7 +48,7 @@ public class Com_iconServiceImpl implements Com_iconService {
 
 	@Override
 	public int lastInsertID() throws Exception {
-		return dao.lastInsertID() + 1;
+		return dao.lastInsertID();
 	}
 
 	@Override
