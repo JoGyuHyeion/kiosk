@@ -145,7 +145,7 @@ public class Com_staff2Test {
 
 		logger.info("=====================================");
 
-		List<Com_staff2VO> list = dao.superListSearch(cri);
+		List<Com_staff2VO> list = dao.listSearch(cri);
 
 		for (Com_staff2VO Com_staff2VO : list) {
 			logger.info(Com_staff2VO.getSt_no() + ":" + Com_staff2VO.getReal_use_dep_nm());
