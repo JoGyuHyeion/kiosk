@@ -11,6 +11,7 @@ public class Com_buildingVO {
 	private String bu_name;
 	private String bu_img;
 	private Date bu_ndt;
+	private int bu_type;
 
 	public int getBu_no() {
 		return bu_no;
@@ -44,10 +45,18 @@ public class Com_buildingVO {
 		this.bu_ndt = bu_ndt;
 	}
 
+	public int getBu_type() {
+		return bu_type;
+	}
+
+	public void setBu_type(int bu_type) {
+		this.bu_type = bu_type;
+	}
+
 	@Override
 	public String toString() {
-		return "Com_buildingDTO [bu_no=" + bu_no + ", bu_name=" + bu_name + ", bu_img=" + bu_img + ", bu_ndt=" + bu_ndt
-				+ "]";
+		return "Com_buildingVO [bu_no=" + bu_no + ", bu_name=" + bu_name + ", bu_img=" + bu_img + ", bu_ndt=" + bu_ndt
+				+ ", bu_type=" + bu_type + "]";
 	}
 
 }

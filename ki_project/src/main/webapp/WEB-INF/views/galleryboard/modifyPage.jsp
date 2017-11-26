@@ -45,7 +45,6 @@
 									</div>
 									<!-- img_gallery  노출 여부   -->
 									<div class="form-group">
-										<%-- <c:set value="${com_image.img_gallery}" var="img_gallery" /> --%>
 										<label class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
@@ -102,12 +101,13 @@
 									self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 								});
 
-			});
-	alert("${com_imageVO.img_gallery}");
+			
+			/* alert("${com_imageVO.img_gallery}"); */
 			var input = ${com_imageVO.img_gallery};
 			if (input == 1) { //값 비교
 				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
 			}
+		});
 
 
 		</script>

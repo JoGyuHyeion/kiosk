@@ -44,8 +44,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="lastInsertID" resultType="int">
-		SELECT
-		LAST_INSERT_ID(bi_no) from com_bgImg order by bi_no desc limit 1;
+		SELECT AUTO_INCREMENT
+		FROM information_schema.TABLES
+		WHERE TABLE_SCHEMA = "kipro"
+		AND TABLE_NAME = "com_bgImg";
 	</select>
 
 	<select id="listPage" resultType="Com_bgImgVO">

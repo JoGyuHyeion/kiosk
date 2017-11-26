@@ -15,12 +15,12 @@
 					<div class="btn-group pull-right">
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
-							<li><a href="#">갤러리</a></li>
-							<li class="active">갤러리등록</li>
+							<li><a href="#">manager</a></li>
+							<li class="active">building</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						갤러리등록 <small>갤러리를 <code>등록</code> 할 수 있습니다.
+						건물사진등록 <small>건물사진을 <code>등록</code> 할 수 있습니다.
 						</small>
 					</h4>
 				</div>
@@ -33,27 +33,28 @@
 					<div class="row">
 						<div class="col-md-7">
 							<form method="post" role="form" enctype="multipart/form-data"
-								onsubmit="return formCheck()")>
+								onsubmit="return formCheck()">
 								<div class="form-horizontal" role="form">
-									<!-- img_title -->
+									<!-- bu_name -->
 									<div class="form-group">
-										<label class="col-md-3 control-label">제목</label>
+										<label class="col-md-3 control-label">건물이름</label>
 										<div class="col-md-7">
 											<input type="text" class="form-control" placeholder="Name"
-												id="img_title" name="img_title">
+												id="bu_name" name="bu_name">
 										</div>
 									</div>
-									<!-- img_gallery  노출 여부   -->
+									<!-- bu_type -->
 									<div class="form-group">
-										<label class="col-md-3 control-label">표시여부</label>
-										<!-- checkbox checked 일경우 활성화 -->
-										<div style="padding: 5px">
-											<input type="checkbox" name="img_gallery" id="img_gallery"
-												switch="none" value="1" /> <label for="img_gallery"
-												data-on-label="On" data-off-label="Off"></label>
+										<label class="col-md-3 control-label">건물 구분</label>
+										<div class="col-md-5">
+											<select name="bu_type" id="bu_type" class="form-control">
+												<option value="1" selected>본관</option>
+												<option value="2">동관</option>
+												<option value="3">서관</option>
+											</select>
 										</div>
 									</div>
-									<!-- img_filenm -->
+									<!-- bu_img -->
 									<div class="form-group">
 										<label class="col-md-3 control-label">이미지 파일</label> <input
 											id="imgName"
@@ -67,13 +68,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- img_filenm -->
-								<!-- 		<div class="form-group">
-										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="imgFile" id="img_filenm"
-												multiple="multiple">
-										</div>
-									</div>-->
 								<div class="form-group" style="text-align: center">
 									<button type="submit"
 										class="btn btn-primary waves-effect w-md waves-light m-b-5">등록</button>
@@ -94,15 +88,15 @@
 													.on(
 															"click",
 															function() {
-																self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+																self.location = "/buildingboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 															});
 
 										});
 						
 						function formCheck() {
-							if ($.trim($("#img_title").val()) == "") {
+							if ($.trim($("#bu_name").val()) == "") {
 								alert("제목을 입력하세요");
-								$("#img_title").focus();
+								$("#bu_name").focus();
 								return false;
 							}else if ($.trim($("#img_filenm").val()) == "") {
 								alert("사진을 첨부하세요");

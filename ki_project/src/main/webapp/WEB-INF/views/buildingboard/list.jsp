@@ -44,52 +44,49 @@
 				</div>
 				<div class="row">
 					<div class="text-center">
-						<h3>본관 정보</h3>
 						<div class="text-align">
 							<div class="col-lg-8 col-centered">
-
+								<h3 class="header-title m-t-0 m-b-30">본관 정보</h3>
 								<!-- START carousel-->
 								<div id="carousel-example-captions" data-ride="carousel"
 									class="carousel slide">
 									<ol class="carousel-indicators">
-										<li data-target="#carousel-example-captions" data-slide-to="0"
-											class="active"></li>
-										<li data-target="#carousel-example-captions" data-slide-to="1"></li>
-										<li data-target="#carousel-example-captions" data-slide-to="2"></li>
+										<c:forEach items="${list}" var="com_buildingVO">
+											<c:choose>
+												<c:when test="${com_buildingVO.bu_no==1}">
+													<li data-target="#carousel-example-captions"
+														data-slide-to="${com_buildingVO.bu_name}" class="active"></li>
+												</c:when>
+												<c:otherwise>
+													<li data-target="#carousel-example-captions"
+														data-slide-to="${com_buildingVO.bu_name}"></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 									</ol>
 									<div role="listbox" class="carousel-inner">
-										<div class="item active text-center">
-											<img src="/resources/upload/building/b-1F.jpg"
-												alt="First slide image">
-											<div class="carousel-caption">
-												<h3 class="text-white font-600">b-1F</h3>
-
-											</div>
-										</div>
-										<div class="item">
-											<img src="/resources/upload/building/b-2F.jpg"
-												alt="Second slide image">
-											<div class="carousel-caption">
-												<h3 class="text-white font-600">b-2F</h3>
-
-											</div>
-										</div>
-										<div class="item">
-											<img src="/resources/upload/building/b-3F.jpg"
-												alt="Third slide image">
-											<div class="carousel-caption">
-												<h3 class="text-white font-600">b-3F</h3>
-
-											</div>
-										</div>
-										<div class="item">
-											<img src="/resources/upload/building/b-4F.jpg"
-												alt="Third slide image">
-											<div class="carousel-caption">
-												<h3 class="text-white font-600">b-4F</h3>
-
-											</div>
-										</div>
+										<c:forEach items="${list}" var="com_buildingVO">
+											<c:choose>
+												<c:when test="${com_buildingVO.bu_no==1}">
+													<div class="item active text-center">
+														<img src="/resources/upload/${com_buildingVO.bu_img}"
+															alt="First slide image">
+														<div class="carousel-caption">
+															<h3 class="text-white font-600">${com_buildingVO.bu_name}</h3>
+														</div>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="item">
+														<img src="/resources/upload/${com_buildingVO.bu_img}"
+															alt="First slide image">
+														<div class="carousel-caption">
+															<h3 class="text-white font-600">${com_buildingVO.bu_name}</h3>
+														</div>
+													</div>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 										<a href="#carousel-example-captions" role="button"
 											data-slide="prev" class="left carousel-control"> <span
 											aria-hidden="true" class="fa fa-angle-left"></span> <span
@@ -117,31 +114,58 @@
 												<c:choose>
 													<c:when test="${com_buildingVO.bu_no==1}">
 														<li class="active"><a
-															href="#bu_no1" data-toggle="tab"
-															aria-expanded="true">1층</a></li>
+															href="#bu_no${com_buildingVO.bu_no}" data-toggle="tab"
+															aria-expanded="false">${com_buildingVO.bu_name}</a></li>
 													</c:when>
 													<c:otherwise>
 														<li class=""><a href="#bu_no${com_buildingVO.bu_no}"
-															data-toggle="tab" aria-expanded="false">${com_buildingVO.bu_no}층</a></li>
+															data-toggle="tab" aria-expanded="false">${com_buildingVO.bu_name}</a>
+														</li>
 													</c:otherwise>
 												</c:choose>
+
 											</c:forEach>
 										</ul>
 
 										<div class="tab-content">
 											<c:forEach items="${list}" var="com_buildingVO">
-												<div class="tab-pane active"
-													id="bu_no${com_buildingVO.bu_no}">
-													<img src="/resources/upload/building/b-1F.jpg"
-														alt="First slide image" class="img-responsive" />
-													<div class="form-group" style="text-align: center">
-														<button
-															class="btn btn-info btn-rounded waves-effect m-t-10 waves-light"
-															data-toggle="modal" data-target="#buildingModal">수정</button>
-														<label class="col-md-5 control-label">마지막 수정 날짜:
-															${com_buildingVO.bu_ndt}</label>
-													</div>
-												</div>
+												<c:choose>
+													<c:when test="${com_buildingVO.bu_no==1}">
+														<div class="tab-pane active"
+															id="bu_no${com_buildingVO.bu_no}">
+															<img src="/resources/upload/${com_buildingVO.bu_img}"
+																alt="slide image" class="img-responsive" />
+															<div class="form-group" style="text-align: center">
+																<input type="hidden"
+																	id="img_file_name${com_buildingVO.bu_no}"
+																	value="${com_buildingVO.bu_img}">
+																<button
+																	class="btn btn-info btn-rounded waves-effect m-t-10 waves-light change_btn"
+																	data-toggle="modal" data-target="#buildingModal"
+																	value="${com_buildingVO.bu_no}">수정</button>
+																<label class="col-md-5 control-label">마지막 수정 날짜:
+																	${com_buildingVO.bu_ndt}</label>
+															</div>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div class="tab-pane" id="bu_no${com_buildingVO.bu_no}">
+															<img src="/resources/upload/${com_buildingVO.bu_img}"
+																alt="slide image" class="img-responsive" />
+															<div class="form-group" style="text-align: center">
+																<input type="hidden"
+																	id="img_file_name${com_buildingVO.bu_no}"
+																	value="${com_buildingVO.bu_img}">
+																<button
+																	class="btn btn-info btn-rounded waves-effect m-t-10 waves-light change_btn"
+																	data-toggle="modal" data-target="#buildingModal"
+																	value="${com_buildingVO.bu_no}">수정</button>
+																<label class="col-md-5 control-label">마지막 수정 날짜:
+																	${com_buildingVO.bu_ndt}</label>
+															</div>
+														</div>
+													</c:otherwise>
+												</c:choose>
 											</c:forEach>
 										</div>
 									</div>
@@ -169,12 +193,22 @@
 					</div>
 					<div></div>
 					<div class="modal-body">
-						<form action="/building/modifyPage" method="post"
+						<form action="/buildingboard/modifyPage" method="post"
 							enctype="multipart/form-data">
+							<input type="hidden" id="bu_no" name="bu_no">
 							<div class="form-group">
-								<label for="image" class="control-label">파일 등록</label> <input
-									type="file" id="file_upload" class="form-control"
-									name="iconFile">
+								<label class="col-md-2 control-label">파일 등록</label> <input
+									id="imgName" name="imgName"
+									class="file_input_textbox form-control col-md-5 "
+									readonly="readonly" />
+								<div class="file_input_div">
+									<input type="button" value="파일 선택" id="file_upload_btn"
+										class="file_input_button btn btn-primary" /> <input
+										type="file" class="file_input_hidden" data-icon='false'
+										onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+										accept="image/*" name="imgFile" id="img_file" />
+								</div>
+								<input type="hidden" name="bu_img" id="bu_img">
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
@@ -184,18 +218,25 @@
 
 						</form>
 					</div>
-
 				</div>
 			</div>
 		</div>
 		<script>
 			$(document).ready(function() {
-				$('#buildingModal').on('show.bs.modal', function(event) {
+				/* $('#buildingModal').on('show.bs.modal', function(event) {
 					var button = $(event.relatedTarget);
 					var ic_no = button.data('icNo');
 					//alert(ic_no);
 					var modal = $(this);
 					modal.find('.modal-body input').val(ic_no);
+				}); */
+				$('.change_btn').click(function() {
+					var bu_no = $(this).val();
+					var bu_img = $("#img_file_name"+bu_no.toString()).val();
+					$('#buildingModal').find('#bu_no').val(bu_no);
+					$('#buildingModal').find('#bu_img').val(bu_img);
+					$('#buildingModal .modal-body').find('#imgName').val(bu_img);
+					 
 				});
 
 			});

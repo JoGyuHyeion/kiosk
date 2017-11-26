@@ -107,7 +107,7 @@ public class GalleryBoardController {
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
 	public void modifyPagingGET(int img_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
 			HttpServletRequest request) throws Exception {
-		System.out.println("규현 : "+service.read(img_no).toString());
+		System.out.println("규현 : " + service.read(img_no).toString());
 		logger.info("galleryboard/modifyPage - GET");
 		model.addAttribute(service.read(img_no));
 		logger.info(service.read(img_no).toString());
