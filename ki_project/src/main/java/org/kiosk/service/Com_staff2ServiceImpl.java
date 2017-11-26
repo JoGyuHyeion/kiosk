@@ -48,7 +48,7 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 
 	@Override
 	public int lastInsertID() throws Exception {
-		return dao.lastInsertID() + 1;
+		return dao.lastInsertID();
 	}
 
 	@Override

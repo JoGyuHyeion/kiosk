@@ -31,7 +31,8 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form" enctype="multipart/form-data">
+						<form method="post" role="form" enctype="multipart/form-data"
+							onsubmit="return formCheck()">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- img_title -->
@@ -108,6 +109,19 @@
 				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
 			}
 		});
+	function formCheck() {
+		if ($.trim($("#img_title").val()) == "") {
+			alert("제목을 입력하세요");
+			$("#img_title").focus();
+			return false;
+		}else if ($.trim($("#img_filenm").val()) == "") {
+			alert("사진을 첨부하세요");
+			$("#img_filenm").focus();
+			return false;
+		}
+		return true;
+
+	}
 
 
 		</script>

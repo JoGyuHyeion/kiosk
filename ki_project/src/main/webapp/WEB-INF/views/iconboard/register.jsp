@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
@@ -34,13 +32,13 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form action="/iconboard/register" method="post"
-							enctype="multipart/form-data">
-							<div class="col-md-7">
+						<div class="col-md-7">
+							<form method="post" enctype="multipart/form-data"
+								onsubmit="return formCheck()">
 								<div class="form-horizontal" role="form">
 									<!-- icon_name -->
 									<div class="form-group">
-										<label class="col-md-2 control-label">제목</label>
+										<label class="col-md-2 control-label">이름</label>
 										<div class="col-md-10">
 											<input type="text" class="form-control" placeholder="Name"
 												id="ic_name" name="ic_name">
@@ -48,7 +46,7 @@
 									</div>
 									<!-- ic_icon -->
 									<div class="form-group">
-										<label class="col-md-3 control-label">이미지 파일</label> <input
+										<label class="col-md-2 control-label">이미지 파일</label> <input
 											id="iconName"
 											class="file_input_textbox form-control col-md-5 " readonly />
 										<div class="file_input_div">
@@ -60,39 +58,52 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="form-group" style="text-align: center">
-								<button type="submit"
-									class="btn btn-primary waves-effect w-md waves-light m-b-5"
-									id="change">수정</button>
-								<button type="button"
-									class="btn btn-warning waves-effect w-md waves-light m-b-5"
-									id="back">돌아가기</button>
-							</div>
-						</form>
+
+								<div class="form-group" style="text-align: center">
+									<button type="submit"
+										class="btn btn-primary waves-effect w-md waves-light m-b-5"
+										id="change">등록</button>
+									<button type="button"
+										class="btn btn-warning waves-effect w-md waves-light m-b-5"
+										id="back">돌아가기</button>
+								</div>
+							</form>
+						</div>
 					</div>
+					<script>
+						$(document)
+							.ready(
+								function() {
+									var formObj = $("form[role='form']");
+									console.log(formObj);
+									$("#back")
+										.on(
+											"click",
+												function() {
+													self.location = "/iconboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+											});
+
+								});
+		
+					function formCheck() {
+						if ($.trim($("#ic_name").val()) == "") {
+						alert("이름을 입력하세요");
+						$("#ic_name").focus();
+						return false;
+					}else if ($.trim($("#icon_filenm").val()) == "") {
+						alert("사진을 첨부하세요");
+						$("#icon_filenm").focus();
+						return false;
+					}
+					return true;
+					}	
+					</script>
 				</div>
 			</div>
 			<!-- end col -->
 		</div>
 		<!-- end row -->
 	</div>
-
-	<script>
-		$(document)
-				.ready(
-						function() {
-							var formObj = $("form[role='form']");
-							console.log(formObj);
-							$("#back")
-									.on(
-											"click",
-											function() {
-												self.location = "/iconboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-											});
-
-						});
-	</script>
 	<!-- end container -->
 </section>
 <!-- /.content-wrapper -->

@@ -48,12 +48,11 @@
 										</div>
 									</div>
 									<!-- img -->
-									<div class="form-group">
-										<label class="col-md-2 control-label">사진</label>
-										<div class="col-md-10">
-											<img src="/resources/assets/images/properties/6.jpg">
-										</div>
-									</div>
+									<img width="600" height="400"
+										src="${pageContext.request.contextPath}/resources/upload/${com_imageVO.img_filenm}"
+										class="thumb-img"
+										onerror="this.src='/resources/assets/images/properties/1.jpg'">
+
 									<!-- img_gallery  노출 여부   -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">표시여부</label>
@@ -82,18 +81,18 @@
 							class="btn btn-warning waves-effect w-md waves-light m-b-5"
 							id="back">돌아가기</button>
 					</div>
+
 					<script>
 						$(document)
 								.ready(
 										function() {
 											var formObj = $("form[role='form']");
 											console.log(formObj);
-
-											$("#change")
+											$("#back")
 													.on(
 															"click",
 															function() {
-																self.location = "/galleryboard/modifyPage?img_no=${com_imageVO.img_no}";
+																self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 															});
 											$("#back")
 													.on(
@@ -101,15 +100,12 @@
 															function() {
 																self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 															});
-											/* alert("${com_imageVO.img_gallery}"); */
-											var input = $
-											{com_imageVO.img_gallery};
-											if (input == 1) { //값 비교
-												$(
-														'input:checkbox[id="img_gallery"]')
-														.attr("checked", true); //checked 처리
-											}
 
+											alert("${com_imageVO.img_gallery}");
+											var input = ${com_imageVO.img_gallery};
+											if (input == 1) { //값 비교
+												$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
+											}
 										});
 					</script>
 				</div>
