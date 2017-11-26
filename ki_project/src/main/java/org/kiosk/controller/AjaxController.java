@@ -8,6 +8,7 @@ import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.dto.LoginDTO;
 import org.kiosk.dto.TeamsDTO;
+import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
 import org.kiosk.service.JsonTeamsService;
@@ -36,6 +37,8 @@ public class AjaxController {
 	@Inject
 	private Com_sectionService sectionService;
 	@Inject
+	private Com_bureauService bureauService;
+	@Inject
 	private UserService userService;
 
 	private static final String SUCCESS = "SUCCESS";
@@ -45,6 +48,7 @@ public class AjaxController {
 		logger.info("/section/insert");
 		ResponseEntity<String> entity = null;
 		try {
+			vo.setSection_fullpath(bureauService.read(vo.getBureau_cd()).getBureau_name()+">"+vo.getSection_name());
 			sectionService.regist(vo);
 			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {

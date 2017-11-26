@@ -41,7 +41,7 @@ pageEncoding="UTF-8"%>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${bcd}" var="com_sectionVO">
+                                <c:forEach items="${bcd}" var="com_sectionVO" varStatus="status">
                                     <tr>
                                         <td><input type="text" class="form-control" size="6"
                                                    value="${com_sectionVO.section_cd}" readonly="readonly"></td>
@@ -54,7 +54,7 @@ pageEncoding="UTF-8"%>
                                                        <label for="section_use" data-on-label="On" data-off-label="Off"></label>
                                             </div>
                                         </td>
-                                        <td><a href="#" class="table-action-btn h2"><i
+                                        <td><a class="table-action-btn h2 removeBtn" value ="${com_sectionVO.section_fullcode}" ><i
                                                     class="mdi mdi-close-box-outline text-danger"></i></a></td>
                                     </tr>
                                 </c:forEach>
@@ -117,109 +117,90 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
         <script>
-            $(document)
-                    .ready(
-                            function () {
-                                $("#search_bcd").change(
-                                        function () {
-                                            var bcd = $(
-                                                    "#search_bcd option:selected")
-                                                    .val();
-                                            var url = "/myinfoboard/section?bcd="
-                                                    + bcd;
-                                           // alert(url);
-                                            location.href = url;
-                                        });
-
-                                var value = "${param.bcd}";
-
-                                $("#search_bcd > option[value=" + value + "]").attr("selected", true);
-
-                                $('#sectionAdd').on(
-                                        'show.bs.modal',
-                                        function (event) {
-                                            $("#section_name").val("");
-
-                                            $("#section_name").focus();
-
-                                            var button = $(event.relatedTarget)
-                                            var recipient = button.data('whatever')
-                                            var modal = $(this)
-                                            modal.find('.modal-body input').val(recipient)
-
-                                            $.ajax({
-                                                url: '/section/insert',
-                                                type: 'post',
-                                                data: {
-                                                    "bureau_cd": bureau_cd,
-                                                    "section_name": section_name
-                                                },
-                                                success: function (
-                                                        data) {
-                                                    //location.reload();
-                                                }
-                                            });
-                                        });
-
-                                $("#btnAdd").click(
-                                        function () {
-                                            var bureau_cd = $("#search_bcd option:selected").val();
-                                            var section_name = $("#section_name").val();
-											var section_cd = $("#section_cd").val();
-                                            alert("bureau_cd : "+bureau_cd +" \n section_name : "+ section_name + " \n section_cd : "+section_cd);
-
-
-                                            $.ajax({
-                                                url: '/section/insert',
-                                                type: 'post',
-                                                headers: {
-                                                    "Content-Type": "application/json",
-                                                    "X-HTTP-Method-Override": "POST"
-                                                },
-                                                dataType:'text',
-                                                data: JSON.stringify({
-                                                    "bureau_cd": bureau_cd,
-                                                    "section_cd": section_cd,
-                                                    "section_name": section_name
-                                                }),
-                                                success: function (
-                                                        data) {
-                                                    alert(data);
-                                                    if (data == 'SUCCESS') {
-                                                        alert("추가 되었습니다.");
-                                                        location.reload();
-                                                    }
-                                                }
-                                            });
-                                        });
-                                $(".section-del").click(
-                                        function () {
-                                            var bureau_cd = $("#search_bcd option:selected").val();
-                                            var section_cd = $(this).data("sectioncd");
-                                            $.ajax({
-                                                url: '/section/del',
-                                                type: 'post',
-                                                dataType: 'json',
-                                                data: {
-                                                    "bureau_cd": bureau_cd,
-                                                    "section_cd": section_cd
-                                                },
-                                                success: function (
-                                                        data) {
-                                                    if (data.row == 1) {
-                                                        location
-                                                                .reload();
-                                                    } else if (data.row == 0) {
-                                                        alert(data.msg);
-                                                    }
-                                                }
-                                            });
-                                        });
-                                $.urlParam = function (name) {
-                                    var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
-                                    return results[1] || 0;
-                                }
-                            });
+            $(document).ready(function () {
+            	
+            	$("#search_bcd").change(function () {
+            		var bcd = $("#search_bcd option:selected").val();
+            		var url = "/myinfoboard/section?bcd="+ bcd;
+            		// alert(url);
+            		location.href = url;
+            		});
+            	
+            	var value = "${param.bcd}";
+            	$("#search_bcd > option[value=" + value + "]").attr("selected", true);
+            	$('#sectionAdd').on('show.bs.modal',function (event) {
+            		$("#section_name").val("");
+            		$("#section_name").focus();
+            		var button = $(event.relatedTarget)
+            		var recipient = button.data('whatever')
+            		var modal = $(this)
+            		modal.find('.modal-body input').val(recipient)
+            		$.ajax({
+            			url: '/section/insert',
+            			type: 'post',
+            			data: {
+            				"bureau_cd": bureau_cd,
+            				"section_name": section_name
+            				},
+            				success: function (data) {
+            					//location.reload();
+            					}
+            				});
+            		});
+            	
+            	$("#btnAdd").click(function () {
+            		var bureau_cd = $("#search_bcd option:selected").val();
+            		var section_name = $("#section_name").val();
+            		var section_cd = $("#section_cd").val();
+            		            		
+            		$.ajax({
+            			url: '/section/insert',
+            			type: 'post',
+            			headers: {
+            				"Content-Type": "application/json",
+            				"X-HTTP-Method-Override": "POST"
+            				},
+            				dataType:'text',
+            				data: JSON.stringify({
+            					"bureau_cd": bureau_cd,
+            					"section_cd": section_cd,
+            					"section_name": section_name,
+            					"section_type" : 1,
+            					"section_fullcode" : bureau_cd+"-"+section_cd,
+            					}),
+            					
+            					success: function (data) {
+            					
+            						if (data == 'SUCCESS') {
+            							alert("추가 되었습니다.");
+            							location.reload();
+            							}
+            						}
+            				});
+            		});
+            	
+            	$(document).on("click",".reeeremoveBtn",function(event){
+                    alert($(this).attr("value"));
+                  });
+            	
+            	$(".removeBtn").click(function () {
+            		var section_cd = $(this).attr("value");
+            		$.ajax({
+            			url: '/section/del/'+section_cd,
+            			type: 'DELETE',
+            			success: function (data) {
+            					if (data == 'SUCCESS') {
+            						alert("삭제 되었습니다.");
+            						location.reload();
+            						}
+            				}
+            				});
+            		});
+            	$.urlParam = function (name) {
+            		var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+            		return results[1] || 0;
+            		}
+            });
         </script>
 
 
