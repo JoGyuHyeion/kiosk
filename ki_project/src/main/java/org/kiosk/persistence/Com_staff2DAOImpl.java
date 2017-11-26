@@ -77,18 +77,8 @@ public class Com_staff2DAOImpl implements Com_staff2DAO {
 	}
 
 	@Override
-	public List<Com_staff2VO> superListSearch(SearchCriteria cri) throws Exception {
-		return session.selectList(namespace + ".superListSearch", cri);
-	}
-
-	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return session.selectOne(namespace + ".listSearchCount", cri);
-	}
-
-	@Override
-	public int superListSearchCount(SearchCriteria cri) throws Exception {
-		return session.selectOne(namespace + ".superListSearchCount", cri);
 	}
 
 }
