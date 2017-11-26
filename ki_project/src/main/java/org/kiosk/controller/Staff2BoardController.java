@@ -59,7 +59,7 @@ public class Staff2BoardController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 
-		if (userVO.getAuth() == 1) {
+		if (userVO.getAuth() == 1 || cri.getSection_cd()==null) {
 			cri.setSection_cd(userVO.getSection_fullcode());
 		}
 
