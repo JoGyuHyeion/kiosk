@@ -42,7 +42,7 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 
-					<form class="form-horizontal" action="/myinfoboard/newUser"
+					<form class="form-horizontal" action="/myinfoboard/newUser" id="newUserForm"
 						method="post">
 						<div class="row">
 
@@ -111,8 +111,8 @@
 
 						</div>
 						<div class="form-group" style="text-align: center">
-							<button type="submit"
-								class="btn btn-primary waves-effect w-md waves-light m-b-5">생성</button>
+							<button type="button"
+								class="btn btn-primary waves-effect w-md waves-light m-b-5" id = "addNewUser">생성</button>
 						</div>
 					</form>
 				</div>
@@ -122,28 +122,45 @@
 
 		</div>
 		<script>
-		$("#dulCheck").click(function () {
+		$(document).ready(function() {
+			dulCheck="FASLE";
 			
-			var id = $("#section_id").val();
+			$("#dulCheck").click(function () {
+				
+				var id = $("#section_id").val();
+				alert("id : "+id);
+				
+				$.ajax({
+					url: '/user/duplCheck/'+id,
+					type: 'get',
+					headers: {
+						"Content-Type": "application/json",
+						"X-HTTP-Method-Override": "GET"
+						},
+						
+						dataType:'text',
+						
+						success: function (data) {
+							dulCheck = data;
+							alert(data);
+							}
+						});
+					return false;
+				});
 			
-			alert("id : "+id);
-			
-			$.ajax({
-				url: '/user/duplCheck/'+id,
-				type: 'get',
-				headers: {
-					"Content-Type": "application/json",
-					"X-HTTP-Method-Override": "GET"
-					},
-					
-					dataType:'text',
-					
-					success: function (data) {
-						alert(data);
-						location.reload();
-						}
-					});
+			$("#addNewUser").click(function(){
+				alert(dulCheck);
+				
+				if(dulCheck=="FASLE"){
+					alert("ID 중복체크를 확인해 주시기 바랍니다.");
+					return false;
+				}else{
+					$("#newUserForm").submit();
+				}
+				
 			});
+			
+		});
 		</script>
 		<!-- end row -->
 		<%@include file="../include/footer.jsp"%>
