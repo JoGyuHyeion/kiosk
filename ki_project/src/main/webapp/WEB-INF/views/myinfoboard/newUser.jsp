@@ -42,7 +42,7 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 
-					<form class="form-horizontal" action="/myinfoboard/newUser"
+					<form class="form-horizontal" action="/myinfoboard/newUser" id="newUserForm"
 						method="post">
 						<div class="row">
 
@@ -73,10 +73,10 @@
 										<label class="col-md-2 control-label">계정ID</label>
 										<div class="col-md-5">
 											<input type="text" class="form-control" placeholder="ID"
-												id="section_pass" name="id">
+												id="section_id" name="id">
 										</div>
 										<div class="col-md-3">
-											<button class="btn btn-default  ">중복확인</button>
+											<button class="btn btn-default" id ="dulCheck">중복확인</button>
 										</div>
 									</div>
 
@@ -111,8 +111,8 @@
 
 						</div>
 						<div class="form-group" style="text-align: center">
-							<button type="submit"
-								class="btn btn-primary waves-effect w-md waves-light m-b-5">생성</button>
+							<button type="button"
+								class="btn btn-primary waves-effect w-md waves-light m-b-5" id = "addNewUser">생성</button>
 						</div>
 					</form>
 				</div>
@@ -121,5 +121,46 @@
 
 
 		</div>
+		<script>
+		$(document).ready(function() {
+			dulCheck="FASLE";
+			
+			$("#dulCheck").click(function () {
+				
+				var id = $("#section_id").val();
+				alert("id : "+id);
+				
+				$.ajax({
+					url: '/user/duplCheck/'+id,
+					type: 'get',
+					headers: {
+						"Content-Type": "application/json",
+						"X-HTTP-Method-Override": "GET"
+						},
+						
+						dataType:'text',
+						
+						success: function (data) {
+							dulCheck = data;
+							alert(data);
+							}
+						});
+					return false;
+				});
+			
+			$("#addNewUser").click(function(){
+				alert(dulCheck);
+				
+				if(dulCheck=="FASLE"){
+					alert("ID 중복체크를 확인해 주시기 바랍니다.");
+					return false;
+				}else{
+					$("#newUserForm").submit();
+				}
+				
+			});
+			
+		});
+		</script>
 		<!-- end row -->
 		<%@include file="../include/footer.jsp"%>

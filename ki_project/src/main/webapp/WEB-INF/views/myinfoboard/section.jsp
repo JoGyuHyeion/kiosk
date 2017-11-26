@@ -127,7 +127,7 @@ pageEncoding="UTF-8"%>
                                                     .val();
                                             var url = "/myinfoboard/section?bcd="
                                                     + bcd;
-                                            alert(url);
+                                           // alert(url);
                                             location.href = url;
                                         });
 
