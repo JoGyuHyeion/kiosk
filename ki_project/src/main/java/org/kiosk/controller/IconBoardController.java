@@ -95,19 +95,24 @@ public class IconBoardController {
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_iconVO board, SearchCriteria cri, RedirectAttributes rttr,
-			@RequestParam("iconFile") MultipartFile iconFile, HttpServletRequest request) throws Exception {
+			@RequestParam("iconFile") MultipartFile iconFile, HttpServletRequest request,
+			@RequestParam("iconName") String iconName) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
 		logger.info(cri.toString());
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String icon_filenm;
+		String default_img_filenm = "/icon/icon" + board.getIc_no() + ".png";
 
-		if (board.isIc_default() == 0) {
+		if (!(iconName.equals(default_img_filenm))) {
+			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getIc_no()).getIc_icon());
+		}
+		if (board.getIc_default() == 0) {
 			icon_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, iconFile.getOriginalFilename(),
 					iconFile.getBytes(), img_fileName + board.getIc_no(), dirPath);
 		} else {
-			icon_filenm = "/icon/icon" + board.getIc_no() + ".png";
+			icon_filenm = default_img_filenm;
 		}
-		logger.info("test" + icon_filenm + " " + board.isIc_default());
+		logger.info("test" + icon_filenm + " " + board.getIc_default());
 
 		board.setIc_icon(icon_filenm);
 		service.modify(board);

@@ -45,12 +45,14 @@
 										${com_iconVO.ic_ndt}</p>
 
 									<div class="row">
+										<input type="hidden" id="img_file_name${com_iconVO.ic_no}"
+											value="${com_iconVO.ic_icon}"> <input type="hidden"
+											id="ic_default${com_iconVO.ic_no}"
+											value="${com_iconVO.ic_default}">
 										<button
 											class="btn btn-info btn-rounded waves-effect m-t-10 waves-light change_btn"
 											data-toggle="modal" data-target="#imageModal"
-											id="change_btn${com_iconVO.ic_no}"
 											value="${com_iconVO.ic_no}">수정</button>
-
 									</div>
 
 								</div>
@@ -96,7 +98,8 @@
 						</div>
 						<div class="form-group">
 							<label class="col-md-2 control-label">파일 등록</label> <input
-								id="iconName" class="file_input_textbox form-control col-md-5 "
+								id="iconName" name="iconName"
+								class="file_input_textbox form-control col-md-5 "
 								readonly="readonly" />
 							<div class="file_input_div">
 								<input type="button" value="파일 선택" id="file_upload_btn"
@@ -105,12 +108,8 @@
 									onchange="javascript:var path = document.getElementById('iconName').value = this.value.split('\\').pop().split('/').pop()"
 									accept="image/*" name="iconFile" id="img_filenm" />
 							</div>
+							<input type="hidden" name="ic_icon" id="ic_icon">
 						</div>
-						<!--<div class="form-group">
-							<label for="image" class="control-label">파일 등록</label> <input
-								type="file" id="file_upload" class="form-control"
-								name="iconFile">
-						</div> -->
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
@@ -137,13 +136,21 @@
 					 */
 					$('.change_btn').click(function() {
 						var ic_no = $(this).val();
-						$('#imageModal').find('#ic_no').val(ic_no);
+						var ic_icon=$("#img_file_name"+ic_no.toString()).val();
+						var ic_default = $("#ic_default"+ic_no.toString()).val();
+						$('#imageModal').find('#ic_no').val(ic_no);			
+						$('#imageModal').find('#ic_icon').val(ic_icon);
+						$('#imageModal .modal-body').find('#iconName').val(ic_icon);
+						$('input:radio[name="ic_default"]:input[value='+ic_default+']').attr("checked", true);
+						if(ic_default==1){
+							$('#file_upload_btn').attr('disabled', true);
+							$('#img_filenm').attr('style', 'display:none');
+						}
+						
 					});
 
-					$('#file_upload').attr('disabled', true);
-					$('#img_filenm').attr('style', 'display:none');
 					
-					$("input[type='radio']").change(
+					$("input[type='radio']").click(
 							function() {
 								var radioValue = $(
 										'input[name=ic_default]:checked').attr(

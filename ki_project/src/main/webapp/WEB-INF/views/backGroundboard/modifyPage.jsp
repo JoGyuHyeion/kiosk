@@ -101,16 +101,13 @@
 									self.location = "/backGroundboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 								});
 
-			});
-			var input = $
-			{
-				com_imageVO.img_gallery
-			};
-			if (input == 1) { //값 비교
-				$('input:checkbox[id="bi_able"]').attr("checked", true); //checked 처리
-			}
+			
+					var input = ${com_bgImgVO.bi_able};
+					if (input == 1) { //값 비교
+						$('input:checkbox[id="bi_able"]').attr("checked", true); //checked 처리
+					}
 
-
+				});
 		</script>
 	<!-- end container -->
 </section>

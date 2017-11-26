@@ -40,7 +40,7 @@
 										<label class="col-md-3 control-label">제목</label>
 										<div class="col-md-7">
 											<input type="text" class="form-control" placeholder="Name"
-												id="bi-name" name="bi_name">
+												id="bi_name" name="bi_name">
 										</div>
 									</div>
 									<!-- 배경화면 사용 가능 여부   -->
