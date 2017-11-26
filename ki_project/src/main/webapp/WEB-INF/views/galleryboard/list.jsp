@@ -39,7 +39,7 @@
 							src="${pageContext.request.contextPath}/resources/upload/${com_imageVO.img_filenm}"
 							class="thumb-img"
 							onerror="this.src='/resources/assets/images/properties/1.jpg'">
-						</a>
+
 						<div class="gal-detail">
 							<h4>${com_imageVO.img_title}</h4>
 							<form

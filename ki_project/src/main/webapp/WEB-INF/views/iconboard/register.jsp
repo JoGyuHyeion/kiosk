@@ -47,10 +47,16 @@
 										</div>
 									</div>
 									<!-- ic_icon -->
-									<div class="form-group clearfix">
-										<div class="col-sm-12 padding-left-0 padding-right-0">
-											<input type="file" name="iconFile" id="ic_icon"
-												multiple="multiple">
+									<div class="form-group">
+										<label class="col-md-3 control-label">이미지 파일</label> <input
+											id="iconName"
+											class="file_input_textbox form-control col-md-5 " readonly />
+										<div class="file_input_div">
+											<input type="button" value="파일"
+												class="file_input_button btn btn-primary" /> <input
+												type="file" class="file_input_hidden" data-icon='false'
+												onchange="javascript:var path = document.getElementById('iconName').value = this.value.split('\\').pop().split('/').pop()"
+												accept="image/*" name="iconFile" id="icon_filenm" />
 										</div>
 									</div>
 								</div>
@@ -82,7 +88,7 @@
 									.on(
 											"click",
 											function() {
-												self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+												self.location = "/iconboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 											});
 
 						});

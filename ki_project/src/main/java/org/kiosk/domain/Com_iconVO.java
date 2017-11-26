@@ -36,7 +36,7 @@ public class Com_iconVO {
 		this.ic_icon = ic_icon;
 	}
 
-	public int isIc_default() {
+	public int getIc_default() {
 		return ic_default;
 	}
 

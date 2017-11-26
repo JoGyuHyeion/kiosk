@@ -101,6 +101,14 @@
 															function() {
 																self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 															});
+											/* alert("${com_imageVO.img_gallery}"); */
+											var input = $
+											{com_imageVO.img_gallery};
+											if (input == 1) { //값 비교
+												$(
+														'input:checkbox[id="img_gallery"]')
+														.attr("checked", true); //checked 처리
+											}
 
 										});
 					</script>
@@ -109,15 +117,6 @@
 			<!-- end col -->
 		</div>
 		<!-- end row -->
-		<script>
-			var input = $
-			{
-				com_imageVO.img_gallery
-			};
-			if (input == 1) { //값 비교
-				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
-			}
-		</script>
 	</div>
 	<!-- end container -->
 </section>

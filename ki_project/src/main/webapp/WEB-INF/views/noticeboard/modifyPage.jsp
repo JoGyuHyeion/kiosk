@@ -91,7 +91,8 @@
 										</div>
 									</div>
 									<!-- bbs_state     -->
-									<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
+									<%-- <c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
+									 --%>
 									<div class="form-group">
 										<label for="bbs_state" class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
@@ -113,32 +114,6 @@
 							</form>
 						</div>
 					</div>
-					<script>
-						var input = $
-						{
-							com_boardVO.bbs_state
-						};
-						if (input == 1) { //값 비교
-							$('input:checkbox[id="bbs_state"]').attr("checked",
-									true); //checked 처리
-						}
-
-						$(document)
-								.ready(
-										function() {
-											var formObj = $("form[role='form']");
-											console.log(formObj);
-											$("#back")
-													.on(
-															"click",
-															function() {
-																self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-															});
-
-											alert(bbs_state);
-
-										});
-					</script>
 				</div>
 			</div>
 			<!-- end col -->
@@ -154,12 +129,13 @@
 					.ready(
 							function() {
 								var formObj = $("form[role='form']");
-								var bbs_state ="<c:out value="${bbs_state}"/>";
+								/* var bbs_state ="<c:out value="${bbs_state}"/>";
 								if(bbs_state == 1){
 									 $("#bbs_state").attr('checked',true);			
 								}else{
 									 $("#bbs_state").attr('checked',false);	
-								}
+								} */
+								
 								
 								console.log(formObj);
 								$("#back")
@@ -169,7 +145,12 @@
 													self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 												});
 								
-							});
+							/* alert("${com_boardVO.bbs_state}"); */
+							var bbs_state = ${com_boardVO.bbs_state};
+							if(bbs_state==1){
+								$('input:checkbox[id="bbs_state"]').attr("checked",true);
+							}
+						});
 		</script>
 
 	</div>
