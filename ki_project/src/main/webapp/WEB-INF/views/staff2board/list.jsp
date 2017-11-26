@@ -173,23 +173,30 @@
 		</script>
 
 		<script>
-			$(document).ready(
-					function() {
-
-						$('#searchBtn').on(
-								"click",
-								function(event) {
-
-									self.location = "list"
-											+ '${pageMaker.makeQuery(1)}'
-											+ "&section_cd="
-											+ $("select option:selected").val()
-											+ "&keyword="
-											+ $('#search-input').val();
-
-								});
-
+			$(document).ready(function() {
+				
+				$('#searchBtn').on("click",function(event) {
+					self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&section_cd="
+					+ $("select option:selected").val()
+					+ "&keyword="
+					+ $('#search-input').val();
 					});
+				
+				$("#section_cd").change(function () {
+					var section_cd = $("#section_cd option:selected").val();
+					
+					var url = "/staff2board/list?section_cd="+ section_cd;
+				
+					location.href = url;
+					});
+				
+				var value = "${param.section_cd}";
+				
+				$("#section_cd > option[value=" + value + "]").attr("selected", true);
+				
+				});
 		</script>
 	</div>
 </section>
