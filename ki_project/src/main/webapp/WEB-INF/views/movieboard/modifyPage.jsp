@@ -31,7 +31,8 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form" enctype="multipart/form-data">
+						<form method="post" role="form" enctype="multipart/form-data"
+							onsubmit="return formCheck()">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- vi_name -->
@@ -89,8 +90,20 @@
 															function() {
 																self.location = "/movieboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 															});
-
 										});
+						function formCheck() {
+							if ($.trim($("#vi_name").val()) == "") {
+								alert("제목을 입력하세요");
+								$("#vi_name").focus();
+								return false;
+							}else if ($.trim($("#vi_video").val()) == "") {
+								alert("동영상을 첨부하세요");
+								$("#vi_video").focus();
+								return false;
+							}
+							return true;
+
+						}
 					</script>
 
 				</div>

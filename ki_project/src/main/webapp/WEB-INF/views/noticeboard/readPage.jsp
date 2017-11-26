@@ -33,8 +33,6 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-
-
 					<div class="row">
 						<form>
 							<div class="col-md-7">

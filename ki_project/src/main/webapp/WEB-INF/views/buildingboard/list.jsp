@@ -69,8 +69,10 @@
 											<c:choose>
 												<c:when test="${com_buildingVO.bu_no==1}">
 													<div class="item active text-center">
-														<img src="/resources/upload/${com_buildingVO.bu_img}"
-															alt="First slide image">
+														<img
+															src="${pageContext.request.contextPath}/resources/upload/${com_buildingVO.bu_img}"
+															alt="default slide image"
+															onerror="this.src='/resources/assets/images/properties/1.jpg'">
 														<div class="carousel-caption">
 															<h3 class="text-white font-600">${com_buildingVO.bu_name}</h3>
 														</div>
@@ -78,8 +80,10 @@
 												</c:when>
 												<c:otherwise>
 													<div class="item">
-														<img src="/resources/upload/${com_buildingVO.bu_img}"
-															alt="First slide image">
+														<img
+															src="${pageContext.request.contextPath}/resources/upload/${com_buildingVO.bu_img}"
+															alt="default slide image"
+															onerror="this.src='/resources/assets/images/properties/1.jpg'">
 														<div class="carousel-caption">
 															<h3 class="text-white font-600">${com_buildingVO.bu_name}</h3>
 														</div>
@@ -133,8 +137,10 @@
 													<c:when test="${com_buildingVO.bu_no==1}">
 														<div class="tab-pane active"
 															id="bu_no${com_buildingVO.bu_no}">
-															<img src="/resources/upload/${com_buildingVO.bu_img}"
-																alt="slide image" class="img-responsive" />
+															<img width="700" height="400"
+																src="${pageContext.request.contextPath}/resources/upload/${com_buildingVO.bu_img}"
+																alt="default slide image"
+																onerror="this.src='/resources/assets/images/properties/1.jpg'">
 															<div class="form-group" style="text-align: center">
 																<input type="hidden"
 																	id="img_file_name${com_buildingVO.bu_no}"
@@ -150,8 +156,10 @@
 													</c:when>
 													<c:otherwise>
 														<div class="tab-pane" id="bu_no${com_buildingVO.bu_no}">
-															<img src="/resources/upload/${com_buildingVO.bu_img}"
-																alt="slide image" class="img-responsive" />
+															<img width="700" height="400"
+																src="${pageContext.request.contextPath}/resources/upload/${com_buildingVO.bu_img}"
+																alt="default slide image"
+																onerror="this.src='/resources/assets/images/properties/1.jpg'">
 															<div class="form-group" style="text-align: center">
 																<input type="hidden"
 																	id="img_file_name${com_buildingVO.bu_no}"
