@@ -138,14 +138,16 @@
 									<!-- usr_work_state_code_nm    -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">직원표시</label>
-										<!-- checkbox checked 일경우 활성화 -->
-										<div style="padding: 5px">
-											<input type="checkbox" name="st_display"
-												id="usr_work_state_code_nm" value="1" switch="none" /> <label
-												for="usr_work_state_code_nm" data-on-label="On"
-												data-off-label="Off"></label>
+										<div class="col-md-7">
+											<select name="usr_work_state_code_nm"
+												id="usr_work_state_code_nm" class="form-control">
+												<option value="재직">재직</option>
+												<option value="재직(파견)">재직(파견)</option>
+												<option value="휴직">휴직</option>
+											</select>
 										</div>
 									</div>
+
 									<!-- st_status     -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">상태</label>
@@ -200,14 +202,14 @@
 										});
  							
 							var status = ${com_staff2VO.st_status};
+							var usr_work_state_code_nm = "${com_staff2VO.usr_work_state_code_nm}";
 							alert("Display, Status 확인 \n"
 									+ "표시여부: " + usr_work_state_code_nm
 									+ "\n근무 상태: " + status);
-							$('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
-							/* var usr_work_state_code_nm = ${com_staff2VO.usr_work_state_code_nm}; */
-							/* 							if(usr_work_state_code_nm==1){
-							$('input:checkbox[id="usr_work_state_code_nm"]').attr("checked",true);
-							} */
+							
+							
+							  $('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
+							  $('select[id="usr_work_state_code_nm"] option:contains("'+usr_work_state_code_nm+'")').attr("selected","selected");
 							$("#section_cd").change( function () {
 				    	 
 				    			 var section_cd = $("#section_cd option:selected").val();
@@ -226,6 +228,50 @@
 				    	 
 				   			});
 					});
+		function formCheck() {
+			if ($.trim($("#usr_nm").val()) == "") {
+				alert("이름을 입력하세요");
+				$("#usr_nm").focus();
+				return false;
+			} else if ($.trim($("#posit_nm").val()) == "") {
+				alert("직위를 입력하세요");
+				$("#posit_nm").focus();
+				return false;
+			} else if ($.trim($("#telno").val()) == "") {
+				alert("전화번호를 입력하세요");
+				$("#telno").focus();
+				return false;
+			} else if ($.trim($("#email_addr").val()) == "") {
+				alert("이메일을 입력하세요");
+				$("#email_addr").focus();
+				return false;
+			} else if ($.trim($("#st_key").val()) == "") {
+				alert("대표 업무를 입력하세요");
+				$("#st_key").focus();
+				return false;
+			} else if ($.trim($("#adi_info7").val()) == "") {
+				alert("사무 설명을 입력하세요");
+				$("#adi_info7").focus();
+				return false;
+			} else if ($.trim($("#img_filenm").val()) == "") {
+				alert("사진을 첨부하세요");
+				$("#img_filenm").focus();
+				return false;
+			} else if ($.trim($("#section_cd").val()) == "") {
+				alert("근무 부서를 선택하세요");
+				$("#section_cd").focus();
+				return false;
+			} else if ($.trim($("#team_cd").val()) == "") {
+				alert("근무 팀을 선택하세요");
+				$("#team_cd").focus();
+				return false;
+			} else if(!$(':input:radio[name=st_status]:checked').val()){
+				alert("상태를 선택해주세요");
+				return false;
+			}
+			return true;
+
+		}
 			</script>
 		</div>
 	</div>
