@@ -22,17 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="update">
 		update com_section set
-		bureau_cd = #{bureau_cd},
-		section_name = #{section_name},
-		section_type = #{section_type},
+		section_name = #{section_name},	
 		section_sort = #{section_sort},
-		section_ip = #{section_ip},
-		section_id =
-		#{section_id},
-		section_pass = #{section_pass},
-		section_fullcode =
-		#{section_fullcode},
-		section_fullpath = #{section_fullpath},
 		section_use = #{section_use}
 		where
 		section_fullcode = #{section_fullcode}
@@ -52,6 +43,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * from com_section 
  		where bureau_cd = #{bureau_cd}
  		]]>
+	</select>
+	
+	<select id="lastInsertSort" resultType="int">
+	select count(*) 
+	from com_section 
+	where bureau_cd = #{bureau_cd}
 	</select>
 
 

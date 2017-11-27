@@ -20,4 +20,6 @@ public interface Com_sectionService {
 
 	public Map<String, List<Com_sectionVO>> getJsonSection() throws Exception;
 
+	public int lastInsertSort(String bureau_cd) throws Exception;
+
 }

@@ -89,6 +89,7 @@ public class JsonStaffServiceImpl implements JsonStaffService {
 		try {
 			staffList = new HashMap<String, JsonStaffDTO>();
 			for (Com_teamVO vo : teamService.listAll()) {
+				System.out.println(vo.getSection_cd()+vo.getTeam_nm());
 				staffList.put(vo.getSection_cd(), getJsonStaff(vo.getSection_cd()));
 			}
 		} catch (Exception e) {

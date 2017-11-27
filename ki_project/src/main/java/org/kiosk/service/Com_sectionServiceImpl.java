@@ -70,4 +70,9 @@ public class Com_sectionServiceImpl implements Com_sectionService {
 		return sectionList;
 	}
 
+	@Override
+	public int lastInsertSort(String bureau_cd) throws Exception {
+		return dao.lastInsertSort(bureau_cd) + 1;
+	}
+
 }

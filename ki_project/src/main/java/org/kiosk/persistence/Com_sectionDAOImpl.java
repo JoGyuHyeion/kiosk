@@ -50,5 +50,10 @@ public class Com_sectionDAOImpl implements Com_sectionDAO{
 		return session.selectList(namespace + ".bureau_list",bureau_cd);
 	}
 
+	@Override
+	public int lastInsertSort(String bureau_cd) throws Exception {
+		return session.selectOne(namespace + ".lastInsertSort",bureau_cd);
+	}
+
 
 }
