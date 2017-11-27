@@ -68,7 +68,7 @@ pageEncoding="UTF-8"%>
                                             <div class="form-group" style="text-align: center">
                                                 <button type="button" id="btnSave"
                                                         class="btn btn-primary waves-effect w-md waves-light m-b-5">저장</button>
-                                                <button data-toggle="modal" data-target="#sectionModal"
+                                                <button data-toggle="modal" id="addSection" data-target="#sectionModal"
                                                         class="btn btn-warning waves-effect w-md waves-light m-b-5">
                                                     <i class="fa fa-plus-circle"></i> 과추가
                                                 </button>
@@ -128,11 +128,11 @@ pageEncoding="UTF-8"%>
         <script>
             $(document).ready(function () {
             	
-            	 $('#closeModal').on('click', function () {
+            	 $('#addSection').on('click', function () {
             	        $("#section_cd").val(" ");
             	        $("#section_name").val(" ");
             	        $("#new_section_use").prop('checked',false)
-            	      });
+            	 });
             	
             	 $("#btnSave").click(function(){
             		 var bcd = $("#search_bcd option:selected").val();
@@ -183,6 +183,9 @@ pageEncoding="UTF-8"%>
             	$("#search_bcd > option[value=" + value + "]").attr("selected", true);
             	
             	$("#btnAdd").click(function () {
+            		$("#section_cd").val(" ");
+          	        $("#section_name").val(" ");
+          	        $("#new_section_use").prop('checked',false)
             		var bureau_cd = $("#search_bcd option:selected").val();
             		var section_name = $("#section_name").val();
             		var section_cd = $("#section_cd").val();

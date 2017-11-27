@@ -54,4 +54,9 @@ public class Com_teamServiceImpl implements Com_teamService {
 		return dao.jsonList(bureau_cd);
 	}
 
+	@Override
+	public int lastInsertSort(String section_cd) throws Exception {
+		return dao.lastInsertSort(section_cd) + 1;
+	}
+
 }

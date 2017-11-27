@@ -113,6 +113,7 @@ public class AjaxController {
 		logger.info("/section/insert");
 		ResponseEntity<String> entity = null;
 		try {
+			vo.setTeam_sort(teamService.lastInsertSort(vo.getSection_cd()));
 			teamService.regist(vo);
 			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
