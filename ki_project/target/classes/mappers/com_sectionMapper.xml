@@ -22,15 +22,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="update">
 		update com_section set
-		section_name = #{section_name},	
+		section_name = #{section_name},
 		section_sort = #{section_sort},
 		section_use = #{section_use}
 		where
 		section_fullcode = #{section_fullcode}
+		and bureau_cd = #{bureau_cd}
 	</update>
 
 	<delete id="delete">
-		delete from com_section 
+		delete from com_section
 		where section_fullcode = #{section_fullcode}
 	</delete>
 
@@ -44,11 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where bureau_cd = #{bureau_cd}
  		]]>
 	</select>
-	
+
 	<select id="lastInsertSort" resultType="int">
-	select count(*) 
-	from com_section 
-	where bureau_cd = #{bureau_cd}
+		select count(*)
+		from com_section
+		where bureau_cd = #{bureau_cd}
 	</select>
 
 

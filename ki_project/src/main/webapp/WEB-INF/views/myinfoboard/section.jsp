@@ -128,7 +128,6 @@ pageEncoding="UTF-8"%>
         <script>
             $(document).ready(function () {
             	
-            	
             	 $('#closeModal').on('click', function () {
             	        $("#section_cd").val(" ");
             	        $("#section_name").val(" ");
@@ -145,16 +144,11 @@ pageEncoding="UTF-8"%>
             			 jsonObj.section_cd = $(".section_cd").eq(i).val();
             			 jsonObj.section_name = $(".section_name").eq(i).val();
             			 jsonObj.section_use = 	($(".section_use").eq(i).prop('checked')?1:0);
+            			 jsonObj.section_fullcode = jsonObj.bureau_cd + "-" + jsonObj.section_cd;
             			 jsonArr.push(jsonObj);
             			
-            			 }
-            	        /* $(".w").each(function(){
-            	            alert($(this).val())
-            	        }); */
-            	        alert(JSON.stringify(jsonArr));
-            	            	        
-            	       
-            	        
+            			 }    	     
+	        
             	         $.ajax({
                 			url: '/section/listUpdate/'+bcd,
                 			type: 'PUT',
@@ -162,35 +156,31 @@ pageEncoding="UTF-8"%>
                 				"Content-Type": "application/json",
                 				"X-HTTP-Method-Override": "PUT"
                 				},
-                				dataType:'json',
+                				dataType:'text',
                 				data: JSON.stringify(jsonArr),
-                					
-                					success: function (data) {
-                					
-                						alert(data);
-                						if (data == 'SUCCESS') {
-                							alert("수정 되었습니다.");
-                							location.reload();
-                							}
-                						}
                 				
-            	        }); 
-            	       
-            	    });
-            	
+                				success: function (data) {
+                					if (data == 'SUCCESS') {
+                						alert("수정 되었습니다.");
+                						location.reload();
+                					}
+                				},
+            					
+                				error:function(request,status,error){
+                		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                		       }
+            	         }); 
+            	 });
             	
             	$("#search_bcd").change(function () {
             		var bcd = $("#search_bcd option:selected").val();
             		var url = "/myinfoboard/section?bcd="+ bcd;
-            		// alert(url);
             		location.href = url;
             		});
             	
             	var value = "${param.bcd}";
             	
             	$("#search_bcd > option[value=" + value + "]").attr("selected", true);
-            	
-          
             	
             	$("#btnAdd").click(function () {
             		var bureau_cd = $("#search_bcd option:selected").val();
@@ -229,27 +219,26 @@ pageEncoding="UTF-8"%>
             				});
             		});
             	            	
-       /*      	$(document).on("click",".removeBtn",function(event){
-                    alert($(this).attr("value"));
-                  }); */
-                 	
             	$(".removeBtn").click(function () {
             		var section_cd = $(this).attr("value");
             		$.ajax({
             			url: '/section/del/'+section_cd,
             			type: 'DELETE',
             			success: function (data) {
-            					if (data == 'SUCCESS') {
+            				if (data == 'SUCCESS') {
             						alert("삭제 되었습니다.");
             						location.reload();
-            						}
-            				}
-            				});
+            					}
+            			},
+            			error : function(error) {
+    						alert("삭제 실패되었습니다.");
+    				    }
             		});
+            	});
             	$.urlParam = function (name) {
             		var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
             		return results[1] || 0;
-            		}
+            	}
             });
         </script>
 

@@ -49,7 +49,7 @@ public class AjaxController {
 		ResponseEntity<String> entity = null;
 		try {
 			vo.setSection_sort(sectionService.lastInsertSort(vo.getBureau_cd()));
-			vo.setSection_fullpath(bureauService.read(vo.getBureau_cd()).getBureau_name()+">"+vo.getSection_name());
+			vo.setSection_fullpath(bureauService.read(vo.getBureau_cd()).getBureau_name() + ">" + vo.getSection_name());
 			sectionService.regist(vo);
 			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
@@ -58,33 +58,35 @@ public class AjaxController {
 		}
 		return entity;
 	}
-/*제거되어야 할 메소드
-	@RequestMapping(value = "/section/update/{section_fullcode}", method = { RequestMethod.PUT, RequestMethod.PATCH })
-	public ResponseEntity<String> sectionUpdate(@PathVariable("section_fullcode") String section_fullcode,
-			@RequestBody Com_sectionVO vo) {
-		logger.info("/section/update/{section_fullcode}");
-		ResponseEntity<String> entity = null;
-		try {
-			vo.setSection_fullcode(section_fullcode);
-			sectionService.modify(vo);
-			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-*/	
+	// 제거되어야 할 메소드
+	// @RequestMapping(value = "/section/update/{section_fullcode}", method = {
+	// RequestMethod.PUT, RequestMethod.PATCH })
+	// public ResponseEntity<String> sectionUpdate(@PathVariable("section_fullcode")
+	// String section_fullcode,
+	// @RequestBody Com_sectionVO vo) {
+	// logger.info("/section/update/{section_fullcode}");
+	// ResponseEntity<String> entity = null;
+	// try {
+	// vo.setSection_fullcode(section_fullcode);
+	// sectionService.modify(vo);
+	// entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	// }
+	// return entity;
+	// }
+
 	@RequestMapping(value = "/section/listUpdate/{bureau_cd}", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> sectionListUpdate(@PathVariable("bureau_cd") String bureau_cd,
 			@RequestBody List<Com_sectionVO> secList) {
 		logger.info("/section/update/{section_fullcode}");
 		ResponseEntity<String> entity = null;
 		try {
-			//vo.setBureau_cd(bureau_cd);
-			//sectionService.modify(vo);
-			System.out.println("Test list"+secList.get(0).toString());
-			entity = new ResponseEntity<String>(secList.get(1).toString(), HttpStatus.OK);
+			for (Com_sectionVO vo : secList) {
+				sectionService.modify(vo);
+			}
+			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -199,7 +201,7 @@ public class AjaxController {
 	@RequestMapping(value = "/staffModify/getTeams/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_teamVO>> getStaffTeamsGET(@PathVariable("section_cd") String section_cd) {
 		logger.info("staff/getTeams/{section_cd}");
-		
+
 		ResponseEntity<List<Com_teamVO>> entity = null;
 		try {
 			entity = new ResponseEntity<List<Com_teamVO>>(teamService.list(section_cd), HttpStatus.OK);
@@ -235,5 +237,5 @@ public class AjaxController {
 		}
 		return entity;
 	}
-	
+
 }
