@@ -56,12 +56,12 @@ pageEncoding="UTF-8"%>
                                                 <c:set var="team_use" value="${com_teamVO.team_use}" />
                                                 <td>
                                                  	<div style="padding: 5px">
-                                                        <input type="checkbox" name="team_use" switch="none" id="team_use${status.index}" value="${com_teamVO.team_use}"
+                                                        <input type="checkbox" class="team_use" name="team_use" switch="none" id="team_use${status.index}" value="${com_teamVO.team_use}"
                                                                <c:if test = "${com_teamVO.team_use eq '1'}">checked</c:if> />
                                                         <label for="team_use${status.index}" data-on-label="On" data-off-label="Off"></label>
                                                     </div>
                                                </td>
-                                                <td><a href="#" class="table-action-btn h2"><i
+                                                <td><a class="table-action-btn h2 removeBtn" value ="${com_teamVO.team_cd}"><i
                                                             class="mdi mdi-close-box-outline text-danger"></i></a></td>
                                                 </tr>
 
@@ -125,7 +125,7 @@ pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="team_use">사용여부</label>
+                                <label class="col-sm-2 control-label" for="new_team_use">사용여부</label>
                                 <div class="col-sm-10">
                                     <input type="checkbox" name="new_team_use" switch="none" id="new_team_use"/>
                        				<label for="new_team_use" data-on-label="On" data-off-label="Off"></label>
@@ -150,6 +150,43 @@ pageEncoding="UTF-8"%>
          	        $("#new_section_use").prop('checked',false)
             	 });
             	 
+            	 $("#btnSave").click(function(){
+            		 var section_cd = $("#section_cd").val();
+            		 var jsonArr = new Array();
+            		 
+            		 for(var i=0; i<$(".team_cd").length; i++){
+            			 var jsonObj = new Object();
+            			 jsonObj.section_cd = section_cd;
+            			 jsonObj.team_cd = $(".team_cd").eq(i).val();
+            			 jsonObj.team_nm = $(".team_nm").eq(i).val();
+            			 jsonObj.team_sort = $(".team_sort").eq(i).val();
+            			 jsonObj.team_use = ($(".team_use").eq(i).prop('checked')?1:0);
+            			 jsonArr.push(jsonObj);
+            		 }    	     
+            		 alert(JSON.stringify(jsonArr));
+            	          $.ajax({
+                			url: '/team/listUpdate/'+section_cd,
+                			type: 'PUT',
+                			headers: {
+                				"Content-Type": "application/json",
+                				"X-HTTP-Method-Override": "PUT"
+                				},
+                				dataType:'text',
+                				data: JSON.stringify(jsonArr),
+                				
+                				success: function (data) {
+                					if (data == 'SUCCESS') {
+                						alert("수정 되었습니다.");
+                						location.reload();
+                					}
+                				},
+            					
+                				error:function(request,status,error){
+                		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                		       }
+            	         });  
+            	 });
+            	 
                        	 
                 $('#teamAdd').on('show.bs.modal', function (event) {
                         	        
@@ -168,7 +205,6 @@ pageEncoding="UTF-8"%>
             		var team_cd = $("#team_cd").val();
             		var team_nm = $("#team_nm").val();
             		var new_team_use = ($("#new_team_use").prop('checked')?1:0);     
-            		alert(section_cd+"\n"+team_cd+"\n"+team_nm+"\n"+new_team_use+"\n");
             	
             		 $.ajax({
             			url: '/team/insert',
@@ -194,14 +230,15 @@ pageEncoding="UTF-8"%>
             					alert("팀코드가 중복됩니다.");
             					$("#team_cd").val("");
             					$("#team_cd").focus();
-            				    }
+            				}
             		 }); 
                 });
 
                 $(".removeBtn").click(function () {
-            		var section_cd = $(this).attr("value");
-            		$.ajax({
-            			url: '/team/del/{section_cd}/{team_cd}'',
+            		var section_cd = $("#section_cd").val();
+            		var team_cd = $(this).attr("value");
+            		 $.ajax({
+            			url: '/team/del/'+section_cd+'/'+team_cd,
             			type: 'DELETE',
             			success: function (data) {
             				if (data == 'SUCCESS') {
@@ -210,9 +247,9 @@ pageEncoding="UTF-8"%>
             					}
             			},
             			error : function(error) {
-    						alert("삭제 실패되었습니다.");
+    						alert("삭제가 실패되었습니다.");
     				    }
-            		});
+            		}); 
             	});
 
             });

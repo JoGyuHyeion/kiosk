@@ -36,13 +36,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<select id="listAll" resultType="Com_sectionVO">
- 		<![CDATA[ select * from com_section]]>
+ 		<![CDATA[ 
+ 		select * 
+ 		from com_section
+ 		order by section_cd asc
+ 		]]>
 	</select>
 
 	<select id="bureau_list" resultType="Com_sectionVO">
  		<![CDATA[ 
  		select * from com_section 
  		where bureau_cd = #{bureau_cd}
+ 		order by bureau_cd asc
  		]]>
 	</select>
 

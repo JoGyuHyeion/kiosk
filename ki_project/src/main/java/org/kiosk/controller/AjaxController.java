@@ -58,25 +58,7 @@ public class AjaxController {
 		}
 		return entity;
 	}
-	// 제거되어야 할 메소드
-	// @RequestMapping(value = "/section/update/{section_fullcode}", method = {
-	// RequestMethod.PUT, RequestMethod.PATCH })
-	// public ResponseEntity<String> sectionUpdate(@PathVariable("section_fullcode")
-	// String section_fullcode,
-	// @RequestBody Com_sectionVO vo) {
-	// logger.info("/section/update/{section_fullcode}");
-	// ResponseEntity<String> entity = null;
-	// try {
-	// vo.setSection_fullcode(section_fullcode);
-	// sectionService.modify(vo);
-	// entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-	// }
-	// return entity;
-	// }
-
+	
 	@RequestMapping(value = "/section/listUpdate/{bureau_cd}", method = { RequestMethod.PUT, RequestMethod.PATCH })
 	public ResponseEntity<String> sectionListUpdate(@PathVariable("bureau_cd") String bureau_cd,
 			@RequestBody List<Com_sectionVO> secList) {
@@ -123,15 +105,15 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/team/update/{section_cd}/{team_cd}", method = { RequestMethod.PUT, RequestMethod.PATCH })
-	public ResponseEntity<String> teamUpdate(@PathVariable("section_cd") String section_cd,
-			@PathVariable("team_cd") String team_cd, @RequestBody Com_teamVO vo) {
-		logger.info("/team/update/{section_cd}/{team_cd}");
+	@RequestMapping(value = "/team/listUpdate/{section_cd}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+	public ResponseEntity<String> teamListUpdate(@PathVariable("section_cd") String section_cd,
+			@RequestBody List<Com_teamVO> teamList) {
+		logger.info("/team/update/{section_cd}");
 		ResponseEntity<String> entity = null;
 		try {
-			vo.setSection_cd(section_cd);
-			vo.setTeam_cd(team_cd);
-			teamService.modify(vo);
+			for (Com_teamVO vo : teamList) {
+				teamService.modify(vo);
+			}
 			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
