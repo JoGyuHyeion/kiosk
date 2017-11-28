@@ -52,7 +52,7 @@
 										<label class="col-md-2 control-label">동영상</label>
 										<div class="col-md-10">
 											<video controls>
-											<source src="${pageContext.request.contextPath}/resources/upload/${com_videoVO.vi_video}" type="video/mp4">
+											<source src="${pageContext.request.contextPath}${uploadPath}${com_videoVO.vi_video}" type="video/mp4">
 											<source src="movie.ogg" type="video/ogg">
 											</video>
 										</div>

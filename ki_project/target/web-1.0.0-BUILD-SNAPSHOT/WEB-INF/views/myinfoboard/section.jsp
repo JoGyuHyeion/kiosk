@@ -183,9 +183,7 @@ pageEncoding="UTF-8"%>
             	$("#search_bcd > option[value=" + value + "]").attr("selected", true);
             	
             	$("#btnAdd").click(function () {
-            		$("#section_cd").val(" ");
-          	        $("#section_name").val(" ");
-          	        $("#new_section_use").prop('checked',false)
+          
             		var bureau_cd = $("#search_bcd option:selected").val();
             		var section_name = $("#section_name").val();
             		var section_cd = $("#section_cd").val();

@@ -29,7 +29,7 @@
 				<div class="col-sm-6 col-md-4">
 					<div class="thumb">
 						<img width="600" height="400"
-							src="${pageContext.request.contextPath}/resources/upload/${com_bgImgVO.bi_img}"
+							src="${pageContext.request.contextPath}${uploadPath}${com_bgImgVO.bi_img}"
 							class="thumb-img"
 							onerror="this.src='/resources/assets/images/properties/1.jpg'">
 

@@ -38,7 +38,7 @@
 								<div class="text-center card-box">
 									<h4 class="m-b-5">${com_iconVO.ic_name}</h4>
 									<div class="text-center">
-										<img src="/resources/upload/${com_iconVO.ic_icon}" alt=""
+										<img src="${uploadPath}${com_iconVO.ic_icon}" alt=""
 											width="150" height="150">
 									</div>
 									<p class="text-muted font-13">마지막 수정 날짜 :

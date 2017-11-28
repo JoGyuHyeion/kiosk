@@ -35,7 +35,7 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form role="form" method="post">
+						<form role="form" method="post" enctype="multipart/form-data">
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- st_nm -->
@@ -90,8 +90,8 @@
 									<div class="form-group">
 										<label class="col-md-2 control-label">사진</label>
 										<div class="col-md-10">
-											<input type="file" class="form-control" id="img_filenm"
-												name="img_filenm"> <small>사진 최소 사이즈는 가로320px
+											<input type="file" class="form-control" id="imgFile"
+												name=imgFile> <small>사진 최소 사이즈는 가로320px
 												세로400px입니다.</small>
 										</div>
 									</div>
