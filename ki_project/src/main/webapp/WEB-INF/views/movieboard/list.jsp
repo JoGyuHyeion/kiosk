@@ -33,6 +33,11 @@
 				<div class="property-card">
 					<div class="property-image"
 						style="background: url('/resources/assets/images/properties/6.jpg') center center/cover no-repeat;">
+						<video>
+							<source src="${pageContext.request.contextPath}/resources/upload/${com_videoVO.vi_video}" type="video/mp4">			
+							<source src="movie.ogg" type="video/ogg">
+						</video>
+						
 					</div>
 
 					<div class="property-content">

@@ -51,7 +51,10 @@
 									<div class="form-group">
 										<label class="col-md-2 control-label">동영상</label>
 										<div class="col-md-10">
-											<img src="/resources/assets/images/properties/6.jpg">
+											<video controls>
+											<source src="${pageContext.request.contextPath}/resources/upload/${com_videoVO.vi_video}" type="video/mp4">
+											<source src="movie.ogg" type="video/ogg">
+											</video>
 										</div>
 									</div>
 								</div>
@@ -73,26 +76,18 @@
 							id="back">돌아가기</button>
 					</div>
 					<script>
-						$(document)
-								.ready(
-										function() {
-											var formObj = $("form[role='form']");
-											console.log(formObj);
-
-											$("#change")
-													.on(
-															"click",
-															function() {
-																self.location = "/movieboard/modifyPage?vi_no=${com_videoVO.vi_no}";
-															});
-											$("#back")
-													.on(
-															"click",
-															function() {
-																self.location = "/movieboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-															});
-
-										});
+						$(document).ready(function() {
+							var formObj = $("form[role='form']");
+							console.log(formObj);
+							$("#change").on("click",function() {
+								self.location = "/movieboard/modifyPage?vi_no=${com_videoVO.vi_no}";
+								});
+							
+							$("#back").on("click",function() {
+								self.location = "/movieboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+								});
+							
+						});
 					</script>
 
 				</div>

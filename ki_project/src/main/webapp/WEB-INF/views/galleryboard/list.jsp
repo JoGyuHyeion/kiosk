@@ -34,7 +34,6 @@
 							src="/resources/upload${com_imageVO.img_filenm}" class="thumb-img"
 							alt="work-thumbnail">
 						</a>-->
-
 						<img width="600" height="400"
 							src="${pageContext.request.contextPath}/resources/upload/${com_imageVO.img_filenm}"
 							class="thumb-img"
