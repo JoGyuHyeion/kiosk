@@ -1,5 +1,7 @@
 package org.kiosk.controller;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -34,18 +36,24 @@ public class Staff2BoardController {
 
 	@Inject
 	private Com_sectionService sectionService;
-	
+
 	@Resource(name = "PageMaker")
 	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
-
 	private String img_fileName = "staff2_";
-	private String[] dirPath = { "staff2" };
+	private String[] dirPath = { "resources", "upload", "staff2" };
+
+	private String uploadPath() {
+		String uploadPath = File.separator;
+		for (String path : dirPath) {
+			uploadPath = uploadPath + path + File.separator;
+		}
+		return uploadPath;
+	}
+
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -61,7 +69,7 @@ public class Staff2BoardController {
 
 		pageMaker.setCri(cri);
 
-		if (userVO.getAuth() == 1 || cri.getSection_cd()==null) {
+		if (userVO.getAuth() == 1 || cri.getSection_cd() == null) {
 			cri.setSection_cd(userVO.getSection_fullcode());
 		}
 
@@ -107,7 +115,7 @@ public class Staff2BoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setImg_filenm(img_filenm);
 		service.regist(board);
@@ -140,13 +148,12 @@ public class Staff2BoardController {
 		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
 		if (imgName.equals(board.getImg_filenm())) {
 			img_filenm = imgName;
 		} else {
-			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getSt_no()).getImg_filenm());
+			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getSt_no()).getImg_filenm());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 					imgFile.getBytes(), img_fileName + board.getSt_no(), dirPath);
 		}
 		board.setImg_filenm(img_filenm);
@@ -169,8 +176,7 @@ public class Staff2BoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
-		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(st_no).getImg_filenm());
+		uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(st_no).getImg_filenm());
 		service.remove(st_no);
 
 		rttr.addAttribute("page", cri.getPage());

@@ -70,7 +70,7 @@
 												<c:when test="${com_buildingVO.bu_no==1}">
 													<div class="item active text-center">
 														<img
-															src="${pageContext.request.contextPath}/resources/upload/${com_buildingVO.bu_img}"
+															src="${pageContext.request.contextPath}${uploadPath}${com_buildingVO.bu_img}"
 															alt="default slide image"
 															onerror="this.src='/resources/assets/images/properties/1.jpg'">
 														<div class="carousel-caption">
@@ -81,7 +81,7 @@
 												<c:otherwise>
 													<div class="item">
 														<img
-															src="${pageContext.request.contextPath}/resources/upload/${com_buildingVO.bu_img}"
+															src="${pageContext.request.contextPath}${uploadPath}${com_buildingVO.bu_img}"
 															alt="default slide image"
 															onerror="this.src='/resources/assets/images/properties/1.jpg'">
 														<div class="carousel-caption">
@@ -138,7 +138,7 @@
 														<div class="tab-pane active"
 															id="bu_no${com_buildingVO.bu_no}">
 															<img width="700" height="400"
-																src="${pageContext.request.contextPath}/resources/upload/${com_buildingVO.bu_img}"
+																src="${pageContext.request.contextPath}${uploadPath}${com_buildingVO.bu_img}"
 																alt="default slide image"
 																onerror="this.src='/resources/assets/images/properties/1.jpg'">
 															<div class="form-group" style="text-align: center">
@@ -157,7 +157,7 @@
 													<c:otherwise>
 														<div class="tab-pane" id="bu_no${com_buildingVO.bu_no}">
 															<img width="700" height="400"
-																src="${pageContext.request.contextPath}/resources/upload/${com_buildingVO.bu_img}"
+																src="${pageContext.request.contextPath}${uploadPath}${com_buildingVO.bu_img}"
 																alt="default slide image"
 																onerror="this.src='/resources/assets/images/properties/1.jpg'">
 															<div class="form-group" style="text-align: center">

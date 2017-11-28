@@ -1,5 +1,7 @@
 package org.kiosk.controller;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -37,12 +39,17 @@ public class GalleryBoardController {
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
-
 	private String img_fileName = "gallery_";
-	private String[] dirPath = { "gallery" };
+	private String[] dirPath = { "resources","upload","gallery" };
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
+	
+	private String uploadPath() {
+		String uploadPath = File.separator;
+		for (String path : dirPath) {
+			uploadPath = uploadPath + path + File.separator;
+		}
+		return uploadPath;
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
@@ -62,6 +69,7 @@ public class GalleryBoardController {
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("uploadPath", uploadPath());
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
@@ -72,6 +80,7 @@ public class GalleryBoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
+		model.addAttribute("uploadPath", uploadPath());
 		logger.info("Login : " + userVO.toString());
 
 	}
@@ -96,7 +105,7 @@ public class GalleryBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setImg_filenm(img_filenm);
 		service.regist(board);
@@ -128,13 +137,12 @@ public class GalleryBoardController {
 		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
 		if (imgName.equals(board.getImg_filenm())) {
 			img_filenm = imgName;
 		} else {
-			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getImg_no()).getImg_filenm());
+			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getImg_no()).getImg_filenm());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 					imgFile.getBytes(), img_fileName + board.getImg_no(), dirPath);
 		}
 		board.setImg_filenm(img_filenm);
@@ -158,8 +166,7 @@ public class GalleryBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
-		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(img_no).getImg_filenm());
+		uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(img_no).getImg_filenm());
 		service.remove(img_no);
 
 		rttr.addAttribute("page", cri.getPage());

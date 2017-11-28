@@ -1,5 +1,7 @@
 package org.kiosk.controller;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -30,19 +32,24 @@ public class MovieBoardController {
 
 	@Inject
 	private Com_videoService service;
-	
+
 	@Resource(name = "PageMaker")
 	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
-
 	private String video_fileName = "movie_";
-	private String[] dirPath = { "movie" };
+	private String[] dirPath = { "resources", "upload", "movie" };
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
+
+	private String uploadPath() {
+		String uploadPath = File.separator;
+		for (String path : dirPath) {
+			uploadPath = uploadPath + path + File.separator;
+		}
+		return uploadPath;
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
@@ -63,6 +70,7 @@ public class MovieBoardController {
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("uploadPath", uploadPath());
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
@@ -74,6 +82,7 @@ public class MovieBoardController {
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
 		logger.info("Login : " + userVO.toString());
+		model.addAttribute("uploadPath", uploadPath());
 
 	}
 
@@ -97,7 +106,7 @@ public class MovieBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String video_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, videoFile.getOriginalFilename(),
+		String video_filenm = uploadFileUtils.uploadImageFile(root_path, videoFile.getOriginalFilename(),
 				videoFile.getBytes(), video_fileName + (service.lastInsertID()), dirPath);
 		board.setVi_video(video_filenm);
 
@@ -129,13 +138,12 @@ public class MovieBoardController {
 		String video_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
 		if (videoName.equals(board.getVi_video())) {
 			video_filenm = videoName;
 		} else {
-			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getVi_no()).getVi_video());
+			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getVi_no()).getVi_video());
 
-			video_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, videoFile.getOriginalFilename(),
+			video_filenm = uploadFileUtils.uploadImageFile(root_path, videoFile.getOriginalFilename(),
 					videoFile.getBytes(), video_fileName + board.getVi_no(), dirPath);
 		}
 		board.setVi_video(video_filenm);
@@ -159,7 +167,7 @@ public class MovieBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(vi_no).getVi_video());
+		uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(vi_no).getVi_video());
 		service.remove(vi_no);
 
 		rttr.addAttribute("page", cri.getPage());

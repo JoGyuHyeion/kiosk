@@ -1,5 +1,7 @@
 package org.kiosk.controller;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -30,12 +32,17 @@ public class BuildingBoardController {
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
-
 	private String img_fileName = "building_";
-	private String[] dirPath = { "building" };
+	private String[] dirPath = { "resources","upload","building" };
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
+	
+	private String uploadPath() {
+		String uploadPath = File.separator;
+		for (String path : dirPath) {
+			uploadPath = uploadPath + path + File.separator;
+		}
+		return uploadPath;
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(Model model, HttpServletRequest request) throws Exception {
@@ -47,6 +54,7 @@ public class BuildingBoardController {
 		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute("list", service.listAll());
+		model.addAttribute("uploadPath", uploadPath());
 
 	}
 
@@ -79,7 +87,7 @@ public class BuildingBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setBu_img(img_filenm);
 
@@ -98,13 +106,12 @@ public class BuildingBoardController {
 		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
 		if (imgName.equals(board.getBu_img())) {
 			img_filenm = imgName;
 		} else {
-			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getBu_no()).getBu_img());
+			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getBu_no()).getBu_img());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 					imgFile.getBytes(), img_fileName + board.getBu_no(), dirPath);
 		}
 		board.setBu_img(img_filenm);
@@ -125,8 +132,7 @@ public class BuildingBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
-		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(bu_no).getBu_img());
+		uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(bu_no).getBu_img());
 		service.remove(bu_no);
 
 		rttr.addFlashAttribute("msg", "SUCCESS");

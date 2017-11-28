@@ -39,11 +39,11 @@ public class UploadFileUtils {
 		} else {
 			File target = new File(uploadPath + savedPath, savedName);
 			FileCopyUtils.copy(fileData, target);
-			 uploadedFileName = makeFile(uploadPath, savedPath, savedName);
+			uploadedFileName = makeFile(uploadPath, savedPath, savedName);
 			System.out.println("============makeFile===================");
 			System.out.println(uploadedFileName);
 		}
-		return uploadedFileName;
+		return uploadedFileName.substring(uploadedFileName.lastIndexOf("/") + 1);
 	}
 
 	// 썸네일 이미지 생성(이미지 파일)
@@ -79,16 +79,20 @@ public class UploadFileUtils {
 	}
 
 	private String savePath(String uploadPath, String... paths) {
-		String savePath = "";
-		for (String path : paths) {
-			savePath = savePath + File.separator + path;
+		String[] savePath = new String[paths.length];
+
+		for (int i = 0; i < paths.length; i++) {
+			if (i == 0) {
+				savePath[i] = File.separator + paths[i];
+			} else {
+				savePath[i] = savePath[i - 1] + File.separator + paths[i];
+			}
 		}
 		makeDir(uploadPath, savePath);
-		return savePath;
+		return savePath[paths.length - 1];
 	}
 
 	private void makeDir(String uploadPath, String... paths) {
-
 		if (new File(paths[paths.length - 1]).exists()) {
 			return;
 		}
@@ -108,20 +112,22 @@ public class UploadFileUtils {
 			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 			MediaType mType = fileUtils.getMediaType(formatName);
 			if (mType != null) {
-				String notSName=fileName.replace("s_", "");
-				System.out.println("notSName : "+notSName);
-//				String front = fileName.substring(0, 12);
-//				String end = fileName.substring(14);
-//				
-//				System.out.println("front : "+front);
-//				System.out.println("end : "+end);
-//				System.out.println("total1 : "+uploadPath + (front + end).replace('/', File.separatorChar));
-//				new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
-				System.out.println("total1 : "+uploadPath + (notSName).replace('/', File.separatorChar));
+				String notSName = fileName.replace("s_", "");
+				System.out.println("notSName : " + notSName);
+				// String front = fileName.substring(0, 12);
+				// String end = fileName.substring(14);
+				//
+				// System.out.println("front : "+front);
+				// System.out.println("end : "+end);
+				// System.out.println("total1 : "+uploadPath + (front + end).replace('/',
+				// File.separatorChar));
+				// new File(uploadPath + (front + end).replace('/',
+				// File.separatorChar)).delete();
+				System.out.println("total1 : " + uploadPath + (notSName).replace('/', File.separatorChar));
 				new File(uploadPath + (notSName).replace('/', File.separatorChar)).delete();
-			
+
 			}
-			System.out.println("total : "+uploadPath+fileName.replace('/', File.separatorChar));
+			System.out.println("total : " + uploadPath + fileName.replace('/', File.separatorChar));
 			new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 		}
 

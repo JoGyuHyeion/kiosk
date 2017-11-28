@@ -1,5 +1,7 @@
 package org.kiosk.controller;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -36,11 +38,16 @@ public class NoticeController {
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
-
 	private String img_fileName = "notice_";
-	private String[] dirPath = { "notice" };
+	private String[] dirPath = { "resources","upload","notice" };
+	
+	private String uploadPath() {
+		String uploadPath = File.separator;
+		for (String path : dirPath) {
+			uploadPath = uploadPath + path + File.separator;
+		}
+		return uploadPath;
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
@@ -93,7 +100,7 @@ public class NoticeController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String bbs_file = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+		String bbs_file = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setBbs_file(bbs_file);
 
@@ -124,13 +131,12 @@ public class NoticeController {
 		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
 		if (imgName.equals(board.getBbs_file())) {
 			img_filenm = imgName;
 		} else {
-			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getBbs_no()).getBbs_file());
+			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getBbs_no()).getBbs_file());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 					imgFile.getBytes(), img_fileName + board.getBbs_no(), dirPath);
 		}
 		board.setBbs_file(img_filenm);
@@ -154,8 +160,7 @@ public class NoticeController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
-		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(bbs_no).getBbs_file());
+		uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(bbs_no).getBbs_file());
 		service.remove(bbs_no);
 
 		rttr.addAttribute("page", cri.getPage());

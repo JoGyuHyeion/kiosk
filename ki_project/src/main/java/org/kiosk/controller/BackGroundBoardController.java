@@ -1,5 +1,7 @@
 package org.kiosk.controller;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -33,16 +35,21 @@ public class BackGroundBoardController {
 
 	@Resource(name = "PageMaker")
 	private PageMaker pageMaker;
-	
+
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
-
 	private String img_fileName = "backGround_";
-	private String[] dirPath = { "backGround" };
+	private String[] dirPath = { "resources", "upload", "backGround" };
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
+
+	private String uploadPath() {
+		String uploadPath = File.separator;
+		for (String path : dirPath) {
+			uploadPath = uploadPath + path + File.separator;
+		}
+		return uploadPath;
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
@@ -63,6 +70,7 @@ public class BackGroundBoardController {
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("uploadPath", uploadPath());
 	}
 
 	/*
@@ -95,7 +103,7 @@ public class BackGroundBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
+		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setBi_img(img_filenm);
 		service.regist(board);
@@ -126,14 +134,13 @@ public class BackGroundBoardController {
 		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
 		if (imgName.equals(board.getBi_img())) {
 			img_filenm = imgName;
 		} else {
-			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getBi_no()).getBi_img());
+			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getBi_no()).getBi_img());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, imgFile.getOriginalFilename(),
-					imgFile.getBytes(), img_fileName + board.getBi_no(), dirPath);
+			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(), imgFile.getBytes(),
+					img_fileName + board.getBi_no(), dirPath);
 		}
 		board.setBi_img(img_filenm);
 
@@ -156,8 +163,7 @@ public class BackGroundBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		System.out.println("경로 : " + root_path + uploadPath);
-		uploadFileUtils.deleteFile(root_path + uploadPath, service.read(bi_no).getBi_img());
+		uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(bi_no).getBi_img());
 		service.remove(bi_no);
 
 		rttr.addAttribute("page", cri.getPage());

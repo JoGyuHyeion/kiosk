@@ -1,5 +1,7 @@
 package org.kiosk.controller;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -27,19 +29,24 @@ public class IconBoardController {
 
 	@Inject
 	private Com_iconService service;
-	
+
 	@Resource(name = "PageMaker")
 	private PageMaker pageMaker;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
-
 	private String img_fileName = "icon_";
-	private String[] dirPath = { "icon" };
+	private String[] dirPath = { "resources", "upload", "icon" };
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
+
+	private String uploadPath() {
+		String uploadPath = File.separator;
+		for (String path : dirPath) {
+			uploadPath = uploadPath + path + File.separator;
+		}
+		return uploadPath;
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(Model model, HttpServletRequest request) throws Exception {
@@ -53,6 +60,7 @@ public class IconBoardController {
 
 		model.addAttribute("list", service.listAll());
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("uploadPath", uploadPath());
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -75,7 +83,7 @@ public class IconBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String icon_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, iconFile.getOriginalFilename(),
+		String icon_filenm = uploadFileUtils.uploadImageFile(root_path, iconFile.getOriginalFilename(),
 				iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setIc_icon(icon_filenm);
 		service.regist(board);
@@ -95,10 +103,10 @@ public class IconBoardController {
 		String default_img_filenm = "/icon/icon" + board.getIc_no() + ".png";
 
 		if (!(iconName.equals(default_img_filenm))) {
-			uploadFileUtils.deleteFile(root_path + uploadPath, service.read(board.getIc_no()).getIc_icon());
+			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getIc_no()).getIc_icon());
 		}
 		if (board.getIc_default() == 0) {
-			icon_filenm = uploadFileUtils.uploadImageFile(root_path + uploadPath, iconFile.getOriginalFilename(),
+			icon_filenm = uploadFileUtils.uploadImageFile(root_path, iconFile.getOriginalFilename(),
 					iconFile.getBytes(), img_fileName + board.getIc_no(), dirPath);
 		} else {
 			icon_filenm = default_img_filenm;
