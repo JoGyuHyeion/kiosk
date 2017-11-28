@@ -34,14 +34,11 @@
 							src="/resources/upload${com_imageVO.img_filenm}" class="thumb-img"
 							alt="work-thumbnail">
 						</a>-->
-						<a href="/resources/assets/images/properties/1.jpg"
-							class="image-popup" title="Screenshot-1"> <img
-							src="/resources/assets/images/properties/1.jpg" class="thumb-img"
-							alt="work-thumbnail"> <img
+						<img width="600" height="400"
 							src="${pageContext.request.contextPath}/resources/upload/${com_imageVO.img_filenm}"
 							class="thumb-img"
-							onerror="javascript:src={/resources/assets/images/properties/1.jpg}">
-						</a>
+							onerror="this.src='/resources/assets/images/properties/1.jpg'">
+
 						<div class="gal-detail">
 							<h4>${com_imageVO.img_title}</h4>
 							<form
@@ -65,8 +62,7 @@
 		<!-- end col -->
 		<div class="text-right">
 			<ul class="pagination pagination-split m-t-0">
-				<li class="disabled"><a href="#"><i
-						class="fa fa-angle-left"></i></a></li>
+
 				<c:if test="${pageMaker.prev}">
 					<li><a
 						href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
@@ -84,7 +80,6 @@
 					<li><a
 						href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 				</c:if>
-				<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 
 			</ul>
 		</div>

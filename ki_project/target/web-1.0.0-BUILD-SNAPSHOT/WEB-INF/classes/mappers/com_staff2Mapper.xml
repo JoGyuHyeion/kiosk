@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="Com_staff2VO">
 		select
-		st_no,usr_nm,st_key,posit_nm,telno,img_filenm,email_addr,adi_info7
+		st_no,usr_nm,st_key,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,adi_info7
 		from com_staff2
 		where
 		st_no = #{st_no}
@@ -39,8 +39,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="lastInsertID" resultType="int">
-		SELECT
-		LAST_INSERT_ID(st_no) from com_staff2 order by st_no desc limit 1;
+		SELECT AUTO_INCREMENT
+		FROM information_schema.TABLES
+		WHERE TABLE_SCHEMA = "kipro"
+		AND TABLE_NAME = "com_staff2";
 	</select>
 
 	<select id="listPage" resultType="Com_staff2VO">
@@ -78,9 +80,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<sql id="search">
-		<if test="keyword != null">
-			and usr_nm like CONCAT('%',#{keyword},'%')
+		<if test="section_cd != 'none'.toString()">
+			 and section_cd = #{section_cd}
 		</if>
+			and usr_nm like CONCAT('%',#{keyword},'%')
 	</sql>
 
 	<select id="listSearch" resultType="Com_staff2VO">

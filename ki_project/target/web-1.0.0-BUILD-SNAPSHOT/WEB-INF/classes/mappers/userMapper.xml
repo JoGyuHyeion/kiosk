@@ -33,11 +33,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="changePassword">
-		update user set password = #{password}
+		update user set password = #{newPassword}
 		where id = #{id} 
-		and password = #{oldPassword}
-		and section_fullcode = #{section_fullcode}
+		and password = #{password}
 	</update>
+	
+	<select id="dupCheck" resultType="UserVO">
+		select id, name, password, auth, sessionkey, sessionlimit, section_fullcode 
+		from user 
+		where id = #{id} 
+	</select>
 	
 </mapper>
 

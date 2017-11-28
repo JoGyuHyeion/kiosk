@@ -34,8 +34,6 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-
-
 					<div class="row">
 						<form method="post" role="form" enctype="multipart/form-data">
 
@@ -110,14 +108,6 @@
 										<input type="hidden" name="img_filenm" id="img_filenm"
 											value="${com_staff2VO.img_filenm}">
 									</div>
-									<!-- <div class="form-group">
-										<label class="col-md-2 control-label">사진</label>
-										<div class="col-md-10">
-											<input type="file" class="form-control" id="img_filenm"
-												name="img_filenm"> <small>사진 최소 사이즈는 가로320px
-												세로400px입니다.</small>
-										</div>
-									</div> -->
 								</div>
 							</div>
 
@@ -129,7 +119,9 @@
 										<div class="col-md-7">
 											<select name="section_cd" id="section_cd"
 												class="form-control" value="${com_staff2VO.section_cd}">
-												<option value="">전체관리자</option>
+												<c:forEach items="${sectionService}" var="com_sectionVO">
+													<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>
@@ -146,14 +138,16 @@
 									<!-- usr_work_state_code_nm    -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">직원표시</label>
-										<!-- checkbox checked 일경우 활성화 -->
-										<div style="padding: 5px">
-											<input type="checkbox" name="st_display"
-												id="usr_work_state_code_nm" value="1" switch="none" /> <label
-												for="usr_work_state_code_nm" data-on-label="On"
-												data-off-label="Off"></label>
+										<div class="col-md-7">
+											<select name="usr_work_state_code_nm"
+												id="usr_work_state_code_nm" class="form-control">
+												<option value="재직">재직</option>
+												<option value="재직(파견)">재직(파견)</option>
+												<option value="휴직">휴직</option>
+											</select>
 										</div>
 									</div>
+
 									<!-- st_status     -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">상태</label>
@@ -179,39 +173,7 @@
 										</div>
 										<!-- end col -->
 									</div>
-
-									<!--display, status javascript 코드 view 표시  -->
-									<script>
-										var display = '<c:out value="${com_staff2VO.usr_work_state_code_nm}"/>';
-										var status = '<c:out value="${com_staff2VO.st_status}"/>';
-										alert("Display, Status 확인 \n"
-												+ "표시여부: " + display
-												+ "\n근무 상태: " + status);
-										if (display == 1) {
-
-											document
-													.getElementById('st_display').checked = true;
-										} else {
-										}
-
-										if (status == 1) {
-											document
-													.getElementById('st_status1').checked = true;
-
-										} else if (status == 2) {
-											document
-													.getElementById('st_status2').checked = true;
-										} else if (status == 3) {
-											document
-													.getElementById('st_status3').checked = true;
-										} else if (status == 4) {
-											document
-													.getElementById('st_status4').checked = true;
-										}
-									</script>
-
 								</div>
-
 							</div>
 							<div class="form-group" style="text-align: center">
 								<button type="submit"
@@ -226,23 +188,91 @@
 				</div>
 			</div>
 			<!-- end col -->
-
 			<script>
-				$(document)
-						.ready(
-								function() {
-									var formObj = $("form[role='form']");
-									console.log(formObj);
+		$(document)
+				.ready(
+						function() {
+							var formObj = $("form[role='form']");
+							console.log(formObj);
+							$("#back")
+									.on(
+											"click",
+											function() {
+												self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+										});
+ 							
+							var status = ${com_staff2VO.st_status};
+							var usr_work_state_code_nm = "${com_staff2VO.usr_work_state_code_nm}";
+							alert("Display, Status 확인 \n"
+									+ "표시여부: " + usr_work_state_code_nm
+									+ "\n근무 상태: " + status);
+							
+							
+							  $('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
+							  $('select[id="usr_work_state_code_nm"] option:contains("'+usr_work_state_code_nm+'")').attr("selected","selected");
+							$("#section_cd").change( function () {
+				    	 
+				    			 var section_cd = $("#section_cd option:selected").val();
+				    	 
+				    			 $.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
+				    			 var str="";
+				    			 console.log(data.length);
+				    		 
+				    			 $(data).each(
+				    				 function(){
+				    					 str+="<option value='"+this.section_cd+"'>"+this.team_nm+"</option>"
+				    					 				    				 				    				 
+				   					 });
+				    				 $("#team_cd").html(str);
+					    	 	});
+				    	 
+				   			});
+					});
+		function formCheck() {
+			if ($.trim($("#usr_nm").val()) == "") {
+				alert("이름을 입력하세요");
+				$("#usr_nm").focus();
+				return false;
+			} else if ($.trim($("#posit_nm").val()) == "") {
+				alert("직위를 입력하세요");
+				$("#posit_nm").focus();
+				return false;
+			} else if ($.trim($("#telno").val()) == "") {
+				alert("전화번호를 입력하세요");
+				$("#telno").focus();
+				return false;
+			} else if ($.trim($("#email_addr").val()) == "") {
+				alert("이메일을 입력하세요");
+				$("#email_addr").focus();
+				return false;
+			} else if ($.trim($("#st_key").val()) == "") {
+				alert("대표 업무를 입력하세요");
+				$("#st_key").focus();
+				return false;
+			} else if ($.trim($("#adi_info7").val()) == "") {
+				alert("사무 설명을 입력하세요");
+				$("#adi_info7").focus();
+				return false;
+			} else if ($.trim($("#img_filenm").val()) == "") {
+				alert("사진을 첨부하세요");
+				$("#img_filenm").focus();
+				return false;
+			} else if ($.trim($("#section_cd").val()) == "") {
+				alert("근무 부서를 선택하세요");
+				$("#section_cd").focus();
+				return false;
+			} else if ($.trim($("#team_cd").val()) == "") {
+				alert("근무 팀을 선택하세요");
+				$("#team_cd").focus();
+				return false;
+			} else if(!$(':input:radio[name=st_status]:checked').val()){
+				alert("상태를 선택해주세요");
+				return false;
+			}
+			return true;
 
-									$("#back")
-											.on(
-													"click",
-													function() {
-														self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-													});
-								});
+		}
 			</script>
-
 		</div>
 	</div>
 </section>

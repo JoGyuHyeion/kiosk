@@ -96,7 +96,7 @@
 											<input type="button" value="파일"
 												class="file_input_button btn btn-primary" /> <input
 												type="file" class="file_input_hidden" data-icon='false'
-												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												onchange="javascript: var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
 												accept="image/*" name="imgFile" id="img_filenm" />
 										</div>
 									</div>
@@ -119,7 +119,9 @@
 										<div class="col-md-7">
 											<select name="section_cd" id="section_cd"
 												class="form-control">
-												<option value="">전체관리자</option>
+												<c:forEach items="${sectionService}" var="com_sectionVO">
+													<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>
@@ -135,12 +137,13 @@
 									<!-- st_display     -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">직원표시</label>
-										<!-- checkbox checked 일경우 활성화 -->
-										<div style="padding: 5px">
-											<input type="checkbox" name="usr_work_state_code_nm"
-												id="usr_work_state_code_nm" value="1" switch="none" /> <label
-												for="usr_work_state_code_nm" data-on-label="On"
-												data-off-label="Off"></label>
+										<div class="col-md-7">
+											<select name="usr_work_state_code_nm"
+												id="usr_work_state_code_nm" class="form-control">
+												<option value="재직">재직</option>
+												<option value="재직(파견)">재직(파견)</option>
+												<option value="휴직">휴직</option>
+											</select>
 										</div>
 									</div>
 									<!-- st_status     -->
@@ -179,18 +182,34 @@
 						</form>
 					</div>
 					<script>
-						$(document)
-								.ready(
-										function() {
-											var formObj = $("form[role='form']");
-											console.log(formObj);
-											$("#back")
-													.on(
-															"click",
-															function() {
-																self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-															});
-										});
+						$(document).ready(function() {
+							
+							var formObj = $("form[role='form']");
+							console.log(formObj);
+							
+							$("#back").on("click",function() {
+								self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+								});
+							
+							$("#section_cd").change( function () {
+								
+								var section_cd = $("#section_cd option:selected").val();
+								
+								$.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
+									
+									var str="";
+						    		console.log(data.length);
+						    		
+						    		$(data).each(function(){
+						    			str+="<option value='"+this.section_cd+"'>"+this.team_nm+"</option>"
+						    			
+						    		});
+						    		
+						    		 $("#team_cd").html(str);
+						    	 });
+						    	 
+						     });
+						});
 
 						function formCheck() {
 							if ($.trim($("#usr_nm").val()) == "") {

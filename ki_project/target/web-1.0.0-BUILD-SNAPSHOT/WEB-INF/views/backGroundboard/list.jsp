@@ -26,21 +26,17 @@
 		<div class="portfolioContainer">
 
 			<c:forEach items="${list}" var="com_bgImgVO">
-
 				<div class="col-sm-6 col-md-4">
 					<div class="thumb">
-						<a href="/resources/assets/images/1.jpg" class="image-popup"
-							title="Screenshot-1"> <img
-							src="/resources/assets/images/properties/1.jpg" class="thumb-img"
-							alt="work-thumbnail"
+						<img width="600" height="400"
 							src="${pageContext.request.contextPath}/resources/upload/${com_bgImgVO.bi_img}"
 							class="thumb-img"
-							onerror="javascript:src={/resources/assets/images/properties/1.jpg}">
-						</a>
+							onerror="this.src='/resources/assets/images/properties/1.jpg'">
+
 						<div class="gal-detail">
 							<h4>${com_bgImgVO.bi_name}</h4>
 							<form
-								action="/backGroundboard/removePage?bi_no=${com_bgImgVO.bi_no }"
+								action="/backGroundboard/removePage?bi_no=${com_bgImgVO.bi_no}"
 								method="post">
 								<button type="button"
 									class="btn btn-custom btn-inline waves-effect waves-light"
@@ -60,8 +56,6 @@
 		<!-- end col -->
 		<div class="text-right">
 			<ul class="pagination pagination-split m-t-0">
-				<li class="disabled"><a href="#"><i
-						class="fa fa-angle-left"></i></a></li>
 				<c:if test="${pageMaker.prev}">
 					<li><a
 						href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
@@ -79,7 +73,6 @@
 					<li><a
 						href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 				</c:if>
-				<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 
 			</ul>
 		</div>

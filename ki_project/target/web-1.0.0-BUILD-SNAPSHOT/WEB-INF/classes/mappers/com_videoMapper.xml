@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="Com_videoVO">
 		select
-		vi_no,vi_name,vi_video,vi_ndt
+		vi_no,vi_name,vi_video,vi_ndt,section_cd
 		from com_video
 		where
 		vi_no = #{vi_no}
@@ -15,16 +15,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into com_video
-		(vi_name,vi_video,vi_ndt)
+		(vi_name,vi_video,vi_ndt,section_cd)
 		values
-		(#{vi_name},#{vi_video},now())
+		(#{vi_name},#{vi_video},now(),#{section_cd})
 	</insert>
 
 	<update id="update">
 		update com_video set
 		vi_name = #{vi_name},
-		vi_video =
-		#{vi_video}
+		vi_video = #{vi_video}
+		section_cd = #{section_cd}
 		where
 		vi_no = #{vi_no}
 	</update>
@@ -38,8 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="lastInsertID" resultType="int">
-		SELECT
-		LAST_INSERT_ID(vi_no) from com_video order by vi_no desc limit 1;
+		SELECT AUTO_INCREMENT
+		FROM information_schema.TABLES
+		WHERE TABLE_SCHEMA = "kipro"
+		AND TABLE_NAME = "com_video";
 	</select>
 
 	<select id="listPage" resultType="Com_videoVO">

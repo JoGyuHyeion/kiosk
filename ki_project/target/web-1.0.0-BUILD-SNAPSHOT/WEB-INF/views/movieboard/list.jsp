@@ -33,6 +33,11 @@
 				<div class="property-card">
 					<div class="property-image"
 						style="background: url('/resources/assets/images/properties/6.jpg') center center/cover no-repeat;">
+						<video>
+							<source src="${pageContext.request.contextPath}/resources/upload/${com_videoVO.vi_video}" type="video/mp4">			
+							<source src="movie.ogg" type="video/ogg">
+						</video>
+						
 					</div>
 
 					<div class="property-content">
@@ -73,8 +78,7 @@
 		<!-- end col -->
 		<div class="text-right">
 			<ul class="pagination pagination-split m-t-0">
-				<li class="disabled"><a href="#"><i
-						class="fa fa-angle-left"></i></a></li>
+
 				<c:if test="${pageMaker.prev}">
 					<li><a
 						href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
@@ -92,8 +96,7 @@
 					<li><a
 						href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 				</c:if>
-				<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-
+	
 			</ul>
 		</div>
 	</div>

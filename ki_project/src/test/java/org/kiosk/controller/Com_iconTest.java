@@ -28,7 +28,7 @@ public class Com_iconTest {
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-//	@Test
+	// @Test
 	public void testCreate() throws Exception {
 
 		Com_iconVO dto = new Com_iconVO();
@@ -39,7 +39,7 @@ public class Com_iconTest {
 		dao.create(dto);
 	}
 
-//	@Test
+	// @Test
 	public void testRead() throws Exception {
 
 		logger.info(dao.read(1).toString());
@@ -69,7 +69,7 @@ public class Com_iconTest {
 
 	}
 
-	@Test
+	// @Test
 	public void testLastInsertID() throws Exception {
 		logger.info(String.valueOf(dao.lastInsertID()));
 	}

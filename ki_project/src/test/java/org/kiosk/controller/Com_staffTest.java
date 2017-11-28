@@ -60,8 +60,8 @@ public class Com_staffTest {
 	public void testUpdate() throws Exception {
 
 		Com_staffVO vo = new Com_staffVO();
-		//vo.setSt_nm("조규현");
-		//vo.setSt_no(1139);
+		// vo.setSt_nm("조규현");
+		// vo.setSt_no(1139);
 
 		dao.update(vo);
 	}
@@ -72,7 +72,7 @@ public class Com_staffTest {
 		dao.delete(1138);
 	}
 
-	//@Test
+	// @Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
@@ -83,7 +83,7 @@ public class Com_staffTest {
 
 	}
 
-	// @Test
+	@Test
 	public void testLastInsertID() throws Exception {
 		logger.info(String.valueOf(dao.lastInsertID()));
 	}
@@ -100,7 +100,7 @@ public class Com_staffTest {
 		}
 	}
 
-	 @Test
+	@Test
 	public void testListCriteria() throws Exception {
 
 		Criteria cri = new Criteria();

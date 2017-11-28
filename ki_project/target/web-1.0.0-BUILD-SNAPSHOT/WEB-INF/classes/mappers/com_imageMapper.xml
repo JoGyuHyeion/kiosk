@@ -42,7 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="lastInsertID" resultType="int">
-		 SELECT LAST_INSERT_ID(img_no) from com_image order by img_no desc limit 1;
+		SELECT AUTO_INCREMENT
+		FROM information_schema.TABLES
+		WHERE TABLE_SCHEMA = "kipro"
+		AND TABLE_NAME = "com_image";
 	</select>
 	
 	<select id="listPage" resultType="Com_imageVO">
@@ -82,48 +85,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-
-	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				and title like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'c'.toString()">
-				and content like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'w'.toString()">
-				and writer like CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="searchType == 'tc'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%') OR content
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'cw'.toString()">
-				and ( content like CONCAT('%', #{keyword}, '%') OR writer
-				like
-				CONCAT('%', #{keyword}, '%'))
-			</if>
-			<if test="searchType == 'tcw'.toString()">
-				and ( title like CONCAT('%', #{keyword}, '%')
-				OR
-				content
-				like CONCAT('%', #{keyword}, '%')
-				OR
-				writer like CONCAT('%',
-				#{keyword}, '%'))
-			</if>
-		</if>
-	</sql>
-
 	<select id="listSearch" resultType="Com_imageVO">
 		<![CDATA[  
 		 select * 
 		 from com_image 
 		 where img_no > 0 
 		]]>
-		<include refid="search"></include>
-  
+		  
 		<![CDATA[    
 		order by img_no desc
 		limit #{pageStart}, #{perPageNum}
@@ -136,8 +104,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  from com_image 
 		  where img_no > 0 
 		]]>
-		<include refid="search"></include>
-
 	</select>
 	
 </mapper>

@@ -81,7 +81,7 @@ public class Com_imageTest {
 
 	}
 
-	@Test
+	// @Test
 	public void testLastInsertID() throws Exception {
 		logger.info(String.valueOf(dao.lastInsertID()));
 	}

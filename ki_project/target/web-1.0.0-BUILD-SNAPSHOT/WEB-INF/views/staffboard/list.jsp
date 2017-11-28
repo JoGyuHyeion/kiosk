@@ -12,10 +12,10 @@
 
 	<form role="form" action="modifyPage" method="post">
 
-		<input type='hidden' name='page' value="${cri.page}"> <input
-			type='hidden' name='perPageNum' value="${cri.perPageNum}"> <input
-			type='hidden' name='searchType' value="${cri.searchType}"> <input
-			type='hidden' name='keyword' value="${cri.keyword}">
+			<input type='hidden' name='page' value="${cri.page}"> 
+		<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+		<input type='hidden' name='section_cd' value="${cri.section_cd}"> 
+		<input type='hidden' name='keyword' value="${cri.keyword}">
 
 	</form>
 	<div class="container">
@@ -174,7 +174,7 @@
 
 									self.location = "list"
 											+ '${pageMaker.makeQuery(1)}'
-											+ "&searchType="
+											+ "&section_cd="
 											+ $("select option:selected").val()
 											+ "&keyword="
 											+ $('#keywordInput').val();

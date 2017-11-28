@@ -34,7 +34,8 @@
 				<div class="card-box">
 					<div class="row">
 						<div class="col-md-7">
-							<form method="post" role="form" enctype="multipart/form-data">
+							<form method="post" role="form" enctype="multipart/form-data"
+								onsubmit="return formCheck()">
 								<input type='hidden' name='brd_cd' value="${com_boardVO.brd_cd}">
 								<div class="form-horizontal" role="form">
 									<!-- bbs_title -->
@@ -91,7 +92,8 @@
 										</div>
 									</div>
 									<!-- bbs_state     -->
-									<c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
+									<%-- <c:set value="${com_boardVO.bbs_state}" var="bbs_state" />
+									 --%>
 									<div class="form-group">
 										<label for="bbs_state" class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
@@ -113,32 +115,6 @@
 							</form>
 						</div>
 					</div>
-					<script>
-						var input = $
-						{
-							com_boardVO.bbs_state
-						};
-						if (input == 1) { //값 비교
-							$('input:checkbox[id="bbs_state"]').attr("checked",
-									true); //checked 처리
-						}
-
-						$(document)
-								.ready(
-										function() {
-											var formObj = $("form[role='form']");
-											console.log(formObj);
-											$("#back")
-													.on(
-															"click",
-															function() {
-																self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-															});
-
-											alert(bbs_state);
-
-										});
-					</script>
 				</div>
 			</div>
 			<!-- end col -->
@@ -154,12 +130,13 @@
 					.ready(
 							function() {
 								var formObj = $("form[role='form']");
-								var bbs_state ="<c:out value="${bbs_state}"/>";
+								/* var bbs_state ="<c:out value="${bbs_state}"/>";
 								if(bbs_state == 1){
 									 $("#bbs_state").attr('checked',true);			
 								}else{
 									 $("#bbs_state").attr('checked',false);	
-								}
+								} */
+								
 								
 								console.log(formObj);
 								$("#back")
@@ -169,7 +146,37 @@
 													self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 												});
 								
-							});
+							/* alert("${com_boardVO.bbs_state}"); */
+							var bbs_state = ${com_boardVO.bbs_state};
+							if(bbs_state==1){
+								$('input:checkbox[id="bbs_state"]').attr("checked",true);
+							}
+						});
+			function formCheck() {
+				if ($.trim($("#bbs_title").val()) == "") {
+					alert("제목을 입력하세요");
+					$("#bbs_title").focus();
+					return false;
+				}else if ($.trim($("#bbs_content").val()) == "") {
+					alert("내용을 입력하세요");
+					$("#bbs_content").focus();
+					return false;
+				}else if ($("#bbs_exp_sdt").val() == "") {
+					alert("노출 시작 날짜를 설정하세요");
+					$("#bbs_exp_sdt").focus();
+					return false;
+				}else if ($("#bbs_exp_edt").val() == "") {
+					alert("노출 시작 날짜를 설정하세요");
+					$("#bbs_exp_edt").focus();
+					return false;
+				}else if ($.trim($("#bbs_file").val()) == "") {
+					alert("파일을 첨부하세요");
+					$("#bbs_file").focus();
+					return false;
+				}
+				return true;
+
+			}
 		</script>
 
 	</div>

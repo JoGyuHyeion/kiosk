@@ -10,14 +10,6 @@
 
 <section class="wrapper">
 
-	<form role="form" action="modifyPage" method="post">
-
-		<input type='hidden' name='page' value="${cri.page}"> <input
-			type='hidden' name='perPageNum' value="${cri.perPageNum}"> <input
-			type='hidden' name='searchType' value="${cri.searchType}"> <input
-			type='hidden' name='keyword' value="${cri.keyword}">
-
-	</form>
 	<div class="container">
 		<!-- Page-Title -->
 		<div class="row">
@@ -42,21 +34,24 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
+					
+					<c:if test="${0 eq userVO.auth}">
 						<div class="col-sm-3">
-							<select name="" id="" class="form-control">
-								<option value="">전체관리자</option>
+							<select name="section_cd" id="section_cd" class="form-control">
+								<c:forEach items="${sectionService}" var="com_sectionVO">
+									<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+								</c:forEach>
 							</select>
 						</div>
-						<div class="col-sm-3">
-							<select name="" id="" class="form-control">
-								<option value="">임원</option>
-							</select>
-						</div>
+					</c:if>
+					
 						<div class="col-sm-4">
 							<form role="form">
 								<div class="form-group">
-									<input type="text" id="search-input" class="form-control"
-										placeholder="Please Name">
+									<input type="text" id="search-input" class="form-control" name="keyword" placeholder="Please Name">
+									<input type='hidden' name='page' value="${cri.page}"> 
+									<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+									<input type='hidden' name='section_cd' value="${cri.section_cd}"> 	
 
 								</div>
 							</form>
@@ -117,8 +112,7 @@
 
 										<td>${com_staff2VO.st_edt}</td>
 										<td><form action="/staff2board/removePage" method="post">
-												<input type="hidden" name="st_no"
-													value="${com_staff2VO.st_no}">
+												<input type="hidden" name="st_no" value="${com_staff2VO.st_no}">
 												<button type="submit" class="btn btn-default">
 													<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
 												</button>
@@ -135,8 +129,6 @@
 				<div class="text-right">
 					<ul class="pagination pagination-split m-t-0">
 
-						<li class="disabled"><a href="#"><i
-								class="fa fa-angle-left"></i></a></li>
 						<c:if test="${pageMaker.prev}">
 							<li><a
 								href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
@@ -154,7 +146,6 @@
 							<li><a
 								href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 						</c:if>
-						<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 
 					</ul>
 				</div>
@@ -175,23 +166,30 @@
 		</script>
 
 		<script>
-			$(document).ready(
-					function() {
-
-						$('#searchBtn').on(
-								"click",
-								function(event) {
-
-									self.location = "list"
-											+ '${pageMaker.makeQuery(1)}'
-											+ "&searchType="
-											+ $("select option:selected").val()
-											+ "&keyword="
-											+ $('#keywordInput').val();
-
-								});
-
+			$(document).ready(function() {
+				
+				$('#searchBtn').on("click",function(event) {
+					self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&section_cd="
+					+ $("select option:selected").val()
+					+ "&keyword="
+					+ $('#search-input').val();
 					});
+				
+				$("#section_cd").change(function () {
+					var section_cd = $("#section_cd option:selected").val();
+					
+					var url = "/staff2board/list?section_cd="+ section_cd;
+				
+					location.href = url;
+					});
+				
+				var value = "${param.section_cd}";
+				
+				$("#section_cd > option[value=" + value + "]").attr("selected", true);
+				
+				});
 		</script>
 	</div>
 </section>

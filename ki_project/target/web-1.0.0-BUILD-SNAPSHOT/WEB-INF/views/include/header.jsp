@@ -130,7 +130,9 @@
 										<li><a href="/myinfoboard/section?bcd=k000">국관리(Super)</a></li>
 									</c:if>
 										<li><a href="/myinfoboard/passwd">비밀번호변경</a></li>
+									<c:if test="${1 eq userVO.auth}">
 										<li><a href="/myinfoboard/team">팀관리</a></li>
+									</c:if>
 									</ul>
 								</li>
 							</ul></li>
@@ -187,9 +189,9 @@
 									<c:if test="${0 eq userVO.auth}">
 										<li><a href="/iconboard/list">Icon(Super)</a></li>
 										<li><a href="/backGroundboard/list?page=1&perPageNum=10">바탕화면(Super)</a></li>
-										<li><a href="/buildingboard/list?page=1&perPageNum=10">Building(Super)</a></li>
+										<li><a href="/buildingboard/list">Building(Super)</a></li>
 									</c:if>
-										<li><a href="/myinfoboard/usb">USB</a></li>
+										<li><a href="/usbFileboard/usb">USB</a></li>
 									</ul>
 								</li>
 							</ul></li>

@@ -34,6 +34,8 @@
 		destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
+	<context:component-scan base-package="org.kiosk.domain"></context:component-scan>
+	<context:component-scan base-package="org.kiosk.dto"></context:component-scan>
 	<context:component-scan base-package="org.kiosk.persistence"></context:component-scan>
 	<context:component-scan base-package="org.kiosk.service"></context:component-scan>
 	<context:component-scan base-package="org.kiosk.util"></context:component-scan>

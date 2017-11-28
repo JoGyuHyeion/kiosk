@@ -70,7 +70,7 @@ public class Com_bgImgTest {
 
 	}
 
-	@Test
+	// @Test
 	public void testLastInsertID() throws Exception {
 		logger.info(String.valueOf(dao.lastInsertID()));
 	}
