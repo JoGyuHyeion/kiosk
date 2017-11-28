@@ -34,24 +34,26 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-					
-					<c:if test="${0 eq userVO.auth}">
-						<div class="col-sm-3">
-							<select name="section_cd" id="section_cd" class="form-control">
-								<c:forEach items="${sectionService}" var="com_sectionVO">
-									<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
-								</c:forEach>
-							</select>
-						</div>
-					</c:if>
-					
+
+						<c:if test="${0 eq userVO.auth}">
+							<div class="col-sm-3">
+								<select name="section_cd" id="section_cd" class="form-control">
+									<c:forEach items="${sectionService}" var="com_sectionVO">
+										<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</c:if>
+
 						<div class="col-sm-4">
 							<form role="form">
 								<div class="form-group">
-									<input type="text" id="search-input" class="form-control" name="keyword" placeholder="Please Name">
-									<input type='hidden' name='page' value="${cri.page}"> 
-									<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
-									<input type='hidden' name='section_cd' value="${cri.section_cd}"> 	
+									<input type="text" id="search-input" class="form-control"
+										name="keyword" placeholder="Please Name"> <input
+										type='hidden' name='page' value="${cri.page}"> <input
+										type='hidden' name='perPageNum' value="${cri.perPageNum}">
+									<input type='hidden' name='section_cd'
+										value="${cri.section_cd}">
 
 								</div>
 							</form>
@@ -96,8 +98,9 @@
 											class="btn btn-default"><i
 												class="glyphicon glyphicon-glass glyphicon-edit"></i></a></td>
 										<td><img
-											src="/resources/assets/images/users/avatar-2.jpg"
-											alt="contact-img" title="contact-img" class=" thumb-sm" /></td>
+											src="${pageContext.request.contextPath}${uploadPath}${com_staff2VO.img_filenm}"
+											alt="contact-img" title="contact-img" class=" thumb-sm"
+											onerror="this.src='/resources/assets/images/users/avatar-2.jpg'" /></td>
 
 										<td>${com_staff2VO.real_use_dep_nm}</td>
 
@@ -112,7 +115,8 @@
 
 										<td>${com_staff2VO.st_edt}</td>
 										<td><form action="/staff2board/removePage" method="post">
-												<input type="hidden" name="st_no" value="${com_staff2VO.st_no}">
+												<input type="hidden" name="st_no"
+													value="${com_staff2VO.st_no}">
 												<button type="submit" class="btn btn-default">
 													<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
 												</button>
@@ -166,30 +170,38 @@
 		</script>
 
 		<script>
-			$(document).ready(function() {
-				
-				$('#searchBtn').on("click",function(event) {
-					self.location = "list"
-					+ '${pageMaker.makeQuery(1)}'
-					+ "&section_cd="
-					+ $("select option:selected").val()
-					+ "&keyword="
-					+ $('#search-input').val();
+			$(document).ready(
+					function() {
+
+						$('#searchBtn').on(
+								"click",
+								function(event) {
+									self.location = "list"
+											+ '${pageMaker.makeQuery(1)}'
+											+ "&section_cd="
+											+ $("select option:selected").val()
+											+ "&keyword="
+											+ $('#search-input').val();
+								});
+
+						$("#section_cd").change(
+								function() {
+									var section_cd = $(
+											"#section_cd option:selected")
+											.val();
+
+									var url = "/staff2board/list?section_cd="
+											+ section_cd;
+
+									location.href = url;
+								});
+
+						var value = "${param.section_cd}";
+
+						$("#section_cd > option[value=" + value + "]").attr(
+								"selected", true);
+
 					});
-				
-				$("#section_cd").change(function () {
-					var section_cd = $("#section_cd option:selected").val();
-					
-					var url = "/staff2board/list?section_cd="+ section_cd;
-				
-					location.href = url;
-					});
-				
-				var value = "${param.section_cd}";
-				
-				$("#section_cd > option[value=" + value + "]").attr("selected", true);
-				
-				});
 		</script>
 	</div>
 </section>

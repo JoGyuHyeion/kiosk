@@ -78,6 +78,7 @@ public class Staff2BoardController {
 
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("uploadPath", uploadPath());
 		model.addAttribute("sectionService", sectionService.listAll());
 	}
 
