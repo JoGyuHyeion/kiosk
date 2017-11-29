@@ -9,11 +9,11 @@ import org.kiosk.domain.SearchCriteria;
 public interface Com_bgImgDAO {
 	public void create(Com_bgImgVO dto) throws Exception;
 
-	public Com_bgImgVO read(Integer ic_no) throws Exception;
+	public Com_bgImgVO read(int bi_no) throws Exception;
 
 	public void update(Com_bgImgVO dto) throws Exception;
 
-	public void delete(Integer ic_no) throws Exception;
+	public void delete(int bi_no) throws Exception;
 
 	public List<Com_bgImgVO> listAll() throws Exception;
 	

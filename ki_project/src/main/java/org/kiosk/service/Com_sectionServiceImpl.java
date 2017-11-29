@@ -75,4 +75,9 @@ public class Com_sectionServiceImpl implements Com_sectionService {
 		return dao.lastInsertSort(bureau_cd) + 1;
 	}
 
+	@Override
+	public String readSectionNm(String section_fullcode) throws Exception {
+		return dao.readSectionNm(section_fullcode);
+	}
+
 }

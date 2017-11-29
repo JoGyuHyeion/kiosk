@@ -25,8 +25,8 @@ public class Com_bgImgServiceImpl implements Com_bgImgService {
 	}
 
 	@Override
-	public Com_bgImgVO read(Integer ic_no) throws Exception {
-		return dao.read(ic_no);
+	public Com_bgImgVO read(int bi_no) throws Exception {
+		return dao.read(bi_no);
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class Com_bgImgServiceImpl implements Com_bgImgService {
 	}
 
 	@Override
-	public void remove(Integer ic_no) throws Exception {
-		dao.delete(ic_no);
+	public void remove(int bi_no) throws Exception {
+		dao.delete(bi_no);
 		volService.update(VERSION);
 	}
 

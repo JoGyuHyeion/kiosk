@@ -24,7 +24,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update com_video set
 		vi_name = #{vi_name},
 		vi_video = #{vi_video}
-		section_cd = #{section_cd}
 		where
 		vi_no = #{vi_no}
 	</update>

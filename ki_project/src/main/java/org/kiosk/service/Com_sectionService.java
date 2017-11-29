@@ -22,4 +22,5 @@ public interface Com_sectionService {
 
 	public int lastInsertSort(String bureau_cd) throws Exception;
 
+	public String readSectionNm(String section_fullcode) throws Exception;
 }

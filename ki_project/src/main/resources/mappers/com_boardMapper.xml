@@ -22,23 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="update">
 		update com_board set
-		brd_cd = #{brd_cd},
-		bbs_pno =
-		#{bbs_pno},
-		bbs_lv = #{bbs_lv},
-		bbs_sort = #{bbs_sort},
 		bbs_title =
 		#{bbs_title},
 		bbs_content = #{bbs_content},
 		bbs_file = #{bbs_file},
-		bbs_notice = #{bbs_notice},
-		bbs_tag = #{bbs_tag},
-		bbs_cate =
-		#{bbs_cate},
-		bbs_hits = #{bbs_hits},
 		bbs_state = #{bbs_state},
-		section_cd = #{section_cd},
-		bbs_exp_inx = #{bbs_exp_inx},
 		bbs_exp_sdt =
 		#{bbs_exp_sdt},
 		bbs_exp_edt = #{bbs_exp_edt},

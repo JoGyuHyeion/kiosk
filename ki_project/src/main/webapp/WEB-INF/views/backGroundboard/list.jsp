@@ -28,11 +28,12 @@
 			<c:forEach items="${list}" var="com_bgImgVO">
 				<div class="col-sm-6 col-md-4">
 					<div class="thumb">
-						<img width="600" height="400"
+						<a href="/backGroundboard/readPage?bi_no=${com_bgImgVO.bi_no}">
+							<img width="600" height="400"
 							src="${pageContext.request.contextPath}${uploadPath}${com_bgImgVO.bi_img}"
 							class="thumb-img"
 							onerror="this.src='/resources/assets/images/properties/1.jpg'">
-
+						</a>
 						<div class="gal-detail">
 							<h4>${com_bgImgVO.bi_name}</h4>
 							<form

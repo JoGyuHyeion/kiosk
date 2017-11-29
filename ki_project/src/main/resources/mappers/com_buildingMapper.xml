@@ -10,7 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bu_no,bu_name,bu_img,bu_ndt,bu_type
 		from com_building
 		where
-		bu_no = #{bu_no}
+		bu_no =
+		#{bu_no}
 	</select>
 
 	<insert id="create">
@@ -24,7 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update com_building set
 		bu_img =
 		#{bu_img},
-		bu_ndt = now()
+		bu_ndt =
+		now()
 		where
 		bu_no = #{bu_no}
 	</update>
@@ -39,9 +41,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="lastInsertID" resultType="int">
 		SELECT AUTO_INCREMENT
-		FROM information_schema.TABLES
+		FROM
+		information_schema.TABLES
 		WHERE TABLE_SCHEMA = "kipro"
-		AND TABLE_NAME = "com_building";
+		AND TABLE_NAME =
+		"com_building";
 	</select>
 
 	<select id="listPage" resultType="Com_buildingVO">
@@ -75,11 +79,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bu_no > 0 
  		]]>
 	</select>
+
 	<select id="listSearch" resultType="Com_buildingVO">
 		<![CDATA[  
 		 select * 
 		 from com_building
-		 where bu_no > 0   
+		 where bu_no > 0 
+		 ]]>
+		 <![CDATA[  
 		 order by bu_no asc
 		 limit #{pageStart}, #{perPageNum}
 		]]>
@@ -91,6 +98,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  from com_building 
 		  where bu_no > 0 
 		]]>
-
 	</select>
 </mapper>

@@ -100,7 +100,7 @@ public class IconBoardController {
 		logger.info("iconboard/modifyPage - POST");
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 		String icon_filenm;
-		String default_img_filenm = "/icon/icon" + board.getIc_no() + ".png";
+		String default_img_filenm = "icon" + board.getIc_no() + ".png";
 
 		if (!(iconName.equals(default_img_filenm))) {
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getIc_no()).getIc_icon());

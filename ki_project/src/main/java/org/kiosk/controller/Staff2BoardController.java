@@ -7,12 +7,14 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_staff2Service;
+import org.kiosk.service.Com_teamService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +38,9 @@ public class Staff2BoardController {
 
 	@Inject
 	private Com_sectionService sectionService;
+
+	@Inject
+	private Com_teamService teamService;
 
 	@Resource(name = "PageMaker")
 	private PageMaker pageMaker;
@@ -109,11 +114,14 @@ public class Staff2BoardController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(Com_staff2VO board, RedirectAttributes rttr,
-			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request) throws Exception {
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
+			@RequestParam("teamName") String teamName) throws Exception {
 		logger.info("staff2board/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
-
+		
+		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
+		board.setTeam_cd(teamService.readTeamCd(board.getSection_cd(), teamName));
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
 		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
@@ -136,15 +144,20 @@ public class Staff2BoardController {
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("userVO", userVO);
 		model.addAttribute("sectionService", sectionService.listAll());
+		model.addAttribute("team_name",
+				teamService.readTeamNm(service.read(st_no).getSection_cd(), service.read(st_no).getTeam_cd()));
 		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr,
 			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
-			@RequestParam("imgName") String imgName) throws Exception {
+			@RequestParam("imgName") String imgName, @RequestParam("teamName") String teamName) throws Exception {
 		logger.info("staff2board/modifyPage - POST");
 		logger.info(cri.toString());
+
+		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
+		board.setTeam_cd(teamService.readTeamCd(board.getSection_cd(), teamName));
 
 		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
@@ -154,8 +167,8 @@ public class Staff2BoardController {
 		} else {
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getSt_no()).getImg_filenm());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
-					imgFile.getBytes(), img_fileName + board.getSt_no(), dirPath);
+			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(), imgFile.getBytes(),
+					img_fileName + board.getSt_no(), dirPath);
 		}
 		board.setImg_filenm(img_filenm);
 		service.modify(board);

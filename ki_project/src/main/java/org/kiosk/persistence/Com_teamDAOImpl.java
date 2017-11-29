@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.domain.Com_teamVO;
+import org.kiosk.dto.TeamsDTO;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -58,5 +59,14 @@ public class Com_teamDAOImpl implements Com_teamDAO {
 	public int lastInsertSort(String section_cd) throws Exception {
 		return session.selectOne(namespace + ".lastInsertSort",section_cd);
 	}
+	
+	@Override
+	public String readTeamCd(TeamsDTO dto) throws Exception {
+		return session.selectOne(namespace + ".readTeamCd", dto);
+	}
 
+	@Override
+	public String readTeamNm(TeamsDTO dto) throws Exception {
+		return session.selectOne(namespace + ".readTeamNm", dto);
+	}
 }

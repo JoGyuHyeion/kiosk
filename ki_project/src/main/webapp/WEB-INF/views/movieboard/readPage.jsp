@@ -17,11 +17,11 @@
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
 							<li><a href="#">동영상</a></li>
-							<li class="active">동영상수정</li>
+							<li class="active">동영상정보</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						동영상등록 <small>동영상을 <code>수정</code> 할 수 있습니다.
+						동영상정보 <small>동영상의 <code>세부정보</code>를 <code>열람</code> 할 수 있습니다.
 						</small>
 					</h4>
 				</div>

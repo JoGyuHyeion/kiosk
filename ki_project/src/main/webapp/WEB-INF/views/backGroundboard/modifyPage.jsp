@@ -114,9 +114,9 @@
 				alert("제목을 입력하세요");
 				$("#bi_name").focus();
 				return false;
-			}else if ($.trim($("#img_filenm").val()) == "") {
+			}else if ($.trim($("#img_file").val()) == "") {
 				alert("사진을 첨부하세요");
-				$("#img_filenm").focus();
+				$("#img_file").focus();
 				return false;
 			}
 			return true;
