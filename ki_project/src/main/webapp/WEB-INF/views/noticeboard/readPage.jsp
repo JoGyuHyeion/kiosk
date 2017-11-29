@@ -18,11 +18,11 @@
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
 							<li><a href="#">공지관리</a></li>
-							<li class="active">공지조회</li>
+							<li class="active">공지정보</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						공지수정 <small>공지를 <code>수정</code> 할 수 있습니다.
+						공지정보 <small>공지사항의 <code>세부정보</code>를 <code>열람</code> 할 수 있습니다.
 						</small>
 					</h4>
 				</div>

@@ -22,8 +22,8 @@ public class Com_bgImgDAOImpl implements Com_bgImgDAO {
 	}
 
 	@Override
-	public Com_bgImgVO read(Integer ic_no) throws Exception {
-		return session.selectOne(namespace + ".read", ic_no);
+	public Com_bgImgVO read(int bi_no) throws Exception {
+		return session.selectOne(namespace + ".read",bi_no);
 	}
 
 	@Override
@@ -33,8 +33,8 @@ public class Com_bgImgDAOImpl implements Com_bgImgDAO {
 	}
 
 	@Override
-	public void delete(Integer ic_no) throws Exception {
-		session.delete(namespace + ".delete", ic_no);
+	public void delete(int bi_no) throws Exception {
+		session.delete(namespace + ".delete", bi_no);
 
 	}
 

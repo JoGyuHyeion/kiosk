@@ -30,14 +30,13 @@
 				<div class="row">
 
 					<div class="col-sm-8 col-centered">
-						<form role="form">
-
+						<form role="form" >
 							<label class=" col-md-2 control-label" for="search_bcd">건물
 								선택</label> <select id="search_bcd" name="search_bcd"
 								class="form-control">
-								<option value="none">본관</option>
-								<option value="none">동관</option>
-								<option value="none">서관</option>
+								<option value="1">본관</option>
+								<option value="2">동관</option>
+								<option value="3">서관</option>
 							</select>
 						</form>
 					</div>
@@ -246,6 +245,7 @@
 					$('#buildingModal .modal-body').find('#imgName').val(bu_img);
 					 
 				});
+				
 
 			});
 		</script>

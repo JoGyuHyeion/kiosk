@@ -18,5 +18,7 @@ public interface Com_sectionDAO {
 	  public List<Com_sectionVO> bureauList(String bureau_cd) throws Exception;
 	  
 	  public int lastInsertSort(String bureau_cd) throws Exception;
+	  
+	  public String readSectionNm(String section_fullcode) throws Exception;
 
 }

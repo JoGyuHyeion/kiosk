@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		bureau_cd,section_cd,section_name,section_type,section_sort,section_ip,section_id,section_pass,section_fullcode,section_fullpath,section_use
 		from com_section
 		where
-		section_no = #{section_no}
+		section_cd = #{section_cd}
 	</select>
 
 	<insert id="create">
@@ -32,7 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<delete id="delete">
 		delete from com_section
-		where section_fullcode = #{section_fullcode}
+		where section_fullcode =
+		#{section_fullcode}
 	</delete>
 
 	<select id="listAll" resultType="Com_sectionVO">
@@ -53,9 +54,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="lastInsertSort" resultType="int">
 		select count(*)
-		from com_section
+		from
+		com_section
 		where bureau_cd = #{bureau_cd}
 	</select>
 
+	<select id="readSectionNm" resultType="String">
+		select section_name
+		from
+		com_section
+		where section_fullcode = #{section_fullcode}
+	</select>
 
 </mapper>

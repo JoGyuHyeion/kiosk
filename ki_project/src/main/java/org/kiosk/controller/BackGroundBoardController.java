@@ -73,15 +73,18 @@ public class BackGroundBoardController {
 		model.addAttribute("uploadPath", uploadPath());
 	}
 
-	/*
-	 * @RequestMapping(value = "/readPage", method = RequestMethod.GET) public void
-	 * read(@RequestParam("bi_no") int bi_no, @ModelAttribute("cri") SearchCriteria
-	 * cri, Model model) throws Exception {
-	 * logger.info("backGroundboard/readPage - GET");
-	 * model.addAttribute(service.read(bi_no));
-	 * 
-	 * }
-	 */
+	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
+	public void read(@RequestParam("bi_no") int bi_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
+			HttpServletRequest request) throws Exception {
+		logger.info("backGroundboard/readPage - GET");
+		model.addAttribute(service.read(bi_no));
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("userVO", userVO);
+		model.addAttribute("uploadPath", uploadPath());
+		logger.info("Login : " + userVO.toString());
+
+	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)

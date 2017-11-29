@@ -3,6 +3,7 @@ package org.kiosk.persistence;
 import java.util.List;
 
 import org.kiosk.domain.Com_teamVO;
+import org.kiosk.dto.TeamsDTO;
 
 public interface Com_teamDAO {
 	public void create(Com_teamVO vo) throws Exception;
@@ -21,4 +22,7 @@ public interface Com_teamDAO {
 	
 	public int lastInsertSort(String section_cd) throws Exception;
 
+	public String readTeamCd(TeamsDTO dto) throws Exception;
+	
+	public String readTeamNm(TeamsDTO dto) throws Exception;
 }

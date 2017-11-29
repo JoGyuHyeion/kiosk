@@ -7,7 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="Com_teamVO">
 		select section_cd,team_cd
-		from com_team
+		from
+		com_team
 		where
 		section_cd = #{section_cd} and team_cd = #{team_cd}
 	</select>
@@ -22,14 +23,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update com_team set
 		team_nm = #{team_nm},
-		team_sort = #{team_sort},
+		team_sort =
+		#{team_sort},
 		team_use = #{team_use}
 		where
-		section_cd = #{section_cd} and team_cd = #{team_cd}
+		section_cd = #{section_cd} and
+		team_cd = #{team_cd}
 	</update>
 
 	<delete id="delete">
-		delete from com_team where section_cd = #{section_cd} and team_cd = #{team_cd}
+		delete from com_team where section_cd = #{section_cd}
+		and team_cd = #{team_cd}
 	</delete>
 
 	<select id="listAll" resultType="Com_teamVO">
@@ -39,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		order by section_cd asc, team_sort asc, team_cd asc 
  		]]>
 	</select>
-	
+
 	<select id="list" resultType="Com_teamVO">
  		<![CDATA[
  		select * 
@@ -48,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		order by section_cd asc, team_sort asc, team_cd asc 
  		]]>
 	</select>
-	
+
 	<select id="jsonList" resultType="Com_teamVO">
  		<![CDATA[
  		select * 
@@ -57,11 +61,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		order by section_cd asc
  		]]>
 	</select>
-	
+
 	<select id="lastInsertSort" resultType="int">
 		select count(*)
-		from com_team
+		from
+		com_team
 		where section_cd = #{section_cd}
 	</select>
-	
+
+	<select id="readTeamCd" resultType="String">
+		select team_cd from
+		com_team where team_nm=#{team_nm} and section_cd = #{section_cd}
+	</select>
+
+	<select id="readTeamNm" resultType="String">
+		select team_nm from
+		com_team where team_cd=#{team_cd} and section_cd = #{section_cd}
+	</select>
+
 </mapper>

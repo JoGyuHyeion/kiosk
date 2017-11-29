@@ -16,12 +16,12 @@
 					<div class="btn-group pull-right">
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
-							<li><a href="#">갤러리</a></li>
-							<li class="active">갤러리정보</li>
+							<li><a href="#">manager</a></li>
+							<li class="active">배경화면</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						갤러리정보 <small>갤러리의 <code>세부정보</code>를 <code>열람</code> 할 수 있습니다.
+						배경화면정보 <small>배경화면의  <code>세부정보</code>를 <code>열람</code> 할 수 있습니다.
 						</small>
 					</h4>
 				</div>
@@ -32,8 +32,6 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-
-
 					<div class="row">
 						<form>
 							<div class="col-md-7">
@@ -43,16 +41,16 @@
 										<label class="col-md-2 control-label">제목</label>
 										<div class="col-md-10">
 											<input type="text" class="form-control" readonly="readonly"
-												placeholder="Name" id="img_title" name="img_title"
-												value="${com_imageVO.img_title}">
+												placeholder="Name" id="bi_name" name="bi_name"
+												value="${com_bgImgVO.bi_name}">
 										</div>
 									</div>
 									<!-- img -->
 									<div class="form-group">
-										<label class="col-md-2 control-label">첨부사진</label>
+										<label class="col-md-2 control-label">배경사진</label>
 										<div class="col-me-10">
 											<img
-												src="${pageContext.request.contextPath}${uploadPath}${com_imageVO.img_filenm}"
+												src="${pageContext.request.contextPath}${uploadPath}${com_bgImgVO.bi_img}"
 												class="thumb-img" alt="등록된 사진이 없습니다.">
 										</div>
 									</div>
@@ -61,9 +59,9 @@
 										<label class="col-md-2 control-label">표시여부</label>
 										<!-- checkbox checked 일경우 활성화 -->
 										<div style="padding: 5px">
-											<input type="checkbox" name="img_gallery" id="img_gallery"
+											<input type="checkbox" name="bi_able" id="bi_able"
 												value="1" switch="none" onclick="return false" /> <label
-												for="img_gallery" data-on-label="On" data-off-label="Off"></label>
+												for="bi_able" data-on-label="On" data-off-label="Off"></label>
 										</div>
 									</div>
 								</div>
@@ -75,8 +73,8 @@
 						<button type="button"
 							class="btn btn-primary waves-effect w-md waves-light m-b-5"
 							id="change">수정</button>
-						<form action="/galleryboard/removePage" method="post">
-							<input type="hidden" name="img_no" value="${com_imageVO.img_no}">
+						<form action="/backGroundboard/removePage" method="post">
+							<input type="hidden" name="bi_no" value="${com_bgImgVO.bi_no}">
 							<button type="submit"
 								class="btn btn-danger waves-effect w-md waves-light m-b-5"
 								id="delete">삭제</button>
@@ -96,21 +94,21 @@
 													.on(
 															"click",
 															function() {
-																self.location = "/galleryboard/modifyPage?img_no=${com_imageVO.img_no}";
+																self.location = "/backGroundboard/modifyPage?bi_no=${com_bgImgVO.bi_no}";
 															});
 											$("#back")
 													.on(
 															"click",
 															function() {
-																self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+																self.location = "/backGroundboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 															});
 
 											
 											
-											alert("${com_imageVO.img_gallery}");
-											var img_gallery = ${com_imageVO.img_gallery};
-											if (img_gallery == 1) { //값 비교
-												$('input:checkbox[id="img_gallery"]')
+											alert("${com_bgImgVO.bi_able}");
+											var bi_able = ${com_bgImgVO.bi_able};
+											if (bi_able == 1) { //값 비교
+												$('input:checkbox[id="bi_able"]')
 														.attr("checked", true); //checked 처리
 											}
 											

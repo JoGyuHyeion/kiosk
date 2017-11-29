@@ -55,5 +55,11 @@ public class Com_sectionDAOImpl implements Com_sectionDAO{
 		return session.selectOne(namespace + ".lastInsertSort",bureau_cd);
 	}
 
+	@Override
+	public String readSectionNm(String section_fullcode) throws Exception {
+		return session.selectOne(namespace + ".readSectionNm",section_fullcode);
+	}
+
+
 
 }

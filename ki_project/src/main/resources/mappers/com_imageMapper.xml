@@ -22,12 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update com_image set
 		img_title = #{img_title},
-		img_caption = #{img_caption}, 
 		img_filenm = #{img_filenm}, 
-		img_gallery = #{img_gallery}, 
-		img_sort = #{img_sort},
-		section_cd = #{section_cd}, 
-		img_status = #{img_status},
+		img_gallery = #{img_gallery},
 		edt = now()
 		where
 		img_no = #{img_no}
