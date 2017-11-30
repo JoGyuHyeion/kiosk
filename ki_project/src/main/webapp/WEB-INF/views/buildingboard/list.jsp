@@ -30,10 +30,11 @@
 				<div class="row">
 
 					<div class="col-sm-8 col-centered">
-						<form role="form" >
-							<label class=" col-md-2 control-label" for="search_bcd">건물
-								선택</label> <select id="search_bcd" name="search_bcd"
-								class="form-control">
+						<form id="bu_type_chage_form" role="form"
+							action="/buildingboard/list">
+							<input type=hidden name="keyword" id="keyword" value=1>;
+							<label class=" col-md-2 control-label" for="search_bu">건물
+								선택</label> <select id="search_bu" name="search_bu" class="form-control">
 								<option value="1">본관</option>
 								<option value="2">동관</option>
 								<option value="3">서관</option>
@@ -50,9 +51,10 @@
 								<div id="carousel-example-captions" data-ride="carousel"
 									class="carousel slide">
 									<ol class="carousel-indicators">
-										<c:forEach items="${list}" var="com_buildingVO">
+										<c:forEach items="${list}" var="com_buildingVO"
+											varStatus="status">
 											<c:choose>
-												<c:when test="${com_buildingVO.bu_no==1}">
+												<c:when test="${status.first}">
 													<li data-target="#carousel-example-captions"
 														data-slide-to="${com_buildingVO.bu_name}" class="active"></li>
 												</c:when>
@@ -64,9 +66,10 @@
 										</c:forEach>
 									</ol>
 									<div role="listbox" class="carousel-inner">
-										<c:forEach items="${list}" var="com_buildingVO">
+										<c:forEach items="${list}" var="com_buildingVO"
+											varStatus="status">
 											<c:choose>
-												<c:when test="${com_buildingVO.bu_no==1}">
+												<c:when test="${status.first}">
 													<div class="item active text-center">
 														<img
 															src="${pageContext.request.contextPath}${uploadPath}${com_buildingVO.bu_img}"
@@ -113,9 +116,10 @@
 
 									<div class="tabs-vertical-env">
 										<ul class="nav tabs-vertical">
-											<c:forEach items="${list}" var="com_buildingVO">
+											<c:forEach items="${list}" var="com_buildingVO"
+												varStatus="status">
 												<c:choose>
-													<c:when test="${com_buildingVO.bu_no==1}">
+													<c:when test="${status.first}">
 														<li class="active"><a
 															href="#bu_no${com_buildingVO.bu_no}" data-toggle="tab"
 															aria-expanded="false">${com_buildingVO.bu_name}</a></li>
@@ -131,9 +135,10 @@
 										</ul>
 
 										<div class="tab-content">
-											<c:forEach items="${list}" var="com_buildingVO">
+											<c:forEach items="${list}" var="com_buildingVO"
+												varStatus="status">
 												<c:choose>
-													<c:when test="${com_buildingVO.bu_no==1}">
+													<c:when test="${status.first}">
 														<div class="tab-pane active"
 															id="bu_no${com_buildingVO.bu_no}">
 															<img width="700" height="400"
@@ -245,7 +250,21 @@
 					$('#buildingModal .modal-body').find('#imgName').val(bu_img);
 					 
 				});
+
 				
+				$("#search_bu").change(function(){
+					/* var actionLink = "/buildingboard/list?keyword="+$(this).val;
+					$("#bu_type_change_form").attr("action",actionLink);
+					$("#bu_type_change_form").submit(); */
+					
+					var key_value =  $("#search_bu option:selected").val();
+					//alert(key_value);
+					$("#keyword").attr("value",key_value);
+					self.location="/buildingboard/list?keyword="+key_value;
+				});
+				
+				var keyword_val = ${cri.keyword};
+				$("#search_bu").val(keyword_val);
 
 			});
 		</script>
