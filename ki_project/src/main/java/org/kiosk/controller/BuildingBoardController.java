@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.kiosk.domain.Com_buildingVO;
+import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_buildingService;
 import org.kiosk.util.UploadFileUtils;
@@ -14,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +47,7 @@ public class BuildingBoardController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void listPage(Model model, HttpServletRequest request) throws Exception {
+	public void listPage(@ModelAttribute("cri") SearchCriteria cri,Model model, HttpServletRequest request) throws Exception {
 		logger.info("buildingboard/list - GET");
 
 		HttpSession session = request.getSession();
@@ -53,7 +55,7 @@ public class BuildingBoardController {
 		model.addAttribute("userVO", userVO);
 		logger.info("Login : " + userVO.toString());
 
-		model.addAttribute("list", service.listAll());
+		model.addAttribute("list", service.listSearchCriteria(cri));
 		model.addAttribute("uploadPath", uploadPath());
 
 	}
