@@ -3,9 +3,7 @@ package org.kiosk.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.inject.Inject;
-
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.dto.MateDTO;
@@ -88,7 +86,7 @@ public class JsonStaffServiceImpl implements JsonStaffService {
 		Map<String, JsonStaffDTO> staffList = null;
 		try {
 			staffList = new HashMap<String, JsonStaffDTO>();
-			for (Com_teamVO vo : teamService.listAll()) {
+			for (Com_teamVO vo : teamService.list("none")) {
 				System.out.println(vo.getSection_cd()+vo.getTeam_nm());
 				staffList.put(vo.getSection_cd(), getJsonStaff(vo.getSection_cd()));
 			}

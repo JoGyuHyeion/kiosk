@@ -32,9 +32,25 @@ pageEncoding="UTF-8"%>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card-box">
+                            
+                            
+					<c:if test="${0 eq login.auth}">
+    						<div class="col-sm-8">
+                            	<form role="form">
+                               	 <label class=" col-md-2 control-label" for="search_team">부서</label>
+                              	  <select id="search_team" name="search_team" class="form-control">
+                                     <c:forEach items="${list}" var="com_sectionVO">
+                                        <option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+                                    </c:forEach>
+                                </select>
+                           		 </form>
+                       		 </div>
+					</c:if>
+
 
                                 <div class="row">
                                     <div class="table-responsive col-md-8 ">
+                                    
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -47,7 +63,7 @@ pageEncoding="UTF-8"%>
                                             </thead>
                                             <tbody>
 
-                                            <c:forEach items="${list}" var="com_teamVO" varStatus="status">
+                                            <c:forEach items="${teamList}" var="com_teamVO" varStatus="status">
 
                                                 <tr>
                                                     <td><input type="text" class="form-control team_cd" size="3" value="${com_teamVO.team_cd}" readonly="readonly"></td>
@@ -110,7 +126,7 @@ pageEncoding="UTF-8"%>
                     <div class="modal-body">
                         <form class="form-horizontal" action="modifypage" method="post">
                         
-                        <input type="hidden" id="section_cd" name="section_cd" value="${userVO.section_fullcode}">
+                        <input type="hidden" id="section_cd" name="section_cd" value="${login.section_fullcode}">
                         
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="team_cd">팀코드</label>
@@ -142,7 +158,17 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
         <script>
+
+    	var section_cd="${param.section_cd}";
+    	$("#search_team").val(section_cd);
+    	
             $(document).ready(function () {
+            	
+            	$("#search_team").change( function () {
+					var search_team = $("#search_team option:selected").val();
+					location.href="/myinfoboard/team?section_cd="+search_team;
+            	});
+            	
             	
             	 $('#addSection').on('click', function () {
          	        $("#section_cd").val(" ");

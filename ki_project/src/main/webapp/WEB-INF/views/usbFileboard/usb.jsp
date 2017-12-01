@@ -42,7 +42,7 @@
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
 									<!-- section Select -->
-									<c:if test="${0 eq userVO.auth}">
+									<c:if test="${0 eq login.auth}">
 										<div class="form-group">
 											<label class="col-md-2 control-label">부서</label>
 											<div class="col-md-5">
@@ -57,8 +57,8 @@
 											</div>
 										</div>
 									</c:if>
-									<c:if test="${1 eq userVO.auth}">
-										<input id="section_fullcode" name="section_fullcode" type="hidden" value="${userVO.section_fullcode}">
+									<c:if test="${1 eq login.auth}">
+										<input id="section_fullcode" name="section_fullcode" type="hidden" value="${login.section_fullcode}">
 									</c:if>
 
 									<!-- section_pass_ok -->

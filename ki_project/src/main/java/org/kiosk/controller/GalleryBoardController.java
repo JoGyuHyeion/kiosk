@@ -59,7 +59,7 @@ public class GalleryBoardController {
 
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 
 		cri.setPerPageNum(6);
@@ -79,7 +79,7 @@ public class GalleryBoardController {
 		model.addAttribute(service.read(img_no));
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		model.addAttribute("uploadPath", uploadPath());
 		logger.info("Login : " + userVO.toString());
 
@@ -92,7 +92,7 @@ public class GalleryBoardController {
 		logger.info("regist get ...........");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 	}
 
@@ -124,7 +124,7 @@ public class GalleryBoardController {
 		logger.info(service.read(img_no).toString());
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 	}
 

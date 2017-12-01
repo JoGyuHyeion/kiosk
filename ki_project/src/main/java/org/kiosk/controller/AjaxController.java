@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
+import org.kiosk.domain.UserVO;
 import org.kiosk.dto.LoginDTO;
 import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.Com_bureauService;
@@ -40,6 +41,8 @@ public class AjaxController {
 	private Com_bureauService bureauService;
 	@Inject
 	private UserService userService;
+	
+	private UserVO userVO;
 
 	private static final String SUCCESS = "SUCCESS";
 
@@ -187,6 +190,8 @@ public class AjaxController {
 
 		ResponseEntity<List<Com_teamVO>> entity = null;
 		try {
+			userVO=new UserVO();
+			userVO.setSection_fullcode(section_cd);
 			entity = new ResponseEntity<List<Com_teamVO>>(teamService.list(section_cd), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

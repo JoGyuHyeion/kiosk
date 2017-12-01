@@ -60,7 +60,7 @@ public class MovieBoardController {
 
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 
 		cri.setPerPageNum(6);
@@ -80,7 +80,7 @@ public class MovieBoardController {
 		model.addAttribute(service.read(vi_no));
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 		model.addAttribute("uploadPath", uploadPath());
 
@@ -93,7 +93,7 @@ public class MovieBoardController {
 		logger.info("regist get ...........");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 	}
 
@@ -125,7 +125,7 @@ public class MovieBoardController {
 		logger.info(service.read(vi_no).toString());
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 	}
 

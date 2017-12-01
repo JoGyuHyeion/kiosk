@@ -6,8 +6,6 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_staff2VO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
@@ -81,7 +79,7 @@ public class Staff2BoardController {
 		model.addAttribute("list", service.listSearchCriteria(cri));
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("uploadPath", uploadPath());
 		model.addAttribute("sectionService", sectionService.listAll());
@@ -93,7 +91,7 @@ public class Staff2BoardController {
 		logger.info("staff2board/readPage - GET");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute(service.read(st_no));
@@ -106,7 +104,7 @@ public class Staff2BoardController {
 		logger.info("regist get ...........");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		model.addAttribute("sectionService", sectionService.listAll());
 		logger.info("Login : " + userVO.toString());
 
@@ -142,7 +140,7 @@ public class Staff2BoardController {
 		logger.info(service.read(st_no).toString());
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		model.addAttribute("sectionService", sectionService.listAll());
 		model.addAttribute("team_name",
 				teamService.readTeamNm(service.read(st_no).getSection_cd(), service.read(st_no).getTeam_cd()));

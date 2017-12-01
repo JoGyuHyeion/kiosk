@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.WebUtils;
 
 @Controller
-public class UserController {
+public class LoginController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@Inject
 	private UserService service;
@@ -52,7 +52,7 @@ public class UserController {
 			return;
 		}
 
-		model.addAttribute("userVO", vo);
+		model.addAttribute("login", vo);
 		model.addAttribute("cri", cri);
 
 		if (dto.isUseCookie()) {

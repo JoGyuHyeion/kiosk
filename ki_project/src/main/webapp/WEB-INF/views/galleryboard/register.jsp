@@ -34,13 +34,13 @@
 						<div class="col-md-7">
 							<form method="post" role="form" enctype="multipart/form-data"
 								onsubmit="return formCheck()">
-								<input type='hidden' name='section_cd' value="${userVO.section_fullcode}"> 
+								<input type='hidden' name='section_cd' value="${login.section_fullcode}"> 
 								<div class="form-horizontal" role="form">
-								<c:if test="${0 eq userVO.auth}">
+								<c:if test="${0 eq login.auth}">
 								  <input type="hidden" name="section_cd" value="none">
 								 </c:if>
-								 <c:if test="${1 eq userVO.auth}">
-								  <input type="hidden" name="section_cd" value="${userVO.section_fullcode}">
+								 <c:if test="${1 eq login.auth}">
+								  <input type="hidden" name="section_cd" value="${login.section_fullcode}">
 								 </c:if>
 									<!-- img_title -->
 									<div class="form-group">

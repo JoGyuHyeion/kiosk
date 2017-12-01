@@ -13,6 +13,12 @@ public class UserVO {
 	private String sessionlimit;
 	private String section_fullcode;
 
+	public UserVO() {
+		super();
+		auth = -1;
+		section_fullcode = "";
+	}
+
 	public String getId() {
 		return id;
 	}

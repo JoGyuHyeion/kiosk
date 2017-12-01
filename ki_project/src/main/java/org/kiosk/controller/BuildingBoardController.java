@@ -52,7 +52,7 @@ public class BuildingBoardController {
 
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
@@ -66,7 +66,7 @@ public class BuildingBoardController {
 		model.addAttribute(service.read(bu_no));
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 	}
 
@@ -76,7 +76,7 @@ public class BuildingBoardController {
 		logger.info("regist get ...........");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 	}
 

@@ -119,20 +119,31 @@
 				<div id="navigation">
 					<!-- Navigation Menu-->
 					<ul class="navigation-menu">
+						<!-- 계정관리 -->
+						<c:if test="${0 eq login.auth}">
+						<li class="has-submenu"><a href="#"><i
+								class="mdi mdi-google-pages"></i>계정관리</a>
+							<ul class="submenu megamenu">
+								<li>
+									<ul>
+										<li><a href="/userboard/register">계정생성(Super)</a></li>
+										<li><a href="/userboard/list">계정조회(Super)</a></li>
+									</ul>
+								</li>
+							</ul></li>
+							</c:if>
 						<!-- 기초설정 -->
 						<li class="has-submenu"><a href="#"><i
 								class="mdi mdi-google-pages"></i>기초설정</a>
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-									<c:if test="${0 eq userVO.auth}">
+									<c:if test="${0 eq login.auth}">
 										<li><a href="/myinfoboard/newUser">계정생성(Super)</a></li>
 										<li><a href="/myinfoboard/section?bcd=k000">국관리(Super)</a></li>
 									</c:if>
 										<li><a href="/myinfoboard/passwd">비밀번호변경</a></li>
-									<c:if test="${1 eq userVO.auth}">
 										<li><a href="/myinfoboard/team">팀관리</a></li>
-									</c:if>
 									</ul>
 								</li>
 							</ul></li>
@@ -186,7 +197,7 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-									<c:if test="${0 eq userVO.auth}">
+									<c:if test="${0 eq login.auth}">
 										<li><a href="/iconboard/list">Icon(Super)</a></li>
 										<li><a href="/backGroundboard/list?page=1&perPageNum=10">바탕화면(Super)</a></li>
 										<li><a href="/buildingboard/list?keyword=1">Building(Super)</a></li>

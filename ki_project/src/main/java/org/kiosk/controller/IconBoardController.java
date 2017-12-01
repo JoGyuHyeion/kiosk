@@ -55,7 +55,7 @@ public class IconBoardController {
 
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute("list", service.listAll());
@@ -69,7 +69,7 @@ public class IconBoardController {
 		logger.info("regist get ...........");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 	}
 

@@ -44,6 +44,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{id} 
 	</select>
 	
+	
+	<select id="read" resultType="UserVO">
+		select
+		id, password, name, auth, section_fullcode
+		from user
+		where
+		id = #{id}
+	</select>
+
+	<update id="update">
+		update user set
+		password=#{password},
+		name=#{name},
+		auth=#{auth},
+		section_fullcode=#{section_fullcode}
+		where id = #{id}
+	</update>
+
+	<delete id="delete">
+		delete from user where id = #{id}
+	</delete>
+
+	<select id="listAll" resultType="UserVO">
+		 <![CDATA[
+		 select * from user 
+		 ]]>
+	</select>
+	
+	<sql id="search">
+		name like CONCAT('%',#{keyword},'%')
+	</sql>
+
+	<select id="listSearch" resultType="UserVO">
+		<![CDATA[  
+		 select id, password, name, auth, section_fullcode
+		 from user 
+		 where 
+		]]>
+		<include refid="search"></include>
+  
+		<![CDATA[    
+		order by name desc
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[  
+		  select count(*) 
+		  from user 
+		  where
+		]]>
+		<include refid="search"></include>
+
+	</select>
+	
 </mapper>
 
 

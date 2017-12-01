@@ -2,11 +2,11 @@ package org.kiosk.persistence;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
 import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
+import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
 import org.kiosk.dto.LoginDTO;
 import org.springframework.stereotype.Repository;
@@ -59,5 +59,39 @@ public class UserDAOImpl implements UserDAO {
 	public UserVO dupCheck(LoginDTO dto) throws Exception {
 		return session.selectOne(namespace + ".dupCheck", dto);
 	}
+
+	@Override
+	public UserVO read(String id) throws Exception {
+		return session.selectOne(namespace + ".read", id);
+	}
+
+	@Override
+	public void update(UserVO vo) throws Exception {
+		session.update(namespace + ".update", vo);
+		
+	}
+
+	@Override
+	public void delete(String id) throws Exception {
+		session.delete(namespace + ".delete", id);
+		
+	}
+
+	@Override
+	public List<UserVO> listAll() throws Exception {
+		return session.selectList(namespace + ".listAll");
+	}
+
+	@Override
+	public List<UserVO> listSearch(SearchCriteria cri) throws Exception {
+		return session.selectList(namespace + ".listSearch", cri);
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		return session.selectOne(namespace + ".listSearchCount", cri);
+	}
+
+	
 
 }

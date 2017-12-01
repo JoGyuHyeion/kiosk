@@ -44,7 +44,7 @@ public class MyInfoBoardController {
 		model.addAttribute("sectionList", sectionService.listAll());
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 
 	}
@@ -66,7 +66,7 @@ public class MyInfoBoardController {
 	public void passwdGET(Model model, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 		logger.info("myinfoboard/passwd - GET");
 	}
@@ -104,7 +104,7 @@ public class MyInfoBoardController {
 
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 
 	}
@@ -119,17 +119,15 @@ public class MyInfoBoardController {
 	}
 
 	@RequestMapping(value = "/team", method = RequestMethod.GET)
-	public void teamGET(Model model, HttpServletRequest request) throws Exception {
+	public void teamGET(Model model, HttpServletRequest request, String section_cd) throws Exception {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("userVO", userVO);
+		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 		logger.info("myinfoboard/team - GET ");
-		if (userVO.getAuth() == 0) {
-			model.addAttribute("list", teamService.listAll());
-		} else if (userVO.getAuth() == 1) {
-			model.addAttribute("list", teamService.list(userVO.getSection_fullcode()));
-		}
+
+		model.addAttribute("list", sectionService.listAll());
+		model.addAttribute("teamList",teamService.list(section_cd != null ? section_cd : userVO.getSection_fullcode()));
 
 	}
 

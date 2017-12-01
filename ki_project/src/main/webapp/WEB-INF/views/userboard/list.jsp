@@ -18,12 +18,12 @@
 					<div class="btn-group pull-right">
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
-							<li><a href="#">직원관리</a></li>
-							<li class="active">직원조회</li>
+							<li><a href="#">계정관리</a></li>
+							<li class="active">계정조회</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						직원조회 <small>직원을 조회 할 수 있습니다.</small>
+						계정조회 <small>계정을 조회 할 수 있습니다.</small>
 					</h4>
 				</div>
 			</div>
@@ -34,16 +34,6 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-
-						<c:if test="${0 eq login.auth}">
-							<div class="col-sm-3">
-								<select name="section_cd" id="section_cd" class="form-control">
-									<c:forEach items="${sectionService}" var="com_sectionVO">
-										<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</c:if>
 
 						<div class="col-sm-4">
 							<form role="form">
@@ -63,7 +53,7 @@
 								<i class="fa fa-search"> 찾기</i>
 							</button>
 						</div>
-						<a href="/staff2board/register" class="btn btn-primary ">작성</a>
+						<a href="/userboard/register" class="btn btn-primary ">작성</a>
 					</div>
 
 					<div class="table-responsive">
@@ -71,52 +61,37 @@
 							<thead>
 								<tr>
 									<th>편집</th>
-									<th>사진</th>
-									<th>부서</th>
-									<th>팀</th>
-									<th>직위</th>
-									<th>이름</th>
-									<th>전화번호</th>
-									<th>Update</th>
-									<th>삭제</th>
-
+									<th>id</th>
+									<th>password</th>
+									<th>name</th>
+									<th>auth</th>
+									<th>section_fullcode</th>
 								</tr>
 							</thead>
 
 							<tbody>
-								<c:forEach items="${list}" var="com_staff2VO">
-									<%-- 						
-									<tr class="active">
-										<td><a
-											href="/staff2board/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staff2VO.st_no}"
-											class="table-action-btn h2"><i
-												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
- 									--%>
+								<c:forEach items="${list}" var="userVO">
+							
 									<tr class="">
-										<td><a
-											href="/staff2board/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staff2VO.st_no}"
-											class="btn btn-default"><i
-												class="glyphicon glyphicon-glass glyphicon-edit"></i></a></td>
-										<td><img
-											src="${pageContext.request.contextPath}${uploadPath}${com_staff2VO.img_filenm}"
-											alt="contact-img" title="contact-img" class=" thumb-sm"
-											onerror="this.src='/resources/assets/images/users/avatar-2.jpg'" /></td>
+										<td>
+											<a href="/userboard/modifyPage${pageMaker.makeSearch(param.page)}&id=${userVO.id}" class="btn btn-default">
+												<i class="glyphicon glyphicon-glass glyphicon-edit"></i>
+											</a>
+										</td>
+										
+										<td>${userVO.id}</td>
+										
+										<td>${userVO.password}</td>
 
-										<td>${com_staff2VO.real_use_dep_nm}</td>
+										<td>${userVO.name}</td>
 
-										<td>${com_staff2VO.class_nm}</td>
+										<td>${userVO.auth}</td>
 
-										<td>${com_staff2VO.posit_nm}</td>
+										<td>${userVO.section_fullcode}</td>
 
-										<td><a
-											href="/staff2board/readPage?st_no=${com_staff2VO.st_no}">${com_staff2VO.usr_nm}</a></td>
-
-										<td>${com_staff2VO.telno}</td>
-
-										<td>${com_staff2VO.st_edt}</td>
-										<td><form action="/staff2board/removePage" method="post">
-												<input type="hidden" name="st_no"
-													value="${com_staff2VO.st_no}">
+										<td><form action="/userboard/removePage" method="post">
+												<input type="hidden" name="id"
+													value="${userVO.id}">
 												<button type="submit" class="btn btn-default">
 													<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
 												</button>
@@ -170,38 +145,27 @@
 		</script>
 
 		<script>
-			$(document).ready(
-					function() {
+			$(document).ready(function() {
+				$('#searchBtn').on("click",function(event) {
+					self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&section_cd="
+					+ $("select option:selected").val()
+					+ "&keyword="
+					+ $('#search-input').val();
+					
+				});
+				
+				$("#section_cd").change(function() {
+					var section_cd = $("#section_cd option:selected").val();
+					var url = "/userboard/list?section_cd="+ section_cd;
+					location.href = url;
+				});
 
-						$('#searchBtn').on(
-								"click",
-								function(event) {
-									self.location = "list"
-											+ '${pageMaker.makeQuery(1)}'
-											+ "&section_cd="
-											+ $("select option:selected").val()
-											+ "&keyword="
-											+ $('#search-input').val();
-								});
-
-						$("#section_cd").change(
-								function() {
-									var section_cd = $(
-											"#section_cd option:selected")
-											.val();
-
-									var url = "/staff2board/list?section_cd="
-											+ section_cd;
-
-									location.href = url;
-								});
-
-						var value = "${param.section_cd}";
-
-						$("#section_cd > option[value=" + value + "]").attr(
-								"selected", true);
-
-					});
+				var value = "${param.section_cd}";
+						
+				$("#section_cd > option[value=" + value + "]").attr("selected", true);
+			});
 		</script>
 	</div>
 </section>

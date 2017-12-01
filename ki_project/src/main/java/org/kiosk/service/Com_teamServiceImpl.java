@@ -43,13 +43,8 @@ public class Com_teamServiceImpl implements Com_teamService {
 	}
 
 	@Override
-	public List<Com_teamVO> list(String section_cd) throws Exception {
-		return dao.list(section_cd);
-	}
-
-	@Override
-	public List<Com_teamVO> listAll() throws Exception {
-		return dao.listAll();
+	public List<Com_teamVO> list(String section_fullcode) throws Exception {
+		return dao.list(section_fullcode);
 	}
 
 	@Override

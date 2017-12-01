@@ -1,9 +1,7 @@
 package org.kiosk.persistence;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.dto.TeamsDTO;
@@ -42,24 +40,19 @@ public class Com_teamDAOImpl implements Com_teamDAO {
 
 	@Override
 	public List<Com_teamVO> list(String section_cd) throws Exception {
-		return session.selectList(namespace + ".list",section_cd);
-	}
-	
-	@Override
-	public List<Com_teamVO> listAll() throws Exception {
-		return session.selectList(namespace + ".listAll");
+		return session.selectList(namespace + ".list", section_cd);
 	}
 
 	@Override
 	public List<Com_teamVO> jsonList(String bureau_cd) throws Exception {
-		return session.selectList(namespace + ".jsonList",bureau_cd);
+		return session.selectList(namespace + ".jsonList", bureau_cd);
 	}
-	
+
 	@Override
 	public int lastInsertSort(String section_cd) throws Exception {
-		return session.selectOne(namespace + ".lastInsertSort",section_cd);
+		return session.selectOne(namespace + ".lastInsertSort", section_cd);
 	}
-	
+
 	@Override
 	public String readTeamCd(TeamsDTO dto) throws Exception {
 		return session.selectOne(namespace + ".readTeamCd", dto);
@@ -69,4 +62,5 @@ public class Com_teamDAOImpl implements Com_teamDAO {
 	public String readTeamNm(TeamsDTO dto) throws Exception {
 		return session.selectOne(namespace + ".readTeamNm", dto);
 	}
+
 }

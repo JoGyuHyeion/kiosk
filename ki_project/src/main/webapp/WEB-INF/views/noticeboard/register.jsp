@@ -36,7 +36,7 @@
 						<div class="col-md-7">
 							<form method="post" role="form" enctype="multipart/form-data"
 								onsubmit="return formCheck()">
-								<input type='hidden' name='section_cd' value="${userVO.section_fullcode}"> 
+								<input type='hidden' name='section_cd' value="${login.section_fullcode}"> 
 								<input type='hidden' name='brd_cd' value="notice">
 								<div class="form-horizontal" role="form">
 									<!-- bbs_title -->
