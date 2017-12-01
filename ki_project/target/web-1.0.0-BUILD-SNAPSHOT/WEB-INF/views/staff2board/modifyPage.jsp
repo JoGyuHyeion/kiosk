@@ -35,7 +35,8 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<form method="post" role="form" enctype="multipart/form-data">
+						<form method="post" role="form" enctype="multipart/form-data"
+							onsubmit="return formCheck()">
 
 							<input type='hidden' name='page' value="${cri.page}"> <input
 								type='hidden' name='perPageNum' value="${cri.perPageNum}">
@@ -81,7 +82,7 @@
 										<label class="col-md-2 control-label">대표업무</label>
 										<div class="col-md-10">
 											<input type="text" class="form-control" placeholder="대표업무"
-												id="st_key" name="st_key" value="${com_staff2VO.st_key}">
+												id="class_nm" name="class_nm" value="${com_staff2VO.class_nm}">
 										</div>
 									</div>
 									<!-- adi_info7 -->
@@ -129,8 +130,7 @@
 									<div class="form-group">
 										<label class="col-md-2 control-label">근무팀</label>
 										<div class="col-md-7">
-											<select name="team_cd" id="team_cd" class="form-control"
-												value="${com_staff2VO.team_cd}">
+											<select name="teamName" id="teamName" class="form-control">
 												<option value="">::근무팀을 선택하여 주세요!</option>
 											</select>
 										</div>
@@ -203,31 +203,38 @@
  							
 							var status = ${com_staff2VO.st_status};
 							var usr_work_state_code_nm = "${com_staff2VO.usr_work_state_code_nm}";
+							var section_code = "${com_staff2VO.section_cd}";
+							var team_code = "${com_staff2VO.team_cd}"
+							var team_name = "${team_name}"
 							alert("Display, Status 확인 \n"
 									+ "표시여부: " + usr_work_state_code_nm
-									+ "\n근무 상태: " + status);
-							
-							
+									+ "\n근무 상태: " + status
+									+ "\n근무 부서: " + section_code
+									+ "\n근무 팀: " + team_code + team_name);
+
 							  $('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
 							  $('select[id="usr_work_state_code_nm"] option:contains("'+usr_work_state_code_nm+'")').attr("selected","selected");
-							$("#section_cd").change( function () {
-				    	 
-				    			 var section_cd = $("#section_cd option:selected").val();
-				    	 
-				    			 $.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
-				    			 var str="";
-				    			 console.log(data.length);
-				    		 
-				    			 $(data).each(
-				    				 function(){
-				    					 str+="<option value='"+this.section_cd+"'>"+this.team_nm+"</option>"
-				    					 				    				 				    				 
-				   					 });
-				    				 $("#team_cd").html(str);
-					    	 	});
-				    	 
-				   			});
+							  $("#section_cd").change( function () {
+							    	 
+					    			 var section_cd = $("#section_cd option:selected").val();
+					    	 
+					    			 $.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
+					    			 var str="";
+					    			 console.log(data.length);
+					    		 
+					    			 $(data).each(
+					    				 function(){
+					    					 str+="<option value=\""+this.team_nm+"\">"+this.team_nm+"</option>";
+								    			console.log(str);
+								    		});
+								    		
+								    		 $("#teamName").html(str);
+								    		 $('#teamName').val(team_name).change();
+						    	 	});	
+							  });
+					    	  $('#section_cd').val(section_code).change();
 					});
+		
 		function formCheck() {
 			if ($.trim($("#usr_nm").val()) == "") {
 				alert("이름을 입력하세요");
@@ -245,9 +252,9 @@
 				alert("이메일을 입력하세요");
 				$("#email_addr").focus();
 				return false;
-			} else if ($.trim($("#st_key").val()) == "") {
+			} else if ($.trim($("#class_nm").val()) == "") {
 				alert("대표 업무를 입력하세요");
-				$("#st_key").focus();
+				$("#class_nm").focus();
 				return false;
 			} else if ($.trim($("#adi_info7").val()) == "") {
 				alert("사무 설명을 입력하세요");
@@ -261,9 +268,9 @@
 				alert("근무 부서를 선택하세요");
 				$("#section_cd").focus();
 				return false;
-			} else if ($.trim($("#team_cd").val()) == "") {
+			} else if ($.trim($("#teamName").val()) == "") {
 				alert("근무 팀을 선택하세요");
-				$("#team_cd").focus();
+				$("#teamName").focus();
 				return false;
 			} else if(!$(':input:radio[name=st_status]:checked').val()){
 				alert("상태를 선택해주세요");

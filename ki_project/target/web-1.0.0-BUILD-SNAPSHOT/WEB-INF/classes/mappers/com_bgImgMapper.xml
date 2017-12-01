@@ -45,9 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="lastInsertID" resultType="int">
 		SELECT AUTO_INCREMENT
-		FROM information_schema.TABLES
+		FROM
+		information_schema.TABLES
 		WHERE TABLE_SCHEMA = "kipro"
-		AND TABLE_NAME = "com_bgImg";
+		AND TABLE_NAME =
+		"com_bgImg";
 	</select>
 
 	<select id="listPage" resultType="Com_bgImgVO">
@@ -90,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 from com_bgImg 
 		 where bi_no > 0 
 		]]>
-		
+
 		<![CDATA[    
 		order by bi_no desc
 		limit #{pageStart}, #{perPageNum}

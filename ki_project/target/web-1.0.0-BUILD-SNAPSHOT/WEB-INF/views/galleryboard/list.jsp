@@ -34,10 +34,11 @@
 							src="${uploadPath}${com_imageVO.img_filenm}" class="thumb-img"
 							alt="work-thumbnail">
 						</a>-->
-						<img width="600" height="400"
+						<a href="/galleryboard/readPage?img_no=${com_imageVO.img_no}"> <img width="600" height="400"
 							src="${pageContext.request.contextPath}${uploadPath}${com_imageVO.img_filenm}"
 							class="thumb-img"
 							onerror="this.src='/resources/assets/images/properties/1.jpg'">
+						</a>
 
 						<div class="gal-detail">
 							<h4>${com_imageVO.img_title}</h4>
