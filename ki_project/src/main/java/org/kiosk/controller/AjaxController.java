@@ -1,18 +1,18 @@
 package org.kiosk.controller;
 
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+//import java.util.Map;
 import javax.inject.Inject;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.UserVO;
 import org.kiosk.dto.LoginDTO;
-import org.kiosk.dto.TeamsDTO;
+//import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_teamService;
-import org.kiosk.service.JsonTeamsService;
+//import org.kiosk.service.JsonTeamsService;
 import org.kiosk.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,15 +24,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.SerializationFeature;
 
 @RestController
 public class AjaxController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
-	@Inject
-	private JsonTeamsService jsonTeamsService;
+//	@Inject
+//	private JsonTeamsService jsonTeamsService;
 	@Inject
 	private Com_teamService teamService;
 	@Inject
@@ -144,47 +144,47 @@ public class AjaxController {
 		return entity;
 	}
 
-	@RequestMapping(value = "/staff/getTeams/{section_cd}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> getTeamsPOST(@PathVariable("section_cd") String section_cd) {
-		logger.info("staff/getTeams/{section_cd}");
-		ResponseEntity<String> entity = null;
+//	@RequestMapping(value = "/staff/getTeams/{section_cd}", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+//	public ResponseEntity<String> getTeamsPOST(@PathVariable("section_cd") String section_cd) {
+//		logger.info("staff/getTeams/{section_cd}");
+//		ResponseEntity<String> entity = null;
+//
+//		try {
+//			Map<String, String> obj = new HashMap<String, String>();
+//			for (TeamsDTO dto : jsonTeamsService.list(section_cd)) {
+//				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
+//			}
+//			ObjectMapper om = new ObjectMapper();
+//			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key濡� �젙�젹 �꽕�젙
+//			entity = new ResponseEntity<String>(om.writeValueAsString(obj), HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//		}
+//		return entity;
+//	}
+//
+//	@RequestMapping(value = "/staff/getTeams/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+//	public ResponseEntity<String> getTeamsGET(@PathVariable("section_cd") String section_cd) {
+//		logger.info("staff/getTeams/{section_cd}");
+//		ResponseEntity<String> entity = null;
+//
+//		try {
+//			Map<String, String> obj = new HashMap<String, String>();
+//			for (TeamsDTO dto : jsonTeamsService.list(section_cd)) {
+//				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
+//			}
+//			ObjectMapper om = new ObjectMapper();
+//			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key濡� �젙�젹 �꽕�젙
+//			entity = new ResponseEntity<String>(om.writeValueAsString(obj), HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//		}
+//		return entity;
+//	}
 
-		try {
-			Map<String, String> obj = new HashMap<String, String>();
-			for (TeamsDTO dto : jsonTeamsService.list(section_cd)) {
-				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
-			}
-			ObjectMapper om = new ObjectMapper();
-			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key濡� �젙�젹 �꽕�젙
-			entity = new ResponseEntity<String>(om.writeValueAsString(obj), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
-	@RequestMapping(value = "/staff/getTeams/{section_cd}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	public ResponseEntity<String> getTeamsGET(@PathVariable("section_cd") String section_cd) {
-		logger.info("staff/getTeams/{section_cd}");
-		ResponseEntity<String> entity = null;
-
-		try {
-			Map<String, String> obj = new HashMap<String, String>();
-			for (TeamsDTO dto : jsonTeamsService.list(section_cd)) {
-				obj.put(dto.getTeam_cd(), dto.getTeam_nm());
-			}
-			ObjectMapper om = new ObjectMapper();
-			om.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true); // key濡� �젙�젹 �꽕�젙
-			entity = new ResponseEntity<String>(om.writeValueAsString(obj), HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-
-	@RequestMapping(value = "/staffModify/getTeams/{section_cd}", method = RequestMethod.GET)
+	@RequestMapping(value = "/staff/getTeams/{section_cd}", method = RequestMethod.GET)
 	public ResponseEntity<List<Com_teamVO>> getStaffTeamsGET(@PathVariable("section_cd") String section_cd) {
 		logger.info("staff/getTeams/{section_cd}");
 

@@ -76,13 +76,13 @@ public class Staff2BoardController {
 			cri.setSection_cd(userVO.getSection_fullcode());
 		}
 
-		model.addAttribute("list", service.listSearchCriteria(cri));
 		pageMaker.setTotalCount(service.listSearchCount(cri));
 
 		model.addAttribute("login", userVO);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("uploadPath", uploadPath());
 		model.addAttribute("sectionService", sectionService.listAll());
+		model.addAttribute("list", service.listSearchCriteria(cri));
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
