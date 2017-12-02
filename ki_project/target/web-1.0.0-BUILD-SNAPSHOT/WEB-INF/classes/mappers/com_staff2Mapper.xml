@@ -81,10 +81,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<sql id="search">
-		<if test = "section_cd != 'none'.toString()">
+		<if test = "!section_cd.equals('none')">
 			 and section_cd = #{section_cd}
 		</if>
-		<if test = "team_cd != null">
+		<if test = "team_cd != null and !team_cd.equals('none')">
 			 and team_cd = #{team_cd}
 		</if>
 			and usr_nm like CONCAT('%',#{keyword},'%')

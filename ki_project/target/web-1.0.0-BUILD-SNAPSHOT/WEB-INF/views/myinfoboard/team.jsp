@@ -159,10 +159,12 @@ pageEncoding="UTF-8"%>
         </div>
         <script>
 
-    	var section_cd="${param.section_cd}";
-    	$("#search_team").val(section_cd);
-    	
             $(document).ready(function () {
+            	
+            	var section_cd="${param.section_cd}";
+            	if(section_cd!=""){
+            		$("#search_team").val(section_cd);
+            	}
             	
             	$("#search_team").change( function () {
 					var search_team = $("#search_team option:selected").val();

@@ -5,11 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="org.kiosk.mapper.teamMapper">
 
+	<sql id="filter">
+		<if test = "_parameter != null and !_parameter.equals('none')">
+			where section_cd = #{_parameter} 
+		</if>
+	</sql>
+
 	<select id="list" resultType="TeamsDTO">
 		select section_cd,team_cd,team_nm
 		from com_team
-		where
-		section_cd = #{section_cd} order by team_sort
+		<include refid="filter"></include>
+		
+		order by section_cd asc, team_sort asc
 	</select>
 	
 </mapper>

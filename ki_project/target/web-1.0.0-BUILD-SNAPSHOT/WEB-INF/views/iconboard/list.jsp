@@ -35,20 +35,18 @@
 					<div class="row">
 						<c:forEach items="${list}" var="com_iconVO">
 							<div class="col-md-2">
-								<div class="text-center card-box">
+								<div class="text-center card-box ableColor">
 									<h4 class="m-b-5">${com_iconVO.ic_name}</h4>
 									<div class="text-center">
-										<img src="${uploadPath}${com_iconVO.ic_icon}" alt=""
-											width="150" height="150">
+										<img src="${uploadPath}${com_iconVO.ic_icon}" alt="" width="150" height="150">
 									</div>
 									<p class="text-muted font-13">마지막 수정 날짜 :
 										${com_iconVO.ic_ndt}</p>
 
 									<div class="row">
-										<input type="hidden" id="img_file_name${com_iconVO.ic_no}"
-											value="${com_iconVO.ic_icon}"> <input type="hidden"
-											id="ic_default${com_iconVO.ic_no}"
-											value="${com_iconVO.ic_default}">
+										<input type="hidden" id="img_file_name${com_iconVO.ic_no}" value="${com_iconVO.ic_icon}"> 
+										<input type="hidden" id="ic_default${com_iconVO.ic_no}" value="${com_iconVO.ic_default}">
+										<input type="hidden" class="ableValue" id="ic_able${com_iconVO.ic_no}" value="${com_iconVO.ic_able}">
 										<button
 											class="btn btn-info btn-rounded waves-effect m-t-10 waves-light change_btn"
 											data-toggle="modal" data-target="#imageModal"
@@ -96,6 +94,19 @@
 									checked> <label for="Default"> Default </label>
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<p class="text-muted font-13 m-b-15 ">활성 / 비활성 여부</p>
+							<div class="radio radio-info radio-inline">
+								<input type="radio" id="Able" value="1" name="ic_able">
+								<label for="Able"> 활성 </label>
+							</div>
+							<div class="radio radio-inline">
+								<input type="radio" id="Disable" value="0" name="ic_able"
+									checked> <label for="Disable"> 비활성 </label>
+							</div>
+						</div>
+						
 						<div class="form-group">
 							<label class="col-md-2 control-label">파일 등록</label> <input
 								id="iconName" name="iconName"
@@ -124,7 +135,17 @@
 	</div>
 
 	<script>
+	
+	 for(var i=0; i<$(".ableValue").length; i++){
+			
+		 if( $(".ableValue").eq(i).val() ==0){
+			 $(".ableColor").eq(i).css("background-color", "Crimson  ");
+			
+		 }
+	 } 
 		$(document).ready(
+				
+				
 				function() {
 					/* $('#imageModal').on('show.bs.modal', function(event) {
 						var button = $(event.relatedTarget);
@@ -138,23 +159,24 @@
 						var ic_no = $(this).val();
 						var ic_icon=$("#img_file_name"+ic_no.toString()).val();
 						var ic_default = $("#ic_default"+ic_no.toString()).val();
+						var ic_able = $("#ic_able"+ic_no.toString()).val();
+					
 						$('#imageModal').find('#ic_no').val(ic_no);			
 						$('#imageModal').find('#ic_icon').val(ic_icon);
 						$('#imageModal .modal-body').find('#iconName').val(ic_icon);
-						$('input:radio[name="ic_default"]:input[value='+ic_default+']').attr("checked", true);
+						$('input:radio[name="ic_default"]:input[value='+ic_default+']').prop("checked", true);
+						$('input:radio[name="ic_able"]:input[value='+ic_able+']').prop("checked", true);
+
 						if(ic_default==1){
 							$('#file_upload_btn').attr('disabled', true);
 							$('#img_filenm').attr('style', 'display:none');
 						}
-						
 					});
 
 					
 					$("input[type='radio']").click(
 							function() {
-								var radioValue = $(
-										'input[name=ic_default]:checked').attr(
-										'id');
+								var radioValue = $('input[name=ic_default]:checked').attr('id');
 								//alert(radioValue);
 								if (radioValue == "Custom") {
 									$('#file_upload_btn').attr('disabled', false);
