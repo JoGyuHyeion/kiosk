@@ -160,25 +160,17 @@
 						var ic_icon=$("#img_file_name"+ic_no.toString()).val();
 						var ic_default = $("#ic_default"+ic_no.toString()).val();
 						var ic_able = $("#ic_able"+ic_no.toString()).val();
-						//alert("ic_able : "+ic_able);
+					
 						$('#imageModal').find('#ic_no').val(ic_no);			
 						$('#imageModal').find('#ic_icon').val(ic_icon);
 						$('#imageModal .modal-body').find('#iconName').val(ic_icon);
-						$('input:radio[name="ic_default"]:input[value='+ic_default+']').attr("checked", true);
-						$('input:radio[name="ic_able"]:input[value='+ic_able+']').attr("checked", true);
+						$('input:radio[name="ic_default"]:input[value='+ic_default+']').prop("checked", true);
+						$('input:radio[name="ic_able"]:input[value='+ic_able+']').prop("checked", true);
 
 						if(ic_default==1){
 							$('#file_upload_btn').attr('disabled', true);
 							$('#img_filenm').attr('style', 'display:none');
 						}
-						//var ableValue = $('.ableValue').val();
-						//alert("ableValue : "+ableValue);
-						
-						
-						
-					
-						
-						
 					});
 
 					
@@ -193,8 +185,6 @@
 									$('#file_upload_btn').attr('disabled', true);
 									$('#img_filenm').attr('style', 'display:none');
 								}
-								
-
 							});
 				});
 	</script>
