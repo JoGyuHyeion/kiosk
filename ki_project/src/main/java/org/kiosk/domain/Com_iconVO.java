@@ -5,6 +5,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Component("Com_iconVO")
 public class Com_iconVO {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -13,6 +14,7 @@ public class Com_iconVO {
 	private String ic_icon;
 	private int ic_default;
 	private Date ic_ndt;
+	private int ic_able;
 
 	public int getIc_no() {
 		return ic_no;
@@ -54,10 +56,18 @@ public class Com_iconVO {
 		this.ic_ndt = ic_ndt;
 	}
 
+	public int getIc_able() {
+		return ic_able;
+	}
+
+	public void setIc_able(int ic_able) {
+		this.ic_able = ic_able;
+	}
+
 	@Override
 	public String toString() {
 		return "Com_iconVO [ic_no=" + ic_no + ", ic_name=" + ic_name + ", ic_icon=" + ic_icon + ", ic_default="
-				+ ic_default + ", ic_ndt=" + ic_ndt + "]";
+				+ ic_default + ", ic_ndt=" + ic_ndt + ", ic_able=" + ic_able + "]";
 	}
 
 }

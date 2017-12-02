@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="Com_iconVO">
 		select
-		ic_no,ic_name,ic_icon,ic_default,ic_ndt
+		ic_no,ic_name,ic_icon,ic_default,ic_ndt,ic_able
 		from com_icon
 		where
 		ic_no =
@@ -16,20 +16,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into com_icon
-		(ic_name,ic_icon,ic_default,ic_ndt)
+		(ic_name,ic_icon,ic_default,ic_ndt,ic_able)
 		values
-		(#{ic_name},#{ic_icon},#{ic_default},now())
+		(#{ic_name},#{ic_icon},#{ic_default},now(),#{ic_able})
 	</insert>
 
 	<update id="update">
 		update com_icon set
-		ic_icon =
-		#{ic_icon},
+		ic_icon = #{ic_icon},
 		ic_default = #{ic_default},
-		ic_ndt = now()
-		where
-		ic_no =
-		#{ic_no}
+		ic_ndt = now(),
+		ic_able = #{ic_able}
+		where ic_no = #{ic_no}
 	</update>
 
 	<delete id="delete">
@@ -50,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listPage" resultType="Com_iconVO">
  		<![CDATA[
 		select 
-		ic_no,ic_name,ic_icon,ic_default,ic_ndt
+		ic_no,ic_name,ic_icon,ic_default,ic_ndt,ic_able
 		from com_icon 
 		where ic_no > 0 
 		order by ic_no desc
@@ -61,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listCriteria" resultType="Com_iconVO">
  		<![CDATA[
 		select 
-		ic_no,ic_name,ic_icon,ic_default,ic_ndt
+		ic_no,ic_name,ic_icon,ic_default,ic_ndt,ic_able
 		from com_icon 
 		where ic_no > 0 
 		order by ic_no desc
