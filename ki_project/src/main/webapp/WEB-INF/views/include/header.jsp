@@ -139,7 +139,7 @@
 								<li>
 									<ul>
 									<c:if test="${0 eq login.auth}">
-										<li><a href="/myinfoboard/newUser">계정생성(Super)</a></li>
+										<!-- <li><a href="/myinfoboard/newUser">계정생성(Super)</a></li> -->
 										<li><a href="/myinfoboard/section?bcd=k000">국관리(Super)</a></li>
 									</c:if>
 										<li><a href="/myinfoboard/passwd">비밀번호변경</a></li>

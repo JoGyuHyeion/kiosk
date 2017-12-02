@@ -83,7 +83,7 @@ public class Com_staff2Test {
 
 	}
 
-	@Test
+//	@Test
 	public void testLastInsertID() throws Exception {
 		logger.info(String.valueOf(dao.lastInsertID()));
 	}
@@ -135,13 +135,14 @@ public class Com_staff2Test {
 		logger.info(uriComponents.toString());
 	}
 
-	// @Test
+	 @Test
 	public void testDynamic1() throws Exception {
 
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
 		// cri.setKeyword("");
-		cri.setSection_cd("K020-S170");
+		cri.setSection_cd("none");
+		//cri.setTeam_cd("none");
 
 		logger.info("=====================================");
 

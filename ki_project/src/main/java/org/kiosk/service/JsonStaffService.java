@@ -19,5 +19,7 @@ public interface JsonStaffService {
 
 	public JsonStaffDTO getJsonStaff(String section_cd) throws Exception;
 
-	public Map<String, JsonStaffDTO> getAllJsonStaff() throws Exception;
+//	public Map<String, JsonStaffDTO> getAllJsonStaff() throws Exception;
+	
+	
 }

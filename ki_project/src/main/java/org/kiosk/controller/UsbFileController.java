@@ -121,7 +121,7 @@ public class UsbFileController {
 
 		if (section_fullcode.equals("none")) {
 
-			 usbUtils.makeJsonTextFile(path, "staff",usbUtils.makeJsonString(jsonStaffService.getAllJsonStaff()));
+			 usbUtils.makeJsonTextFile(path, "staff",usbUtils.makeJsonString(jsonStaffService.getJsonStaff("none")));
 
 			usbUtils.makeJsonTextFile(path, "gallery", usbUtils.makeJsonString(jsonGelleryService.listAll()));
 			usbUtils.makeJsonTextFile(path, "notice", usbUtils.makeJsonString(jsonNoticeService.listAll()));

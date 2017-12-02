@@ -36,7 +36,7 @@
 				<div class="card-box">
 
 					<form action="/myinfoboard/passwd" id="pwdForm" method="POST">
-						<input type='hidden' name='id' value="${userVO.id}">
+						<input type='hidden' name='id' value="${login.id}">
 						<div class="row">
 
 							<div class="col-md-7">

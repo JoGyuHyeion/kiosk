@@ -195,7 +195,7 @@
 							
 							var section_cd = $("#section_cd option:selected").val();
 							
-							$.getJSON("/staffModify/getTeams/"+section_cd, function(data) {
+							$.getJSON("/staff/getTeams/"+section_cd, function(data) {
 								
 								var str="";
 					    		console.log(data.length);

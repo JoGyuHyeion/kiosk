@@ -35,12 +35,20 @@
 				<div class="card-box">
 					<div class="row">
 
-						<c:if test="${0 eq userVO.auth}">
+						<c:if test="${0 eq login.auth}">
+						<!-- section_cd -->
 							<div class="col-sm-3">
 								<select name="section_cd" id="section_cd" class="form-control">
 									<c:forEach items="${sectionService}" var="com_sectionVO">
 										<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
 									</c:forEach>
+								</select>
+							</div>
+							
+							<!-- team_cd -->
+							<div class="col-sm-3">
+								<select name="team_cd" id="team_cd" class="form-control">
+									<option value="">::근무팀을 선택하여 주세요!</option>
 								</select>
 							</div>
 						</c:if>
@@ -49,12 +57,10 @@
 							<form role="form">
 								<div class="form-group">
 									<input type="text" id="search-input" class="form-control"
-										name="keyword" placeholder="Please Name"> <input
-										type='hidden' name='page' value="${cri.page}"> <input
-										type='hidden' name='perPageNum' value="${cri.perPageNum}">
-									<input type='hidden' name='section_cd'
-										value="${cri.section_cd}">
-
+										name="keyword" placeholder="Please Name"> 
+										<input type='hidden' name='page' value="${cri.page}"> 
+										<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+										<input type='hidden' name='section_cd' value="${cri.section_cd}">
 								</div>
 							</form>
 						</div>
@@ -104,7 +110,7 @@
 
 										<td>${com_staff2VO.real_use_dep_nm}</td>
 
-										<td>${com_staff2VO.team_cd}</td>
+										<td>${com_staff2VO.class_nm}</td>
 
 										<td>${com_staff2VO.posit_nm}</td>
 
@@ -162,46 +168,80 @@
 		<!-- end row -->
 
 		<script>
+			
+		// 익명 즉시실행함수(immediately-invoked function expression)
+		// Javascript 대가이신 더글라스 클락포트의 권장 표기법
+		(function() {
+			
 			var result = '${msg}';
-
 			if (result == 'SUCCESS') {
 				alert("처리가 완료되었습니다.");
 			}
-		</script>
+			
+		}());
+		
+			$(document).ready(function() {
+				
+				$('#searchBtn').on("click",function(event) {
+					self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&section_cd="
+					+ $("select option:selected").val()
+					+ "&keyword="
+					+ $('#search-input').val();
+								
+				});
+				
 
-		<script>
-			$(document).ready(
-					function() {
+				$("#section_cd").change(function() {
+				
+					var section_cd = $("#section_cd option:selected").val();
+					var url = "/staff2board/list?section_cd="+ section_cd;
+					
+					/*$.getJSON("/staff/getTeams/"+section_cd, function(data) {
+						var str="";
+			    		console.log(data.length);
+			    		console.log(data);
+			    		str+="<option value=none>전체</option>";
+			    		$(data).each(function(){
+			    			str+="<option value=\""+this.team_cd+"\">"+this.team_nm+"</option>";
+			    			console.log(str);
+			    		});
+			    		
+			    		 $("#team_cd").html(str);
+			    	 });*/
+					location.href = url; 
+				});
+				
+				$("#team_cd").change(function() {
+					var section_cd = $("#section_cd option:selected").val();
+					var team_cd = $("#team_cd option:selected").val();
+					var url = "/staff2board/list?section_cd="+ section_cd+"&team_cd="+team_cd;
+					location.href = url;
+				});
 
-						$('#searchBtn').on(
-								"click",
-								function(event) {
-									self.location = "list"
-											+ '${pageMaker.makeQuery(1)}'
-											+ "&section_cd="
-											+ $("select option:selected").val()
-											+ "&keyword="
-											+ $('#search-input').val();
-								});
-
-						$("#section_cd").change(
-								function() {
-									var section_cd = $(
-											"#section_cd option:selected")
-											.val();
-
-									var url = "/staff2board/list?section_cd="
-											+ section_cd;
-
-									location.href = url;
-								});
-
-						var value = "${param.section_cd}";
-
-						$("#section_cd > option[value=" + value + "]").attr(
-								"selected", true);
-
-					});
+				var section_cd = "${param.section_cd}";
+				$("#section_cd > option[value=" + section_cd + "]").attr("selected", true);
+				
+				
+				$.getJSON("/staff/getTeams/"+section_cd, function(data) {
+					
+					var str="";
+		    		console.log(data.length);
+		    		console.log(data);
+		    		str+="<option value=none>전체</option>";
+		    		$(data).each(function(){
+		    			str+="<option value=\""+this.team_cd+"\">"+this.team_nm+"</option>";
+		    			console.log(str);
+		    		});
+		    		
+		    		 $("#team_cd").html(str);
+		    		 var team_cd = "${param.team_cd}";
+		    		 if(team_cd!=""){
+		    			 $("#team_cd").val(team_cd);
+		    		 }
+		    	 });
+			});
 		</script>
 	</div>
 </section>

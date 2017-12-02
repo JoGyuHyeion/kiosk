@@ -61,11 +61,11 @@ public class JsonController {
 	
 	////테스트용
 	@RequestMapping(value = "/allgetStaff", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, JsonStaffDTO>> gettest() {
+	public ResponseEntity<JsonStaffDTO> gettest() {
 		logger.info("json/test");
-		ResponseEntity<Map<String, JsonStaffDTO>> entity = null;
+		ResponseEntity<JsonStaffDTO> entity = null;
 		try {
-			entity = new ResponseEntity<>(jsonStaffService.getAllJsonStaff(), HttpStatus.OK);
+			entity = new ResponseEntity<>(jsonStaffService.getJsonStaff("none"), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
