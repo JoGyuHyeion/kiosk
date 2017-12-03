@@ -19,8 +19,6 @@ public interface Com_teamDAO {
 
 	public int lastInsertSort(String section_cd) throws Exception;
 
-	public String readTeamCd(TeamsDTO dto) throws Exception;
-
-	public String readTeamNm(TeamsDTO dto) throws Exception;
+	public Com_teamVO readTeamCd(TeamsDTO dto) throws Exception;
 
 }

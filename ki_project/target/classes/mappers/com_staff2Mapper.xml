@@ -7,14 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into com_staff2
-		(real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt)
+		(real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt,main_task)
 		values
-		(#{real_use_dep_nm},#{usr_nm},#{logon_id},#{st_key},#{class_nm},#{posit_nm},#{telno},#{img_filenm},#{email_addr},#{usr_work_state_code_nm},#{st_status},#{engm_se},#{adi_info7},#{st_sort},#{section_cd},#{team_cd},now(),now())
+		(#{real_use_dep_nm},#{usr_nm},#{logon_id},#{st_key},#{class_nm},#{posit_nm},#{telno},#{img_filenm},#{email_addr},#{usr_work_state_code_nm},#{st_status},#{engm_se},#{adi_info7},#{st_sort},#{section_cd},#{team_cd},now(),now(),#{main_task})
 	</insert>
 
 	<select id="read" resultType="Com_staff2VO">
 		select
-		st_no,usr_nm,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,adi_info7,section_cd,team_cd
+		st_no,usr_nm,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,adi_info7,section_cd,team_cd,main_task
 		from com_staff2
 		where
 		st_no = #{st_no}
@@ -22,10 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="update">
 		update com_staff2 set
-		real_use_dep_nm=#{real_use_dep_nm},
+		real_use_dep_nm=#{real_use_dep_nm},class_nm=#{class_nm},
 		usr_nm=#{usr_nm},posit_nm=#{posit_nm},
 		telno=#{telno},img_filenm=#{img_filenm},email_addr=#{email_addr},usr_work_state_code_nm=#{usr_work_state_code_nm},st_status=#{st_status},
-		adi_info7=#{adi_info7},section_cd=#{section_cd},team_cd=#{team_cd},st_edt=now()
+		adi_info7=#{adi_info7},section_cd=#{section_cd},team_cd=#{team_cd},st_sort=#{st_sort},st_edt=now(),main_task=#{main_task}
 		where st_no = #{st_no}
 	</update>
 
@@ -41,15 +41,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="lastInsertID" resultType="int">
 		SELECT AUTO_INCREMENT
-		FROM information_schema.TABLES
+		FROM
+		information_schema.TABLES
 		WHERE TABLE_SCHEMA = "kipro"
-		AND TABLE_NAME = "com_staff2";
+		AND TABLE_NAME =
+		"com_staff2";
 	</select>
 
 	<select id="listPage" resultType="Com_staff2VO">
 		 <![CDATA[
 		 select 
-		 st_no,real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt
+		 st_no,real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt,main_task
 		 from 
 		 com_staff2 
 		 where st_no > 0 
@@ -61,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listCriteria" resultType="Com_staff2VO">
 		 <![CDATA[
 		 select 
-		 st_no,real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt
+		 st_no,real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt,main_task
 		 from 
 		 com_staff2 
 		 where st_no > 0 
@@ -81,13 +83,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<sql id="search">
-		<if test = "!section_cd.equals('none')">
-			 and section_cd = #{section_cd}
+		<if test="!section_cd.equals('none')">
+			and section_cd = #{section_cd}
 		</if>
-		<if test = "team_cd != null and !team_cd.equals('none')">
-			 and team_cd = #{team_cd}
+		<if test="team_cd != null and !team_cd.equals('none')">
+			and team_cd = #{team_cd}
 		</if>
-			and usr_nm like CONCAT('%',#{keyword},'%')
+		and usr_nm like CONCAT('%',#{keyword},'%')
 	</sql>
 
 	<select id="listSearch" resultType="Com_staff2VO">

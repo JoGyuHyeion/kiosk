@@ -35,10 +35,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from com_team where section_cd = #{section_cd}
 		and team_cd = #{team_cd}
 	</delete>
-	
+
 	<sql id="filter">
 		<if test="!_parameter.equals('none')">
-			 where section_cd = #{_parameter }
+			where section_cd = #{_parameter }
 		</if>
 	</sql>
 
@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		select * 
  		from com_team
  		]]>
- 		<include refid="filter"></include>
+		<include refid="filter"></include>
  		<![CDATA[
  		order by section_cd asc, team_sort asc, team_cd asc 
  		]]>
@@ -69,16 +69,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where section_cd = #{section_cd}
 	</select>
 
-	<select id="readTeamCd" resultType="String">
-		select team_cd from
-		com_team where team_nm=#{team_nm} and section_cd = #{section_cd}
+	<select id="readTeamCdSort" resultType="Com_teamVO">
+		select team_cd,team_sort from
+		com_team
+		where team_nm=#{team_nm} and section_cd = #{section_cd}
 	</select>
 
-	<select id="readTeamNm" resultType="String">
-		select team_nm from
-		com_team where team_cd=#{team_cd} and section_cd = #{section_cd}
-	</select>
-	
 	<select id="userReadTeamNm" resultType="String">
 		select team_nm from
 		com_team where section_cd = #{section_cd}

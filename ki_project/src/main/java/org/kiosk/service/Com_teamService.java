@@ -19,8 +19,6 @@ public interface Com_teamService {
 	
 	public int lastInsertSort(String section_cd) throws Exception;
 
-	public String readTeamCd(String section_cd,String team_nm) throws Exception;
-	
-	public String readTeamNm(String section_cd,String team_cd) throws Exception;
-	
+	public Com_teamVO readTeamCd(String section_cd,String team_nm) throws Exception;
+		
 }

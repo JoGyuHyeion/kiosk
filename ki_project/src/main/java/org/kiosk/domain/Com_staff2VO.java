@@ -3,6 +3,7 @@ package org.kiosk.domain;
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
+
 @Component("Com_staff2VO")
 public class Com_staff2VO {
 
@@ -25,6 +26,7 @@ public class Com_staff2VO {
 	private String team_cd;
 	private Date st_wdt;
 	private Date st_edt;
+	private String main_task;
 
 	public int getSt_no() {
 		return st_no;
@@ -178,6 +180,14 @@ public class Com_staff2VO {
 		this.st_edt = st_edt;
 	}
 
+	public String getMain_task() {
+		return main_task;
+	}
+
+	public void setMain_task(String main_task) {
+		this.main_task = main_task;
+	}
+
 	@Override
 	public String toString() {
 		return "Com_staff2VO [st_no=" + st_no + ", real_use_dep_nm=" + real_use_dep_nm + ", usr_nm=" + usr_nm
@@ -185,7 +195,8 @@ public class Com_staff2VO {
 				+ ", telno=" + telno + ", img_filenm=" + img_filenm + ", email_addr=" + email_addr
 				+ ", usr_work_state_code_nm=" + usr_work_state_code_nm + ", st_status=" + st_status + ", engm_se="
 				+ engm_se + ", adi_info7=" + adi_info7 + ", st_sort=" + st_sort + ", section_cd=" + section_cd
-				+ ", team_cd=" + team_cd + ", st_wdt=" + st_wdt + ", st_edt=" + st_edt + "]";
+				+ ", team_cd=" + team_cd + ", st_wdt=" + st_wdt + ", st_edt=" + st_edt + ", main_task=" + main_task
+				+ "]";
 	}
 
 }

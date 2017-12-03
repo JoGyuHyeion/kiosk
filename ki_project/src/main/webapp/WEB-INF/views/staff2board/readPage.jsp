@@ -23,7 +23,8 @@
 						</ol>
 					</div>
 					<h4 class="page-title">
-						직원정보 <small>직원의 <code>세부정보</code>를 <code>열람</code> 할 수 있습니다.
+						직원정보 <small>직원의 <code>세부정보</code>를 <code>열람</code> 할 수
+							있습니다.
 						</small>
 					</h4>
 				</div>
@@ -82,7 +83,7 @@
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
 												readonly="readonly" rows="10" id="st_key" name="st_key"
-												value="${com_staff2VO.st_key}">
+												value="${com_staff2VO.main_task}">
 										</div>
 									</div>
 									<!-- adi_info7 -->
@@ -94,13 +95,13 @@
 										</div>
 									</div>
 
-									<!-- st_filenm -->
+									<!-- img_filenm -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">사진</label>
-										<div class="col-md-10">
-											<!-- 파일다운로드 -->
-											<!-- <input type="file" class="form-control" id="st_filenm"
-                                                    name="st_filenm"> -->
+										<div class="col-me-10">
+											<img
+												src="${pageContext.request.contextPath}${uploadPath}${com_staff2VO.img_filenm}"
+												class="thumb-img" alt="등록된 사진이 없습니다.">
 										</div>
 									</div>
 
