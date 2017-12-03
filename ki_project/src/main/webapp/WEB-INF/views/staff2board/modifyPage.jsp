@@ -206,11 +206,11 @@
 							var section_code = "${com_staff2VO.section_cd}";
 							var team_code = "${com_staff2VO.team_cd}"
 							var team_name = "${team_name}"
-							alert("Display, Status 확인 \n"
+							/* alert("Display, Status 확인 \n"
 									+ "표시여부: " + usr_work_state_code_nm
 									+ "\n근무 상태: " + status
 									+ "\n근무 부서: " + section_code
-									+ "\n근무 팀: " + team_code + team_name);
+									+ "\n근무 팀: " + team_code + team_name); */
 
 							  $('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
 							  $('select[id="usr_work_state_code_nm"] option:contains("'+usr_work_state_code_nm+'")').attr("selected","selected");
@@ -240,11 +240,11 @@
 				alert("이름을 입력하세요");
 				$("#usr_nm").focus();
 				return false;
-			} else if ($.trim($("#posit_nm").val()) == "") {
+			} /* else if ($.trim($("#posit_nm").val()) == "") {
 				alert("직위를 입력하세요");
 				$("#posit_nm").focus();
 				return false;
-			} else if ($.trim($("#telno").val()) == "") {
+			} */ else if ($.trim($("#telno").val()) == "") {
 				alert("전화번호를 입력하세요");
 				$("#telno").focus();
 				return false;

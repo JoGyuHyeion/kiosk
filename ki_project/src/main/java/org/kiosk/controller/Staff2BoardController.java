@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.kiosk.domain.Com_staff2VO;
+import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
@@ -117,9 +118,10 @@ public class Staff2BoardController {
 		logger.info("staff2board/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
-		
+		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), teamName);
 		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
-		board.setTeam_cd(teamService.readTeamCd(board.getSection_cd(), teamName));
+		board.setTeam_cd(teamVO.getTeam_cd());
+		board.setSt_sort(teamVO.getTeam_sort());
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
 		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
@@ -153,10 +155,11 @@ public class Staff2BoardController {
 			@RequestParam("imgName") String imgName, @RequestParam("teamName") String teamName) throws Exception {
 		logger.info("staff2board/modifyPage - POST");
 		logger.info(cri.toString());
-
+		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), teamName);
 		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
-		board.setTeam_cd(teamService.readTeamCd(board.getSection_cd(), teamName));
-
+		board.setTeam_cd(teamVO.getTeam_cd());
+		board.setSt_sort(teamVO.getTeam_sort());
+		
 		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 

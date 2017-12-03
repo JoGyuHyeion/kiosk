@@ -107,7 +107,7 @@
 
 											
 											
-											alert("${com_imageVO.img_gallery}");
+											/* alert("${com_imageVO.img_gallery}"); */
 											var img_gallery = ${com_imageVO.img_gallery};
 											if (img_gallery == 1) { //값 비교
 												$('input:checkbox[id="img_gallery"]')

@@ -216,11 +216,11 @@
 							alert("이름을 입력하세요");
 							$("#usr_nm").focus();
 							return false;
-						} else if ($.trim($("#posit_nm").val()) == "") {
+						}/*  else if ($.trim($("#posit_nm").val()) == "") {
 							alert("직위를 입력하세요");
 							$("#posit_nm").focus();
 							return false;
-						} else if ($.trim($("#telno").val()) == "") {
+						}  */else if ($.trim($("#telno").val()) == "") {
 							alert("전화번호를 입력하세요");
 							$("#telno").focus();
 							return false;
