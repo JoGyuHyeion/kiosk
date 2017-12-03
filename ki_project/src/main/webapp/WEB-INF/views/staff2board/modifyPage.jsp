@@ -82,7 +82,7 @@
 										<label class="col-md-2 control-label">대표업무</label>
 										<div class="col-md-10">
 											<input type="text" class="form-control" placeholder="대표업무"
-												id="class_nm" name="class_nm" value="${com_staff2VO.class_nm}">
+												id="main_task" name="main_task" value="${com_staff2VO.main_task}">
 										</div>
 									</div>
 									<!-- adi_info7 -->
@@ -130,7 +130,7 @@
 									<div class="form-group">
 										<label class="col-md-2 control-label">근무팀</label>
 										<div class="col-md-7">
-											<select name="teamName" id="teamName" class="form-control">
+											<select name="class_nm" id="class_nm" class="form-control">
 												<option value="">::근무팀을 선택하여 주세요!</option>
 											</select>
 										</div>
@@ -205,7 +205,7 @@
 							var usr_work_state_code_nm = "${com_staff2VO.usr_work_state_code_nm}";
 							var section_code = "${com_staff2VO.section_cd}";
 							var team_code = "${com_staff2VO.team_cd}"
-							var team_name = "${team_name}"
+							var team_name = "${com_staff2VO.class_nm}"
 							/* alert("Display, Status 확인 \n"
 									+ "표시여부: " + usr_work_state_code_nm
 									+ "\n근무 상태: " + status
@@ -228,8 +228,8 @@
 								    			console.log(str);
 								    		});
 								    		
-								    		 $("#teamName").html(str);
-								    		 $('#teamName').val(team_name).change();
+								    		 $("#class_nm").html(str);
+								    		 $('#class_nm').val(team_name).change();
 						    	 	});	
 							  });
 					    	  $('#section_cd').val(section_code).change();
@@ -252,9 +252,9 @@
 				alert("이메일을 입력하세요");
 				$("#email_addr").focus();
 				return false;
-			} else if ($.trim($("#class_nm").val()) == "") {
+			} else if ($.trim($("#main_task").val()) == "") {
 				alert("대표 업무를 입력하세요");
-				$("#class_nm").focus();
+				$("#main_task").focus();
 				return false;
 			} else if ($.trim($("#adi_info7").val()) == "") {
 				alert("사무 설명을 입력하세요");
@@ -268,9 +268,9 @@
 				alert("근무 부서를 선택하세요");
 				$("#section_cd").focus();
 				return false;
-			} else if ($.trim($("#teamName").val()) == "") {
+			} else if ($.trim($("#class_nm").val()) == "") {
 				alert("근무 팀을 선택하세요");
-				$("#teamName").focus();
+				$("#class_nm").focus();
 				return false;
 			} else if(!$(':input:radio[name=st_status]:checked').val()){
 				alert("상태를 선택해주세요");

@@ -58,9 +58,4 @@ public class Com_teamDAOImpl implements Com_teamDAO {
 		return session.selectOne(namespace + ".readTeamCdSort", dto);
 	}
 
-	@Override
-	public String readTeamNm(TeamsDTO dto) throws Exception {
-		return session.selectOne(namespace + ".readTeamNm", dto);
-	}
-
 }

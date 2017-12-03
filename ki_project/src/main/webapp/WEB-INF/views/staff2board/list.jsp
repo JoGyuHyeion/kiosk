@@ -115,7 +115,7 @@
 										<td>${com_staff2VO.posit_nm}</td>
 
 										<td><a
-											href="/staff2board/readPage?st_no=${com_staff2VO.st_no}">${com_staff2VO.usr_nm}</a></td>
+											href="/staff2board/readPage?st_no=${com_staff2VO.st_no}&page=${cri.page}">${com_staff2VO.usr_nm}</a></td>
 
 										<td>${com_staff2VO.telno}</td>
 

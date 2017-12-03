@@ -75,12 +75,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where team_nm=#{team_nm} and section_cd = #{section_cd}
 	</select>
 
-	<select id="readTeamNm" resultType="String">
-		select team_nm from
-		com_team
-		where team_cd=#{team_cd} and section_cd = #{section_cd}
-	</select>
-
 	<select id="userReadTeamNm" resultType="String">
 		select team_nm from
 		com_team where section_cd = #{section_cd}

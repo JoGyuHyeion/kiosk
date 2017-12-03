@@ -64,11 +64,4 @@ public class Com_teamServiceImpl implements Com_teamService {
 		return dao.readTeamCd(dto);
 	}
 
-	@Override
-	public String readTeamNm(String section_cd, String team_cd) throws Exception {
-		dto.setSection_cd(section_cd);
-		dto.setTeam_cd(team_cd);
-		return dao.readTeamNm(dto);
-	}
-
 }

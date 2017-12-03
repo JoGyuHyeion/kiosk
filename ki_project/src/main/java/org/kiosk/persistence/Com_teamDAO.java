@@ -21,6 +21,4 @@ public interface Com_teamDAO {
 
 	public Com_teamVO readTeamCd(TeamsDTO dto) throws Exception;
 
-	public String readTeamNm(TeamsDTO dto) throws Exception;
-
 }

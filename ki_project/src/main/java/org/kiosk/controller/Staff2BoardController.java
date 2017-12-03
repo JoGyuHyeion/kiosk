@@ -93,6 +93,7 @@ public class Staff2BoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("login", userVO);
+		model.addAttribute("uploadPath", uploadPath());
 		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute(service.read(st_no));
@@ -113,12 +114,11 @@ public class Staff2BoardController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registPOST(Com_staff2VO board, RedirectAttributes rttr,
-			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
-			@RequestParam("teamName") String teamName) throws Exception {
+			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request) throws Exception {
 		logger.info("staff2board/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
-		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), teamName);
+		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), board.getClass_nm());
 		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
 		board.setTeam_cd(teamVO.getTeam_cd());
 		board.setSt_sort(teamVO.getTeam_sort());
@@ -144,18 +144,16 @@ public class Staff2BoardController {
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("login", userVO);
 		model.addAttribute("sectionService", sectionService.listAll());
-		model.addAttribute("team_name",
-				teamService.readTeamNm(service.read(st_no).getSection_cd(), service.read(st_no).getTeam_cd()));
 		logger.info("Login : " + userVO.toString());
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	public String modifyPagingPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr,
 			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
-			@RequestParam("imgName") String imgName, @RequestParam("teamName") String teamName) throws Exception {
+			@RequestParam("imgName") String imgName) throws Exception {
 		logger.info("staff2board/modifyPage - POST");
 		logger.info(cri.toString());
-		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), teamName);
+		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), board.getClass_nm());
 		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
 		board.setTeam_cd(teamVO.getTeam_cd());
 		board.setSt_sort(teamVO.getTeam_sort());
