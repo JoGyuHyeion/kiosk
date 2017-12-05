@@ -91,7 +91,7 @@ pageEncoding="UTF-8"%>
                                                     <td colspan="4">
                                                         <div class="form-group" style="text-align: center">
                                                             <button type="button" id="btnSave" class="btn btn-primary waves-effect w-md waves-light m-b-5">저장</button>
-                                                            <button data-toggle="modal" data-target="#teamModal" class="btn btn-warning waves-effect w-md waves-light m-b-5" href="#teamAdd">
+                                                            <button data-toggle="modal" data-target="#teamModal" id="modalAddTeam" class="btn btn-warning waves-effect w-md waves-light m-b-5" href="#teamAdd">
                                                                 <i class="fa fa-plus-circle"></i> 팀추가
                                                             </button>
                                                         </div>
@@ -161,13 +161,21 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
         <script>
-        
+ 
             $(document).ready(function () {
             	
-            	var section_cd="${param.section_cd}";
-            	if(section_cd!=""){
-            		$("#search_team").val(section_cd);
-            	}
+            var section_cd="${param.section_cd}";
+            
+            
+            if(section_cd == ""|| section_cd =="none"){
+            	
+            	$("#modalAddTeam").hide();
+            	
+            }else if(section_cd!=""){
+            	
+            	$("#search_team").val(section_cd);
+            	
+            }
             	
             	$("#search_team").change( function () {
 					var search_team = $("#search_team option:selected").val();
