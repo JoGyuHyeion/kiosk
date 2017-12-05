@@ -31,23 +31,24 @@
 		<c:forEach items="${list}" var="com_videoVO">
 			<div class="col-md-4 col-sm-6">
 				<div class="property-card">
-					<div class="property-image"
-						style="background: url('/resources/assets/images/properties/6.jpg') center center/cover no-repeat;">
-						<video>
-							<source src="${pageContext.request.contextPath}${uploadPath}${com_videoVO.vi_video}" type="video/mp4">			
-							<source src="movie.ogg" type="video/ogg">
-						</video>
-						
-					</div>
+					<a href="/movieboard/readPage?vi_no=${com_videoVO.vi_no}">
+						<div class="property-image"
+							style="background: url('/resources/assets/images/properties/6.jpg') center center/cover no-repeat;">
+							<video>
+								<source
+									src="${pageContext.request.contextPath}${uploadPath}${com_videoVO.vi_video}"
+									type="video/mp4">
+								<source src="movie.ogg" type="video/ogg">
+							</video>
 
+						</div>
+					</a>
 					<div class="property-content">
 						<div class="listingInfo">
 							<p></p>
 							<div class="">
 
-								<h3 class="text-overflow">
-									<a href="/movieboard/readPage?vi_no=${com_videoVO.vi_no}" class="text-dark">${com_videoVO.vi_name}</a>
-								</h3>
+								<h3 class="text-overflow">${com_videoVO.vi_name}</h3>
 
 								<div class="m-t-20" style="text-align: center">
 
@@ -96,7 +97,7 @@
 					<li><a
 						href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 				</c:if>
-	
+
 			</ul>
 		</div>
 	</div>

@@ -84,9 +84,9 @@
 			<script>
 				$(document).ready(function() {
 					
-					if('${msg}' != ""){
+					/* if('${msg}' != ""){
 						alert('${msg}');
-					}
+					} */
 					
 					$("#changePWD").click(function() {
 

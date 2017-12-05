@@ -115,6 +115,7 @@ public class AjaxController {
 		ResponseEntity<String> entity = null;
 		try {
 			for (Com_teamVO vo : teamList) {
+				System.out.println(vo.toString());
 				teamService.modify(vo);
 			}
 			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);

@@ -36,7 +36,6 @@
 						<div class="col-md-7">
 							<form method="post" role="form" enctype="multipart/form-data"
 								onsubmit="return formCheck()">
-								<input type='hidden' name='brd_cd' value="${com_boardVO.brd_cd}">
 								<div class="form-horizontal" role="form">
 									<!-- bbs_title -->
 									<div class="form-group">
@@ -66,7 +65,7 @@
 												class="file_input_button btn btn-primary" /> <input
 												type="file" class="file_input_hidden" data-icon='false'
 												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
-												name="imgFile" id="img_file" />
+												accept="image/*" name="imgFile" id="img_file" />
 										</div>
 										<input type="hidden" name="bbs_file" id="bbs_file"
 											value="${com_boardVO.bbs_file}">
@@ -79,6 +78,18 @@
 												name="bbs_file">
 										</div>
 									</div> -->
+									<!-- brd_cd -->
+									<div class="form-group">
+										<label class="col-md-2 control-label">공지/이벤트</label>
+										<div class="radio radio-info radio-inline">
+											<input type="radio" id="notice" value="notice" name="brd_cd">
+											<label for="notice">공지</label>
+										</div>
+										<div class="radio radio-inline radio-warning">
+											<input type="radio" id="event" value="event" name="brd_cd">
+											<label for="event">이벤트</label>
+										</div>
+									</div>
 									<!-- bbs_exp_sdt, bbs_exp_edt -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">공지기간</label>
@@ -151,6 +162,9 @@
 							if(bbs_state==1){
 								$('input:checkbox[id="bbs_state"]').attr("checked",true);
 							}
+							var brd_cd = "${com_boardVO.brd_cd}";
+							$('input:radio[name="brd_cd"]:input[value='+brd_cd+']').prop("checked", true);
+
 						});
 			function formCheck() {
 				if ($.trim($("#bbs_title").val()) == "") {

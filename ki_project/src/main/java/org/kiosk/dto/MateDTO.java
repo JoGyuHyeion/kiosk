@@ -7,6 +7,7 @@ public class MateDTO {
 
 	private int st_no;
 	private String real_use_dep_nm;
+	private String usr_nm;
 	private String posit_nm;
 	private String adi_info7;
 	private String telno;
@@ -29,6 +30,14 @@ public class MateDTO {
 
 	public void setReal_use_dep_nm(String real_use_dep_nm) {
 		this.real_use_dep_nm = real_use_dep_nm;
+	}
+
+	public String getUsr_nm() {
+		return usr_nm;
+	}
+
+	public void setUsr_nm(String usr_nm) {
+		this.usr_nm = usr_nm;
 	}
 
 	public String getPosit_nm() {
@@ -89,9 +98,9 @@ public class MateDTO {
 
 	@Override
 	public String toString() {
-		return "MateDTO [st_no=" + st_no + ", real_use_dep_nm=" + real_use_dep_nm + ", posit_nm=" + posit_nm
-				+ ", adi_info7=" + adi_info7 + ", telno=" + telno + ", email_addr=" + email_addr + ", img_filenm="
-				+ img_filenm + ", st_sort=" + st_sort + ", st_status=" + st_status + "]";
+		return "MateDTO [st_no=" + st_no + ", real_use_dep_nm=" + real_use_dep_nm + ", usr_nm=" + usr_nm + ", posit_nm="
+				+ posit_nm + ", adi_info7=" + adi_info7 + ", telno=" + telno + ", email_addr=" + email_addr
+				+ ", img_filenm=" + img_filenm + ", st_sort=" + st_sort + ", st_status=" + st_status + "]";
 	}
 
 }

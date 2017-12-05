@@ -128,7 +128,7 @@
 			$("#dulCheck").click(function () {
 				
 				var id = $("#section_id").val();
-				alert("id : "+id);
+				//alert("id : "+id);
 				
 				$.ajax({
 					url: '/user/duplCheck/'+id,
@@ -149,7 +149,7 @@
 				});
 			
 			$("#addNewUser").click(function(){
-				alert(dulCheck);
+				//alert(dulCheck);
 				
 				if(dulCheck=="FASLE"){
 					alert("ID 중복체크를 확인해 주시기 바랍니다.");

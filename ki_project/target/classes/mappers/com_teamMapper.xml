@@ -23,8 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update com_team set
 		team_nm = #{team_nm},
-		team_sort =
-		#{team_sort},
+		team_sort = #{team_sort},
 		team_use = #{team_use}
 		where
 		section_cd = #{section_cd} and
@@ -38,18 +37,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<sql id="filter">
 		<if test="!_parameter.equals('none')">
-			where section_cd = #{_parameter }
+			where TEAM.section_cd = #{_parameter }
 		</if>
 	</sql>
 
 	<select id="list" parameterType="String" resultType="Com_teamVO">
  		<![CDATA[
- 		select * 
- 		from com_team
+ 		select TEAM.*,SECTION.section_name
+ 		from com_team TEAM left join com_section SECTION on TEAM.section_cd = SECTION.section_fullcode
  		]]>
 		<include refid="filter"></include>
  		<![CDATA[
- 		order by section_cd asc, team_sort asc, team_cd asc 
+ 		order by TEAM.section_cd asc, TEAM.team_sort asc, TEAM.team_cd asc 
  		]]>
 	</select>
 

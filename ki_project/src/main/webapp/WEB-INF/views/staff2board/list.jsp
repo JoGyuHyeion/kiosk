@@ -83,7 +83,8 @@
 									<th>직위</th>
 									<th>이름</th>
 									<th>전화번호</th>
-									<th>Update</th>
+									<th>등록일</th>
+									<th>수정일</th>
 									<th>삭제</th>
 
 								</tr>
@@ -118,7 +119,7 @@
 											href="/staff2board/readPage?st_no=${com_staff2VO.st_no}&page=${cri.page}">${com_staff2VO.usr_nm}</a></td>
 
 										<td>${com_staff2VO.telno}</td>
-
+										<td>${com_staff2VO.st_wdt}</td>
 										<td>${com_staff2VO.st_edt}</td>
 										<td><form action="/staff2board/removePage" method="post">
 												<input type="hidden" name="st_no"
