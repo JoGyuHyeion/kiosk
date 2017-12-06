@@ -51,7 +51,7 @@ public class Staff2BoardController {
 	private String[] dirPath = { "resources", "upload", "staff2" };
 
 	private String uploadPath() {
-		String uploadPath = File.separator;
+		String uploadPath = "";
 		for (String path : dirPath) {
 			uploadPath = uploadPath + path + File.separator;
 		}

@@ -60,7 +60,7 @@ public class UsbFileController {
 	// 필요에 따라 arraylist로 원하는 항목을 add 하여 array 변환하면 유동적인 path를 생성할수있다.
 	
 	private String uploadPath() {
-		String uploadPath = File.separator;
+		String uploadPath = "";
 		for (String path : dirPath) {
 			uploadPath = uploadPath + path + File.separator;
 		}
@@ -81,7 +81,7 @@ public class UsbFileController {
 		model.addAttribute("login", userVO);
 		logger.info("Login : " + userVO.toString());
 	}
-
+	
 	@RequestMapping(value = "/usb", method = RequestMethod.POST)
 	public String usbPOST(RedirectAttributes rttr, @ModelAttribute("section_fullcode") String section_fullcode,
 			HttpServletRequest request) throws Exception {
@@ -91,24 +91,20 @@ public class UsbFileController {
 		logger.info("newUser post ...........");
 		System.out.println(section_fullcode);
 
-		String path = root_path + uploadPath().substring(0, uploadPath().length()-1);
-		String paths=path.replace("\\\\", "\\");
+		String path = root_path + uploadPath();
 		String toPath = path.substring(0, path.lastIndexOf("\\") + 1);
 		String fileName = dirPath[dirPath.length-1];
-		
-//path="D:\\workspace-sts-3.9.0.RELEASE\\2017-2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ki_project\\resources\\upload";
-		System.out.println("path : " + paths);
+
+		System.out.println("path : " + path);
 		System.out.println("toPath : " + toPath);
 		System.out.println("fileName : " + fileName);
 
 		makeJsonTextFile(path, section_fullcode);
 
-		usbUtils.createZipFile(paths, toPath, fileName);
+		usbUtils.createZipFile(path, toPath, fileName);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		rttr.addAttribute("zipFile", toPath + fileName + ".zip");
 		return "redirect:/usbFileboard/download";
-		
-//		return null;
 	}
 
 	@RequestMapping(value = "/download", method = RequestMethod.GET)

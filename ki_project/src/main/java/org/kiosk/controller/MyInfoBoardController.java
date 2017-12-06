@@ -94,6 +94,29 @@ public class MyInfoBoardController {
 
 		return "redirect:/logout";
 	}
+	
+	@RequestMapping(value = "/bureau", method = RequestMethod.GET)
+	public void bureauGET(Model model, @ModelAttribute("bcd") String bcd, HttpServletRequest request)
+			throws Exception {
+
+		logger.info("myinfoboard/bureau - GET ");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("login", userVO);
+		logger.info("Login : " + userVO.toString());
+		
+		model.addAttribute("bureauService", bureauService.listAll());
+
+	}
+
+	@RequestMapping(value = "/bureau", method = RequestMethod.POST)
+	public String bureauPOST(RedirectAttributes rttr) throws Exception {
+
+		logger.info("myinfoboard/bureau - POST ");
+		logger.info(rttr.toString());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		return "redirect:/myinfoboard/section";
+	}
 
 	@RequestMapping(value = "/section", method = RequestMethod.GET)
 	public void sectionGET(Model model, @ModelAttribute("bcd") String bcd, HttpServletRequest request)

@@ -60,7 +60,7 @@ public class JsonController {
 	private Vol_checkService vol_checkService;
 	
 	////테스트용
-	@RequestMapping(value = "/allgetStaff", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAllStaff", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> gettest() {
 		logger.info("json/test");
 		ResponseEntity<JsonStaffDTO> entity = null;
