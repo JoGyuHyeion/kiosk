@@ -147,6 +147,12 @@
 											</select>
 										</div>
 									</div>
+									<div class = "form-group">
+										<label class = "col-md-2 control-label">자리</label>
+										<div class="col-md-3">
+											<input class = "form-control" name = "st_sort" id = "st_sort" value ="${com_staff2VO.st_sort}">
+										</div>
+									</div>
 
 									<!-- st_status     -->
 									<div class="form-group">
