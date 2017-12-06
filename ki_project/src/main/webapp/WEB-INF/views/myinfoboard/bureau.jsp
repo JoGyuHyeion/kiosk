@@ -52,7 +52,7 @@ pageEncoding="UTF-8"%>
                                 </thead>
                             
                                 <tbody>
-                                <c:forEach items="${bureauService}" var="com_bureauVO" varStatus="status">
+                                <c:forEach items="${bureauService}" var="com_bureauVO" varStatus="status" >
                                     <tr>
                                         <td><input type="text" class="form-control bureau_cd" size="6" 
                                                    value="${com_bureauVO.bureau_cd}" readonly="readonly"></td>
@@ -155,7 +155,7 @@ pageEncoding="UTF-8"%>
                 				success: function (data) {
                 					if (data == 'SUCCESS') {
                 						alert("수정 되었습니다.");
-                						location.reload();
+                						//location.reload();
                 					}
                 				},
             					
@@ -188,11 +188,19 @@ pageEncoding="UTF-8"%>
             					success: function (data) {
             						if (data == 'SUCCESS') {
             							alert("추가 되었습니다.");
-            							location.reload();
+            							$('#bureauModal .close').click();
+            							var str = '<tr>'+
+            							'<td><input type="text" class="form-control bureau_cd" size="6"  value="'+bureau_cd+'" readonly="readonly"></td>'+
+            							'<td><input type="text" class="form-control bureau_name" size="40"value="'+bureau_name+'"></td>'+
+            							'<td><a class="table-action-btn h2 removeBtn" value ="'+bureau_cd+'" >'+
+            							'<i class="mdi mdi-close-box-outline text-danger"></i></a></td>'+
+            							'</tr>';
+            							$("tbody").append(str);
+            							//location.reload();
             						}
             					},
             					error : function(error) {
-            						alert("부서코드가 중복됩니다.");
+            						alert("부서코드가 중복 및 길게 작성되었습니다.");
 									$("#bureau_cd").val("");
 									$("#bureau_cd").focus();
             				    }
@@ -200,20 +208,23 @@ pageEncoding="UTF-8"%>
             		});
             	            	
             	$(".removeBtn").click(function () {
+            		
             		var bureau_cd = $(this).attr("value");
+            		$(this).closest("tr").remove();
             		$.ajax({
             			url: '/bureau/del/'+bureau_cd,
             			type: 'DELETE',
             			success: function (data) {
             				if (data == 'SUCCESS') {
+            						
+            						//location.reload();
             						alert("삭제 되었습니다.");
-            						location.reload();
             					}
             			},
             			error : function(error) {
     						alert("삭제 실패되었습니다.");
     				    }
-            		});
+            		}); 
             	});
             	$.urlParam = function (name) {
             		var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);

@@ -163,7 +163,7 @@ pageEncoding="UTF-8"%>
                 				success: function (data) {
                 					if (data == 'SUCCESS') {
                 						alert("수정 되었습니다.");
-                						location.reload();
+                						//location.reload();
                 					}
                 				},
             					
@@ -211,6 +211,8 @@ pageEncoding="UTF-8"%>
             					success: function (data) {
             						if (data == 'SUCCESS') {
             							alert("추가 되었습니다.");
+            							$('#sectionModal .close').click();
+            							
             							location.reload();
             						}
             					},
@@ -224,13 +226,14 @@ pageEncoding="UTF-8"%>
             	            	
             	$(".removeBtn").click(function () {
             		var section_cd = $(this).attr("value");
+            		$(this).closest("tr").remove();
             		$.ajax({
             			url: '/section/del/'+section_cd,
             			type: 'DELETE',
             			success: function (data) {
             				if (data == 'SUCCESS') {
             						alert("삭제 되었습니다.");
-            						location.reload();
+            						//location.reload();
             					}
             			},
             			error : function(error) {
