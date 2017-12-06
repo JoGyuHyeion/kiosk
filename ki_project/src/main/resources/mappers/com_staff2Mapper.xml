@@ -53,6 +53,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where st_no = #{st_no}
 	</update>
 	
+	<select id="teamListSort" resultType="Com_staff2VO">
+		 <![CDATA[
+		 select * from com_staff2 
+		 where section_cd = #{section_cd} 
+		 and team_cd = #{team_cd}
+		 order by team_cd asc
+		 ]]>
+	</select>
+	
 	<select id="lastInsertID" resultType="int">
 		SELECT AUTO_INCREMENT
 		FROM

@@ -5,9 +5,11 @@ import javax.inject.Inject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kiosk.domain.Com_staff2VO;
+import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.persistence.Com_staff2DAO;
+import org.kiosk.persistence.Com_teamDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,6 +24,8 @@ public class Com_staff2Test {
 
 	@Inject
 	private Com_staff2DAO dao;
+	@Inject
+	private Com_teamDAO teamdao;
 
 	private static Logger logger = LoggerFactory.getLogger(Com_staff2Test.class);
 
@@ -83,7 +87,7 @@ public class Com_staff2Test {
 
 	}
 
-//	@Test
+	// @Test
 	public void testLastInsertID() throws Exception {
 		logger.info(String.valueOf(dao.lastInsertID()));
 	}
@@ -135,14 +139,14 @@ public class Com_staff2Test {
 		logger.info(uriComponents.toString());
 	}
 
-	 @Test
+	// @Test
 	public void testDynamic1() throws Exception {
 
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);
 		// cri.setKeyword("");
 		cri.setSection_cd("none");
-		//cri.setTeam_cd("none");
+		// cri.setTeam_cd("none");
 
 		logger.info("=====================================");
 
@@ -155,6 +159,22 @@ public class Com_staff2Test {
 		logger.info("=====================================");
 
 		logger.info("COUNT: " + dao.listSearchCount(cri));
+	}
+
+	// @Test
+	public void countSt_sort() throws Exception {
+		Com_staff2VO vo = new Com_staff2VO();
+		vo.setSection_cd("K010-S030");
+		vo.setTeam_cd("T06");
+		logger.info(dao.createSortNo(vo) + 1 + "다음들어갈 수 ");
+	}
+
+	@Test
+	public void St_sort() throws Exception {
+		List<Com_teamVO> teamList = teamdao.list("none");
+		for(int i=0;i<teamList.size();i++) {
+			
+		}
 	}
 
 }

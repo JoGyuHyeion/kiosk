@@ -33,5 +33,7 @@ public interface Com_staff2Service {
 	public int createSortNo(Com_staff2VO vo) throws Exception;
 
 	public void sortupdate(Com_staff2VO vo) throws Exception;
+	
+	public List<Com_staff2VO> teamListSort(Com_staff2VO vo) throws Exception;
 
 }

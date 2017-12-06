@@ -92,4 +92,9 @@ public class Com_staff2DAOImpl implements Com_staff2DAO {
 		
 	}
 
+	@Override
+	public List<Com_staff2VO> teamListSort(Com_staff2VO vo) throws Exception {
+		return session.selectList(namespace + ".teamListSort",vo);
+	}
+
 }

@@ -73,13 +73,19 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 
 	@Override
 	public int createSortNo(Com_staff2VO vo) throws Exception {
-		return dao.createSortNo(vo);
+		return dao.createSortNo(vo)+1;
 	}
 
 	@Override
 	public void sortupdate(Com_staff2VO vo) throws Exception {
 		dao.sortupdate(vo);
 
+	}
+
+	@Override
+	public List<Com_staff2VO> teamListSort(Com_staff2VO vo) throws Exception{
+		return dao.teamListSort(vo);
+		
 	}
 
 }

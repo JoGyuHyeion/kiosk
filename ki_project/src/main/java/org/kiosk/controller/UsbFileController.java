@@ -95,8 +95,7 @@ public class UsbFileController {
 		String paths=path.replace("\\\\", "\\");
 		String toPath = path.substring(0, path.lastIndexOf("\\") + 1);
 		String fileName = dirPath[dirPath.length-1];
-		//path.replace("\\\\", "\\");
-String ss="D:\\workspace-sts-3.9.0.RELEASE\\2017-2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ki_project\\resources\\upload";
+		
 //path="D:\\workspace-sts-3.9.0.RELEASE\\2017-2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ki_project\\resources\\upload";
 		System.out.println("path : " + paths);
 		System.out.println("toPath : " + toPath);
@@ -104,7 +103,7 @@ String ss="D:\\workspace-sts-3.9.0.RELEASE\\2017-2\\.metadata\\.plugins\\org.ecl
 
 		makeJsonTextFile(path, section_fullcode);
 
-		usbUtils.createZipFile(ss, toPath, fileName);
+		usbUtils.createZipFile(paths, toPath, fileName);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		rttr.addAttribute("zipFile", toPath + fileName + ".zip");
 		return "redirect:/usbFileboard/download";
