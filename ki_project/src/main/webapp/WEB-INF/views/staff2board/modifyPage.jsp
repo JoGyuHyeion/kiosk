@@ -150,7 +150,7 @@
 									<div class = "form-group">
 										<label class = "col-md-2 control-label">자리</label>
 										<div class="col-md-3">
-											<input class = "form-control" name = "st_sort" id = "st_sort" value ="${com_staff2VO.st_sort}">
+											<input class = "form-control" type="number" name = "st_sort" id = "st_sort" value ="${com_staff2VO.st_sort}">
 										</div>
 									</div>
 
@@ -195,51 +195,43 @@
 			</div>
 			<!-- end col -->
 			<script>
-		$(document)
-				.ready(
-						function() {
-							var formObj = $("form[role='form']");
-							console.log(formObj);
-							$("#back")
-									.on(
-											"click",
-											function() {
-												self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-										});
+		$(document).ready(function() {
+			
+			var formObj = $("form[role='form']");
+			//console.log(formObj);
+							
+			$("#back").on("click",function() {
+				self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+			});
  							
-							var status = ${com_staff2VO.st_status};
-							var usr_work_state_code_nm = "${com_staff2VO.usr_work_state_code_nm}";
-							var section_code = "${com_staff2VO.section_cd}";
-							var team_code = "${com_staff2VO.team_cd}"
-							var team_name = "${com_staff2VO.class_nm}"
-							/* alert("Display, Status 확인 \n"
-									+ "표시여부: " + usr_work_state_code_nm
-									+ "\n근무 상태: " + status
-									+ "\n근무 부서: " + section_code
-									+ "\n근무 팀: " + team_code + team_name); */
-
-							  $('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
-							  $('select[id="usr_work_state_code_nm"] option:contains("'+usr_work_state_code_nm+'")').attr("selected","selected");
-							  $("#section_cd").change( function () {
+			var status = ${com_staff2VO.st_status};
+			var usr_work_state_code_nm = "${com_staff2VO.usr_work_state_code_nm}";
+			var section_code = "${com_staff2VO.section_cd}";
+			var team_code = "${com_staff2VO.team_cd}"
+			var team_name = "${com_staff2VO.class_nm}"
+			
+			$('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
+			$('select[id="usr_work_state_code_nm"] option:contains("'+usr_work_state_code_nm+'")').attr("selected","selected");
+			$("#section_cd").change( function () {
 							    	 
-					    			 var section_cd = $("#section_cd option:selected").val();
-					    	 
-					    			 $.getJSON("/staff/getTeams/"+section_cd, function(data) {
-					    			 var str="";
-					    			 console.log(data.length);
-					    		 
-					    			 $(data).each(
-					    				 function(){
-					    					 str+="<option value=\""+this.team_nm+"\">"+this.team_nm+"</option>";
-								    			console.log(str);
-								    		});
-								    		
-								    		 $("#class_nm").html(str);
-								    		 $('#class_nm').val(team_name).change();
-						    	 	});	
-							  });
-					    	  $('#section_cd').val(section_code).change();
+				var section_cd = $("#section_cd option:selected").val();
+					    			
+				$.getJSON("/staff/getTeams/"+section_cd, function(data) {
+					var str="";
+					//console.log(data.length);
+					$(data).each(function(){
+						str+="<option value=\""+this.team_nm+"\">"+this.team_nm+"</option>";
+						//console.log(str);
 					});
+								    		
+					$("#class_nm").html(str);
+					$('#class_nm').val(team_name).change();
+				});	
+			});
+					    	 
+			$('#section_cd').val(section_code).change();
+					
+		});
 		
 		function formCheck() {
 			if ($.trim($("#usr_nm").val()) == "") {

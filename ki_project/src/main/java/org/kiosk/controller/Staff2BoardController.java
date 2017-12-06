@@ -121,14 +121,13 @@ public class Staff2BoardController {
 		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), board.getClass_nm());
 		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
 		board.setTeam_cd(teamVO.getTeam_cd());
-		board.setSt_sort(teamVO.getTeam_sort());
+		board.setSt_sort(service.createSortNo(board));
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
 		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setImg_filenm(img_filenm);
 		service.regist(board);
-
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/staff2board/list?page=1";
@@ -157,7 +156,7 @@ public class Staff2BoardController {
 		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
 		board.setTeam_cd(teamVO.getTeam_cd());
 		board.setSt_sort(teamVO.getTeam_sort());
-		
+
 		String img_filenm;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 

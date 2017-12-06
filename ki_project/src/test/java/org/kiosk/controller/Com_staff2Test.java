@@ -87,7 +87,7 @@ public class Com_staff2Test {
 
 	}
 
-	// @Test
+	@Test
 	public void testLastInsertID() throws Exception {
 		logger.info(String.valueOf(dao.lastInsertID()));
 	}
@@ -169,11 +169,23 @@ public class Com_staff2Test {
 		logger.info(dao.createSortNo(vo) + 1 + "다음들어갈 수 ");
 	}
 
-	@Test
+	// @Test
 	public void St_sort() throws Exception {
-		List<Com_teamVO> teamList = teamdao.list("none");
-		for(int i=0;i<teamList.size();i++) {
-			
+
+		Com_staff2VO vo = new Com_staff2VO();
+		int i = 0;
+
+		for (Com_teamVO teamVO : teamdao.list("none")) {
+			vo.setTeam_cd(teamVO.getTeam_cd());
+			vo.setSection_cd(teamVO.getSection_cd());
+			i = 0;
+
+			for (Com_staff2VO staffVO : dao.teamListSort(vo)) {
+				staffVO.setSt_sort(i);
+				dao.sortupdate(staffVO);
+				i++;
+			}
+
 		}
 	}
 

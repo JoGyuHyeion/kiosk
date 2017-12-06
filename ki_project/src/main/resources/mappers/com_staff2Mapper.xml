@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" resultType="Com_staff2VO">
 		select
-		st_no,usr_nm,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,adi_info7,section_cd,team_cd,main_task
+		st_no,real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt,main_task
 		from com_staff2
 		where
 		st_no = #{st_no}
@@ -22,10 +22,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="update">
 		update com_staff2 set
-		real_use_dep_nm=#{real_use_dep_nm},class_nm=#{class_nm},
-		usr_nm=#{usr_nm},posit_nm=#{posit_nm},
-		telno=#{telno},img_filenm=#{img_filenm},email_addr=#{email_addr},usr_work_state_code_nm=#{usr_work_state_code_nm},st_status=#{st_status},
-		adi_info7=#{adi_info7},section_cd=#{section_cd},team_cd=#{team_cd},st_sort=#{st_sort},st_edt=now(),main_task=#{main_task}
+		real_use_dep_nm=#{real_use_dep_nm},
+		class_nm=#{class_nm},
+		usr_nm=#{usr_nm},
+		posit_nm=#{posit_nm},
+		telno=#{telno},
+		img_filenm=#{img_filenm},
+		email_addr=#{email_addr},
+		usr_work_state_code_nm=#{usr_work_state_code_nm},
+		st_status=#{st_status},
+		adi_info7=#{adi_info7},
+		section_cd=#{section_cd},
+		st_sort=#{st_sort},
+		team_cd=#{team_cd},
+		st_sort=#{st_sort},
+		st_edt=now(),
+		main_task=#{main_task}
 		where st_no = #{st_no}
 	</update>
 
