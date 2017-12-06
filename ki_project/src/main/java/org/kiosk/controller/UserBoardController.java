@@ -30,13 +30,13 @@ public class UserBoardController {
 	private UserService service;
 	@Inject
 	private Com_sectionService sectionService;
-	
+
 	@Resource(name = "PageMaker")
 	private PageMaker pageMaker;
-	
+
 	@Resource(name = "UserVO")
 	private UserVO userVO;
-	
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
 			throws Exception {
@@ -80,28 +80,24 @@ public class UserBoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-	public void modifyPagingGET( String id, @ModelAttribute("cri") SearchCriteria cri, Model model,
+	public void modifyPagingGET(String modifyId, @ModelAttribute("cri") SearchCriteria cri, Model model,
 			HttpServletRequest request) throws Exception {
 		logger.info("userboard/modifyPage - GET");
-		logger.info(service.read(id).toString());
+		logger.info(service.read(modifyId).toString());
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		logger.info("Login : " + userVO.toString());
-		
+
 		model.addAttribute("sectionList", sectionService.listAll());
-		model.addAttribute(service.read(id));
-	
+		model.addAttribute(service.read(modifyId));
+
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(UserVO board, SearchCriteria cri, RedirectAttributes rttr,
-			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
-			@RequestParam("imgName") String imgName, @RequestParam("teamName") String teamName) throws Exception {
+	public String modifyPagingPOST(UserVO board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("userboard/modifyPage - POST");
 		logger.info(cri.toString());
-
-
-		
+System.out.println(board.toString());
 		service.modify(board);
 
 		rttr.addAttribute("page", cri.getPage());
@@ -115,11 +111,10 @@ public class UserBoardController {
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
-	public String remove(@RequestParam("id")  String id, SearchCriteria cri, RedirectAttributes rttr,
+	public String remove(@RequestParam("id") String id, SearchCriteria cri, RedirectAttributes rttr,
 			HttpServletRequest request) throws Exception {
 		logger.info("userboard/removePage - POST");
 
-	
 		service.remove(id);
 
 		rttr.addAttribute("page", cri.getPage());

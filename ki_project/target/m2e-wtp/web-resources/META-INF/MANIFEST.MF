@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: NMJ
 Build-Jdk: 1.8.0_131
+=======
+Built-By: user
+Build-Jdk: 1.8.0_121
+>>>>>>> 1627635e348e8f829b28582945517c6beefad95f
 Created-By: Maven Integration for Eclipse
 
