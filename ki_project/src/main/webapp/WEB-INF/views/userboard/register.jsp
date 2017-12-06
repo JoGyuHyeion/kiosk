@@ -42,7 +42,7 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 
-					<form class="form-horizontal" action="/myinfoboard/newUser" id="newUserForm"
+					<form class="form-horizontal"  id="newUserForm"
 						method="post">
 						<div class="row">
 
