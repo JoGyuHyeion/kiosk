@@ -91,20 +91,25 @@ public class UsbFileController {
 		logger.info("newUser post ...........");
 		System.out.println(section_fullcode);
 
-		String path = root_path + uploadPath();
+		String path = root_path + uploadPath().substring(0, uploadPath().length()-1);
+		String paths=path.replace("\\\\", "\\");
 		String toPath = path.substring(0, path.lastIndexOf("\\") + 1);
-		String fileName = path.substring(path.lastIndexOf("\\") + 1);
-
-		System.out.println("path : " + path);
+		String fileName = dirPath[dirPath.length-1];
+		//path.replace("\\\\", "\\");
+String ss="D:\\workspace-sts-3.9.0.RELEASE\\2017-2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ki_project\\resources\\upload";
+//path="D:\\workspace-sts-3.9.0.RELEASE\\2017-2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ki_project\\resources\\upload";
+		System.out.println("path : " + paths);
 		System.out.println("toPath : " + toPath);
 		System.out.println("fileName : " + fileName);
 
 		makeJsonTextFile(path, section_fullcode);
 
-		usbUtils.createZipFile(path, toPath, fileName);
+		usbUtils.createZipFile(ss, toPath, fileName);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		rttr.addAttribute("zipFile", toPath + fileName + ".zip");
 		return "redirect:/usbFileboard/download";
+		
+//		return null;
 	}
 
 	@RequestMapping(value = "/download", method = RequestMethod.GET)

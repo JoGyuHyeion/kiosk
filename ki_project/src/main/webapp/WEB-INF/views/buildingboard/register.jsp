@@ -88,7 +88,7 @@
 													.on(
 															"click",
 															function() {
-																self.location = "/buildingboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+																self.location = "/buildingboard/list?keyword=1";
 															});
 
 										});
