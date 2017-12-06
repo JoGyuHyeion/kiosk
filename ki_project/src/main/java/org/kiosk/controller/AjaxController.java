@@ -4,6 +4,8 @@ package org.kiosk.controller;
 import java.util.List;
 //import java.util.Map;
 import javax.inject.Inject;
+
+import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.UserVO;
@@ -45,6 +47,51 @@ public class AjaxController {
 	private UserVO userVO;
 
 	private static final String SUCCESS = "SUCCESS";
+	
+	@RequestMapping(value = "/bureau/insert", method = RequestMethod.POST)
+	public ResponseEntity<String> bureauReister(@RequestBody Com_bureauVO vo) {
+		logger.info("/bureau/insert");
+		ResponseEntity<String> entity = null;
+		try {
+			bureauService.regist(vo);
+			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/bureau/listUpdate/{bureau}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+	public ResponseEntity<String> bureauListUpdate(@PathVariable("bureau") String bureau,
+			@RequestBody List<Com_bureauVO> bureauList) {
+		logger.info("/bureau/update/{bureau}");
+		ResponseEntity<String> entity = null;
+		try {
+			for (Com_bureauVO vo : bureauList) {
+				bureauService.modify(vo);
+			}
+			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	@RequestMapping(value = "/bureau/del/{bureau_cd}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> bureauRemove(@PathVariable("bureau_cd") String bureau_cd) {
+		logger.info("/bureau/del/{bureau_cd}");
+		ResponseEntity<String> entity = null;
+		try {
+			bureauService.remove(bureau_cd);
+			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 
 	@RequestMapping(value = "/section/insert", method = RequestMethod.POST)
 	public ResponseEntity<String> sectionReister(@RequestBody Com_sectionVO vo) {

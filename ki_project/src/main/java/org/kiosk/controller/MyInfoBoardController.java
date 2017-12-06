@@ -38,31 +38,6 @@ public class MyInfoBoardController {
 	private LoginDTO loginDTO;
 	
 
-//	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
-//	public void newUserGET(Model model, HttpServletRequest request) throws Exception {
-//
-//		logger.info("myinfoboard/passwd - GET");
-//		model.addAttribute("sectionList", sectionService.listAll());
-//		HttpSession session = request.getSession();
-//		UserVO userVO = (UserVO) session.getAttribute("login");
-//		model.addAttribute("login", userVO);
-//		logger.info("Login : " + userVO.toString());
-//
-//	}
-//
-//	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-//	public String newUserPOST(UserVO vo, RedirectAttributes rttr) throws Exception {
-//		logger.info("/myinfoboard/newUser - POST");
-//		logger.info("newUser post ...........");
-//		logger.info(vo.toString());
-//
-//		userService.newUser(vo);
-//
-//		rttr.addFlashAttribute("msg", "SUCCESS");
-//
-//		return "redirect:/myinfoboard/newUser";
-//	}
-
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
 	public void passwdGET(Model model, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();

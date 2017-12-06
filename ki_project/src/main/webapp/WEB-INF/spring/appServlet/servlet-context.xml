@@ -55,6 +55,7 @@
 			<mapping path="/*/readPage" />
 			<mapping path="/*/register" />
 			<mapping path="/*/passwd" />
+			<mapping path="/*/bureau" />
 			<mapping path="/*/section" />
 			<mapping path="/*/team" />
 			<mapping path="/*/newUser" />

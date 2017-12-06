@@ -143,7 +143,7 @@ pageEncoding="UTF-8"%>
             			 }    	     
 	        
             	         $.ajax({
-                			url: '/section/listUpdate/'+bcd,
+                			url: '/bureau/listUpdate/bureau',
                 			type: 'PUT',
                 			headers: {
                 				"Content-Type": "application/json",
@@ -173,7 +173,7 @@ pageEncoding="UTF-8"%>
             		var bureau_cd = $("#bureau_cd").val();
             	
             		$.ajax({
-            			url: '/section/insert',
+            			url: '/bureau/insert',
             			type: 'post',
             			headers: {
             				"Content-Type": "application/json",
@@ -202,7 +202,7 @@ pageEncoding="UTF-8"%>
             	$(".removeBtn").click(function () {
             		var bureau_cd = $(this).attr("value");
             		$.ajax({
-            			url: '/section/del/'+bureau_cd,
+            			url: '/bureau/del/'+bureau_cd,
             			type: 'DELETE',
             			success: function (data) {
             				if (data == 'SUCCESS') {
