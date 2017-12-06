@@ -20,14 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<update id="update">
 		update com_staff2 set
-		real_use_dep_nm = #{real_use_dep_nm},
-		usr_nm = #{usr_nm},
-		posit_nm = #{posit_nm},
-		adi_info7 = #{adi_info7},
-		telno = #{telno},
-		email_addr = #{email_addr},
-		img_filenm = #{img_filenm},
-		st_sort = #{st_sort},
+
 		st_status = #{st_status},
 		where
 		st_no = #{st_no} 

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
@@ -15,8 +17,10 @@ import org.kiosk.domain.Vol_checkVO;
 import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.dto.JsonStaffDTO;
+import org.kiosk.dto.MateDTO;
 import org.kiosk.service.Com_bgImgService;
 import org.kiosk.service.JsonGelleryService;
+import org.kiosk.service.JsonMateService;
 import org.kiosk.service.JsonNoticeService;
 import org.kiosk.service.JsonStaffService;
 import org.kiosk.service.Com_buildingService;
@@ -47,6 +51,8 @@ public class JsonController {
 	@Inject
 	private JsonStaffService jsonStaffService;
 	@Inject
+	private JsonMateService jsonMateService;
+	@Inject
 	private Com_sectionService sectionService;
 	@Inject
 	private Com_buildingService buildingService;
@@ -58,14 +64,32 @@ public class JsonController {
 	private Com_bgImgService bgImgService;
 	@Inject
 	private Vol_checkService vol_checkService;
+	@Resource(name="MateDTO")
+	private MateDTO staffDTO;
 	
 	////테스트용
 	@RequestMapping(value = "/getAllStaff", method = RequestMethod.GET)
 	public ResponseEntity<JsonStaffDTO> gettest() {
-		logger.info("json/test");
+		logger.info("json/getAllStaff");
 		ResponseEntity<JsonStaffDTO> entity = null;
 		try {
 			entity = new ResponseEntity<>(jsonStaffService.getJsonStaff("none"), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/setStaffStaus/{st_no}/{st_status}", method = RequestMethod.PATCH)
+	public ResponseEntity<String> setStaffStaus(@PathVariable("st_no") int st_no,@PathVariable("st_status") int st_status) {
+		logger.info("json/setStaffStaus");
+		ResponseEntity<String> entity = null;
+		try {
+			staffDTO.setSt_no(st_no);
+			staffDTO.setSt_status(st_status);
+			jsonMateService.modify(staffDTO);
+			entity = new ResponseEntity<>("SUCESS", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
