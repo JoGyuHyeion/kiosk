@@ -31,4 +31,10 @@ public interface Com_staff2DAO {
 	
 	public int listSearchCount(SearchCriteria cri) throws Exception;
 	
+	//
+	public int createSortNo(Com_staff2VO vo) throws Exception;
+
+	public void sortupdate(Com_staff2VO vo) throws Exception;
+
+	
 }

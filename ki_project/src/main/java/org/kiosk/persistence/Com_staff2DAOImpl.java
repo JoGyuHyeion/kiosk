@@ -81,4 +81,15 @@ public class Com_staff2DAOImpl implements Com_staff2DAO {
 		return session.selectOne(namespace + ".listSearchCount", cri);
 	}
 
+	@Override
+	public int createSortNo(Com_staff2VO vo) throws Exception {
+		return session.selectOne(namespace + ".createSortNo",vo);
+	}
+
+	@Override
+	public void sortupdate(Com_staff2VO vo) throws Exception {
+		session.update(namespace + ".sortupdate", vo);
+		
+	}
+
 }

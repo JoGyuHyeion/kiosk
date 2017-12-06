@@ -39,6 +39,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 ]]>
 	</select>
 
+	<select id="createSortNo" resultType="int">
+		select count(*) 
+		from com_staff2 
+		where section_cd = #{section_cd} 
+		and team_cd = #{team_cd}
+		order by team_cd asc;
+	</select>
+	
+	<update id="sortupdate">
+		update com_staff2 set
+		st_sort=#{st_sort}
+		where st_no = #{st_no}
+	</update>
+	
 	<select id="lastInsertID" resultType="int">
 		SELECT AUTO_INCREMENT
 		FROM
@@ -47,6 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND TABLE_NAME =
 		"com_staff2";
 	</select>
+	
 
 	<select id="listPage" resultType="Com_staff2VO">
 		 <![CDATA[

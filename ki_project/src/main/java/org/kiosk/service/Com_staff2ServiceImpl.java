@@ -71,4 +71,15 @@ public class Com_staff2ServiceImpl implements Com_staff2Service {
 		return dao.listSearchCount(cri);
 	}
 
+	@Override
+	public int createSortNo(Com_staff2VO vo) throws Exception {
+		return dao.createSortNo(vo);
+	}
+
+	@Override
+	public void sortupdate(Com_staff2VO vo) throws Exception {
+		dao.sortupdate(vo);
+
+	}
+
 }
