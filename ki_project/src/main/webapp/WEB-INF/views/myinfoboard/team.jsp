@@ -184,8 +184,8 @@ pageEncoding="UTF-8"%>
             	
             	
             	 $('#addSection').on('click', function () {
-         	        $("#section_cd").val(" ");
-         	        $("#section_name").val(" ");
+         	        $("#section_cd").val("");
+         	        $("#section_name").val("");
          	        $("#new_section_use").prop('checked',false)
             	 });
             	 
@@ -263,6 +263,7 @@ pageEncoding="UTF-8"%>
             				success: function (data) {
             					if (data == 'SUCCESS') {
             						alert("추가 되었습니다.");
+            			
             						location.reload();
             					}
             				},
