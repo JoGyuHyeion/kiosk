@@ -19,6 +19,9 @@
 						</ol>
 					</div>
 					<h4 class="page-title">배경화면</h4>
+					<div class="col-sm-1">
+						<a href="/backGroundboard/register" class="btn btn-primary ">등록</a>
+					</div>
 				</div>
 			</div>
 		</div>
