@@ -107,11 +107,11 @@ pageEncoding="UTF-8"%>
                         <form action="/section/insert" method="post">
                             <div class="form-group">
                                 <label for="image" class="control-label">부서코트</label> 
-                                <input type="text" id="bureau_cd" class="form-control">
+                                <input type="text" id="bureau_cd" maxlength="4" placeholder="ex) K023" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="image" class="control-label">부서명칭</label> 
-                                <input type="text" id="bureau_name" class="form-control">
+                                <input type="text" id="bureau_name" maxlength="30" placeholder="부서명칭(30자 이내)" class="form-control">
                             </div>
                         
                         </form>
@@ -127,8 +127,8 @@ pageEncoding="UTF-8"%>
             $(document).ready(function () {
             	
             	 $('#addSection').on('click', function () {
-            	        $("#bureau_cd").val(" ");
-            	        $("#bureau_name").val(" ");
+            	        $("#bureau_cd").val("");
+            	        $("#bureau_name").val("");
             	 });
             	
             	 $("#btnSave").click(function(){

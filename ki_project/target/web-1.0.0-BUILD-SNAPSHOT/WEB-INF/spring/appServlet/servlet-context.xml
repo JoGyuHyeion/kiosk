@@ -55,6 +55,7 @@
 			<mapping path="/*/readPage" />
 			<mapping path="/*/register" />
 			<mapping path="/*/passwd" />
+			<mapping path="/*/bureau" />
 			<mapping path="/*/section" />
 			<mapping path="/*/team" />
 			<mapping path="/*/newUser" />
@@ -64,7 +65,7 @@
 	</interceptors>
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+		<beans:property name="maxUploadSize" value="52428800"></beans:property>
 	</beans:bean>
 
 <!-- 	<beans:bean id="uploadPath" class="java.lang.String">

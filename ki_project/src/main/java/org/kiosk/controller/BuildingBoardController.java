@@ -97,7 +97,7 @@ public class BuildingBoardController {
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/buildingboard/list?page=1";
+		return "redirect:/buildingboard/list?keyword=1";
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
@@ -124,7 +124,7 @@ public class BuildingBoardController {
 
 		logger.info(rttr.toString());
 
-		return "redirect:/buildingboard/list";
+		return "redirect:/buildingboard/list?keyword=1";
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
@@ -139,6 +139,6 @@ public class BuildingBoardController {
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/buildingboard/list?page=1";
+		return "redirect:/buildingboard/list?keyword=1";
 	}
 }

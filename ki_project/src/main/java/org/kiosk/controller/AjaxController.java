@@ -2,6 +2,8 @@ package org.kiosk.controller;
 
 //import java.util.HashMap;
 import java.util.List;
+
+import javax.annotation.Resource;
 //import java.util.Map;
 import javax.inject.Inject;
 
@@ -43,7 +45,7 @@ public class AjaxController {
 	private Com_bureauService bureauService;
 	@Inject
 	private UserService userService;
-	
+	@Resource(name="UserVO")
 	private UserVO userVO;
 
 	private static final String SUCCESS = "SUCCESS";
@@ -238,7 +240,7 @@ public class AjaxController {
 
 		ResponseEntity<List<Com_teamVO>> entity = null;
 		try {
-			userVO=new UserVO();
+			//userVO=new UserVO();
 			userVO.setSection_fullcode(section_cd);
 			entity = new ResponseEntity<List<Com_teamVO>>(teamService.list(section_cd), HttpStatus.OK);
 		} catch (Exception e) {

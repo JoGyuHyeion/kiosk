@@ -104,11 +104,11 @@ pageEncoding="UTF-8"%>
                         <form action="/section/insert" method="post">
                             <div class="form-group">
                                 <label for="image" class="control-label">과코트</label> 
-                                <input type="text" id="section_cd" class="form-control">
+                                <input type="text" id="section_cd" maxlength="4" placeholder="ex) S023" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="image" class="control-label">과명칭</label> 
-                                <input type="text" id="section_name" class="form-control">
+                                <input type="text" id="section_name" maxlength="30" placeholder="과명칭(30자 이내)" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="image" class="control-label">사용여부</label> 
@@ -130,8 +130,8 @@ pageEncoding="UTF-8"%>
             $(document).ready(function () {
             	
             	 $('#addSection').on('click', function () {
-            	        $("#section_cd").val(" ");
-            	        $("#section_name").val(" ");
+            	        $("#section_cd").val("");
+            	        $("#section_name").val("");
             	        $("#new_section_use").prop('checked',false)
             	 });
             	

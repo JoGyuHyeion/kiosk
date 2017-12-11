@@ -105,19 +105,21 @@
 							</div>
 						</form>
 					</div>
-					<div class="form-group" style="text-align: center">
-						<button type="button"
-							class="btn btn-primary waves-effect w-md waves-light m-b-5"
-							id="change">수정</button>
-						<form action="/noticeboard/removePage" method="post">
-							<input type="hidden" name="bbs_no" value="${com_boardVO.bbs_no}">
-							<button type="submit"
-								class="btn btn-danger waves-effect w-md waves-light m-b-5"
-								id="delete">삭제</button>
-						</form>
-						<button type="button"
-							class="btn btn-warning waves-effect w-md waves-light m-b-5"
-							id="back">돌아가기</button>
+					<div class ="row">
+						<div class="form-group" style="text-align: center;">
+							<button type="button"
+								class="btn btn-primary waves-effect w-md waves-light m-b-5"
+								id="change">수정</button>
+							<form action="/noticeboard/removePage" method="post">
+								<input type="hidden" name="bbs_no" value="${com_boardVO.bbs_no}">
+								<button type="submit"
+									class="btn btn-danger waves-effect w-md waves-light m-b-5"
+									id="delete">삭제</button>
+							</form>
+							<button type="button"
+								class="btn btn-warning waves-effect w-md waves-light m-b-5"
+								id="back">돌아가기</button>
+						</div>
 					</div>
 					<script>
 						$(document)
