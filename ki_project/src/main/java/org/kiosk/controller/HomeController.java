@@ -1,9 +1,12 @@
 package org.kiosk.controller;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.kiosk.service.Com_sectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +61,29 @@ public class HomeController {
 		System.out.println("doB.........................");
 		model.addAttribute("result", "DOB RESULT");
 		return "home";
+
+	}
+	
+
+	final private String[] dirPath = { "resources", "upload", "staff2" };
+
+	final private String uploadPath() {
+		String uploadPath = File.separator;
+		for (String path : dirPath) {
+			uploadPath = uploadPath + path + File.separator;
+		}
+		return uploadPath;
+	}
+	
+	@RequestMapping(value = "/path", method = RequestMethod.GET)
+	public String getPath(Locale locale, Model model, HttpServletRequest request) {
+
+		System.out.println("getPath.........................");
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+		model.addAttribute("rootpath", root_path);
+		model.addAttribute("subpath", uploadPath());
+		model.addAttribute("totalPath", root_path+uploadPath());
+		return "path";
 
 	}
 
