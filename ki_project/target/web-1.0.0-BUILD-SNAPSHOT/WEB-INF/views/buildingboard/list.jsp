@@ -40,6 +40,9 @@
 								<option value="3">서관</option>
 							</select>
 						</form>
+						<div class="col-sm-1">
+							<a href="/buildingboard/register" class="btn btn-primary ">등록</a>
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -153,6 +156,13 @@
 																	class="btn btn-info btn-rounded waves-effect m-t-10 waves-light change_btn"
 																	data-toggle="modal" data-target="#buildingModal"
 																	value="${com_buildingVO.bu_no}">수정</button>
+																<form action="/buildingboard/removePage" method="post">
+																	<input type="hidden" name="bu_no"
+																		value="${com_buildingVO.bu_no}">
+																	<button type="submit"
+																		class="btn btn-danger btn-rounded waves-effect m-t-10 waves-light"
+																		id="delete" style="display:none;">삭제</button>
+																</form>
 																<label class="col-md-5 control-label">마지막 수정 날짜:
 																	${com_buildingVO.bu_ndt}</label>
 															</div>
@@ -172,6 +182,13 @@
 																	class="btn btn-info btn-rounded waves-effect m-t-10 waves-light change_btn"
 																	data-toggle="modal" data-target="#buildingModal"
 																	value="${com_buildingVO.bu_no}">수정</button>
+																<form action="/buildingboard/removePage" method="post">
+																	<input type="hidden" name="bu_no"
+																		value="${com_buildingVO.bu_no}">
+																	<button type="submit"
+																		class="btn btn-danger btn-rounded waves-effect m-t-10 waves-light"
+																		id="delete" style="display:none;">삭제</button>
+																</form>
 																<label class="col-md-5 control-label">마지막 수정 날짜:
 																	${com_buildingVO.bu_ndt}</label>
 															</div>
