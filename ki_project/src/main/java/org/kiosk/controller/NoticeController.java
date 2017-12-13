@@ -42,7 +42,7 @@ public class NoticeController {
 	private String[] dirPath = { "resources","upload","notice" };
 	
 	private String uploadPath() {
-		String uploadPath = "";
+		String uploadPath = File.separator;
 		for (String path : dirPath) {
 			uploadPath = uploadPath + path + File.separator;
 		}
