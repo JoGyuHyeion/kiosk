@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
+import org.kiosk.service.BuildingService;
 import org.kiosk.service.Com_buildingService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -30,6 +31,9 @@ public class BuildingBoardController {
 
 	@Inject
 	private Com_buildingService service;
+	
+	@Inject
+	private BuildingService buildingService;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -56,8 +60,32 @@ public class BuildingBoardController {
 		logger.info("Login : " + userVO.toString());
 
 		model.addAttribute("list", service.listSearchCriteria(cri));
+		model.addAttribute("buildingList", buildingService.listAll());
 		model.addAttribute("uploadPath", uploadPath());
 
+	}
+	
+	@RequestMapping(value = "/section", method = RequestMethod.GET)
+	public void sectionGET(Model model, @ModelAttribute("bcd") String bcd, HttpServletRequest request)
+			throws Exception {
+
+		logger.info("buildingboard/section - GET ");
+		model.addAttribute("buildingList", buildingService.listAll());
+
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("login", userVO);
+		logger.info("Login : " + userVO.toString());
+
+	}
+
+	@RequestMapping(value = "/section", method = RequestMethod.POST)
+	public String sectionPOST(RedirectAttributes rttr) throws Exception {
+
+		logger.info("buildingboard/section - POST ");
+		logger.info(rttr.toString());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		return "redirect:/buildingboard/section";
 	}
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)

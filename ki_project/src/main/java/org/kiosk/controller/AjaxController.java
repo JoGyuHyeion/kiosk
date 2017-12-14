@@ -7,11 +7,13 @@ import javax.annotation.Resource;
 //import java.util.Map;
 import javax.inject.Inject;
 
+import org.kiosk.domain.BuildingVO;
 import org.kiosk.domain.Com_bureauVO;
 import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.UserVO;
 import org.kiosk.dto.LoginDTO;
+import org.kiosk.service.BuildingService;
 //import org.kiosk.dto.TeamsDTO;
 import org.kiosk.service.Com_bureauService;
 import org.kiosk.service.Com_sectionService;
@@ -45,6 +47,8 @@ public class AjaxController {
 	private Com_bureauService bureauService;
 	@Inject
 	private UserService userService;
+	@Inject
+	private BuildingService buildingService;
 	@Resource(name="UserVO")
 	private UserVO userVO;
 
@@ -186,6 +190,52 @@ public class AjaxController {
 			vo.setSection_cd(section_cd);
 			vo.setTeam_cd(team_cd);
 			teamService.remove(vo);
+			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/building/insert", method = RequestMethod.POST)
+	public ResponseEntity<String> buildingReister(@RequestBody BuildingVO vo) {
+		logger.info("/building/insert");
+		ResponseEntity<String> entity = null;
+		try {
+
+			buildingService.regist(vo);
+			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/building/listUpdate/{bu_type}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+	public ResponseEntity<String> buildingListUpdate(@PathVariable("bu_type") String bu_type,
+			@RequestBody List<BuildingVO> buildingList) {
+		logger.info("/building/update/{bu_type}");
+		ResponseEntity<String> entity = null;
+		try {
+			for (BuildingVO vo : buildingList) {
+				buildingService.modify(vo);
+			}
+			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
+	@RequestMapping(value = "/building/del/{bu_type}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> buildingRemove(@PathVariable("bu_type") int bu_type) {
+		logger.info("/building/del/{bu_type}");
+		ResponseEntity<String> entity = null;
+		try {
+			buildingService.remove(bu_type);
 			entity = new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

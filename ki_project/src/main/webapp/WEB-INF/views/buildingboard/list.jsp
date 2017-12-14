@@ -33,15 +33,21 @@
 						<form id="bu_type_chage_form" role="form"
 							action="/buildingboard/list">
 							<input type=hidden name="keyword" id="keyword" value=1>;
-							<label class=" col-md-2 control-label" for="search_bu">건물
-								선택</label> <select id="search_bu" name="search_bu" class="form-control">
-								<option value="1">본관</option>
-								<option value="2">동관</option>
-								<option value="3">서관</option>
+							<label class=" col-md-2 control-label" for="search_bu">건물선택</label> 
+							<select id="search_bu" name="search_bu" class="form-control">
+								<c:forEach items="${buildingList}" var="BuildingVO">
+									<option value="${BuildingVO.bu_type}">${BuildingVO.building_name}</option>
+
+								</c:forEach>
+
 							</select>
+
 						</form>
 						<div class="col-sm-1">
-							<a href="/buildingboard/register" class="btn btn-primary ">등록</a>
+							<a href="/buildingboard/register" class="btn btn-primary ">사진등록</a>
+						</div>
+						<div class="col-sm-1">
+							<a href="/buildingboard/section" class="btn btn-warning ">건물 관리</a>
 						</div>
 					</div>
 				</div>
@@ -161,7 +167,7 @@
 																		value="${com_buildingVO.bu_no}">
 																	<button type="submit"
 																		class="btn btn-danger btn-rounded waves-effect m-t-10 waves-light"
-																		id="delete" style="display:none;">삭제</button>
+																		id="delete" style="display: none;">삭제</button>
 																</form>
 																<label class="col-md-5 control-label">마지막 수정 날짜:
 																	${com_buildingVO.bu_ndt}</label>
@@ -187,7 +193,7 @@
 																		value="${com_buildingVO.bu_no}">
 																	<button type="submit"
 																		class="btn btn-danger btn-rounded waves-effect m-t-10 waves-light"
-																		id="delete" style="display:none;">삭제</button>
+																		id="delete" style="display: none;">삭제</button>
 																</form>
 																<label class="col-md-5 control-label">마지막 수정 날짜:
 																	${com_buildingVO.bu_ndt}</label>
