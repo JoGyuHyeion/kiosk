@@ -14,7 +14,7 @@
 
 <link rel="shortcut icon" href="/resources/assets/images/favicon.ico">
 
-<title>Zircos - Responsive Admin Dashboard Template</title>
+<title>스마트 조직도</title>
 
 <!-- App css -->
 <link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet"

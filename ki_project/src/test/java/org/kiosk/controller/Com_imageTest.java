@@ -23,7 +23,7 @@ public class Com_imageTest {
 	@Inject
 	private Com_imageDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
+	private static Logger logger = LoggerFactory.getLogger(Com_imageTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());

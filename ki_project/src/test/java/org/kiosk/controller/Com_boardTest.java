@@ -19,7 +19,7 @@ public class Com_boardTest {
 	@Inject
 	private Com_boardDAO dao;
 
-	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
+	private static Logger logger = LoggerFactory.getLogger(Com_boardTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());

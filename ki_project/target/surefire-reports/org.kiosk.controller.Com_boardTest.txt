@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: org.kiosk.controller.Com_boardTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
+<<<<<<< HEAD
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.484 sec
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.375 sec
+>>>>>>> 36de594b8fd0000f173732bfbf900cd7ef95ca41
+=======
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.487 sec
+>>>>>>> 0cc110bd39dd445a0e95ffea9f26d8adc99b3ab4
