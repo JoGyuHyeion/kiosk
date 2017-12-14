@@ -89,15 +89,11 @@ public class UsbFileController {
 
 		logger.info("/usbFileboard/usb - POST");
 		logger.info("newUser post ...........");
-		System.out.println(section_fullcode);
-
-		String path = root_path + uploadPath().substring(0, uploadPath().lastIndexOf("\\"));
-		String toPath = path.substring(0, path.lastIndexOf("\\") + 1);
+		logger.info(section_fullcode);
+		
+		String path = root_path + uploadPath().substring(0, uploadPath().lastIndexOf(File.separator));
+		String toPath = path.substring(0, path.lastIndexOf(File.separator) + 1);
 		String fileName = dirPath[dirPath.length-1];
-
-		System.out.println("path : " + path);
-		System.out.println("toPath : " + toPath);
-		System.out.println("fileName : " + fileName);
 
 		makeJsonTextFile(path, section_fullcode);
 

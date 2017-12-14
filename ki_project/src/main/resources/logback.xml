@@ -9,5 +9,7 @@
     <logger name="jdbc.resultset"      level="ERROR"/>
     <logger name="jdbc.resultsettable" level="ERROR"/>
     <logger name="jdbc.connection"     level="INFO"/>
+    <!-- log4 controller -log4j2 -->
+     <logger name="org.kiosk.controller"     level="INFO"/>
 </configuration>
 
