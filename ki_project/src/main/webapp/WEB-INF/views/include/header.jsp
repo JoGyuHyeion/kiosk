@@ -155,7 +155,7 @@
 									<ul>
 										<li><a href="/staff2board/register">직원등록</a></li>
 										<li><a href="/staff2board/list?page=1&perPageNum=10">직원조희</a></li>
-										<li><a href="/staff2board/moveStaff?page=1&perPageNum=10">부서이동(Super)</a></li>
+										<li><a href="/staff2board/moveStaff?page=1&perPageNum=10">직원부서이동</a></li>
 										
 									</ul>
 								</li>
