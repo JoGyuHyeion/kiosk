@@ -91,7 +91,7 @@ public class UsbFileController {
 		logger.info("newUser post ...........");
 		System.out.println(section_fullcode);
 
-		String path = root_path + uploadPath();
+		String path = root_path + uploadPath().substring(0, uploadPath().lastIndexOf("\\"));
 		String toPath = path.substring(0, path.lastIndexOf("\\") + 1);
 		String fileName = dirPath[dirPath.length-1];
 

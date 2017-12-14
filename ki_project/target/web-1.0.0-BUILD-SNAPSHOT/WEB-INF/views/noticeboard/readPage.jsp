@@ -64,6 +64,7 @@
 												class="thumb-img" alt="등록된 사진이 없습니다.">
 										</div>
 									</div>
+									
 									<!-- brd_cd -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">공지/이벤트</label>
@@ -122,36 +123,30 @@
 						</div>
 					</div>
 					<script>
-						$(document)
-								.ready(
-										function() {
-											var formObj = $("form[role='form']");
-
-											console.log(formObj);
-
-											$("#change")
-													.on(
-															"click",
-															function() {
-																self.location = "/noticeboard/modifyPage?bbs_no=${com_boardVO.bbs_no}";
-															});
-
-											$("#back")
-													.on(
-															"click",
-															function() {
-																self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-															});
-											/* alert("${com_boardVO.bbs_state}"); */
-											var bbs_state = ${com_boardVO.bbs_state};
-											if (bbs_state == 1) {
-												$('input:checkbox[id="bbs_state"]').attr("checked", true);
-											}
-											var brd_cd = "${com_boardVO.brd_cd}";
-											$('input:radio[name="brd_cd"]:input[value='+brd_cd+']').prop("checked", true);
-											$('input:radio[name="brd_cd"]:not(:checked)').prop("disabled","disabled");
-
-										});
+						$(document).ready(function() {
+							
+							var formObj = $("form[role='form']");
+							console.log(formObj);
+							
+							$("#change").on("click",function() {
+								self.location = "/noticeboard/modifyPage?bbs_no=${com_boardVO.bbs_no}";
+							});
+							
+							$("#back").on("click",function() {
+								self.location = "/noticeboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+							});
+							
+							/* alert("${com_boardVO.bbs_state}"); */
+							var bbs_state = ${com_boardVO.bbs_state};
+							
+							if (bbs_state == 1) {
+								$('input:checkbox[id="bbs_state"]').attr("checked", true);
+							}
+							
+							var brd_cd = "${com_boardVO.brd_cd}";
+							$('input:radio[name="brd_cd"]:input[value='+brd_cd+']').prop("checked", true);
+							$('input:radio[name="brd_cd"]:not(:checked)').prop("disabled","disabled");
+						});
 					</script>
 				</div>
 			</div>

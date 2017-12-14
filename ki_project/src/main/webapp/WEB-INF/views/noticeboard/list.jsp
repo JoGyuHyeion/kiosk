@@ -152,21 +152,15 @@
 		</script>
 
 		<script>
-			$(document).ready(
-					function() {
-
-						$('#searchBtn').on(
-								"click",
-								function(event) {
-
-									self.location = "list"
-											+ '${pageMaker.makeQuery(1)}'
-											+ "&keyword="
-											+ $('#keywordInput').val();
-
-								});
-
-					});
+			$(document).ready(function() {
+				
+				$('#searchBtn').on("click",function(event) {
+					self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&keyword="
+					+ $('#keywordInput').val();
+				});
+			});
 		</script>
 	</div>
 </section>

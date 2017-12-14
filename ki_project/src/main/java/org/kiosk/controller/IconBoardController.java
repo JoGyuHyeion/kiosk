@@ -99,19 +99,19 @@ public class IconBoardController {
 			@RequestParam("iconName") String iconName) throws Exception {
 		logger.info("iconboard/modifyPage - POST");
 		String root_path = request.getSession().getServletContext().getRealPath("/");
-		String icon_filenm;
+		String icon_filenm = null;
 		String default_img_filenm = "icon" + board.getIc_no() + ".png";
 
-		if (!(iconName.equals(default_img_filenm))) {
+		if (board.getIc_default() == 0 && !(iconFile.getOriginalFilename().equals(""))) {// custom 이고 받아오는 파일 값이 있을때
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getIc_no()).getIc_icon());
-		}
-		if (board.getIc_default() == 0) {
 			icon_filenm = uploadFileUtils.uploadImageFile(root_path, iconFile.getOriginalFilename(),
 					iconFile.getBytes(), img_fileName + board.getIc_no(), dirPath);
-		} else {
+
+		} else if (board.getIc_default() == 0 && iconFile.getOriginalFilename().equals("")) {// custom 이고 받아오는 파일 값이 없을때
+			icon_filenm = iconName;
+		} else if (board.getIc_default() == 1) { // default 일때
 			icon_filenm = default_img_filenm;
 		}
-		logger.info("test" + icon_filenm + " " + board.getIc_default());
 
 		board.setIc_icon(icon_filenm);
 		service.modify(board);
