@@ -43,6 +43,8 @@ public class Staff2BoardController {
 
 	@Resource(name = "PageMaker")
 	private PageMaker pageMaker;
+	@Resource(name = "Com_staff2VO")
+	private Com_staff2VO staff2VO;
 
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
@@ -85,6 +87,35 @@ public class Staff2BoardController {
 		model.addAttribute("sectionService", sectionService.listAll());
 		model.addAttribute("list", service.listSearchCriteria(cri));
 	}
+	
+	
+	@RequestMapping(value = "/moveStaff", method = RequestMethod.GET)
+	public void moveStaff(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
+
+		logger.info("staff2board/moveStaff - GET");
+		logger.info("test-" + cri.toString());
+
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		logger.info("Login : " + userVO.toString());
+
+		pageMaker.setCri(cri);
+
+		if (userVO.getAuth() == 1 || cri.getSection_cd() == null) {
+			cri.setSection_cd(userVO.getSection_fullcode());
+		}
+
+		pageMaker.setTotalCount(service.listSearchCount(cri));
+
+		model.addAttribute("login", userVO);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("uploadPath", uploadPath());
+		model.addAttribute("sectionService", sectionService.listAll());
+		model.addAttribute("list", service.listSearchCriteria(cri));
+	}
+	
+	
 
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
@@ -198,6 +229,23 @@ public class Staff2BoardController {
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		return "redirect:/staff2board/list?page=1";
+	}
+	
+	@RequestMapping(value = "/moveStaff", method = RequestMethod.POST)
+	public String moveStaffPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr, HttpServletRequest request, String imgName) throws Exception {
+		logger.info("staff2board/moveStaff - POST");
+		logger.info(cri.toString());
+		staff2VO = service.read(board.getSt_no());
+		staff2VO.setReal_use_dep_nm(board.getReal_use_dep_nm());
+		staff2VO.setClass_nm(board.getClass_nm());
+		service.modify(staff2VO);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		logger.info(rttr.toString());
+
+		return "redirect:/staff2board/moveStaff";
 	}
 
 }

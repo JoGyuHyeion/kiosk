@@ -60,12 +60,13 @@
 			<mapping path="/*/team" />
 			<mapping path="/*/newUser" />
 			<mapping path="/*/usb" />
+			<mapping path="/*/moveStaff" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 	</interceptors>
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="52428800"></beans:property>
+		<beans:property name="maxUploadSize" value="2097152000"></beans:property>
 	</beans:bean>
 
 <!-- 	<beans:bean id="uploadPath" class="java.lang.String">
