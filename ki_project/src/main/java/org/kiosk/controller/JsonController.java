@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+
+import org.kiosk.domain.BuildingVO;
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
 import org.kiosk.domain.Com_iconVO;
@@ -18,6 +20,7 @@ import org.kiosk.dto.JsonGelleryDTO;
 import org.kiosk.dto.JsonNoticeDTO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.dto.MateDTO;
+import org.kiosk.service.BuildingService;
 import org.kiosk.service.Com_bgImgService;
 import org.kiosk.service.JsonGelleryService;
 import org.kiosk.service.JsonMateService;
@@ -56,6 +59,8 @@ public class JsonController {
 	private Com_sectionService sectionService;
 	@Inject
 	private Com_buildingService buildingService;
+	@Inject
+	private BuildingService buildingNameService;
 	@Inject
 	private Com_iconService iconService;
 	@Inject
@@ -156,11 +161,10 @@ public class JsonController {
 		Map<String, List<Com_buildingVO>> buildingList = null;
 		try {
 			buildingList = new HashMap<String, List<Com_buildingVO>>();
-			String rootName = Com_buildingVO.class.getAnnotation(JsonRootName.class).value();
-			buildingList.put(rootName, buildingService.listAll());
-
-			// buildingList.put("건물이름", buildingService.listAll());
-
+			
+			for(BuildingVO vo:buildingNameService.listAll() ) {
+				buildingList.put(vo.getBuilding_name(), buildingService.list(vo.getBu_type()));
+			}
 			entity = new ResponseEntity<Map<String, List<Com_buildingVO>>>(buildingList, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();

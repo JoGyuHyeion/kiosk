@@ -16,6 +16,8 @@ public interface Com_buildingService {
 	public void remove(Integer bu_no) throws Exception;
 
 	public List<Com_buildingVO> listAll() throws Exception;
+	
+	public List<Com_buildingVO> list(Integer bu_type) throws Exception;
 
 	public int lastInsertID() throws Exception;
 

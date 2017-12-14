@@ -46,6 +46,11 @@ public class Com_buildingDAOImpl implements Com_buildingDAO {
 	public List<Com_buildingVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
+	
+	@Override
+	public List<Com_buildingVO> list(Integer bu_type) throws Exception {
+		return session.selectList(namespace + ".list",bu_type);
+	}
 
 	@Override
 	public int lastInsertID() throws Exception {
@@ -82,5 +87,7 @@ public class Com_buildingDAOImpl implements Com_buildingDAO {
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return session.selectOne(namespace + ".listSearchCount", cri);
 	}
+
+	
 
 }
