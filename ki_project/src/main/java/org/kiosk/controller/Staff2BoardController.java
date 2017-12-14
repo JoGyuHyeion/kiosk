@@ -155,9 +155,9 @@ public class Staff2BoardController {
 		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), board.getClass_nm());
 		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
 		board.setTeam_cd(teamVO.getTeam_cd());
-		board.setSt_sort(teamVO.getTeam_sort());
+		//board.setSt_sort(teamVO.getTeam_sort());
 
-		String img_filenm;
+		String img_filenm=null;
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
 		if (imgName.equals(board.getImg_filenm())) {
@@ -168,6 +168,7 @@ public class Staff2BoardController {
 			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(), imgFile.getBytes(),
 					img_fileName + board.getSt_no(), dirPath);
 		}
+		
 		board.setImg_filenm(img_filenm);
 		service.modify(board);
 
