@@ -90,39 +90,36 @@
 	</div>
 	<!-- end row -->
 	<script>
-	$(document)
-	.ready(
-			function() {
-				var formObj = $("form[role='form']");
-				console.log(formObj);
-				$("#back")
-						.on(
-								"click",
-								function() {
-									self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-								});
-
-			
-			/* alert("${com_imageVO.img_gallery}"); */
-			var input = ${com_imageVO.img_gallery};
-			if (input == 1) { //값 비교
-				$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
-			}
+	$(document).ready(function() {
+		
+		var formObj = $("form[role='form']");
+		console.log(formObj);
+		
+		$("#back").on("click",function() {
+			self.location = "/galleryboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 		});
+		
+		/* alert("${com_imageVO.img_gallery}"); */
+		var input = ${com_imageVO.img_gallery};
+		
+		if (input == 1) { //값 비교
+			$('input:checkbox[id="img_gallery"]').attr("checked", true); //checked 처리
+		}
+		
+	});
+	
 	function formCheck() {
 		if ($.trim($("#img_title").val()) == "") {
 			alert("제목을 입력하세요");
 			$("#img_title").focus();
 			return false;
-		}else if ($.trim($("#img_filenm").val()) == "") {
+		}/* else if ($.trim($("#img_file").val()) == "") {
 			alert("사진을 첨부하세요");
 			$("#img_filenm").focus();
 			return false;
-		}
+		} */
 		return true;
-
 	}
-
 
 		</script>
 	<!-- end container -->

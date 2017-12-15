@@ -61,9 +61,8 @@
 											class="file_input_textbox form-control col-md-5 "
 											readonly="readonly" value="${com_bgImgVO.bi_img}" />
 										<div class="file_input_div">
-											<input type="button" value="파일"
-												class="file_input_button btn btn-primary" /> <input
-												type="file" class="file_input_hidden" data-icon='false'
+											<input type="button" value="파일" class="file_input_button btn btn-primary" /> 
+												<input type="file" class="file_input_hidden" data-icon='false'
 												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
 												accept="image/*" name="imgFile" id="img_file" />
 										</div>
@@ -90,37 +89,35 @@
 	<!-- end row -->
 	<script>
 	
-		$(document)
-			.ready(
-				function() {
-					var formObj = $("form[role='form']");
-					console.log(formObj);
-					$("#back")
-						.on(
-								"click",
-								function() {
-									self.location = "/backGroundboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
-								});
-
+		$(document).ready(function() {
 			
-					var input = ${com_bgImgVO.bi_able};
-					if (input == 1) { //값 비교
-						$('input:checkbox[id="bi_able"]').attr("checked", true); //checked 처리
-					}
-
-				});
+			var formObj = $("form[role='form']");
+			console.log(formObj);
+			
+			$("#back").on("click",function() {
+				self.location = "/backGroundboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+				
+			});
+			
+			var input = ${com_bgImgVO.bi_able};
+			
+			if (input == 1) { //값 비교
+				$('input:checkbox[id="bi_able"]').attr("checked", true); //checked 처리
+			}
+		});
+		
 		function formCheck() {
+			
 			if ($.trim($("#bi_name").val()) == "") {
 				alert("제목을 입력하세요");
 				$("#bi_name").focus();
 				return false;
-			}else if ($.trim($("#img_file").val()) == "") {
+			}/* else if ($.trim($("#img_file").val()) == "") {
 				alert("사진을 첨부하세요");
 				$("#img_file").focus();
 				return false;
-			}
+			} */
 			return true;
-
 		}
 		</script>
 	<!-- end container -->
