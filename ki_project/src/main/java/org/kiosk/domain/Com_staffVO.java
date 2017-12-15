@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component("Com_staff2VO")
+@Component("Com_staffVO")
 public class Com_staffVO {
 
 	private int st_no;
