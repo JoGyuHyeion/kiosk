@@ -46,7 +46,7 @@
 										<label class="col-md-2 control-label">이름</label>
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
-												id="usr_nm" name="usr_nm" value="${com_staff2VO.usr_nm}">
+												id="usr_nm" name="usr_nm" value="${com_staffVO.usr_nm}">
 										</div>
 									</div>
 									<!-- posit_nm-->
@@ -55,7 +55,7 @@
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
 												readonly="readonly" rows="10" id="posit_nm" name="posit_nm"
-												value="${com_staff2VO.posit_nm}">
+												value="${com_staffVO.posit_nm}">
 										</div>
 									</div>
 									<!-- telno -->
@@ -64,7 +64,7 @@
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
 												readonly="readonly" rows="10" id="telno" name="telno"
-												value="${com_staff2VO.telno}">
+												value="${com_staffVO.telno}">
 										</div>
 									</div>
 
@@ -74,7 +74,7 @@
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
 												readonly="readonly" rows="10" id="email_addr"
-												name="email_addr" value="${com_staff2VO.email_addr}">
+												name="email_addr" value="${com_staffVO.email_addr}">
 										</div>
 									</div>
 									<!-- st_job-->
@@ -83,7 +83,7 @@
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
 												readonly="readonly" rows="10" id="st_key" name="st_key"
-												value="${com_staff2VO.main_task}">
+												value="${com_staffVO.main_task}">
 										</div>
 									</div>
 									<!-- adi_info7 -->
@@ -91,7 +91,7 @@
 										<label class="col-md-2 control-label">사무설명</label>
 										<div class="col-md-10">
 											<textarea class="form-control" readonly="readonly" rows="10"
-												id="adi_info7" name="adi_info7">${com_staff2VO.adi_info7}</textarea>
+												id="adi_info7" name="adi_info7">${com_staffVO.adi_info7}</textarea>
 										</div>
 									</div>
 
@@ -100,7 +100,7 @@
 										<label class="col-md-2 control-label">사진</label>
 										<div class="col-me-10">
 											<img
-												src="${pageContext.request.contextPath}${uploadPath}${com_staff2VO.img_filenm}"
+												src="${pageContext.request.contextPath}${uploadPath}${com_staffVO.img_filenm}"
 												class="thumb-img" alt="등록된 사진이 없습니다.">
 										</div>
 									</div>
@@ -117,8 +117,8 @@
 						<button type="button"
 							class="btn btn-primary waves-effect w-md waves-light m-b-5"
 							id="change">수정</button>
-						<form action="/staff2board/removePage" method="post">
-							<input type="hidden" name="st_no" value="${com_staff2VO.st_no}">
+						<form action="/staffboard/removePage" method="post">
+							<input type="hidden" name="st_no" value="${com_staffVO.st_no}">
 							<button type="submit"
 								class="btn btn-danger waves-effect w-md waves-light m-b-5"
 								id="delete">삭제</button>
@@ -139,14 +139,14 @@
 													.on(
 															"click",
 															function() {
-																self.location = "/staff2board/modifyPage?page=${cri.page}&perPageNum=${cri.perPageNum}&st_no=${com_staff2VO.st_no}";
+																self.location = "/staffboard/modifyPage?page=${cri.page}&perPageNum=${cri.perPageNum}&st_no=${com_staffVO.st_no}";
 															});
 
 											$("#back")
 													.on(
 															"click",
 															function() {
-																self.location = "/staff2board/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+																self.location = "/staffboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 															});
 										});
 					</script>

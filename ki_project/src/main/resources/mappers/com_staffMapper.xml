@@ -3,25 +3,25 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.kiosk.mapper.Com_staff2Mapper">
+<mapper namespace="org.kiosk.mapper.Com_staffMapper">
 
 	<insert id="create">
-		insert into com_staff2
+		insert into com_staff
 		(real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt,main_task)
 		values
 		(#{real_use_dep_nm},#{usr_nm},#{logon_id},#{st_key},#{class_nm},#{posit_nm},#{telno},#{img_filenm},#{email_addr},#{usr_work_state_code_nm},#{st_status},#{engm_se},#{adi_info7},#{st_sort},#{section_cd},#{team_cd},now(),now(),#{main_task})
 	</insert>
 
-	<select id="read" resultType="Com_staff2VO">
+	<select id="read" resultType="Com_staffVO">
 		select
 		st_no,real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt,main_task
-		from com_staff2
+		from com_staff
 		where
 		st_no = #{st_no}
 	</select>
 
 	<update id="update">
-		update com_staff2 set
+		update com_staff set
 		real_use_dep_nm=#{real_use_dep_nm},
 		class_nm=#{class_nm},
 		usr_nm=#{usr_nm},
@@ -42,32 +42,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<delete id="delete">
-		delete from com_staff2 where st_no = #{st_no}
+		delete from com_staff where st_no = #{st_no}
 	</delete>
 
-	<select id="listAll" resultType="Com_staff2VO">
+	<select id="listAll" resultType="Com_staffVO">
 		 <![CDATA[
-		 select * from com_staff2 
+		 select * from com_staff 
 		 ]]>
 	</select>
 
 	<select id="createSortNo" resultType="int">
 		select count(*) 
-		from com_staff2 
+		from com_staff 
 		where section_cd = #{section_cd} 
 		and team_cd = #{team_cd}
 		order by team_cd asc
 	</select>
 	
 	<update id="sortupdate">
-		update com_staff2 set
+		update com_staff set
 		st_sort=#{st_sort}
 		where st_no = #{st_no}
 	</update>
 	
-	<select id="teamListSort" resultType="Com_staff2VO">
+	<select id="teamListSort" resultType="Com_staffVO">
 		 <![CDATA[
-		 select * from com_staff2 
+		 select * from com_staff 
 		 where section_cd = #{section_cd} 
 		 and team_cd = #{team_cd}
 		 order by team_cd asc
@@ -80,28 +80,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		information_schema.TABLES
 		WHERE TABLE_SCHEMA = "kipro"
 		AND TABLE_NAME =
-		"com_staff2";
+		"com_staff";
 	</select>
 	
 
-	<select id="listPage" resultType="Com_staff2VO">
+	<select id="listPage" resultType="Com_staffVO">
 		 <![CDATA[
 		 select 
 		 st_no,real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt,main_task
 		 from 
-		 com_staff2 
+		 com_staff 
 		 where st_no > 0 
 		 order by st_no desc
 		 limit #{page}, 10
 		 ]]>
 	</select>
 
-	<select id="listCriteria" resultType="Com_staff2VO">
+	<select id="listCriteria" resultType="Com_staffVO">
 		 <![CDATA[
 		 select 
 		 st_no,real_use_dep_nm,usr_nm,logon_id,st_key,class_nm,posit_nm,telno,img_filenm,email_addr,usr_work_state_code_nm,st_status,engm_se,adi_info7,st_sort,section_cd,team_cd,st_wdt,st_edt,main_task
 		 from 
-		 com_staff2 
+		 com_staff 
 		 where st_no > 0 
 		 order by st_no desc
 		 limit #{pageStart}, #{perPageNum}
@@ -113,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 select 
 		 count(st_no) 
 		 from 
-		 com_staff2 
+		 com_staff 
 		 where st_no > 0 
 		 ]]>
 	</select>
@@ -128,10 +128,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and usr_nm like CONCAT('%',#{keyword},'%')
 	</sql>
 
-	<select id="listSearch" resultType="Com_staff2VO">
+	<select id="listSearch" resultType="Com_staffVO">
 		<![CDATA[  
 		 select * 
-		 from com_staff2 
+		 from com_staff 
 		 where st_no > 0 
 		]]>
 		<include refid="search"></include>
@@ -145,7 +145,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listSearchCount" resultType="int">
 		<![CDATA[  
 		  select count(st_no) 
-		  from com_staff2 
+		  from com_staff 
 		  where st_no > 0 
 		]]>
 		<include refid="search"></include>

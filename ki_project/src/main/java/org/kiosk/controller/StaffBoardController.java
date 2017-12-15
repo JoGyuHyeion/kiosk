@@ -6,13 +6,13 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.kiosk.domain.Com_staff2VO;
+import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
 import org.kiosk.service.Com_sectionService;
-import org.kiosk.service.Com_staff2Service;
+import org.kiosk.service.Com_staffService;
 import org.kiosk.service.Com_teamService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
@@ -27,13 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/staff2board/*")
-public class Staff2BoardController {
+@RequestMapping("/staffboard/*")
+public class StaffBoardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(Staff2BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(StaffBoardController.class);
 
 	@Inject
-	private Com_staff2Service service;
+	private Com_staffService service;
 
 	@Inject
 	private Com_sectionService sectionService;
@@ -44,8 +44,8 @@ public class Staff2BoardController {
 	@Resource(name = "PageMaker")
 	private PageMaker pageMaker;
 
-	@Resource(name = "Com_staff2VO")
-	private Com_staff2VO staff2VO;
+	@Resource(name = "Com_staffVO")
+	private Com_staffVO staffVO;
 
 	@Resource(name = "Com_teamVO")
 	private Com_teamVO teamVO;
@@ -53,8 +53,8 @@ public class Staff2BoardController {
 	@Resource(name = "UploadFileUtils")
 	private UploadFileUtils uploadFileUtils;
 
-	private String img_fileName = "staff2_";
-	private String[] dirPath = { "resources", "upload", "staff2" };
+	private String img_fileName = "staff_";
+	private String[] dirPath = { "resources", "upload", "staff" };
 
 	private String uploadPath() {
 		String uploadPath = File.separator;
@@ -70,7 +70,7 @@ public class Staff2BoardController {
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
 			throws Exception {
 
-		logger.info("staff2board/list - GET");
+		logger.info("staffboard/list - GET");
 		logger.info("test-" + cri.toString());
 
 		HttpSession session = request.getSession();
@@ -95,7 +95,7 @@ public class Staff2BoardController {
 	@RequestMapping(value = "/readPage", method = RequestMethod.GET)
 	public void read(@RequestParam("st_no") int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
 			HttpServletRequest request) throws Exception {
-		logger.info("staff2board/readPage - GET");
+		logger.info("staffboard/readPage - GET");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("login", userVO);
@@ -108,7 +108,7 @@ public class Staff2BoardController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
 			throws Exception {
-		logger.info("staff2board/register - GET");
+		logger.info("staffboard/register - GET");
 		logger.info("regist get ...........");
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
@@ -119,9 +119,9 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(Com_staff2VO board, RedirectAttributes rttr,
+	public String registPOST(Com_staffVO board, RedirectAttributes rttr,
 			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request) throws Exception {
-		logger.info("staff2board/register - POST");
+		logger.info("staffboard/register - POST");
 		logger.info("regist post ...........");
 		logger.info(board.toString());
 		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), board.getClass_nm());
@@ -136,13 +136,13 @@ public class Staff2BoardController {
 		service.regist(board);
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/staff2board/list?page=1";
+		return "redirect:/staffboard/list?page=1";
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
 	public void modifyPagingGET(int st_no, @ModelAttribute("cri") SearchCriteria cri, Model model,
 			HttpServletRequest request) throws Exception {
-		logger.info("staff2board/modifyPage - GET");
+		logger.info("staffboard/modifyPage - GET");
 		model.addAttribute(service.read(st_no));
 		logger.info(service.read(st_no).toString());
 		HttpSession session = request.getSession();
@@ -153,10 +153,10 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-	public String modifyPagingPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr,
+	public String modifyPagingPOST(Com_staffVO board, SearchCriteria cri, RedirectAttributes rttr,
 			@RequestParam("imgFile") MultipartFile imgFile, HttpServletRequest request,
 			@RequestParam("imgName") String imgName) throws Exception {
-		logger.info("staff2board/modifyPage - POST");
+		logger.info("staffboard/modifyPage - POST");
 		logger.info(cri.toString());
 		Com_teamVO teamVO = teamService.readTeamCd(board.getSection_cd(), board.getClass_nm());
 		board.setReal_use_dep_nm(sectionService.readSectionNm(board.getSection_cd()));
@@ -180,19 +180,18 @@ public class Staff2BoardController {
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
 		logger.info(rttr.toString());
 
-		return "redirect:/staff2board/list";
+		return "redirect:/staffboard/list";
 	}
 
 	@RequestMapping(value = "/moveStaff", method = RequestMethod.GET)
 	public void moveStaff(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
 			throws Exception {
 
-		logger.info("staff2board/moveStaff - GET");
+		logger.info("staffboard/moveStaff - GET");
 		logger.info("test-" + cri.toString());
 
 		HttpSession session = request.getSession();
@@ -215,32 +214,33 @@ public class Staff2BoardController {
 	}
 
 	@RequestMapping(value = "/moveStaff", method = RequestMethod.POST)
-	public String moveStaffPOST(Com_staff2VO board, SearchCriteria cri, RedirectAttributes rttr,
+	public String moveStaffPOST(Com_staffVO board, SearchCriteria cri, RedirectAttributes rttr,
 			HttpServletRequest request, String imgName) throws Exception {
-		logger.info("staff2board/moveStaff - POST");
+		logger.info("staffboard/moveStaff - POST");
 		logger.info(board.toString());
 		
 		teamVO = teamService.readTeamCd(board.getReal_use_dep_nm(), board.getClass_nm());
 
-		staff2VO = service.read(board.getSt_no());
-		staff2VO.setReal_use_dep_nm(sectionService.readSectionNm(board.getReal_use_dep_nm()));
-		staff2VO.setClass_nm(board.getClass_nm());
-		staff2VO.setTeam_cd(teamVO.getTeam_cd());
-		staff2VO.setSt_sort(99);
-		service.modify(staff2VO);
+		staffVO = service.read(board.getSt_no());
+		staffVO.setReal_use_dep_nm(sectionService.readSectionNm(board.getReal_use_dep_nm()));
+		staffVO.setClass_nm(board.getClass_nm());
+		staffVO.setSection_cd(board.getReal_use_dep_nm());
+		staffVO.setTeam_cd(teamVO.getTeam_cd());
+		staffVO.setSt_sort(99);
+		service.modify(staffVO);
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		logger.info(rttr.toString());
 
-		return "redirect:/staff2board/moveStaff";
+		return "redirect:/staffboard/moveStaff";
 	}
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
 	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr,
 			HttpServletRequest request) throws Exception {
-		logger.info("staff2board/removePage - POST");
+		logger.info("staffboard/removePage - POST");
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
@@ -252,7 +252,7 @@ public class Staff2BoardController {
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 
-		return "redirect:/staff2board/list?page=1";
+		return "redirect:/staffboard/list?page=1";
 	}
 
 }

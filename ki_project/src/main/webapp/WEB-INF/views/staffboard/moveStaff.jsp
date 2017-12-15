@@ -87,34 +87,34 @@
 							</thead>
 
 							<tbody>
-								<c:forEach items="${list}" var="com_staff2VO">
+								<c:forEach items="${list}" var="com_staffVO">
 									<%-- 						
 									<tr class="active">
 										<td><a
-											href="/staff2board/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staff2VO.st_no}"
+											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
 											class="table-action-btn h2"><i
 												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
  									--%>
 									<tr class="">
 
 										<td><img
-											src="${pageContext.request.contextPath}${uploadPath}${com_staff2VO.img_filenm}"
+											src="${pageContext.request.contextPath}${uploadPath}${com_staffVO.img_filenm}"
 											alt="contact-img" title="contact-img" class=" thumb-sm"
 											onerror="this.src='/resources/assets/images/users/avatar-2.jpg'" /></td>
 
-										<td id="real_use_dep_nm${com_staff2VO.st_no}">
-											${com_staff2VO.real_use_dep_nm}</td>
+										<td id="real_use_dep_nm${com_staffVO.st_no}">
+											${com_staffVO.real_use_dep_nm}</td>
 
-										<td id="class_nm${com_staff2VO.st_no}">${com_staff2VO.class_nm}</td>
+										<td id="class_nm${com_staffVO.st_no}">${com_staffVO.class_nm}</td>
 
-										<td>${com_staff2VO.posit_nm}</td>
+										<td>${com_staffVO.posit_nm}</td>
 
-										<td id="usr_nm${com_staff2VO.st_no}">${com_staff2VO.usr_nm}</td>
+										<td id="usr_nm${com_staffVO.st_no}">${com_staffVO.usr_nm}</td>
 
 										<td>
 											<button type="submit" class="btn btn-default move_btn"
 												data-toggle="modal" data-target="#moveModal"
-												value="${com_staff2VO.st_no}">
+												value="${com_staffVO.st_no}">
 												<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
 											</button>
 										</td>
@@ -238,170 +238,98 @@
 				if (result == 'SUCCESS') {
 					alert("처리가 완료되었습니다.");
 				}
-
 			}());
 
-			$(document)
-					.ready(
-							function() {
+			$(document).ready(function() {
+				$('#searchBtn').on("click",function(event) {
+					self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&section_cd="
+					+ $("select option:selected").val()
+					+ "&keyword="
+					+ $('#search-input').val();
+				});
+								
+				$("#section_cd").change(function() {
+													
+					var section_cd = $("#section_cd option:selected").val();
+					var url = "/staffboard/moveStaff?section_cd="+ section_cd;
+					
+					/*$.getJSON("/staff/getTeams/"+section_cd, function(data) {
+						var str="";
+						console.log(data.length);
+						console.log(data);
+						str+="<option value=none>전체</option>";
+						$(data).each(function(){
+							str+="<option value=\""+this.team_cd+"\">"+this.team_nm+"</option>";
+							console.log(str);
+						});
+						$("#team_cd").html(str);
+					});*/
+					location.href = url;
+				});
+				
+				//modal 
+				$(".section_cd").change(function() {
+					
+					var section_cd = $(".section_cd option:selected").val();
+					$.getJSON("/staff/getTeams/"+ section_cd,function(data) {
+						var str = "";
+						console.log(data.length);
+						console.log(data);
+						$(data).each(function() {
+							str += "<option value=\""+this.team_nm+"\">"+ this.team_nm+ "</option>";
+							console.log(str);
+						});
+						$(".class_nm").html(str);
+					});
+				});
+								
+				//modal in 
+				$('.move_btn').click(function() {
+					
+					var st_no = $(this).val();
+					var real_use_dep_nm = $("#real_use_dep_nm"+ st_no.toString()).text();
+					var class_nm = $("#class_nm"+ st_no.toString()).text();
+					var usr_nm = $("#usr_nm"+ st_no.toString()).text();
+					
+					$("#moveModal").find('#st_no').val(st_no);
+					$("#moveModal").find('#real_use_dep_nm').text(real_use_dep_nm);
+					$("#moveModal").find('#class_nm').text(class_nm);
+					$("#moveModal").find('#usr_nm').text(usr_nm);
+				});
 
-								$('#searchBtn')
-										.on(
-												"click",
-												function(event) {
-													self.location = "list"
-															+ '${pageMaker.makeQuery(1)}'
-															+ "&section_cd="
-															+ $(
-																	"select option:selected")
-																	.val()
-															+ "&keyword="
-															+ $('#search-input')
-																	.val();
-												});
+				$("#team_cd").change(function() {
 
-								$("#section_cd")
-										.change(
-												function() {
+					var section_cd = $("#section_cd option:selected").val();
+					var team_cd = $("#team_cd option:selected").val();
+					var url = "/staffboard/moveStaff?section_cd="+ section_cd+ "&team_cd="+ team_cd;
+					location.href = url;
+				});
+				
+				var section_cd = "${param.section_cd}";
+				$("#section_cd > option[value="+ section_cd + "]").attr("selected", true);
+								
+				
+				$.getJSON("/staff/getTeams/" + section_cd,function(data) {
+					
+					var str = "";
+					console.log(data.length);
+					console.log(data);
+					str += "<option value=none>전체</option>";
+					$(data).each(function() {
+						str += "<option value=\""+this.team_cd+"\">"+ this.team_nm+ "</option>";console.log(str);
+					});
 
-													var section_cd = $(
-															"#section_cd option:selected")
-															.val();
-													var url = "/staff2board/moveStaff?section_cd="
-															+ section_cd;
-
-													/*$.getJSON("/staff/getTeams/"+section_cd, function(data) {
-														var str="";
-														console.log(data.length);
-														console.log(data);
-														str+="<option value=none>전체</option>";
-														$(data).each(function(){
-															str+="<option value=\""+this.team_cd+"\">"+this.team_nm+"</option>";
-															console.log(str);
-														});
-														
-														 $("#team_cd").html(str);
-													 });*/
-													location.href = url;
-												});
-								//modal 
-								$(".section_cd")
-										.change(
-												function() {
-
-													var section_cd = $(
-															".section_cd option:selected")
-															.val();
-
-													$
-															.getJSON(
-																	"/staff/getTeams/"
-																			+ section_cd,
-																	function(
-																			data) {
-
-																		var str = "";
-																		console
-																				.log(data.length);
-																		console
-																				.log(data);
-																		$(data)
-																				.each(
-																						function() {
-																							str += "<option value=\""+this.team_nm+"\">"
-																									+ this.team_nm
-																									+ "</option>";
-																							console
-																									.log(str);
-																						});
-
-																		$(
-																				".class_nm")
-																				.html(
-																						str);
-																	});
-
-												});
-								//modal in 
-								$('.move_btn').click(
-										function() {
-
-											var st_no = $(this).val();
-											var real_use_dep_nm = $(
-													"#real_use_dep_nm"
-															+ st_no.toString())
-													.text();
-											var class_nm = $(
-													"#class_nm"
-															+ st_no.toString())
-													.text();
-											var usr_nm = $(
-													"#usr_nm"
-															+ st_no.toString())
-													.text();
-
-											$("#moveModal").find('#st_no').val(
-													st_no);
-											$("#moveModal").find(
-													'#real_use_dep_nm').text(
-													real_use_dep_nm);
-											$("#moveModal").find('#class_nm')
-													.text(class_nm);
-											$("#moveModal").find('#usr_nm')
-													.text(usr_nm);
-
-										});
-
-								$("#team_cd")
-										.change(
-												function() {
-													var section_cd = $(
-															"#section_cd option:selected")
-															.val();
-													var team_cd = $(
-															"#team_cd option:selected")
-															.val();
-													var url = "/staff2board/moveStaff?section_cd="
-															+ section_cd
-															+ "&team_cd="
-															+ team_cd;
-													location.href = url;
-												});
-
-								var section_cd = "${param.section_cd}";
-								$(
-										"#section_cd > option[value="
-												+ section_cd + "]").attr(
-										"selected", true);
-
-								$
-										.getJSON(
-												"/staff/getTeams/" + section_cd,
-												function(data) {
-
-													var str = "";
-													console.log(data.length);
-													console.log(data);
-													str += "<option value=none>전체</option>";
-													$(data)
-															.each(
-																	function() {
-																		str += "<option value=\""+this.team_cd+"\">"
-																				+ this.team_nm
-																				+ "</option>";
-																		console
-																				.log(str);
-																	});
-
-													$("#team_cd").html(str);
-													var team_cd = "${param.team_cd}";
-													if (team_cd != "") {
-														$("#team_cd").val(
-																team_cd);
-													}
-												});
-
-							});
+													
+					$("#team_cd").html(str);
+					var team_cd = "${param.team_cd}";
+					if (team_cd != "") {
+						$("#team_cd").val(team_cd);
+					}
+				});
+			
+			});
 		</script>
 	</div>
 </section>

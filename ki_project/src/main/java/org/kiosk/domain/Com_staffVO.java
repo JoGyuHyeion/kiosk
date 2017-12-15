@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.springframework.stereotype.Component;
 
 @Component("Com_staff2VO")
-public class Com_staff2VO {
+public class Com_staffVO {
 
 	private int st_no;
 	private String real_use_dep_nm;

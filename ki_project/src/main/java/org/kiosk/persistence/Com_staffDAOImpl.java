@@ -5,31 +5,31 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-import org.kiosk.domain.Com_staff2VO;
+import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class Com_staff2DAOImpl implements Com_staff2DAO {
+public class Com_staffDAOImpl implements Com_staffDAO {
 
 	@Inject
 	private SqlSession session;
 
-	private static String namespace = "org.kiosk.mapper.Com_staff2Mapper";
+	private static String namespace = "org.kiosk.mapper.Com_staffMapper";
 
 	@Override
-	public void create(Com_staff2VO vo) throws Exception {
+	public void create(Com_staffVO vo) throws Exception {
 		session.insert(namespace + ".create", vo);
 	}
 
 	@Override
-	public Com_staff2VO read(Integer st_no) throws Exception {
+	public Com_staffVO read(Integer st_no) throws Exception {
 		return session.selectOne(namespace + ".read", st_no);
 	}
 
 	@Override
-	public void update(Com_staff2VO vo) throws Exception {
+	public void update(Com_staffVO vo) throws Exception {
 		session.update(namespace + ".update", vo);
 
 	}
@@ -41,7 +41,7 @@ public class Com_staff2DAOImpl implements Com_staff2DAO {
 	}
 
 	@Override
-	public List<Com_staff2VO> listAll() throws Exception {
+	public List<Com_staffVO> listAll() throws Exception {
 		return session.selectList(namespace + ".listAll");
 	}
 
@@ -51,7 +51,7 @@ public class Com_staff2DAOImpl implements Com_staff2DAO {
 	}
 
 	@Override
-	public List<Com_staff2VO> listPage(int page) throws Exception {
+	public List<Com_staffVO> listPage(int page) throws Exception {
 		if (page <= 0) {
 			page = 1;
 		}
@@ -62,7 +62,7 @@ public class Com_staff2DAOImpl implements Com_staff2DAO {
 	}
 
 	@Override
-	public List<Com_staff2VO> listCriteria(Criteria cri) throws Exception {
+	public List<Com_staffVO> listCriteria(Criteria cri) throws Exception {
 		return session.selectList(namespace + ".listCriteria", cri);
 	}
 
@@ -72,7 +72,7 @@ public class Com_staff2DAOImpl implements Com_staff2DAO {
 	}
 
 	@Override
-	public List<Com_staff2VO> listSearch(SearchCriteria cri) throws Exception {
+	public List<Com_staffVO> listSearch(SearchCriteria cri) throws Exception {
 		return session.selectList(namespace + ".listSearch", cri);
 	}
 
@@ -82,18 +82,18 @@ public class Com_staff2DAOImpl implements Com_staff2DAO {
 	}
 
 	@Override
-	public int createSortNo(Com_staff2VO vo) throws Exception {
+	public int createSortNo(Com_staffVO vo) throws Exception {
 		return session.selectOne(namespace + ".createSortNo",vo);
 	}
 
 	@Override
-	public void sortupdate(Com_staff2VO vo) throws Exception {
+	public void sortupdate(Com_staffVO vo) throws Exception {
 		session.update(namespace + ".sortupdate", vo);
 		
 	}
 
 	@Override
-	public List<Com_staff2VO> teamListSort(Com_staff2VO vo) throws Exception {
+	public List<Com_staffVO> teamListSort(Com_staffVO vo) throws Exception {
 		return session.selectList(namespace + ".teamListSort",vo);
 	}
 

@@ -69,7 +69,7 @@
 								<i class="fa fa-search"> 찾기</i>
 							</button>
 						</div>
-						<a href="/staff2board/register" class="btn btn-primary ">작성</a>
+						<a href="/staffboard/register" class="btn btn-primary ">작성</a>
 					</div>
 
 					<div class="table-responsive">
@@ -91,39 +91,39 @@
 							</thead>
 
 							<tbody>
-								<c:forEach items="${list}" var="com_staff2VO">
+								<c:forEach items="${list}" var="com_staffVO">
 									<%-- 						
 									<tr class="active">
 										<td><a
-											href="/staff2board/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staff2VO.st_no}"
+											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
 											class="table-action-btn h2"><i
 												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
  									--%>
 									<tr class="">
 										<td><a
-											href="/staff2board/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staff2VO.st_no}"
+											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
 											class="btn btn-default"><i
 												class="glyphicon glyphicon-glass glyphicon-edit"></i></a></td>
 										<td><img
-											src="${pageContext.request.contextPath}${uploadPath}${com_staff2VO.img_filenm}"
+											src="${pageContext.request.contextPath}${uploadPath}${com_staffVO.img_filenm}"
 											alt="contact-img" title="contact-img" class=" thumb-sm"
 											onerror="this.src='/resources/assets/images/users/avatar-2.jpg'" /></td>
 
-										<td>${com_staff2VO.real_use_dep_nm}</td>
+										<td>${com_staffVO.real_use_dep_nm}</td>
 
-										<td>${com_staff2VO.class_nm}</td>
+										<td>${com_staffVO.class_nm}</td>
 
-										<td>${com_staff2VO.posit_nm}</td>
+										<td>${com_staffVO.posit_nm}</td>
 
 										<td><a
-											href="/staff2board/readPage?st_no=${com_staff2VO.st_no}&page=${cri.page}">${com_staff2VO.usr_nm}</a></td>
+											href="/staffboard/readPage?st_no=${com_staffVO.st_no}&page=${cri.page}">${com_staffVO.usr_nm}</a></td>
 
-										<td>${com_staff2VO.telno}</td>
-										<td>${com_staff2VO.st_wdt}</td>
-										<td>${com_staff2VO.st_edt}</td>
-										<td><form action="/staff2board/removePage" method="post">
+										<td>${com_staffVO.telno}</td>
+										<td>${com_staffVO.st_wdt}</td>
+										<td>${com_staffVO.st_edt}</td>
+										<td><form action="/staffboard/removePage" method="post">
 												<input type="hidden" name="st_no"
-													value="${com_staff2VO.st_no}">
+													value="${com_staffVO.st_no}">
 												<button type="submit" class="btn btn-default">
 													<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
 												</button>
@@ -197,7 +197,7 @@
 				$("#section_cd").change(function() {
 				
 					var section_cd = $("#section_cd option:selected").val();
-					var url = "/staff2board/list?section_cd="+ section_cd;
+					var url = "/staffboard/list?section_cd="+ section_cd;
 					
 					/*$.getJSON("/staff/getTeams/"+section_cd, function(data) {
 						var str="";
@@ -217,7 +217,7 @@
 				$("#team_cd").change(function() {
 					var section_cd = $("#section_cd option:selected").val();
 					var team_cd = $("#team_cd option:selected").val();
-					var url = "/staff2board/list?section_cd="+ section_cd+"&team_cd="+team_cd;
+					var url = "/staffboard/list?section_cd="+ section_cd+"&team_cd="+team_cd;
 					location.href = url;
 				});
 

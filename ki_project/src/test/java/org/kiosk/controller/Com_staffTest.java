@@ -4,11 +4,11 @@ import java.util.List;
 import javax.inject.Inject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kiosk.domain.Com_staff2VO;
+import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
-import org.kiosk.persistence.Com_staff2DAO;
+import org.kiosk.persistence.Com_staffDAO;
 import org.kiosk.persistence.Com_teamDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,14 +20,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/**/root-context.xml" })
 
-public class Com_staff2Test {
+public class Com_staffTest {
 
 	@Inject
-	private Com_staff2DAO dao;
+	private Com_staffDAO dao;
 	@Inject
 	private Com_teamDAO teamdao;
 
-	private static Logger logger = LoggerFactory.getLogger(Com_staff2Test.class);
+	private static Logger logger = LoggerFactory.getLogger(Com_staffTest.class);
 
 	java.util.Date utilDate = new java.util.Date();
 	java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -35,7 +35,7 @@ public class Com_staff2Test {
 	// @Test
 	public void testCreate() throws Exception {
 
-		Com_staff2VO vo = new Com_staff2VO();
+		Com_staffVO vo = new Com_staffVO();
 		vo.setReal_use_dep_nm("지혜");
 		vo.setUsr_nm("랩장");
 		vo.setLogon_id("010-6666-7777");
@@ -63,7 +63,7 @@ public class Com_staff2Test {
 	// @Test
 	public void testUpdate() throws Exception {
 
-		Com_staff2VO vo = new Com_staff2VO();
+		Com_staffVO vo = new Com_staffVO();
 		vo.setUsr_nm("조규현");
 		vo.setSt_no(1);
 
@@ -80,8 +80,8 @@ public class Com_staff2Test {
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
-		List<Com_staff2VO> list = dao.listAll();
-		for (Com_staff2VO Com_staff2VO : list) {
+		List<Com_staffVO> list = dao.listAll();
+		for (Com_staffVO Com_staff2VO : list) {
 			logger.info(Com_staff2VO.getSt_no() + ":" + Com_staff2VO.getReal_use_dep_nm());
 		}
 
@@ -97,9 +97,9 @@ public class Com_staff2Test {
 
 		int page = 1;
 
-		List<Com_staff2VO> list = dao.listPage(page);
+		List<Com_staffVO> list = dao.listPage(page);
 
-		for (Com_staff2VO Com_staff2VO : list) {
+		for (Com_staffVO Com_staff2VO : list) {
 			logger.info(Com_staff2VO.getSt_no() + ":" + Com_staff2VO.getReal_use_dep_nm());
 		}
 	}
@@ -111,9 +111,9 @@ public class Com_staff2Test {
 		cri.setPage(1);
 		cri.setPerPageNum(20);
 
-		List<Com_staff2VO> list = dao.listCriteria(cri);
+		List<Com_staffVO> list = dao.listCriteria(cri);
 
-		for (Com_staff2VO Com_staff2VO : list) {
+		for (Com_staffVO Com_staff2VO : list) {
 			logger.info(Com_staff2VO.toString());
 		}
 	}
@@ -150,9 +150,9 @@ public class Com_staff2Test {
 
 		logger.info("=====================================");
 
-		List<Com_staff2VO> list = dao.listSearch(cri);
+		List<Com_staffVO> list = dao.listSearch(cri);
 
-		for (Com_staff2VO Com_staff2VO : list) {
+		for (Com_staffVO Com_staff2VO : list) {
 			logger.info(Com_staff2VO.getSt_no() + ":" + Com_staff2VO.getReal_use_dep_nm());
 		}
 
@@ -163,7 +163,7 @@ public class Com_staff2Test {
 
 	// @Test
 	public void countSt_sort() throws Exception {
-		Com_staff2VO vo = new Com_staff2VO();
+		Com_staffVO vo = new Com_staffVO();
 		vo.setSection_cd("K010-S030");
 		vo.setTeam_cd("T06");
 		logger.info(dao.createSortNo(vo) + 1 + "다음들어갈 수 ");
@@ -172,7 +172,7 @@ public class Com_staff2Test {
 	// @Test
 	public void St_sort() throws Exception {
 
-		Com_staff2VO vo = new Com_staff2VO();
+		Com_staffVO vo = new Com_staffVO();
 		int i = 0;
 
 		for (Com_teamVO teamVO : teamdao.list("none")) {
@@ -180,7 +180,7 @@ public class Com_staff2Test {
 			vo.setSection_cd(teamVO.getSection_cd());
 			i = 0;
 
-			for (Com_staff2VO staffVO : dao.teamListSort(vo)) {
+			for (Com_staffVO staffVO : dao.teamListSort(vo)) {
 				staffVO.setSt_sort(i);
 				dao.sortupdate(staffVO);
 				i++;
