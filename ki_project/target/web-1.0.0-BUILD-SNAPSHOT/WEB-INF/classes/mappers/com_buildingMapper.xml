@@ -38,6 +38,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listAll" resultType="Com_buildingVO">
  		<![CDATA[ select * from com_building]]>
 	</select>
+	
+	<select id="list" resultType="Com_buildingVO">
+ 		<![CDATA[ 
+ 		select * from com_building
+ 		where bu_type = #{bu_type}
+ 		]]>
+	</select>
 
 	<select id="lastInsertID" resultType="int">
 		SELECT AUTO_INCREMENT

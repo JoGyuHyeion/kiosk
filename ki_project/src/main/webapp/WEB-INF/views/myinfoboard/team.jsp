@@ -216,7 +216,7 @@ pageEncoding="UTF-8"%>
                 				success: function (data) {
                 					if (data == 'SUCCESS') {
                 						alert("수정 되었습니다.");
-                						//location.reload();
+                						location.reload();
                 					}
                 				},
             					
@@ -278,7 +278,7 @@ pageEncoding="UTF-8"%>
                 $(".removeBtn").click(function () {
             		var section_cd =($("#section_cd").val()=="none"?$("#search_team").val():$("#section_cd").val());
             		//alert(section_cd);
-            		$(this).closest("tr").remove();
+            		//$(this).closest("tr").remove();
             		var team_cd = $(this).attr("value");
             		  $.ajax({
             			url: '/team/del/'+section_cd+'/'+team_cd,
@@ -286,7 +286,7 @@ pageEncoding="UTF-8"%>
             			success: function (data) {
             				if (data == 'SUCCESS') {
             						alert("삭제 되었습니다.");
-            						//location.reload();
+            						location.reload();
             					}
             			},
             			error : function(error) {
