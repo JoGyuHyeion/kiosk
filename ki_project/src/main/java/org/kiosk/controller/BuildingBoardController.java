@@ -105,6 +105,7 @@ public class BuildingBoardController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("login", userVO);
+		model.addAttribute("buildingList", buildingService.listAll());
 		logger.info("Login : " + userVO.toString());
 	}
 
