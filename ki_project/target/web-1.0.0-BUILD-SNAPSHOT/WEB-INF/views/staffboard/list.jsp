@@ -92,13 +92,7 @@
 
 							<tbody>
 								<c:forEach items="${list}" var="com_staffVO">
-									<%-- 						
-									<tr class="active">
-										<td><a
-											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
-											class="table-action-btn h2"><i
-												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
- 									--%>
+				
 									<tr class="">
 										<td><a
 											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
