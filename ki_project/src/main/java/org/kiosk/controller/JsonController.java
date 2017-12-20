@@ -1,13 +1,17 @@
 package org.kiosk.controller;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.kiosk.domain.BuildingVO;
 import org.kiosk.domain.Com_bgImgVO;
 import org.kiosk.domain.Com_buildingVO;
@@ -33,13 +37,14 @@ import org.kiosk.service.Com_videoService;
 import org.kiosk.service.Vol_checkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 @RestController
 @RequestMapping("/json")
@@ -101,6 +106,47 @@ public class JsonController {
 		}
 		return entity;
 	}
+	
+	@RequestMapping(value = "/testHeader1", method = RequestMethod.GET)
+	public ResponseEntity<Vol_checkVO> testHeader1(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("json/getVersion");
+		ResponseEntity<Vol_checkVO> entity = null;
+		try {
+			response.setHeader("JoGyuHyeon", "Test Accept");
+			 String headerValue = CacheControl.maxAge(10, TimeUnit.SECONDS).getHeaderValue();
+			 response.addHeader("Cache-Control", headerValue);
+			entity = new ResponseEntity<>(vol_checkService.read(1), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping(value = "/testHeader2", method = RequestMethod.GET)
+	public ResponseEntity<Vol_checkVO> testHeader2(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("json/getVersion");
+		ResponseEntity<Vol_checkVO> entity = null;
+		try {
+			URI location = new URI("http://localhost:8080/json/testHeader2");
+			 HttpHeaders responseHeaders = new HttpHeaders();
+			 responseHeaders.setLocation(location);
+			 responseHeaders.set("JoGyuHyeontest2", "MyValue");
+			entity = new ResponseEntity<>(vol_checkService.read(1), responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	@RequestMapping("/handle")
+	 public ResponseEntity<String> handle() throws URISyntaxException {
+		URI location = new URI("http://localhost:8080/json/handle");
+	   return ResponseEntity.created(location).header("JoGyuHyeontest3", "MyValue").body("Hello World");
+	 }
+
+
 
 	@RequestMapping(value = "/getVersion", method = RequestMethod.GET)
 	public ResponseEntity<Vol_checkVO> getVersion() {
