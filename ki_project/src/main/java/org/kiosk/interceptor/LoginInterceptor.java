@@ -39,7 +39,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			}
 			Object dest = session.getAttribute("dest");
 
-			response.sendRedirect(dest != null ? (String) dest : "/staff2board/list");
+			response.sendRedirect(dest != null ? (String) dest : "/staffboard/list");
 			System.out.println("loginInterceptor post handle........................dest:" + dest);
 
 		}
