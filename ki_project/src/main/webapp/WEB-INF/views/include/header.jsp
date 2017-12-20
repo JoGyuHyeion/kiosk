@@ -156,7 +156,7 @@
 										<li><a href="/staffboard/register">직원등록</a></li>
 										<li><a href="/staffboard/list?page=1&perPageNum=10">직원조희</a></li>
 										<li><a href="/staffboard/moveStaff?page=1&perPageNum=10">직원부서이동</a></li>
-										
+										<li><a href="/staffboard/sortStaff?page=1&perPageNum=10">직원위치</a></li>									
 									</ul>
 								</li>
 							</ul></li>

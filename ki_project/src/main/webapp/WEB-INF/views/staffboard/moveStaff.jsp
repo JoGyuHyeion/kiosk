@@ -115,7 +115,7 @@
 											<button type="submit" class="btn btn-default move_btn"
 												data-toggle="modal" data-target="#moveModal"
 												value="${com_staffVO.st_no}">
-												<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
+												<i class="glyphicon glyphicon-glass glyphicon-share-alt"></i>
 											</button>
 										</td>
 									</tr>
@@ -132,20 +132,20 @@
 
 						<c:if test="${pageMaker.prev}">
 							<li><a
-								href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
+								href="moveStaff${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
 						</c:if>
 
 						<c:forEach begin="${pageMaker.startPage }"
 							end="${pageMaker.endPage }" var="idx">
 							<li
 								<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
+								<a href="moveStaff${pageMaker.makeSearch(idx)}">${idx}</a>
 							</li>
 						</c:forEach>
 
 						<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 							<li><a
-								href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
+								href="moveStaff${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 						</c:if>
 
 					</ul>
@@ -242,7 +242,7 @@
 
 			$(document).ready(function() {
 				$('#searchBtn').on("click",function(event) {
-					self.location = "list"
+					self.location = "moveStaff"
 					+ '${pageMaker.makeQuery(1)}'
 					+ "&section_cd="
 					+ $("select option:selected").val()
