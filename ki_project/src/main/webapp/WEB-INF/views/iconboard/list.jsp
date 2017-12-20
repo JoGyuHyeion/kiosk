@@ -108,6 +108,7 @@
 						</div>
 						
 						<div class="form-group">
+
 							<label class="col-md-2 control-label">파일 등록</label> <input
 								id="iconName" name="iconName"
 								class="file_input_textbox form-control col-md-5 "
@@ -124,7 +125,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
 								data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">수정하기</button>
+							<button type="submit" id="modify" class="btn btn-primary">수정하기</button>
 						</div>
 
 					</form>
@@ -143,10 +144,7 @@
 			
 		 }
 	 } 
-		$(document).ready(
-				
-				
-				function() {
+		$(document).ready(function() {
 					/* $('#imageModal').on('show.bs.modal', function(event) {
 						var button = $(event.relatedTarget);
 						var ic_no = button.data('icNo');
@@ -155,6 +153,8 @@
 						modal.find('.modal-body input').val(ic_no);
 					});
 					 */
+					 
+					 
 					$('.change_btn').click(function() {
 						var ic_no = $(this).val();
 						var ic_icon=$("#img_file_name"+ic_no.toString()).val();

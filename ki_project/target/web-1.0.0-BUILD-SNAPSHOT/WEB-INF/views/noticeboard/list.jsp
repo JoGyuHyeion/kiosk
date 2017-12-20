@@ -64,6 +64,7 @@
 								<tr>
 									<th>편집</th>
 									<th>No</th>
+									<th>공지/이벤트</th>
 									<th>부서</th>
 									<th>제목</th>
 									<th>노출기간</th>
@@ -82,7 +83,9 @@
 												class="glyphicon glyphicon-glass glyphicon-edit"></i></a></td>
 
 										<td>${com_boardVO.bbs_no}</td>
-
+	
+										<td>${com_boardVO.brd_cd}</td>
+										
 										<td>${com_boardVO.section_cd}</td>
 
 										<td><a
@@ -149,21 +152,15 @@
 		</script>
 
 		<script>
-			$(document).ready(
-					function() {
-
-						$('#searchBtn').on(
-								"click",
-								function(event) {
-
-									self.location = "list"
-											+ '${pageMaker.makeQuery(1)}'
-											+ "&keyword="
-											+ $('#keywordInput').val();
-
-								});
-
-					});
+			$(document).ready(function() {
+				
+				$('#searchBtn').on("click",function(event) {
+					self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&keyword="
+					+ $('#keywordInput').val();
+				});
+			});
 		</script>
 	</div>
 </section>

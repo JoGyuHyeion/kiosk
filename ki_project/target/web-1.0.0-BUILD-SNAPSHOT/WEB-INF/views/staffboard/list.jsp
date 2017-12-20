@@ -10,19 +10,7 @@
 
 <section class="wrapper">
 
-	<form role="form" action="modifyPage" method="post">
-
-			<input type='hidden' name='page' value="${cri.page}"> 
-		<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
-		<input type='hidden' name='section_cd' value="${cri.section_cd}"> 
-		<input type='hidden' name='keyword' value="${cri.keyword}">
-
-	</form>
 	<div class="container">
-
-
-
-
 		<!-- Page-Title -->
 		<div class="row">
 			<div class="col-sm-12">
@@ -46,22 +34,33 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 					<div class="row">
-						<div class="col-sm-3">
-							<select name="" id="" class="form-control">
-								<option value="">전체관리자</option>
-							</select>
-						</div>
-						<div class="col-sm-3">
-							<select name="" id="" class="form-control">
-								<option value="">임원</option>
-							</select>
-						</div>
+
+						<c:if test="${0 eq login.auth}">
+						<!-- section_cd -->
+							<div class="col-sm-3">
+								<select name="section_cd" id="section_cd" class="form-control">
+									<c:forEach items="${sectionService}" var="com_sectionVO">
+										<option value="${com_sectionVO.section_fullcode}">${com_sectionVO.section_fullpath}</option>
+									</c:forEach>
+								</select>
+							</div>
+							
+							<!-- team_cd -->
+							<div class="col-sm-3">
+								<select name="team_cd" id="team_cd" class="form-control">
+									<option value="">::근무팀을 선택하여 주세요!</option>
+								</select>
+							</div>
+						</c:if>
+
 						<div class="col-sm-4">
 							<form role="form">
 								<div class="form-group">
 									<input type="text" id="search-input" class="form-control"
-										placeholder="Please Name">
-
+										name="keyword" placeholder="Please Name"> 
+										<input type='hidden' name='page' value="${cri.page}"> 
+										<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
+										<input type='hidden' name='section_cd' value="${cri.section_cd}">
 								</div>
 							</form>
 						</div>
@@ -70,6 +69,7 @@
 								<i class="fa fa-search"> 찾기</i>
 							</button>
 						</div>
+						<a href="/staffboard/register" class="btn btn-primary ">작성</a>
 					</div>
 
 					<div class="table-responsive">
@@ -83,36 +83,51 @@
 									<th>직위</th>
 									<th>이름</th>
 									<th>전화번호</th>
-									<th>Update</th>
+									<th>등록일</th>
+									<th>수정일</th>
+									<th>삭제</th>
 
 								</tr>
 							</thead>
 
 							<tbody>
 								<c:forEach items="${list}" var="com_staffVO">
-
+									<%-- 						
 									<tr class="active">
 										<td><a
 											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
 											class="table-action-btn h2"><i
 												class="mdi mdi-pencil-box-outline text-success"></i></a></td>
-
+ 									--%>
+									<tr class="">
+										<td><a
+											href="/staffboard/modifyPage${pageMaker.makeSearch(param.page)}&st_no=${com_staffVO.st_no}"
+											class="btn btn-default"><i
+												class="glyphicon glyphicon-glass glyphicon-edit"></i></a></td>
 										<td><img
-											src="/resources/assets/images/users/avatar-2.jpg"
-											alt="contact-img" title="contact-img" class=" thumb-sm" /></td>
-																			
-										<td>${com_staffVO.section_cd}</td>
+											src="${pageContext.request.contextPath}${uploadPath}${com_staffVO.img_filenm}"
+											alt="contact-img" title="contact-img" class=" thumb-sm"
+											onerror="this.src='/resources/assets/images/users/avatar-2.jpg'" /></td>
 
-										<td>${com_staffVO.st_team}</td>
+										<td>${com_staffVO.real_use_dep_nm}</td>
 
-										<td>${com_staffVO.st_job}</td>
+										<td>${com_staffVO.class_nm}</td>
 
-										<td><a href="/staffboard/readPage?st_no=${com_staffVO.st_no}">${com_staffVO.st_nm}</a></td>
+										<td>${com_staffVO.posit_nm}</td>
 
-										<td>${com_staffVO.st_tel}</td>
+										<td><a
+											href="/staffboard/readPage?st_no=${com_staffVO.st_no}&page=${cri.page}">${com_staffVO.usr_nm}</a></td>
 
-										<td>${com_staffVO.st_edt }</td>
-
+										<td>${com_staffVO.telno}</td>
+										<td>${com_staffVO.st_wdt}</td>
+										<td>${com_staffVO.st_edt}</td>
+										<td><form action="/staffboard/removePage" method="post">
+												<input type="hidden" name="st_no"
+													value="${com_staffVO.st_no}">
+												<button type="submit" class="btn btn-default">
+													<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
+												</button>
+											</form></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -125,15 +140,13 @@
 				<div class="text-right">
 					<ul class="pagination pagination-split m-t-0">
 
-						<li class="disabled"><a href="#"><i
-								class="fa fa-angle-left"></i></a></li>
 						<c:if test="${pageMaker.prev}">
 							<li><a
-								href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">&laquo;</a></li>
+								href="list${pageMaker.makeSearch(pageMaker.startPage - 1) }">&laquo;</a></li>
 						</c:if>
 
-						<c:forEach begin="${pageMaker.startPage}"
-							end="${pageMaker.endPage}" var="idx">
+						<c:forEach begin="${pageMaker.startPage }"
+							end="${pageMaker.endPage }" var="idx">
 							<li
 								<c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
 								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
@@ -144,7 +157,6 @@
 							<li><a
 								href="list${pageMaker.makeSearch(pageMaker.endPage +1) }">&raquo;</a></li>
 						</c:if>
-						<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
 
 					</ul>
 				</div>
@@ -157,37 +169,80 @@
 		<!-- end row -->
 
 		<script>
+			
+		// 익명 즉시실행함수(immediately-invoked function expression)
+		// Javascript 대가이신 더글라스 클락포트의 권장 표기법
+		(function() {
+			
 			var result = '${msg}';
-
 			if (result == 'SUCCESS') {
 				alert("처리가 완료되었습니다.");
 			}
-		</script>
+			
+		}());
+		
+			$(document).ready(function() {
+				
+				$('#searchBtn').on("click",function(event) {
+					self.location = "list"
+					+ '${pageMaker.makeQuery(1)}'
+					+ "&section_cd="
+					+ $("select option:selected").val()
+					+ "&keyword="
+					+ $('#search-input').val();
+								
+				});
+				
 
-		<script>
-			$(document).ready(
-					function() {
+				$("#section_cd").change(function() {
+				
+					var section_cd = $("#section_cd option:selected").val();
+					var url = "/staffboard/list?section_cd="+ section_cd;
+					
+					/*$.getJSON("/staff/getTeams/"+section_cd, function(data) {
+						var str="";
+			    		console.log(data.length);
+			    		console.log(data);
+			    		str+="<option value=none>전체</option>";
+			    		$(data).each(function(){
+			    			str+="<option value=\""+this.team_cd+"\">"+this.team_nm+"</option>";
+			    			console.log(str);
+			    		});
+			    		
+			    		 $("#team_cd").html(str);
+			    	 });*/
+					location.href = url; 
+				});
+				
+				$("#team_cd").change(function() {
+					var section_cd = $("#section_cd option:selected").val();
+					var team_cd = $("#team_cd option:selected").val();
+					var url = "/staffboard/list?section_cd="+ section_cd+"&team_cd="+team_cd;
+					location.href = url;
+				});
 
-						$('#searchBtn').on(
-								"click",
-								function(event) {
-
-									self.location = "list"
-											+ '${pageMaker.makeQuery(1)}'
-											+ "&section_cd="
-											+ $("select option:selected").val()
-											+ "&keyword="
-											+ $('#keywordInput').val();
-
-								});
-
-						$('#newBtn').on("click", function(evt) {
-
-							self.location = "register";
-
-						});
-
-					});
+				var section_cd = "${param.section_cd}";
+				$("#section_cd > option[value=" + section_cd + "]").attr("selected", true);
+				
+				
+				$.getJSON("/staff/getTeams/"+section_cd, function(data) {
+					
+					var str="";
+		    		console.log(data.length);
+		    		console.log(data);
+		    		str+="<option value=none>전체</option>";
+		    		$(data).each(function(){
+		    			str+="<option value=\""+this.team_cd+"\">"+this.team_nm+"</option>";
+		    			console.log(str);
+		    		});
+		    		
+		    		 $("#team_cd").html(str);
+		    		 var team_cd = "${param.team_cd}";
+		    		 if(team_cd!=""){
+		    			 $("#team_cd").val(team_cd);
+		    		 }
+		    	 });
+			});
 		</script>
 	</div>
 </section>

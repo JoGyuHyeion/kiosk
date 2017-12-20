@@ -1,9 +1,7 @@
 package org.kiosk.service;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
@@ -17,8 +15,8 @@ public class Com_staffServiceImpl implements Com_staffService {
 	private Com_staffDAO dao;
 	@Inject
 	private Vol_checkService volService;
-	
-	private static final String VERSION="staff";
+
+	private static final String VERSION = "staff";
 
 	@Override
 	public void regist(Com_staffVO vo) throws Exception {
@@ -50,7 +48,7 @@ public class Com_staffServiceImpl implements Com_staffService {
 
 	@Override
 	public int lastInsertID() throws Exception {
-		return dao.lastInsertID() + 1;
+		return dao.lastInsertID();
 	}
 
 	@Override
@@ -71,6 +69,23 @@ public class Com_staffServiceImpl implements Com_staffService {
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return dao.listSearchCount(cri);
+	}
+
+	@Override
+	public int createSortNo(Com_staffVO vo) throws Exception {
+		return dao.createSortNo(vo)+1;
+	}
+
+	@Override
+	public void sortupdate(Com_staffVO vo) throws Exception {
+		dao.sortupdate(vo);
+
+	}
+
+	@Override
+	public List<Com_staffVO> teamListSort(Com_staffVO vo) throws Exception{
+		return dao.teamListSort(vo);
+		
 	}
 
 }

@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update com_board set
 		bbs_title =
 		#{bbs_title},
+		brd_cd=#{brd_cd},
 		bbs_content = #{bbs_content},
 		bbs_file = #{bbs_file},
 		bbs_state = #{bbs_state},

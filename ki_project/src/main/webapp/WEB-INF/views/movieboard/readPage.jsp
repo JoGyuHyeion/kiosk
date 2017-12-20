@@ -62,31 +62,27 @@
 						</form>
 					</div>
 					<div class="form-group" style="text-align: center">
-						<button type="button"
-							class="btn btn-primary waves-effect w-md waves-light m-b-5"
-							id="change">수정</button>
-						<form action="/movieboard/removePage" method="post">
-							<input type="hidden" name="img_no" value="${com_videoVO.vi_no}">
-							<button type="submit"
-								class="btn btn-danger waves-effect w-md waves-light m-b-5"
-								id="delete">삭제</button>
+						<button type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5" id="change">수정</button>
+						<form action="/movieboard/removePage?vi_no=${com_videoVO.vi_no}" method="post">
+							<button type="submit" class="btn btn-danger waves-effect w-md waves-light m-b-5" id="delete">삭제</button>
 						</form>
-						<button type="button"
-							class="btn btn-warning waves-effect w-md waves-light m-b-5"
-							id="back">돌아가기</button>
+						<button type="button" class="btn btn-warning waves-effect w-md waves-light m-b-5" id="back">돌아가기</button>
 					</div>
 					<script>
 						$(document).ready(function() {
+							
 							var formObj = $("form[role='form']");
 							console.log(formObj);
+							
 							$("#change").on("click",function() {
 								self.location = "/movieboard/modifyPage?vi_no=${com_videoVO.vi_no}";
 								});
 							
+							
 							$("#back").on("click",function() {
 								self.location = "/movieboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
 								});
-							
+																			
 						});
 					</script>
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.kiosk.mapper.buildingMapper">
+
+	<select id="read" resultType="BuildingVO">
+		select
+		bu_type,building_name
+		from building
+		where
+		bu_type = #{bu_type}
+	</select>
+
+	<insert id="create">
+		insert into building
+		(bu_type,building_name)
+		values
+		(#{bu_type},#{building_name})
+	</insert>
+
+	<update id="update">
+		update building set
+		building_name = #{building_name}
+		where bu_type = #{bu_type}
+	</update>
+
+	<delete id="delete">
+		delete from building where bu_type = #{bu_type}
+	</delete>
+
+	<select id="listAll" resultType="BuildingVO">
+ 		select * from building order by building_name asc
+	</select>
+
+	<select id="lastInsertID" resultType="int">
+		SELECT AUTO_INCREMENT
+		FROM
+		information_schema.TABLES
+		WHERE TABLE_SCHEMA = "kipro"
+		AND TABLE_NAME =
+		"building";
+	</select>
+
+	
+</mapper>

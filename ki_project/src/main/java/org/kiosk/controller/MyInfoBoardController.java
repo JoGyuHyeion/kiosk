@@ -36,31 +36,7 @@ public class MyInfoBoardController {
 	private UserService userService;
 	@Resource(name = "LoginDTO")
 	private LoginDTO loginDTO;
-
-	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
-	public void newUserGET(Model model, HttpServletRequest request) throws Exception {
-
-		logger.info("myinfoboard/passwd - GET");
-		model.addAttribute("sectionList", sectionService.listAll());
-		HttpSession session = request.getSession();
-		UserVO userVO = (UserVO) session.getAttribute("login");
-		model.addAttribute("login", userVO);
-		logger.info("Login : " + userVO.toString());
-
-	}
-
-	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-	public String newUserPOST(UserVO vo, RedirectAttributes rttr) throws Exception {
-		logger.info("/myinfoboard/newUser - POST");
-		logger.info("newUser post ...........");
-		logger.info(vo.toString());
-
-		userService.newUser(vo);
-
-		rttr.addFlashAttribute("msg", "SUCCESS");
-
-		return "redirect:/myinfoboard/newUser";
-	}
+	
 
 	@RequestMapping(value = "/passwd", method = RequestMethod.GET)
 	public void passwdGET(Model model, HttpServletRequest request) throws Exception {
@@ -92,6 +68,29 @@ public class MyInfoBoardController {
 		logger.info(rttr.toString());
 
 		return "redirect:/logout";
+	}
+	
+	@RequestMapping(value = "/bureau", method = RequestMethod.GET)
+	public void bureauGET(Model model, @ModelAttribute("bcd") String bcd, HttpServletRequest request)
+			throws Exception {
+
+		logger.info("myinfoboard/bureau - GET ");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("login", userVO);
+		logger.info("Login : " + userVO.toString());
+		
+		model.addAttribute("bureauService", bureauService.listAll());
+
+	}
+
+	@RequestMapping(value = "/bureau", method = RequestMethod.POST)
+	public String bureauPOST(RedirectAttributes rttr) throws Exception {
+
+		logger.info("myinfoboard/bureau - POST ");
+		logger.info(rttr.toString());
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		return "redirect:/myinfoboard/section";
 	}
 
 	@RequestMapping(value = "/section", method = RequestMethod.GET)

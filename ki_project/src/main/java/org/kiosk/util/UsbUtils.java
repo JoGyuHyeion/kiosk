@@ -33,7 +33,7 @@ public class UsbUtils {
 		try {
 			fileName += ".txt";
 			// BufferedWriter 와 FileWriter를 조합하여 사용 (속도 향상)
-			BufferedWriter fw = new BufferedWriter(new FileWriter(uploadPath + fileName, true));
+			BufferedWriter fw = new BufferedWriter(new FileWriter(uploadPath + fileName, false));
 
 			// 파일안에 문자열 쓰기
 			fw.write(jsonText);

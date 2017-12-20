@@ -7,7 +7,6 @@ import org.kiosk.domain.Criteria;
 import org.kiosk.domain.SearchCriteria;
 
 public interface Com_staffDAO {
-
 	public void create(Com_staffVO vo) throws Exception;
 
 	public Com_staffVO read(Integer st_no) throws Exception;
@@ -29,7 +28,15 @@ public interface Com_staffDAO {
 	// use for dynamic sql
 
 	public List<Com_staffVO> listSearch(SearchCriteria cri) throws Exception;
-
+	
 	public int listSearchCount(SearchCriteria cri) throws Exception;
+	
+	//
+	public int createSortNo(Com_staffVO vo) throws Exception;
 
+	public void sortupdate(Com_staffVO vo) throws Exception;
+	
+	public List<Com_staffVO> teamListSort(Com_staffVO vo) throws Exception;
+
+	
 }

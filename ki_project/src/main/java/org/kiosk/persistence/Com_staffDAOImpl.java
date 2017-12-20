@@ -21,7 +21,6 @@ public class Com_staffDAOImpl implements Com_staffDAO {
 	@Override
 	public void create(Com_staffVO vo) throws Exception {
 		session.insert(namespace + ".create", vo);
-
 	}
 
 	@Override
@@ -80,6 +79,22 @@ public class Com_staffDAOImpl implements Com_staffDAO {
 	@Override
 	public int listSearchCount(SearchCriteria cri) throws Exception {
 		return session.selectOne(namespace + ".listSearchCount", cri);
+	}
+
+	@Override
+	public int createSortNo(Com_staffVO vo) throws Exception {
+		return session.selectOne(namespace + ".createSortNo",vo);
+	}
+
+	@Override
+	public void sortupdate(Com_staffVO vo) throws Exception {
+		session.update(namespace + ".sortupdate", vo);
+		
+	}
+
+	@Override
+	public List<Com_staffVO> teamListSort(Com_staffVO vo) throws Exception {
+		return session.selectList(namespace + ".teamListSort",vo);
 	}
 
 }

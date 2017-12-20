@@ -7,13 +7,15 @@ import org.springframework.stereotype.Component;
 public class Com_teamVO {
 
 	private String section_cd;
-//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	// @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String team_cd;
 	private String team_nm;
-//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	// @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int team_sort;
-//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	// @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String team_use;
+	// @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private String section_name;
 
 	public String getSection_cd() {
 		return section_cd;
@@ -55,10 +57,18 @@ public class Com_teamVO {
 		this.team_use = team_use;
 	}
 
+	public String getSection_name() {
+		return section_name;
+	}
+
+	public void setSection_name(String section_name) {
+		this.section_name = section_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Com_teamVO [section_cd=" + section_cd + ", team_cd=" + team_cd + ", team_nm=" + team_nm + ", team_sort="
-				+ team_sort + ", team_use=" + team_use + "]";
+				+ team_sort + ", team_use=" + team_use + ", section_name=" + section_name + "]";
 	}
 
 }

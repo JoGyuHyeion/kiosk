@@ -6,27 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.kiosk.mapper.MateMapper">
 
 	<select id="read" resultType="MateDTO">
-		select st_no, real_use_dep_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status 
+		select st_no, real_use_dep_nm, usr_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status 
 		from com_staff2
 		where st_no = #{st_no} 
 	</select>
 
 	<insert id="create">
 		insert into com_staff2
-		(real_use_dep_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status)
+		(real_use_dep_nm, usr_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status)
 		values
 		(#{real_use_dep_nm},#{posit_nm},#{adi_info7},#{telno},#{email_addr},#{img_filenm},#{st_sort},#{st_status})
 	</insert>
 
 	<update id="update">
 		update com_staff2 set
-		real_use_dep_nm = #{real_use_dep_nm},
-		posit_nm = #{posit_nm},
-		adi_info7 = #{adi_info7},
-		telno = #{telno},
-		email_addr = #{email_addr},
-		img_filenm = #{img_filenm},
-		st_sort = #{st_sort},
+
 		st_status = #{st_status},
 		where
 		st_no = #{st_no} 
@@ -38,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="list" resultType="MateDTO">
  		<![CDATA[ 
-		SELECT st_no, real_use_dep_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status 
+		SELECT st_no, real_use_dep_nm, usr_nm, posit_nm, adi_info7, telno, email_addr, img_filenm, st_sort, st_status 
 		FROM com_staff2 
 		WHERE section_cd= #{section_cd} 
 		AND usr_work_state_code_nm = "재직"  

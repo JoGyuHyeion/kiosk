@@ -48,10 +48,15 @@
 										<label class="col-md-3 control-label">건물 구분</label>
 										<div class="col-md-5">
 											<select name="bu_type" id="bu_type" class="form-control">
+												<c:forEach items="${buildingList}" var="BuildingVO">
+													<option value="${BuildingVO.bu_type}">${BuildingVO.building_name}</option>
+												</c:forEach>
+											</select>
+<!-- 										<select name="bu_type" id="bu_type" class="form-control">
 												<option value="1" selected>본관</option>
 												<option value="2">동관</option>
 												<option value="3">서관</option>
-											</select>
+											</select> -->	
 										</div>
 									</div>
 									<!-- bu_img -->
@@ -88,7 +93,7 @@
 													.on(
 															"click",
 															function() {
-																self.location = "/buildingboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}";
+																self.location = "/buildingboard/list?keyword=1";
 															});
 
 										});
@@ -101,6 +106,10 @@
 							}else if ($.trim($("#img_filenm").val()) == "") {
 								alert("사진을 첨부하세요");
 								$("#img_filenm").focus();
+								return false;
+							}else if ($.trim($("#bu_type").val()) == "") {
+								alert("건물을 선택하세요");
+								$("#bu_type").focus();
 								return false;
 							}
 							return true;

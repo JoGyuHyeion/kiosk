@@ -1,6 +1,6 @@
 package org.kiosk.domain;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import org.springframework.stereotype.Component;
 
@@ -10,16 +10,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Vol_checkVO {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private int vol_no;
-	private Date bgImg;
-	private Date board;
-	private Date bureau;
-	private Date icon;
-	private Date image;
-	private Date section;
-	private Date staff;
-	private Date team;
-	private Date video;
-	private Date building;
+	private String bgImg;
+	private String board;
+	private String bureau;
+	private String icon;
+	private String image;
+	private String section;
+	private String staff;
+	private String team;
+	private String video;
+	private String building;
 
 	public int getVol_no() {
 		return vol_no;
@@ -29,83 +29,83 @@ public class Vol_checkVO {
 		this.vol_no = vol_no;
 	}
 
-	public Date getBgImg() {
+	public String getBgImg() {
 		return bgImg;
 	}
 
-	public void setBgImg(Date bgImg) {
+	public void setBgImg(String bgImg) {
 		this.bgImg = bgImg;
 	}
 
-	public Date getBoard() {
+	public String getBoard() {
 		return board;
 	}
 
-	public void setBoard(Date board) {
+	public void setBoard(String board) {
 		this.board = board;
 	}
 
-	public Date getBureau() {
+	public String getBureau() {
 		return bureau;
 	}
 
-	public void setBureau(Date bureau) {
+	public void setBureau(String bureau) {
 		this.bureau = bureau;
 	}
 
-	public Date getIcon() {
+	public String getIcon() {
 		return icon;
 	}
 
-	public void setIcon(Date icon) {
+	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 
-	public Date getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Date image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
-	public Date getSection() {
+	public String getSection() {
 		return section;
 	}
 
-	public void setSection(Date section) {
+	public void setSection(String section) {
 		this.section = section;
 	}
 
-	public Date getStaff() {
+	public String getStaff() {
 		return staff;
 	}
 
-	public void setStaff(Date staff) {
+	public void setStaff(String staff) {
 		this.staff = staff;
 	}
 
-	public Date getTeam() {
+	public String getTeam() {
 		return team;
 	}
 
-	public void setTeam(Date team) {
+	public void setTeam(String team) {
 		this.team = team;
 	}
 
-	public Date getVideo() {
+	public String getVideo() {
 		return video;
 	}
 
-	public void setVideo(Date video) {
+	public void setVideo(String video) {
 		this.video = video;
 	}
 
-	public Date getBuilding() {
+	public String getBuilding() {
 		return building;
 	}
 
-	public void setBuilding(Date building) {
+	public void setBuilding(String building) {
 		this.building = building;
 	}
 

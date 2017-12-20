@@ -14,7 +14,7 @@
 
 <link rel="shortcut icon" href="/resources/assets/images/favicon.ico">
 
-<title>Zircos - Responsive Admin Dashboard Template</title>
+<title>스마트 조직도</title>
 
 <!-- App css -->
 <link href="/resources/assets/css/bootstrap.min.css" rel="stylesheet"
@@ -139,7 +139,7 @@
 								<li>
 									<ul>
 									<c:if test="${0 eq login.auth}">
-										<!-- <li><a href="/myinfoboard/newUser">계정생성(Super)</a></li> -->
+										<li><a href="/myinfoboard/bureau">부서관리(Super)</a></li>
 										<li><a href="/myinfoboard/section?bcd=k000">국관리(Super)</a></li>
 									</c:if>
 										<li><a href="/myinfoboard/passwd">비밀번호변경</a></li>
@@ -153,8 +153,10 @@
 							<ul class="submenu megamenu">
 								<li>
 									<ul>
-										<li><a href="/staff2board/register">직원등록</a></li>
-										<li><a href="/staff2board/list?page=1&perPageNum=10">직원조희</a></li>
+										<li><a href="/staffboard/register">직원등록</a></li>
+										<li><a href="/staffboard/list?page=1&perPageNum=10">직원조희</a></li>
+										<li><a href="/staffboard/moveStaff?page=1&perPageNum=10">직원부서이동</a></li>
+										
 									</ul>
 								</li>
 							</ul></li>

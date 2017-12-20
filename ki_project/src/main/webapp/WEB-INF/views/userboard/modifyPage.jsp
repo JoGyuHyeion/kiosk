@@ -42,7 +42,7 @@
 			<div class="col-lg-12">
 				<div class="card-box">
 
-					<form class="form-horizontal" action="/userboard/modifyPage" id="modUserForm"
+					<form class="form-horizontal"  id="modUserForm"
 						method="post">
 						<div class="row">
 
@@ -73,19 +73,17 @@
 										<label class="col-md-2 control-label">계정ID</label>
 										<div class="col-md-5">
 											<input type="text" class="form-control" placeholder="ID"
-												id="section_id" name="id" value="${userVO.id}">
+												id="section_id" name="id" value="${userVO.id}" readonly="readonly">
 										</div>
-										<div class="col-md-3">
-											<button class="btn btn-default" id ="dulCheck">중복확인</button>
-										</div>
+								
 									</div>
 
 									<!-- section_pass_ok -->
 									<div class="form-group">
-										<label class="col-md-2 control-label">비밀번호 확인</label>
+										<label class="col-md-2 control-label">비밀번호 변경</label>
 										<div class="col-md-5">
 											<input type="password" class="form-control"
-												placeholder="현재 비밀번호" id="section_pass_ok" name="password">
+												placeholder="변경할 비밀번호" id="section_pass_ok" name="password">
 										</div>
 										<div class="col-md-4">
 											<p>숫자만 가능합니다.</p>
@@ -132,38 +130,10 @@
 			
 			$("#section_fullcode").val(section);
 			
-			$("#dulCheck").click(function () {
 				
-				var id = $("#section_id").val();
-				alert("id : "+id);
-				
-				$.ajax({
-					url: '/user/duplCheck/'+id,
-					type: 'get',
-					headers: {
-						"Content-Type": "application/json",
-						"X-HTTP-Method-Override": "GET"
-						},
-						
-						dataType:'text',
-						
-						success: function (data) {
-							dulCheck = data;
-							alert(data);
-							}
-						});
-					return false;
-				});
-			
 			$("#modUser").click(function(){
-				alert(dulCheck);
 				
-				if(dulCheck=="FASLE"){
-					alert("ID 중복체크를 확인해 주시기 바랍니다.");
-					return false;
-				}else{
-					$("#modUserForm").submit();
-				}
+				$("#modUserForm").submit();
 				
 			});
 			

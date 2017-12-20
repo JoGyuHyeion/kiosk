@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/noticeboard/*")
 public class NoticeController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 
 	@Inject
@@ -77,6 +78,7 @@ public class NoticeController {
 		HttpSession session = request.getSession();
 		UserVO userVO = (UserVO) session.getAttribute("login");
 		model.addAttribute("login", userVO);
+		model.addAttribute("uploadPath", uploadPath());
 		logger.info("Login : " + userVO.toString());
 	}
 

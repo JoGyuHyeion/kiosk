@@ -27,5 +27,13 @@ public interface Com_staffService {
 	public List<Com_staffVO> listSearchCriteria(SearchCriteria cri) throws Exception;
 
 	public int listSearchCount(SearchCriteria cri) throws Exception;
+	
+	//
+	//
+	public int createSortNo(Com_staffVO vo) throws Exception;
+
+	public void sortupdate(Com_staffVO vo) throws Exception;
+	
+	public List<Com_staffVO> teamListSort(Com_staffVO vo) throws Exception;
 
 }

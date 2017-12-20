@@ -74,7 +74,7 @@
 							
 									<tr class="">
 										<td>
-											<a href="/userboard/modifyPage${pageMaker.makeSearch(param.page)}&id=${userVO.id}" class="btn btn-default">
+											<a href="/userboard/modifyPage${pageMaker.makeSearch(param.page)}&modifyId=${userVO.id}" class="btn btn-default">
 												<i class="glyphicon glyphicon-glass glyphicon-edit"></i>
 											</a>
 										</td>

@@ -34,9 +34,9 @@ public class UsbUtilsTest {
 		usbUtils.makeJsonTextFile(path, "json", usbUtils.makeJsonString(vol_checkService.read(1)));
 	}
 
-	// @Test
+	 @Test
 	public void testZip() throws Exception {
-		usbUtils.createZipFile(path, toPath, fileName2);
+		usbUtils.createZipFile(path, toPath, "jkjkj");
 	}
 
 	@Test

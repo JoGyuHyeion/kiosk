@@ -15,9 +15,9 @@ public class Com_buildingServiceImpl implements Com_buildingService {
 	private Com_buildingDAO dao;
 	@Inject
 	private Vol_checkService volService;
-	
-	private static final String VERSION="building";
-	
+
+	private static final String VERSION = "building";
+
 	@Override
 	public void regist(Com_buildingVO dto) throws Exception {
 		dao.create(dto);
@@ -44,6 +44,11 @@ public class Com_buildingServiceImpl implements Com_buildingService {
 	@Override
 	public List<Com_buildingVO> listAll() throws Exception {
 		return dao.listAll();
+	}
+
+	@Override
+	public List<Com_buildingVO> list(Integer bu_type) throws Exception {
+		return dao.list(bu_type);
 	}
 
 	@Override

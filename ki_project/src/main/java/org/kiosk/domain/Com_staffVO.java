@@ -2,25 +2,31 @@ package org.kiosk.domain;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("Com_staffVO")
 public class Com_staffVO {
 
 	private int st_no;
-	private String st_nm;
-	private String st_position;
-	private String st_tel;
-	private String st_email;
-	private String st_job;
-	private String st_profile;
+	private String real_use_dep_nm;
+	private String usr_nm;
+	private String logon_id;
+	private String st_key;
+	private String class_nm;
+	private String posit_nm;
+	private String telno;
 	private String img_filenm;
-	private String img_filenm1;
+	private String email_addr;
+	private String usr_work_state_code_nm;
+	private int st_status;
+	private String engm_se;
+	private String adi_info7;
+	private int st_sort;
 	private String section_cd;
 	private String team_cd;
-	private String st_team;
-	private int st_sort;
-	private int st_display;
-	private int st_status;
 	private Date st_wdt;
 	private Date st_edt;
+	private String main_task;
 
 	public int getSt_no() {
 		return st_no;
@@ -30,52 +36,60 @@ public class Com_staffVO {
 		this.st_no = st_no;
 	}
 
-	public String getSt_nm() {
-		return st_nm;
+	public String getReal_use_dep_nm() {
+		return real_use_dep_nm;
 	}
 
-	public void setSt_nm(String st_nm) {
-		this.st_nm = st_nm;
+	public void setReal_use_dep_nm(String real_use_dep_nm) {
+		this.real_use_dep_nm = real_use_dep_nm;
 	}
 
-	public String getSt_position() {
-		return st_position;
+	public String getUsr_nm() {
+		return usr_nm;
 	}
 
-	public void setSt_position(String st_position) {
-		this.st_position = st_position;
+	public void setUsr_nm(String usr_nm) {
+		this.usr_nm = usr_nm;
 	}
 
-	public String getSt_tel() {
-		return st_tel;
+	public String getLogon_id() {
+		return logon_id;
 	}
 
-	public void setSt_tel(String st_tel) {
-		this.st_tel = st_tel;
+	public void setLogon_id(String logon_id) {
+		this.logon_id = logon_id;
 	}
 
-	public String getSt_email() {
-		return st_email;
+	public String getSt_key() {
+		return st_key;
 	}
 
-	public void setSt_email(String st_email) {
-		this.st_email = st_email;
+	public void setSt_key(String st_key) {
+		this.st_key = st_key;
 	}
 
-	public String getSt_job() {
-		return st_job;
+	public String getClass_nm() {
+		return class_nm;
 	}
 
-	public void setSt_job(String st_job) {
-		this.st_job = st_job;
+	public void setClass_nm(String class_nm) {
+		this.class_nm = class_nm;
 	}
 
-	public String getSt_profile() {
-		return st_profile;
+	public String getPosit_nm() {
+		return posit_nm;
 	}
 
-	public void setSt_profile(String st_profile) {
-		this.st_profile = st_profile;
+	public void setPosit_nm(String posit_nm) {
+		this.posit_nm = posit_nm;
+	}
+
+	public String getTelno() {
+		return telno;
+	}
+
+	public void setTelno(String telno) {
+		this.telno = telno;
 	}
 
 	public String getImg_filenm() {
@@ -86,12 +100,52 @@ public class Com_staffVO {
 		this.img_filenm = img_filenm;
 	}
 
-	public String getImg_filenm1() {
-		return img_filenm1;
+	public String getEmail_addr() {
+		return email_addr;
 	}
 
-	public void setImg_filenm1(String img_filenm1) {
-		this.img_filenm1 = img_filenm1;
+	public void setEmail_addr(String email_addr) {
+		this.email_addr = email_addr;
+	}
+
+	public String getUsr_work_state_code_nm() {
+		return usr_work_state_code_nm;
+	}
+
+	public void setUsr_work_state_code_nm(String usr_work_state_code_nm) {
+		this.usr_work_state_code_nm = usr_work_state_code_nm;
+	}
+
+	public int getSt_status() {
+		return st_status;
+	}
+
+	public void setSt_status(int st_status) {
+		this.st_status = st_status;
+	}
+
+	public String getEngm_se() {
+		return engm_se;
+	}
+
+	public void setEngm_se(String engm_se) {
+		this.engm_se = engm_se;
+	}
+
+	public String getAdi_info7() {
+		return adi_info7;
+	}
+
+	public void setAdi_info7(String adi_info7) {
+		this.adi_info7 = adi_info7;
+	}
+
+	public int getSt_sort() {
+		return st_sort;
+	}
+
+	public void setSt_sort(int st_sort) {
+		this.st_sort = st_sort;
 	}
 
 	public String getSection_cd() {
@@ -110,38 +164,6 @@ public class Com_staffVO {
 		this.team_cd = team_cd;
 	}
 
-	public String getSt_team() {
-		return st_team;
-	}
-
-	public void setSt_team(String st_team) {
-		this.st_team = st_team;
-	}
-
-	public int getSt_sort() {
-		return st_sort;
-	}
-
-	public void setSt_sort(int st_sort) {
-		this.st_sort = st_sort;
-	}
-
-	public int getSt_display() {
-		return st_display;
-	}
-
-	public void setSt_display(int st_display) {
-		this.st_display = st_display;
-	}
-
-	public int getSt_status() {
-		return st_status;
-	}
-
-	public void setSt_status(int st_status) {
-		this.st_status = st_status;
-	}
-
 	public Date getSt_wdt() {
 		return st_wdt;
 	}
@@ -158,13 +180,23 @@ public class Com_staffVO {
 		this.st_edt = st_edt;
 	}
 
+	public String getMain_task() {
+		return main_task;
+	}
+
+	public void setMain_task(String main_task) {
+		this.main_task = main_task;
+	}
+
 	@Override
 	public String toString() {
-		return "Com_staffVO [st_no=" + st_no + ", st_nm=" + st_nm + ", st_position=" + st_position + ", st_tel="
-				+ st_tel + ", st_email=" + st_email + ", st_job=" + st_job + ", st_profile=" + st_profile
-				+ ", img_filenm=" + img_filenm + ", img_filenm1=" + img_filenm1 + ", section_cd=" + section_cd
-				+ ", team_cd=" + team_cd + ", st_team=" + st_team + ", st_sort=" + st_sort + ", st_display="
-				+ st_display + ", st_status=" + st_status + ", st_wdt=" + st_wdt + ", st_edt=" + st_edt + "]";
+		return "Com_staff2VO [st_no=" + st_no + ", real_use_dep_nm=" + real_use_dep_nm + ", usr_nm=" + usr_nm
+				+ ", logon_id=" + logon_id + ", st_key=" + st_key + ", class_nm=" + class_nm + ", posit_nm=" + posit_nm
+				+ ", telno=" + telno + ", img_filenm=" + img_filenm + ", email_addr=" + email_addr
+				+ ", usr_work_state_code_nm=" + usr_work_state_code_nm + ", st_status=" + st_status + ", engm_se="
+				+ engm_se + ", adi_info7=" + adi_info7 + ", st_sort=" + st_sort + ", section_cd=" + section_cd
+				+ ", team_cd=" + team_cd + ", st_wdt=" + st_wdt + ", st_edt=" + st_edt + ", main_task=" + main_task
+				+ "]";
 	}
 
 }

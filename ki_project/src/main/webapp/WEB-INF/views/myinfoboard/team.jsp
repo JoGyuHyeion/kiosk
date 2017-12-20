@@ -54,6 +54,7 @@ pageEncoding="UTF-8"%>
                                         <table class="table">
                                             <thead>
                                                 <tr>
+                                                	<td>부서</td>
                                                     <td>팀코드</td>
                                                     <td>팀명칭</td>
                                                     <td>팀순위</td>
@@ -64,8 +65,10 @@ pageEncoding="UTF-8"%>
                                             <tbody>
 
                                             <c:forEach items="${teamList}" var="com_teamVO" varStatus="status">
-
+												<input type="hidden" class="form-control section_cd" size="3" value="${com_teamVO.section_cd}" readonly="readonly">
+												
                                                 <tr>
+                                                 	<td><input type="text" class="form-control sectionName" size="10" value=" ${com_teamVO.section_name}" readonly="readonly"></td>
                                                     <td><input type="text" class="form-control team_cd" size="3" value="${com_teamVO.team_cd}" readonly="readonly"></td>
                                                     <td><input type="text" class="form-control team_nm" size="40" value="${com_teamVO.team_nm}"></td>
                                                     <td><input type="number" min="1" max="50" class="form-control team_sort" size="3" value="${com_teamVO.team_sort}"></td>
@@ -88,7 +91,7 @@ pageEncoding="UTF-8"%>
                                                     <td colspan="4">
                                                         <div class="form-group" style="text-align: center">
                                                             <button type="button" id="btnSave" class="btn btn-primary waves-effect w-md waves-light m-b-5">저장</button>
-                                                            <button data-toggle="modal" data-target="#teamModal" class="btn btn-warning waves-effect w-md waves-light m-b-5" href="#teamAdd">
+                                                            <button data-toggle="modal" data-target="#teamModal" id="modalAddTeam" class="btn btn-warning waves-effect w-md waves-light m-b-5" href="#teamAdd">
                                                                 <i class="fa fa-plus-circle"></i> 팀추가
                                                             </button>
                                                         </div>
@@ -124,8 +127,8 @@ pageEncoding="UTF-8"%>
                     </div>
                     <div></div>
                     <div class="modal-body">
-                        <form class="form-horizontal" action="modifypage" method="post">
-                        
+                        <!-- <form class="form-horizontal" action="modifypage" method="post"> -->
+                          <form class="form-horizontal">
                         <input type="hidden" id="section_cd" name="section_cd" value="${login.section_fullcode}">
                         
                             <div class="form-group">
@@ -158,13 +161,21 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
         <script>
-
+ 
             $(document).ready(function () {
             	
-            	var section_cd="${param.section_cd}";
-            	if(section_cd!=""){
-            		$("#search_team").val(section_cd);
-            	}
+            var section_cd="${param.section_cd}";
+            
+            
+            if(section_cd == ""|| section_cd =="none"){
+            	
+            	$("#modalAddTeam").hide();
+            	
+            }else if(section_cd!=""){
+            	
+            	$("#search_team").val(section_cd);
+            	
+            }
             	
             	$("#search_team").change( function () {
 					var search_team = $("#search_team option:selected").val();
@@ -173,25 +184,25 @@ pageEncoding="UTF-8"%>
             	
             	
             	 $('#addSection').on('click', function () {
-         	        $("#section_cd").val(" ");
-         	        $("#section_name").val(" ");
+         	        $("#section_cd").val("");
+         	        $("#section_name").val("");
          	        $("#new_section_use").prop('checked',false)
             	 });
             	 
             	 $("#btnSave").click(function(){
-            		 var section_cd = $("#section_cd").val();
+            		 var section_cd =($("#section_cd").val()=="none"?$("#search_team").val():$("#section_cd").val());
             		 var jsonArr = new Array();
             		 
             		 for(var i=0; i<$(".team_cd").length; i++){
             			 var jsonObj = new Object();
-            			 jsonObj.section_cd = section_cd;
+            			 jsonObj.section_cd =  $(".section_cd").eq(i).val();
             			 jsonObj.team_cd = $(".team_cd").eq(i).val();
             			 jsonObj.team_nm = $(".team_nm").eq(i).val();
             			 jsonObj.team_sort = $(".team_sort").eq(i).val();
             			 jsonObj.team_use = ($(".team_use").eq(i).prop('checked')?1:0);
             			 jsonArr.push(jsonObj);
             		 }    	     
-            		 alert(JSON.stringify(jsonArr));
+            		 //alert(JSON.stringify(jsonArr));
             	          $.ajax({
                 			url: '/team/listUpdate/'+section_cd,
                 			type: 'PUT',
@@ -210,7 +221,8 @@ pageEncoding="UTF-8"%>
                 				},
             					
                 				error:function(request,status,error){
-                		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                					alert("수정 실패 되었습니다.");
+                		        //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 		       }
             	         });  
             	 });
@@ -229,7 +241,7 @@ pageEncoding="UTF-8"%>
                 });
 
                 $("#btnAdd").click(function () {
-                	var section_cd = $("#section_cd").val();
+                	var section_cd =($("#section_cd").val()=="none"?$("#search_team").val():$("#section_cd").val());
             		var team_cd = $("#team_cd").val();
             		var team_nm = $("#team_nm").val();
             		var new_team_use = ($("#new_team_use").prop('checked')?1:0);     
@@ -251,6 +263,7 @@ pageEncoding="UTF-8"%>
             				success: function (data) {
             					if (data == 'SUCCESS') {
             						alert("추가 되었습니다.");
+            			
             						location.reload();
             					}
             				},
@@ -263,9 +276,11 @@ pageEncoding="UTF-8"%>
                 });
 
                 $(".removeBtn").click(function () {
-            		var section_cd = $("#section_cd").val();
+            		var section_cd =($("#section_cd").val()=="none"?$("#search_team").val():$("#section_cd").val());
+            		//alert(section_cd);
+            		//$(this).closest("tr").remove();
             		var team_cd = $(this).attr("value");
-            		 $.ajax({
+            		  $.ajax({
             			url: '/team/del/'+section_cd+'/'+team_cd,
             			type: 'DELETE',
             			success: function (data) {
@@ -277,7 +292,7 @@ pageEncoding="UTF-8"%>
             			error : function(error) {
     						alert("삭제가 실패되었습니다.");
     				    }
-            		}); 
+            		});  
             	});
 
             });

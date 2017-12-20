@@ -105,7 +105,7 @@
 
 											
 											
-											alert("${com_bgImgVO.bi_able}");
+											//alert("${com_bgImgVO.bi_able}");
 											var bi_able = ${com_bgImgVO.bi_able};
 											if (bi_able == 1) { //값 비교
 												$('input:checkbox[id="bi_able"]')

@@ -19,11 +19,12 @@
 						<ol class="breadcrumb hide-phone p-0 m-0">
 							<li><a href="#">디지털 조직도</a></li>
 							<li><a href="#">직원관리</a></li>
-							<li class="active">직원조회</li>
+							<li class="active">직원정보</li>
 						</ol>
 					</div>
 					<h4 class="page-title">
-						직원수정 <small>직원을 <code>수정</code> 할 수 있습니다.
+						직원정보 <small>직원의 <code>세부정보</code>를 <code>열람</code> 할 수
+							있습니다.
 						</small>
 					</h4>
 				</div>
@@ -40,40 +41,40 @@
 						<form>
 							<div class="col-md-7">
 								<div class="form-horizontal" role="form">
-									<!-- st_nm -->
+									<!-- usr_nm -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">이름</label>
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
-												id="st_nm" name="st_nm" value="${com_staffVO.st_nm}">
+												id="usr_nm" name="usr_nm" value="${com_staffVO.usr_nm}">
 										</div>
 									</div>
-									<!-- st_position -->
+									<!-- posit_nm-->
 									<div class="form-group">
 										<label class="col-md-2 control-label">직위</label>
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
-												readonly="readonly" rows="10" id="st_position"
-												name="st_position" value="${com_staffVO.st_position}">
+												readonly="readonly" rows="10" id="posit_nm" name="posit_nm"
+												value="${com_staffVO.posit_nm}">
 										</div>
 									</div>
-									<!-- st_tel -->
+									<!-- telno -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">전화번호</label>
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
-												readonly="readonly" rows="10" id="st_tel" name="st_tel"
-												value="${com_staffVO.st_tel}">
+												readonly="readonly" rows="10" id="telno" name="telno"
+												value="${com_staffVO.telno}">
 										</div>
 									</div>
 
-									<!-- st_email -->
+									<!-- email_addr -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">이메일</label>
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
-												readonly="readonly" rows="10" id="st_email" name="st_email"
-												value="${com_staffVO.st_email}">
+												readonly="readonly" rows="10" id="email_addr"
+												name="email_addr" value="${com_staffVO.email_addr}">
 										</div>
 									</div>
 									<!-- st_job-->
@@ -81,26 +82,26 @@
 										<label class="col-md-2 control-label">대표업무</label>
 										<div class="col-md-10">
 											<input type="text" readonly="readonly" class="form-control"
-												readonly="readonly" rows="10" id="st_job" name="st_job"
-												value="${com_staffVO.st_job}">
+												readonly="readonly" rows="10" id="st_key" name="st_key"
+												value="${com_staffVO.main_task}">
 										</div>
 									</div>
-									<!-- st_profile -->
+									<!-- adi_info7 -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">사무설명</label>
 										<div class="col-md-10">
 											<textarea class="form-control" readonly="readonly" rows="10"
-												id="st_profile" name="st_profile">${com_staffVO.st_profile}</textarea>
+												id="adi_info7" name="adi_info7">${com_staffVO.adi_info7}</textarea>
 										</div>
 									</div>
 
-									<!-- st_filenm -->
+									<!-- img_filenm -->
 									<div class="form-group">
 										<label class="col-md-2 control-label">사진</label>
-										<div class="col-md-10">
-											<!-- 파일다운로드 -->
-											<!-- <input type="file" class="form-control" id="st_filenm"
-                                                    name="st_filenm"> -->
+										<div class="col-me-10">
+											<img
+												src="${pageContext.request.contextPath}${uploadPath}${com_staffVO.img_filenm}"
+												class="thumb-img" alt="등록된 사진이 없습니다.">
 										</div>
 									</div>
 
@@ -113,7 +114,7 @@
 						</form>
 					</div>
 					<div class="form-group" style="text-align: center">
-						<button type="submit"
+						<button type="button"
 							class="btn btn-primary waves-effect w-md waves-light m-b-5"
 							id="change">수정</button>
 						<form action="/staffboard/removePage" method="post">
@@ -122,7 +123,7 @@
 								class="btn btn-danger waves-effect w-md waves-light m-b-5"
 								id="delete">삭제</button>
 						</form>
-						<button type="submit"
+						<button type="button"
 							class="btn btn-warning waves-effect w-md waves-light m-b-5"
 							id="back">돌아가기</button>
 					</div>
