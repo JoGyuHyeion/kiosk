@@ -22,7 +22,7 @@ public class UploadFileUtils {
 
 	private final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
 
-	public String uploadImageFile(String uploadPath, String originalName, byte[] fileData, String savedName,
+	public String uploadFile(String uploadPath, String originalName, byte[] fileData, String savedName,
 			String[] dirPath) throws Exception {
 		// String savedPath = calcPath(uploadPath);
 		String savedPath = savePath(uploadPath, dirPath);

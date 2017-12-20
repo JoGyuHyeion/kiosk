@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="org.kiosk.controller.Com_buildingTest" time="0.077" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="org.kiosk.controller.Com_buildingTest" time="0.065" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jre1.8.0_131\bin"/>
@@ -27,7 +27,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="D:\workspace\Spring\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf4326873835183493884.tmp"/>
+    <property name="classworlds.conf" value="D:\workspace\Spring\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8753891665682597762.tmp"/>
     <property name="sun.jnu.encoding" value="MS949"/>
     <property name="java.library.path" value="C:\Program Files\Java\jre1.8.0_131\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jre1.8.0_131/bin/server;C:/Program Files/Java/jre1.8.0_131/bin;C:/Program Files/Java/jre1.8.0_131/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin;C:\Users\jo\AppData\Local\GitHub\PortableGit_f02737a78695063deace08e96d5042710d3e32db\cmd;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Users\jo\AppData\Local\Android\sdk\platform-tools;C:\Users\jo\AppData\Local\Android\sdk\tools;C:\Users\jo\AppData\Local\Microsoft\WindowsApps;C:\Users\jo\AppData\Local\atom\bin;C:\Users\jo\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\Microsoft VS Code\bin;C:\sts-bundle\sts-3.9.1.RELEASE;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -61,5 +61,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="org.kiosk.controller.Com_buildingTest" name="testListAll" time="0.077"/>
+  <testcase classname="org.kiosk.controller.Com_buildingTest" name="testListAll" time="0.065"/>
 </testsuite>

@@ -102,7 +102,7 @@ public class NoticeController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String bbs_file = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
+		String bbs_file = uploadFileUtils.uploadFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setBbs_file(bbs_file);
 
@@ -138,7 +138,7 @@ public class NoticeController {
 		} else {
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getBbs_no()).getBbs_file());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
+			img_filenm = uploadFileUtils.uploadFile(root_path, imgFile.getOriginalFilename(),
 					imgFile.getBytes(), img_fileName + board.getBbs_no(), dirPath);
 		}
 		board.setBbs_file(img_filenm);

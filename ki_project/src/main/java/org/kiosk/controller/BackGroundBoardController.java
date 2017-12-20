@@ -106,7 +106,7 @@ public class BackGroundBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
+		String img_filenm = uploadFileUtils.uploadFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setBi_img(img_filenm);
 		service.regist(board);
@@ -142,7 +142,7 @@ public class BackGroundBoardController {
 		} else {
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getBi_no()).getBi_img());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(), imgFile.getBytes(),
+			img_filenm = uploadFileUtils.uploadFile(root_path, imgFile.getOriginalFilename(), imgFile.getBytes(),
 					img_fileName + board.getBi_no(), dirPath);
 		}
 		board.setBi_img(img_filenm);
