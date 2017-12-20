@@ -90,7 +90,7 @@
 										<label class="col-md-2 control-label">사무설명</label>
 										<div class="col-md-10">
 											<textarea class="form-control" rows="2" id="adi_info7"
-												name="adi_info7"> ${com_staffVO.adi_info7}</textarea>
+												name="adi_info7">${com_staffVO.adi_info7}</textarea>
 										</div>
 									</div>
 									<!-- img_filenm -->
@@ -103,7 +103,7 @@
 											<input type="button" value="파일"
 												class="file_input_button btn btn-primary" /> <input
 												type="file" class="file_input_hidden" data-icon='false'
-												onchange="javascript:var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
+												onchange="javascript: var path = document.getElementById('imgName').value = this.value.split('\\').pop().split('/').pop()"
 												accept="image/*" name="imgFile" id="img_file" />
 										</div>
 										<input type="hidden" name="img_filenm" id="img_filenm"
@@ -207,11 +207,11 @@
 			var status = ${com_staffVO.st_status};
 			var usr_work_state_code_nm = "${com_staffVO.usr_work_state_code_nm}";
 			var section_code = "${com_staffVO.section_cd}";
-			var team_code = "${com_staffVO.team_cd}"
-			var team_name = "${com_staffVO.class_nm}"
+			var team_code = "${com_staffVO.team_cd}";
+			var team_name = "${com_staffVO.class_nm}";
 			
 			$('input:radio[name="st_status"]:input[value='+status+']').attr("checked",true);
-			$('select[id="usr_work_state_code_nm"] option:contains("'+usr_work_state_code_nm+'")').attr("checked",true);
+			$('select[id="usr_work_state_code_nm"] option:contains("'+usr_work_state_code_nm+'")').attr("selected",true);
 			$("#section_cd").change( function () {
 							    	 
 				var section_cd = $("#section_cd option:selected").val();
