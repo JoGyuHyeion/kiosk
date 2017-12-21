@@ -39,7 +39,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<![CDATA[ 	
  		select bbs_no, bbs_title, bbs_content, bbs_file 
 		from com_board 	where bbs_state = 1 
-		and brd_cd = 'notice' 
 		and	bbs_exp_sdt <= now() 
 		and bbs_exp_edt > now() 
 		and section_cd in('none',#{section_cd}) 
@@ -51,7 +50,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<![CDATA[ 	
  		select bbs_no, bbs_title, bbs_content, bbs_file 
 		from com_board 	where bbs_state = 1 
-		and brd_cd = 'notice' 
 		and	bbs_exp_sdt <= now() 
 		and bbs_exp_edt > now()
 		ORDER BY bbs_ndt DESC

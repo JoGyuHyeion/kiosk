@@ -61,6 +61,7 @@
 			<mapping path="/*/newUser" />
 			<mapping path="/*/usb" />
 			<mapping path="/*/moveStaff" />
+			<mapping path="/*/priority" />
 			<beans:ref bean="authInterceptor" />
 		</interceptor>
 	</interceptors>

@@ -190,43 +190,6 @@
 </head>
 
 <body>
-					<table class="table table-hover mails m-0 table table-actions-bar">
-							<thead>
-								<tr>
-									<th>부서</th>
-									<th>팀</th>
-									<th>직위</th>
-									<th>이름</th>
-
-								</tr>
-							</thead>
-
-							<tbody>
-								<c:forEach items="${list}" var="com_staffVO">
-									
-									<tr class="">
-										
-										
-										<td id="real_use_dep_nm${com_staffVO.st_no}">
-											${com_staffVO.real_use_dep_nm}</td>
-
-										<td id="class_nm${com_staffVO.st_no}">${com_staffVO.class_nm}</td>
-
-										<td>${com_staffVO.posit_nm}</td>
-
-										<td id="usr_nm${com_staffVO.st_no}">${com_staffVO.usr_nm}</td>
-										<td>${com_staffVO.st_sort}</td>
-										<td>${com_staffVO.team_cd}</td>
-
-									
-
-									
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-
-
 
 	<div class="item_view2" ondrop="drop(event)" ondragover="allowDrop(event)">
 	<c:forEach items="${list}" var="com_staffVO">
@@ -234,8 +197,12 @@
 	</c:forEach>
 	</div>
 	<div class="body-margin ">
-		<div class="item_view ">
-			<div class="item_text">
+		
+    <c:set var="team_cd" value="${team_cd}" />
+    	<c:choose>
+    	<c:when test = "${team_cd eq 'T00'}">
+    	<div class="item_view ">
+    		<div class="item_text">
 				<h4>Item0</h4>
 			</div>
 			<div class="item_list">
@@ -244,7 +211,8 @@
 						<tr id="tr_0">
 							<td class="member_top" ondrop="drop(event)" ondragover="allowDrop(event)">
 								<input type="text" hidden value="1">
-								<p id= "top"></p>]
+								<p id= "top">
+								</p>
 							</td>
 						</tr>
 					</tbody>
@@ -252,6 +220,8 @@
 				<input class="plus-button" type="button" name="button" onclick="add_item_0()"></input>
 			</div>
 		</div>
+		</c:when>
+		<c:otherwise>
 		<div class="item_view ">
 			<div class="item_text">
 				<h4>Item1</h4>
@@ -295,6 +265,8 @@
 			</div>
 			<input class="plus-button" type="button" name="button" onclick="add_item_1(1)"></input>
 		</div>
+		</c:otherwise>
+		</c:choose>
 
 	</div>
 	<div class="bottom-button">
@@ -306,8 +278,6 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		v
-		
 		function add_item_0() {
 			var x = 1;
 			var table = document.getElementById("tb_list_0");

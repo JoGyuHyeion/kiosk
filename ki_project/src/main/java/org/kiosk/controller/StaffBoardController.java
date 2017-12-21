@@ -192,8 +192,26 @@ public class StaffBoardController {
 		return "redirect:/staffboard/list";
 	}
 
+	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
+	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr,
+			HttpServletRequest request) throws Exception {
+		logger.info("staffboard/removePage - POST");
+
+		String root_path = request.getSession().getServletContext().getRealPath("/");
+
+		uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(st_no).getImg_filenm());
+		service.remove(st_no);
+
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+
+		rttr.addFlashAttribute("msg", "SUCCESS");
+
+		return "redirect:/staffboard/list?page=1";
+	}
+	
 	@RequestMapping(value = "/moveStaff", method = RequestMethod.GET)
-	public void moveStaff(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+	public void moveStaffGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
 			throws Exception {
 
 		logger.info("staffboard/moveStaff - GET");
@@ -264,25 +282,58 @@ public class StaffBoardController {
 //		logger.info(team_cd);
 		model.addAttribute("list",service.teamListSort(board));
 		model.addAttribute("sectionService", sectionService.listAll());
+		model.addAttribute("team_cd",board.getTeam_cd());
 	}
 	
+	@RequestMapping(value = "/priority", method = RequestMethod.GET)
+	public void priorityStaffGET(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
 
-	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
-	public String remove(@RequestParam("st_no") int st_no, SearchCriteria cri, RedirectAttributes rttr,
-			HttpServletRequest request) throws Exception {
-		logger.info("staffboard/removePage - POST");
+		logger.info("staffboard/moveStaff - GET");
+		logger.info("test-" + cri.toString());
 
-		String root_path = request.getSession().getServletContext().getRealPath("/");
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		logger.info("Login : " + userVO.toString());
+		
+		if (userVO.getAuth() == 1 || cri.getSection_cd() == null) {
+			cri.setSection_cd(userVO.getSection_fullcode());
+		}
+		
+		int listCount =service.listSearchCount(cri);
+		cri.setPerPageNum(listCount);
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(listCount);
 
-		uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(st_no).getImg_filenm());
-		service.remove(st_no);
+		model.addAttribute("login", userVO);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("uploadPath", uploadPath());
+		model.addAttribute("sectionService", sectionService.listAll());
+		model.addAttribute("list", service.listSearchCriteria(cri));
+	}
+
+	@RequestMapping(value = "/priority", method = RequestMethod.POST)
+	public String priorityStaffPOST(Com_staffVO board, SearchCriteria cri, RedirectAttributes rttr,
+			HttpServletRequest request, String imgName) throws Exception {
+		logger.info("staffboard/moveStaff - POST");
+		logger.info(board.toString());
+		
+		teamVO = teamService.readTeamCd(board.getReal_use_dep_nm(), board.getClass_nm());
+
+		staffVO = service.read(board.getSt_no());
+		staffVO.setReal_use_dep_nm(sectionService.readSectionNm(board.getReal_use_dep_nm()));
+		staffVO.setClass_nm(board.getClass_nm());
+		staffVO.setSection_cd(board.getReal_use_dep_nm());
+		staffVO.setTeam_cd(teamVO.getTeam_cd());
+		staffVO.setSt_sort(99);
+		service.modify(staffVO);
 
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
-
 		rttr.addFlashAttribute("msg", "SUCCESS");
+		logger.info(rttr.toString());
 
-		return "redirect:/staffboard/list?page=1";
+		return "redirect:/staffboard/moveStaff";
 	}
 
 }

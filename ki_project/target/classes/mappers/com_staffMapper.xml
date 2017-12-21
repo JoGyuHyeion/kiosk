@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="listAll" resultType="Com_staffVO">
 		 <![CDATA[
-		 select * from com_staff 
+		 select * from com_staff order by real_use_dep_nm asc, class_nm asc, st_no asc
 		 ]]>
 	</select>
 
@@ -91,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 from 
 		 com_staff 
 		 where st_no > 0 
-		 order by st_no desc
+		 order by real_use_dep_nm asc, class_nm asc, st_no asc
 		 limit #{page}, 10
 		 ]]>
 	</select>
@@ -103,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 from 
 		 com_staff 
 		 where st_no > 0 
-		 order by st_no desc
+		 order by real_use_dep_nm asc, class_nm asc, st_no asc
 		 limit #{pageStart}, #{perPageNum}
 	 	]]>
 	</select>
@@ -137,7 +137,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="search"></include>
   
 		<![CDATA[    
-		order by st_no desc
+		order by real_use_dep_nm asc, class_nm asc, st_no asc
 		limit #{pageStart}, #{perPageNum}
 		]]>
 	</select>

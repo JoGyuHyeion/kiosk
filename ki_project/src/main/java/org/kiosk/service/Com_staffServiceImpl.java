@@ -79,7 +79,6 @@ public class Com_staffServiceImpl implements Com_staffService {
 	@Override
 	public void sortupdate(Com_staffVO vo) throws Exception {
 		dao.sortupdate(vo);
-
 	}
 
 	@Override
