@@ -52,11 +52,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="createSortNo" resultType="int">
-		select count(*) 
-		from com_staff 
-		where section_cd = #{section_cd} 
+		<![CDATA[
+		select max(st_sort)
+		from com_staff
+		where section_cd = #{section_cd}
 		and team_cd = #{team_cd}
+		and st_sort < 99
 		order by team_cd asc
+		 ]]>
 	</select>
 	
 	<update id="sortupdate">
@@ -151,5 +154,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="search"></include>
 
 	</select>
+
 
 </mapper>

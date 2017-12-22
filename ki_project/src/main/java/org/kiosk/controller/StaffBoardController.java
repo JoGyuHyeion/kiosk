@@ -6,20 +6,25 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.kiosk.domain.Com_staffVO;
 import org.kiosk.domain.Com_teamVO;
 import org.kiosk.domain.PageMaker;
 import org.kiosk.domain.SearchCriteria;
 import org.kiosk.domain.UserVO;
+import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.service.Com_sectionService;
 import org.kiosk.service.Com_staffService;
 import org.kiosk.service.Com_teamService;
 import org.kiosk.util.UploadFileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -253,6 +258,30 @@ public class StaffBoardController {
 		logger.info(rttr.toString());
 
 		return "redirect:/staffboard/moveStaff";
+	}
+	
+	@RequestMapping(value = "/sortStaff", method = RequestMethod.GET)
+	public void sortStaff(@ModelAttribute("cri") SearchCriteria cri, Model model, HttpServletRequest request)
+			throws Exception {
+		HttpSession session = request.getSession();
+		UserVO userVO = (UserVO) session.getAttribute("login");
+		model.addAttribute("login", userVO);
+		model.addAttribute("sectionService", sectionService.listAll());
+		logger.info("Login : " + userVO.toString());
+
+	}
+
+	
+	
+	@RequestMapping(value = "/sortPage", method = RequestMethod.POST)
+	public void sortPage(Com_staffVO board, Model model, HttpServletRequest request)
+			throws Exception {
+
+		logger.info("staffboard/sortPage - GET");
+		model.addAttribute("list",service.teamListSort(board));
+		model.addAttribute("sort_max", service.createSortNo(board));
+		model.addAttribute("sectionService", sectionService.listAll());
+		model.addAttribute("team_cd",board.getTeam_cd());
 	}
 	
 	@RequestMapping(value = "/priority", method = RequestMethod.GET)

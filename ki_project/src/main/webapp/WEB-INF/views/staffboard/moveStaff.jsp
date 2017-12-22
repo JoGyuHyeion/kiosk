@@ -115,7 +115,7 @@
 											<button type="submit" class="btn btn-default move_btn"
 												data-toggle="modal" data-target="#moveModal"
 												value="${com_staffVO.st_no}">
-												<i class="glyphicon glyphicon-glass glyphicon-trash"></i>
+												<i class="glyphicon glyphicon-glass glyphicon-share-alt"></i>
 											</button>
 										</td>
 									</tr>
