@@ -156,11 +156,8 @@
 										<li><a href="/staffboard/register">직원등록</a></li>
 										<li><a href="/staffboard/list?page=1&perPageNum=10">직원조희</a></li>
 										<li><a href="/staffboard/moveStaff?page=1&perPageNum=10">직원부서이동</a></li>
-<<<<<<< HEAD
 										<li><a href="/staffboard/sortStaff?page=1&perPageNum=10">직원위치</a></li>									
-=======
 										<li><a href="/staffboard/priority?page=1&perPageNum=10">직원순위관리</a></li>
->>>>>>> 79245b42c32e1d8f730e14d4b34debaab628e863
 									</ul>
 								</li>
 							</ul></li>

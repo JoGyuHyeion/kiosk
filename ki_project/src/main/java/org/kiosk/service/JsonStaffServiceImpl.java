@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
-import org.kiosk.domain.Com_teamVO;
+import org.kiosk.domain.Com_sectionVO;
 import org.kiosk.dto.JsonStaffDTO;
 import org.kiosk.dto.MateDTO;
 import org.kiosk.dto.TeamsDTO;
@@ -21,9 +21,9 @@ public class JsonStaffServiceImpl implements JsonStaffService {
 	@Inject
 	private JsonMateService jsonMateService;
 	@Inject
-	private Com_teamService teamService;
-	@Inject
 	private Vol_checkService volService;
+	@Inject
+	private Com_sectionService sectionService;
 
 	private static final String VERSION = "session";
 
@@ -81,20 +81,20 @@ public class JsonStaffServiceImpl implements JsonStaffService {
 		}
 		return jsonStaffDTO;
 	}
-	
+
 	public Map<String, JsonStaffDTO> getAllJsonStaff() {
 		Map<String, JsonStaffDTO> staffList = null;
 		try {
 			staffList = new HashMap<String, JsonStaffDTO>();
-			for (Com_teamVO vo : teamService.list("none")) {
-				System.out.println(vo.getSection_cd()+vo.getTeam_nm());
-				staffList.put(vo.getSection_cd(), getJsonStaff(vo.getSection_cd()));
+			
+			for (Com_sectionVO vo : sectionService.listAll()) {
+
+				staffList.put(vo.getSection_fullcode(), this.getJsonStaff(vo.getSection_fullcode()));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return staffList;
 	}
-		
 
 }

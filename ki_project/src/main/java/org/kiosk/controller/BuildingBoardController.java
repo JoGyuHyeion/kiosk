@@ -118,7 +118,7 @@ public class BuildingBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
+		String img_filenm = uploadFileUtils.uploadFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setBu_img(img_filenm);
 
@@ -142,7 +142,7 @@ public class BuildingBoardController {
 		} else {
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getBu_no()).getBu_img());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
+			img_filenm = uploadFileUtils.uploadFile(root_path, imgFile.getOriginalFilename(),
 					imgFile.getBytes(), img_fileName + board.getBu_no(), dirPath);
 		}
 		board.setBu_img(img_filenm);

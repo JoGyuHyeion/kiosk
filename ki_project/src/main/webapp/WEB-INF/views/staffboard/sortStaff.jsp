@@ -33,7 +33,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="card-box">
-					<form action="sortPage" method="post" >
+					<form action="sortPage" method="post" onsubmit="return formCheck()">
 					<div class="row">
 			
 						<c:if test="${0 eq login.auth}">
@@ -117,8 +117,8 @@
 				$("#sortBtn").on("click",function(event) {
 					var section_cd = $("#section_cd option:selected").val();		
 					var team_cd = $("#team_cd option:selected").val();
-					
-					alert(section_cd +"/"+ team_cd);
+									
+					//alert(section_cd +"/"+ team_cd);
 					
 				});
 
@@ -146,6 +146,20 @@
 				});
 			
 			});
+			
+			function formCheck() {
+				if ($.trim($("#section_cd").val()) == "none") {
+					alert("근무 부서를 선택하세요");
+					$("#section_cd").focus();
+					return false;
+				} else if ($.trim($("#team_cd").val()) == "none") {
+					alert("근무 팀을 선택하세요");
+					$("#class_nm").focus();
+					return false;
+				} 
+				return true;
+
+			}
 		</script>
 	</div>
 </section>

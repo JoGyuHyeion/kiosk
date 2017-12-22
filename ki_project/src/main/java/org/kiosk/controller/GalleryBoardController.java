@@ -105,7 +105,7 @@ public class GalleryBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
+		String img_filenm = uploadFileUtils.uploadFile(root_path, imgFile.getOriginalFilename(),
 				imgFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setImg_filenm(img_filenm);
 		service.regist(board);
@@ -142,7 +142,7 @@ public class GalleryBoardController {
 		} else {
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getImg_no()).getImg_filenm());
 
-			img_filenm = uploadFileUtils.uploadImageFile(root_path, imgFile.getOriginalFilename(),
+			img_filenm = uploadFileUtils.uploadFile(root_path, imgFile.getOriginalFilename(),
 					imgFile.getBytes(), img_fileName + board.getImg_no(), dirPath);
 		}
 		board.setImg_filenm(img_filenm);

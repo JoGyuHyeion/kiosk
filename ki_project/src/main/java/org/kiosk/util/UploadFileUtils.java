@@ -22,7 +22,7 @@ public class UploadFileUtils {
 
 	private final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
 
-	public String uploadImageFile(String uploadPath, String originalName, byte[] fileData, String savedName,
+	public String uploadFile(String uploadPath, String originalName, byte[] fileData, String savedName,
 			String[] dirPath) throws Exception {
 		// String savedPath = calcPath(uploadPath);
 		String savedPath = savePath(uploadPath, dirPath);
@@ -49,7 +49,7 @@ public class UploadFileUtils {
 	// 썸네일 이미지 생성(이미지 파일)
 	private String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
-		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 300);
+		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 600);
 		String thumbnailName = uploadPath + path + File.separator + "s_" + fileName;
 		// s_로 시작하면 썸네일 이미지이다.
 		File newFile = new File(thumbnailName);

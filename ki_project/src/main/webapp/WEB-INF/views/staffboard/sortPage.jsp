@@ -7,164 +7,299 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title></title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<meta charset="utf-8">
+<title></title>
+<link href="/resources/assets/css/draganddrop.css" rel="stylesheet"
+	type="text/css" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			transition: all 0.3s ease-out;
-		}
+<style>
 
-		td {
-			background: white;
-			border: 1px solid #ccc;
-			padding: 10px;
-		}
+/*Horizontal scrollbar - set width of overview or make it expand horizontal like below*/
+</style>
+<script>
+	
+</script>
+</head>
 
-		body {
-			background: url(/resources/assets/images/sort/background-img.jpg) 0 0 no-repeat;
-			background-size: cover;
-		}
+<body>
 
-		.body-margin {
-			padding: 20px;
-			padding-left: 190px;
-		}
+	<c:out value="${sort_max}"></c:out>
+	<div class="item_view2" ondrop="drop(event)"
+		ondragover="allowDrop(event)" id="view">
+		<input type="hidden" id="view_no" name="view_no" value="99" />
+<c:forEach items="${list}" var="com_staffVO">
+			<c:set var="team_nm" value="${com_staffVO.class_nm}"></c:set>
+			<c:set var="st_sort" value="${com_staffVO.st_sort}"></c:set>
+			<c:if test="${st_sort eq 99}">
+				<div draggable="true" ondragstart="drag(event)" ondrop="item()" id="${com_staffVO.st_no}" class="item">${com_staffVO.usr_nm}
+					<input id='st_no' name='st_no' class='st_no' value='${com_staffVO.st_no}' type='hidden' />
+					<input id='st_sort' name='st_sort' class='st_sort' value='${com_staffVO.st_sort}' type='hidden' />
+				</div>
 
-		.item {
-			display: inline-block;
-			color: white;
-			width: 125px;
-			padding: 10px 0;
-			margin: 2px;
-			text-align: center;
-			background-color: #ff9e47;
-		}
+			</c:if>
+		</c:forEach>
+		
+	</div>
+	<div class="body-margin ">
+		<c:set var="team_cd" value="${team_cd}" />
+		<c:choose>
+			<c:when test="${team_cd eq 'T00'}">
+				<div class="item_view ">
+					<div class="item_text">
+						<h4>${team_nm}</h4>
+					</div>
+					<div class="item_list">
+						<table class="table" id="tb_list_0" border="">
+							<tbody>
 
-		.item_text {
-			background: #3a9884;
-			text-align: center;
-			color: white;
-			padding: 5px;
-		}
+								<tr id="tr_0">
+									<td id="td_0" class="member_top" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="0" /></td>
+								</tr>
+								<tr id="tr_1">
+									<td id="td_1" class="member_top" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="1" /></td>
+								</tr>
+								<tr id="tr_2">
+									<td id="td_2" class="member_top" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="2" /></td>
+								</tr>
+								<c:forEach items="${list}" var="com_staffVO">
+									<script>
+										var sort = ${com_staffVO.st_sort};
+										$("#tr_"+sort).find(".member_top").append("<div  draggable='true' ondragstart='drag(event)' id='${com_staffVO.st_no}' class='item'>${com_staffVO.usr_nm}<input id ='st_no' name = 'st_no' class ='st_no' value ='${com_staffVO.st_no}' type='hidden'/><input id ='st_sort' name = 'st_sort' class ='st_sort' value ='${com_staffVO.st_sort}' type='hidden'/></div>");
 
-		.item_text h4 {
-			border: 1px solid rgba(255, 255, 255, 0.45);
-			padding: 20px;
-			font-weight: 100;
-			font-size: 20px;
-		}
+									</script>
+								</c:forEach>
+							</tbody>
+						</table>
+						<!--	<input class="plus-button" type="button" name="button"
+							onclick="add_item_0()"></input>-->
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="item_view ">
+					<div class="item_text">
+						<h4>${team_nm}</h4>
+					</div>
+					<div class="item_list">
+						<table class="table" id="tb_list" border="">
+							<thead>
+								<tr id="tr_0" class="member_top">
+									<td id="td_0" colspan="2" class="member_top"
+										ondrop="drop(event)" ondragover="allowDrop(event)"><input
+										type="hidden" id="view_no" name="view_no" value="0" /></td>
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="tr_1">
+									<td id="td_1" class="member_sub" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="1" /></td>
+									<td id="td_2" class="member_sub" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="2" /></td>
+								</tr>
+								<tr id="tr_2">
+									<td id="td_3" class="member_sub" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="3" /></td>
+									<td id="td_4" class="member_sub" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="4" /></td>
+								</tr>
+								<tr id="tr_3">
+									<td id="td_5" class="member_sub" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="5" /></td>
+									<td id="td_6" class="member_sub" ondrop="drop(event)"
+										ondragover="allowDrop(event)"><input type="hidden"
+										id="view_no" name="view_no" value="6" /></td>
+								</tr>
+							</tbody>
+							<script>
+								var x = 1;
+						
+								function add_item() {
+									var i = 6;
+									var value = 0;
+									var t_1 = 1 + (i * x);
+									var t_2 = 2 + (i * x);
+									var t_3 = 3 + (i * x);
+									var t_4 = 4 + (i * x);
+									var t_5 = 5 + (i * x);
+									var t_6 = 6 + (i * x);
+						
+									var tr_0 = document.getElementById("tr_0");
+									var tr_1 = document.getElementById("tr_1");
+									var tr_2 = document.getElementById("tr_2");
+									var tr_3 = document.getElementById("tr_3");
+									var table = document.getElementById("tb_list");
+									// alert("tb_list_"+value);
+									var row = table.rows.length;
+									if (row > 9)
+										return alert("10개이상 안됨");
+									false;
+						
+									// 개수당+6
+									if (t_6 == 97) {
+										alert("초과 불가");
+									}
+									var cell_1 = tr_1.insertCell(-1);
+									cell_1.innerHTML = "|";
+						
+									var cell_1 = tr_1.insertCell(-1);
+									cell_1.setAttribute('id', "td_"+t_1);
+									cell_1.setAttribute('class', "member_sub")
+									cell_1.setAttribute('ondrop', "drop(event)");
+									cell_1.setAttribute('ondragover', "allowDrop(event)");
+									cell_1.setAttribute('ondragover', "allowDrop(event)");
+						
+									cell_1.innerHTML = "<input type='hidden' id='view_no' name='view_no' value='"+t_1+"' />";
+											
+									var cell_1 = tr_1.insertCell(-1);
+									cell_1.setAttribute('id', "td_"+t_2);
+									cell_1.setAttribute('class', "member_sub")
+									cell_1.setAttribute('ondrop', "drop(event)");
+									cell_1.setAttribute('ondragover', "allowDrop(event)");
+						
+									cell_1.innerHTML = "<input type='hidden' id='view_no' name='view_no' value='"+t_2+"' />";
+						
+									var cell_2 = tr_2.insertCell(-1);
+									cell_2.innerHTML = x;
+						
+									var cell_2 = tr_2.insertCell(-1);
+									cell_2.setAttribute('id', "td_"+t_3);
+									cell_2.setAttribute('class', "member_sub")
+									cell_2.setAttribute('ondrop', "drop(event)");
+									cell_2.setAttribute('ondragover', "allowDrop(event)");
+						
+									cell_2.innerHTML = "<input type='hidden' id='view_no' name='view_no' value='"+t_3+"' />";
+									var cell_2 = tr_2.insertCell(-1);
+									cell_2.setAttribute('id', "td_"+t_4);
+									cell_2.setAttribute('class', "member_sub")
+									cell_2.setAttribute('ondrop', "drop(event)");
+									cell_2.setAttribute('ondragover', "allowDrop(event)");
+						
+									cell_2.innerHTML = "<input type='hidden' id='view_no' name='view_no' value='"+t_4+"' />";
+						
+									var cell_3 = tr_3.insertCell(-1);
+									cell_3.innerHTML = "|";
+						
+									var cell_3 = tr_3.insertCell(-1);
+									cell_3.setAttribute('id', "td_"+t_5);
+									cell_3.setAttribute('class', "member_sub")
+									cell_3.setAttribute('ondrop', "drop(event)");
+									cell_3.setAttribute('ondragover', "allowDrop(event)");
+						
+									cell_3.innerHTML = "<input type='hidden' id='view_no' name='view_no' value='"+t_5+"' />";
+									var cell_3 = tr_3.insertCell(-1);
+									cell_3.setAttribute('id', "td_"+t_6);
+									cell_3.setAttribute('class', "member_sub")
+									cell_3.setAttribute('ondrop', "drop(event)");
+									cell_3.setAttribute('ondragover', "allowDrop(event)");
+						
+									cell_3.innerHTML = "<input type='hidden' id='view_no' name='view_no' value='"+t_6+"' />";
+						
+									x++;
+						
+									}
+								</script>
+							<script>
+							var sort_max=${sort_max};
+							
+							var innerClick = Math.round(sort_max /6)+1;
+								for (i = 1; i < innerClick; i++) {
+									add_item();
+								}			
+								 
+							</script>
 
-		.item_list {
-			padding: 10px;
-			padding-bottom: 0;
-		}
+							<c:forEach items="${list}" var="com_staffVO">
+								<script>
+									var sort = ${com_staffVO.st_sort};
 
-		.item_view {
-			float: left;
-			margin: 10px;
-			text-align: center;
-			background: rgba(255, 255, 255, 0.88);
-		}
+									
+									$("#td_"+sort).append(
+											"<div draggable='true' ondragstart='drag(event)' id='${com_staffVO.st_no}' class='item'>${com_staffVO.usr_nm}<input id ='st_no' name = 'st_no' class ='st_no' value ='${com_staffVO.st_no}' type='hidden'/><input id ='st_sort' name = 'st_sort' class ='st_sort' value ='${com_staffVO.st_sort}' type='hidden'/></div>");
 
-		.item_view2 {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 135px;
-			padding: 15px;
-			height: 100%;
-			background: rgba(0, 0, 0, 0.38);
+								</script>
+							</c:forEach>
+						</table>
+					</div>
+					<input class="plus-button" type="button" name="button"
+						onclick="add_item()"></input>
+				</div>
+			</c:otherwise>
+		</c:choose>
 
-		}
-
-		.member_top {
-			width: 300px;
-			height: 80px;
-			border: 1px solid #ccc;
-			border-radius: 3px;
-			background: white;
-		}
-
-		.member_sub {
-			width: 150px;
-			height: 60px;
-			border: 1px solid#ccc;
-			border-radius: 3px;
-			background: white;
-		}
-
-		.table {
-			word-break: break-all;
-			padding: 20;
-			border: none;
-		}
-
-		.plus-button {
-			width: 30px;
-			height: 30px;
-			display: block;
-			margin: 0 auto;
-			margin-top: 20px;
-			margin-bottom: 20px;
-			border: 1px solid #e30015;
-			background: url(/resources/assets/images/sort/plus-icon.png) 5px 5px no-repeat;
-			background-color: white;
-		}
-
-		.plus-button:hover {
-			background: url(/resources/assets/images/sort/plus-icon2.png) 5px 5px no-repeat;
-			background-color: #e30015;
-		}
-
-		.bottom-button {
-			display: inline-block;
-			position: fixed;
-			bottom: 20px;
-			left: 50%;
-			margin-left: -154px;
-			background: rgba(0, 0, 0, 0.38);
-			padding: 10px 30px;
-			border-radius: 30px;
-		}
-
-		.back-button {
-			display: inline-block;
-			float: left;
-			background: url(/resources/assets/images/sort/back-white.png) 0 0 no-repeat;
-			color: white;
-			padding: 7px 0 7px 45px;
-			margin-right: 30px;
-			cursor: pointer;
-		}
-
-		.back-button:hover {
-			color: #ff9e47;
-			background: url(/resources/assets/images/sort/back-over.png) 0 0 no-repeat;
-		}
-
-		.save-button {
-			display: inline-block;
-			float: left;
-			background: url(/resources/assets/images/sort/save-white.png) 0 0 no-repeat;
-			color: white;
-			padding: 7px 0 7px 45px;
-			cursor: pointer;
-		}
-
-		.save-button:hover {
-			color: #ff9e47;
-			background: url(/resources/assets/images/sort/save-over.png) 0 0 no-repeat;
-		}
-
-		/*Horizontal scrollbar - set width of overview or make it expand horizontal like below*/
-
-	</style>
+	</div>
+	<div class="bottom-button">
+		<div class="back-button" id="back">뒤로가기</div>
+		<div class="save-button" id="btnSave">저장하기</div>
+	</div>
+	<!-- Save / Back-->
 	<script>
+	  $(document).ready(function () {
+		  $("#btnSave").click(function () {
+              var jsonArr = new Array();
+
+              for (var i = 0; i < $(".st_sort").length; i++) {
+                  var jsonObj = new Object();
+                  jsonObj.st_no = $(".st_no").eq(i).val();
+                  jsonObj.st_sort = $(".st_sort").eq(i).val();
+                  jsonArr.push(jsonObj);
+              }
+               $.ajax({
+                  url: '/staff/sortListUpdate/0',
+                  type: 'PUT',
+                  headers: {
+                      "Content-Type": "application/json",
+                      "X-HTTP-Method-Override": "PUT"
+                  },
+                  dataType: 'text',
+                  data: JSON.stringify(jsonArr),
+
+                  success: function (data) {
+                      if (data == 'SUCCESS') {
+                          alert("수정 되었습니다.");
+                          location.reload();
+                      }
+                  },
+
+                  error: function (request, status, error) {
+                      alert("수정 실패 되었습니다.");
+                      //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                  }
+              });
+          });
+		  
+		  $("#back").on("click",function() {
+				self.location = "/staffboard/sortStaff?page=1&perPageNum=10";
+			});
+	     });
+	</script>
+
+	<!-- innerHtml -->
+
+
+	<!-- DragDrop -->
+	<script type="text/javascript">
+	 $(document).ready(function () {
+				
+	$(".item").droppable({
+			disabled: "true"
+			});
+	 
+	 });
 		function allowDrop(ev) {
 			ev.preventDefault();
 
@@ -172,215 +307,53 @@
 
 		function drag(ev) {
 			var a = ev.dataTransfer.setData("text", ev.target.id);
+
 		}
 
 		function drop(ev) {
 			ev.preventDefault();
-			var data = ev.dataTransfer.getData("text");
-			alert(data);
-
-			ev.target.appendChild(document.getElementById(data));
-			var abc = ev.target.getElementById();
-			alert(abc);
-
-
-		}
-
-	</script>
-</head>
-
-<body>
-
-	<div class="item_view2" ondrop="drop(event)" ondragover="allowDrop(event)">
-	<c:forEach items="${list}" var="com_staffVO">
-		<div draggable="true" ondragstart="drag(event)" id="drag1" class="item">${com_staffVO.usr_nm}</div>
-	</c:forEach>
-	</div>
-	<div class="body-margin ">
-		
-    <c:set var="team_cd" value="${team_cd}" />
-    	<c:choose>
-    	<c:when test = "${team_cd eq 'T00'}">
-    	<div class="item_view ">
-    		<div class="item_text">
-				<h4>Item0</h4>
-			</div>
-			<div class="item_list">
-				<table class="table" id="tb_list_0" border="">
-					<tbody>
-						<tr id="tr_0">
-							<td class="member_top" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<input type="text" hidden value="1">
-								<p id= "top">
-								</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<input class="plus-button" type="button" name="button" onclick="add_item_0()"></input>
-			</div>
-		</div>
-		</c:when>
-		<c:otherwise>
-		<div class="item_view ">
-			<div class="item_text">
-				<h4>Item1</h4>
-			</div>
-			<div class="item_list">
-				<table class="table" id="tb_list_1" border="">
-					<thead>
-						<tr id="tr_0" class="member_top">
-							<td colspan="2" class="member_top" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<input type="text" hidden value="1">
-							</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr id="tr_1">
-							<td class="member_sub" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<p id="2"></p>
-							</td>
-							<td class="member_sub" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<p id="3"></p>
-							</td>
-						</tr>
-						<tr id="tr_2">
-							<td class="member_sub" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<p id="4"></p>
-							</td>
-							<td class="member_sub" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<p id="5"></p>
-							</td>
-						</tr>
-						<tr id="tr_3">
-							<td class="member_sub" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<p id="6"></p>
-							</td>
-							<td class="member_sub" ondrop="drop(event)" ondragover="allowDrop(event)">
-								<p id="7"></p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<input class="plus-button" type="button" name="button" onclick="add_item_1(1)"></input>
-		</div>
-		</c:otherwise>
-		</c:choose>
-
-	</div>
-	<div class="bottom-button">
-		<div class="back-button">
-			뒤로가기
-		</div>
-		<div class="save-button">
-			저장하기
-		</div>
-	</div>
-	<script type="text/javascript">
-		function add_item_0() {
-			var x = 1;
-			var table = document.getElementById("tb_list_0");
-			var row = table.rows.length;
-			alert(row);
-			if (row > 2)
-				return alert("2개이상 안됨");
-			table.insertRow(-1).insertCell().setAttribute('class', "member_top");
-			table.setAttribute('ondrop', "drop(event)");
-			table.setAttribute('ondragover', "allowDrop(event)");
-			x++;
-		}
-
-	
-		function add_item_1(value) {
-			var x = 1;
-			var i = 6;
-			var value = 0;
-			var t_1 = 2 + (i * x);
-			var t_2 = 3 + (i * x);
-			var t_3 = 4 + (i * x);
-			var t_4 = 5 + (i * x);
-			var t_5 = 6 + (i * x);
-			var t_6 = 7 + (i * x);
-
-			var tr_0 = document.getElementById("tr_0");
-			var tr_1 = document.getElementById("tr_1");
-			var tr_2 = document.getElementById("tr_2");
-			var tr_3 = document.getElementById("tr_3");
-			var table = document.getElementById("tb_list_" + value);
-			// alert("tb_list_"+value);
-			var row = table.rows.length;
-			if (row > 9)
-				return alert("10개이상 안됨");
-			false;
-
-			// 개수당+6
-			if (t_6 == 97) {
-				alert("초과 불가");
+			if(ev.target.className == "item"){
+				ev.target.appendChild(document.getElementById());
 			}
-			var cell_1 = tr_1.insertCell(-1);
-			cell_1.innerHTML = "|";
-
-
-			var cell_1 = tr_1.insertCell(-1);
-			cell_1.setAttribute('id', t_1);
-			cell_1.setAttribute('class', "member_sub")
-			cell_1.setAttribute('ondrop', "drop(event)");
-			cell_1.setAttribute('ondragover', "allowDrop(event)");
-
-			// cell_1.innerHTML = "'" + t_1 + "'<p id='" + t_1 + "'></p><input type='button' name='button' onclick='add_item()'>'" + t_1 + "'</input>";
-			var cell_1 = tr_1.insertCell(-1);
-			cell_1.setAttribute('id', t_2);
-			cell_1.setAttribute('class', "member_sub")
-			cell_1.setAttribute('ondrop', "drop(event)");
-			cell_1.setAttribute('ondragover', "allowDrop(event)");
-
-			// cell_1.innerHTML = "'" + t_2 + "'<p id='" + t_2 + "'></p><input type='button' name='button' onclick='add_item()'>'" + t_2 + "'</input>";
-
-			var cell_2 = tr_2.insertCell(-1);
-			cell_2.innerHTML = x;
-
-
-			var cell_2 = tr_2.insertCell(-1);
-			cell_2.setAttribute('id', t_3);
-			cell_2.setAttribute('class', "member_sub")
-			cell_2.setAttribute('ondrop', "drop(event)");
-			cell_2.setAttribute('ondragover', "allowDrop(event)");
-
-			// cell_2.innerHTML = "'" + t_3 + "'<p id='" + t_3 + "'></p> <button type='button' name='button'>추가</button><button type='button' name='button'>삭제</button>";
-			var cell_2 = tr_2.insertCell(-1);
-			cell_2.setAttribute('id', t_4);
-			cell_2.setAttribute('class', "member_sub")
-			cell_2.setAttribute('ondrop', "drop(event)");
-			cell_2.setAttribute('ondragover', "allowDrop(event)");
-
-			// cell_2.innerHTML = "'" + t_4 + "'<p id='" + t_4 + "'></p> <button type='button' name='button'>추가</button><button type='button' name='button'>삭제</button>";
-
-			var cell_3 = tr_3.insertCell(-1);
-			cell_3.innerHTML = "|";
-
-			var cell_3 = tr_3.insertCell(-1);
-			cell_3.setAttribute('id', t_5);
-			cell_3.setAttribute('class', "member_sub")
-			cell_3.setAttribute('ondrop', "drop(event)");
-			cell_3.setAttribute('ondragover', "allowDrop(event)");
-
-			// cell_3.innerHTML = "'" + t_5 + "'<p id='" + t_5 + "'></p> <button type='button' name='button'>추가</button><button type='button' name='button'>삭제</button>";
-			var cell_3 = tr_3.insertCell(-1);
-			cell_3.setAttribute('id', t_6);
-			cell_3.setAttribute('class', "member_sub")
-			cell_3.setAttribute('ondrop', "drop(event)");
-			cell_3.setAttribute('ondragover', "allowDrop(event)");
-
-			// cell_3.innerHTML = "'" + t_6 + "'<p id='" + t_6 + "'></p> <button type='button' name='button'>추가</button><button type='button' name='button'>삭제</button>";
-
-			x++;
-
-			// var cell = currentRow.insertCell();
-			// cell.innerHTML = "<input id='btn' type ='button' value='Picture file' class='btn btn-danger'  onClick = 'BtnClick(" + row + ")'/><input id = 'file" + row + "' type='file' class='file_input_hidden' name='img[]' onChange='ChangeText(this, " + row + ")' accept='image/*' />";
+			if(ev.target.id != "view"){
+				var count =$(ev.target).find(".item").length;
+				if(count > 0){
+					ev.target.appendChild(document.getElementById());
+					//alert("NOT");
+				}
+				else{
+				var data = ev.dataTransfer.getData("text");
+				var view =  ev.target.id;
+				var view_no = $("#"+view).find("#view_no").val();
+				$("#"+data).find("input[id=st_sort]:hidden").val(view_no);
+				//alert("oK");
+				}
+				
+			}
+			else
+				
+			var data = ev.dataTransfer.getData("text");
+			//	alert(data);
+			//alert(ev.target.id);
+			var view =  ev.target.id;
+			var view_no = $("#"+view).find("#view_no").val();
+			//var view_no = $(ev.target.tagName).children().val();
+			$("#"+data).find("input[id=st_sort]:hidden").val(view_no);
+				
+			ev.target.appendChild(document.getElementById(data));
+			
+	
+			
+	
+		}
+		
+		function item() {
+			
+			return false;
+			
 		}
 
-	
+
 	</script>
 </body>
 

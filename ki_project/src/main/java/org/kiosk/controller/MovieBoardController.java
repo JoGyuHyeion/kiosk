@@ -106,7 +106,7 @@ public class MovieBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String video_filenm = uploadFileUtils.uploadImageFile(root_path, videoFile.getOriginalFilename(),
+		String video_filenm = uploadFileUtils.uploadFile(root_path, videoFile.getOriginalFilename(),
 				videoFile.getBytes(), video_fileName + (service.lastInsertID()), dirPath);
 		board.setVi_video(video_filenm);
 
@@ -143,7 +143,7 @@ public class MovieBoardController {
 		} else {
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getVi_no()).getVi_video());
 
-			video_filenm = uploadFileUtils.uploadImageFile(root_path, videoFile.getOriginalFilename(),
+			video_filenm = uploadFileUtils.uploadFile(root_path, videoFile.getOriginalFilename(),
 					videoFile.getBytes(), video_fileName + board.getVi_no(), dirPath);
 		}
 		board.setVi_video(video_filenm);

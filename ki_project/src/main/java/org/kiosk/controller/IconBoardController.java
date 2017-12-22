@@ -83,7 +83,7 @@ public class IconBoardController {
 
 		String root_path = request.getSession().getServletContext().getRealPath("/");
 
-		String icon_filenm = uploadFileUtils.uploadImageFile(root_path, iconFile.getOriginalFilename(),
+		String icon_filenm = uploadFileUtils.uploadFile(root_path, iconFile.getOriginalFilename(),
 				iconFile.getBytes(), img_fileName + (service.lastInsertID()), dirPath);
 		board.setIc_icon(icon_filenm);
 		service.regist(board);
@@ -104,7 +104,7 @@ public class IconBoardController {
 
 		if (board.getIc_default() == 0 && !(iconFile.getOriginalFilename().equals(""))) {// custom 이고 받아오는 파일 값이 있을때
 			uploadFileUtils.deleteFile(root_path + uploadPath(), service.read(board.getIc_no()).getIc_icon());
-			icon_filenm = uploadFileUtils.uploadImageFile(root_path, iconFile.getOriginalFilename(),
+			icon_filenm = uploadFileUtils.uploadFile(root_path, iconFile.getOriginalFilename(),
 					iconFile.getBytes(), img_fileName + board.getIc_no(), dirPath);
 
 		} else if (board.getIc_default() == 0 && iconFile.getOriginalFilename().equals("")) {// custom 이고 받아오는 파일 값이 없을때

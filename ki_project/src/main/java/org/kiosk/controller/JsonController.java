@@ -74,12 +74,12 @@ public class JsonController {
 	private Com_bgImgService bgImgService;
 	@Inject
 	private Vol_checkService vol_checkService;
-	@Resource(name="MateDTO")
+	@Resource(name = "MateDTO")
 	private MateDTO staffDTO;
-	
-	////테스트용
+
+	//// 테스트용
 	@RequestMapping(value = "/getAllStaff", method = RequestMethod.GET)
-	public ResponseEntity<JsonStaffDTO> gettest() {
+	public ResponseEntity<JsonStaffDTO> getAllStaff() {
 		logger.info("json/getAllStaff");
 		ResponseEntity<JsonStaffDTO> entity = null;
 		try {
@@ -90,9 +90,24 @@ public class JsonController {
 		}
 		return entity;
 	}
-	
+
+	//// 테스트용
+	@RequestMapping(value = "/getAllStaff2", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, JsonStaffDTO>> getAllStaff2() {
+		logger.info("json/getAllStaff2");
+		ResponseEntity<Map<String, JsonStaffDTO>> entity = null;
+		try {
+			entity = new ResponseEntity<Map<String, JsonStaffDTO>>(jsonStaffService.getAllJsonStaff(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+
 	@RequestMapping(value = "/setStaffStaus/{st_no}/{st_status}", method = RequestMethod.PATCH)
-	public ResponseEntity<String> setStaffStaus(@PathVariable("st_no") int st_no,@PathVariable("st_status") int st_status) {
+	public ResponseEntity<String> setStaffStaus(@PathVariable("st_no") int st_no,
+			@PathVariable("st_status") int st_status) {
 		logger.info("json/setStaffStaus");
 		ResponseEntity<String> entity = null;
 		try {
@@ -106,15 +121,15 @@ public class JsonController {
 		}
 		return entity;
 	}
-	
+
 	@RequestMapping(value = "/testHeader1", method = RequestMethod.GET)
 	public ResponseEntity<Vol_checkVO> testHeader1(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("json/getVersion");
 		ResponseEntity<Vol_checkVO> entity = null;
 		try {
 			response.setHeader("JoGyuHyeon", "Test Accept");
-			 String headerValue = CacheControl.maxAge(10, TimeUnit.SECONDS).getHeaderValue();
-			 response.addHeader("Cache-Control", headerValue);
+			String headerValue = CacheControl.maxAge(10, TimeUnit.SECONDS).getHeaderValue();
+			response.addHeader("Cache-Control", headerValue);
 			entity = new ResponseEntity<>(vol_checkService.read(1), HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,16 +137,16 @@ public class JsonController {
 		}
 		return entity;
 	}
-	
+
 	@RequestMapping(value = "/testHeader2", method = RequestMethod.GET)
 	public ResponseEntity<Vol_checkVO> testHeader2(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("json/getVersion");
 		ResponseEntity<Vol_checkVO> entity = null;
 		try {
 			URI location = new URI("http://localhost:8080/json/testHeader2");
-			 HttpHeaders responseHeaders = new HttpHeaders();
-			 responseHeaders.setLocation(location);
-			 responseHeaders.set("JoGyuHyeontest2", "MyValue");
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.setLocation(location);
+			responseHeaders.set("JoGyuHyeontest2", "MyValue");
 			entity = new ResponseEntity<>(vol_checkService.read(1), responseHeaders, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -139,14 +154,12 @@ public class JsonController {
 		}
 		return entity;
 	}
-	
+
 	@RequestMapping("/handle")
-	 public ResponseEntity<String> handle() throws URISyntaxException {
+	public ResponseEntity<String> handle() throws URISyntaxException {
 		URI location = new URI("http://localhost:8080/json/handle");
-	   return ResponseEntity.created(location).header("JoGyuHyeontest3", "MyValue").body("Hello World");
-	 }
-
-
+		return ResponseEntity.created(location).header("JoGyuHyeontest3", "MyValue").body("Hello World");
+	}
 
 	@RequestMapping(value = "/getVersion", method = RequestMethod.GET)
 	public ResponseEntity<Vol_checkVO> getVersion() {
@@ -207,8 +220,8 @@ public class JsonController {
 		Map<String, List<Com_buildingVO>> buildingList = null;
 		try {
 			buildingList = new HashMap<String, List<Com_buildingVO>>();
-			
-			for(BuildingVO vo:buildingNameService.listAll() ) {
+
+			for (BuildingVO vo : buildingNameService.listAll()) {
 				buildingList.put(vo.getBuilding_name(), buildingService.list(vo.getBu_type()));
 			}
 			entity = new ResponseEntity<Map<String, List<Com_buildingVO>>>(buildingList, HttpStatus.OK);
